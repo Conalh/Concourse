@@ -4,6 +4,7 @@ import {
   type InstalledLearningPackStore,
   type LearningPackLibraryStateEntry,
   type LearningPackSourcePort,
+  type PackAssetDeliveryPort,
 } from '../application'
 import { LearningEngine } from '../core/engine'
 import type {
@@ -19,6 +20,7 @@ import type { InstalledLearningPack } from '../learning-packs/learnt-importer'
 import {
   BrowserLearningPackStateStore,
   BrowserLearningPackSource,
+  BrowserPackAssetDelivery,
   createBrowserLearningIdGenerator,
   createBrowserLearningRepository,
   createBrowserFirstRunSetupStore,
@@ -41,6 +43,7 @@ export type LearntRuntimeDependencies = Readonly<{
   firstRunSetupStore?: FirstRunSetupStore
   installedLearningPacks?: readonly InstalledLearningPack[]
   installedLearningPackStore?: InstalledLearningPackStore
+  packAssetDelivery?: PackAssetDeliveryPort
   learningPackSource?: LearningPackSourcePort
   learningPackLibraryStates?: readonly LearningPackLibraryStateEntry[]
 }>
@@ -88,6 +91,9 @@ export function composeLearntApplication(
     ...(runtime.installedLearningPackStore === undefined
       ? {}
       : { installedLearningPackStore: runtime.installedLearningPackStore }),
+    ...(runtime.packAssetDelivery === undefined
+      ? {}
+      : { packAssetDelivery: runtime.packAssetDelivery }),
     ...(runtime.learningPackSource === undefined
       ? {}
       : { learningPackSource: runtime.learningPackSource }),
@@ -110,6 +116,7 @@ export async function createBrowserLearntApplication(): Promise<LearntApplicatio
       createBrowserProductVocabularyPreferenceStore(),
     firstRunSetupStore: createBrowserFirstRunSetupStore(),
     installedLearningPackStore,
+    packAssetDelivery: new BrowserPackAssetDelivery(),
     learningPackSource,
   })
   await application.restoreInstalledLearningPacks(installedLearningPackStore)

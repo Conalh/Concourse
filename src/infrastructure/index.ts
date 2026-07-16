@@ -24,6 +24,10 @@ export {
 } from './resource-engagement'
 export { BrowserLearningPackSource } from './learning-packs/browser-learning-pack-source'
 export {
+  BrowserPackAssetDelivery,
+  type BrowserDownloadHost,
+} from './learning-packs/browser-pack-asset-delivery'
+export {
   BrowserLearningPackSourceStore,
   BrowserLearningPackStateStore,
 } from './learning-packs/browser-learning-pack-state-store'

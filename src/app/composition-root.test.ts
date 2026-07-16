@@ -6,6 +6,7 @@ import {
   LocalStorageLearningRepository,
   type StorageLike,
 } from '../infrastructure'
+import { createPackAssetTestFixture } from '../test/pack-asset-fixture'
 import { composeLearntApplication } from './index'
 
 class FakeStorage implements StorageLike {
@@ -114,5 +115,37 @@ describe('composeLearntApplication', () => {
     } finally {
       vi.unstubAllGlobals()
     }
+  })
+
+  it('passes a configured pack asset delivery port through the application boundary', async () => {
+    const fixture = createPackAssetTestFixture()
+    const record = {
+      packId: fixture.installedPack.packId,
+      activeReleaseId: fixture.activeRelease.releaseId,
+      rollbackReleaseId: null,
+      releases: [fixture.activeRelease],
+    }
+    const delivery = {
+      save: vi.fn().mockResolvedValue('saved' as const),
+    }
+    const application = composeLearntApplication({
+      clock: new SequenceClock(),
+      idGenerator: new SequenceIds(),
+      repository: new LocalStorageLearningRepository(new FakeStorage()),
+      installedLearningPacks: [fixture.installedPack],
+      installedLearningPackStore: {
+        readSnapshot: () => Promise.resolve({ records: [record], issues: [] }),
+        write: () => Promise.resolve(),
+      },
+      packAssetDelivery: delivery,
+    })
+
+    await expect(
+      application.downloadLearningPackAsset({
+        packId: fixture.installedPack.packId,
+        resourceId: 'resource-lab-01-notebook',
+      }),
+    ).resolves.toBe('saved')
+    expect(delivery.save).toHaveBeenCalledOnce()
   })
 })
