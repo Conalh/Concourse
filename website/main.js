@@ -29,7 +29,7 @@ export function mountDemo(documentRoot = document, options = {}) {
 
   documentRoot.documentElement?.classList.add('js')
 
-  function render(announce = false, moveFocus = false) {
+  function render(announce = false, moveFocus = false, focusAnswer = false) {
     for (const panel of panels)
       panel.hidden = panel.dataset.demoPanel !== state.step
     for (const node of nodes) {
@@ -50,12 +50,13 @@ export function mountDemo(documentRoot = document, options = {}) {
         state.answerStatus === 'incorrect'
           ? 'Not quite. DNA stores genetic instructions. The cell membrane regulates movement across the cell boundary.'
           : STEP_MESSAGES[state.step]
-    if (manageFocus && moveFocus) {
+    if (manageFocus && (moveFocus || focusAnswer)) {
       const activePanel = panels.find(
         (panel) => panel.dataset.demoPanel === state.step,
       )
-      const focusTarget =
-        state.step === 'route'
+      const focusTarget = focusAnswer
+        ? root.querySelector('[data-choice]')
+        : state.step === 'route'
           ? root.querySelector('[data-demo-action="start"]')
           : activePanel
       focusTarget?.focus({ preventScroll: true })
@@ -64,8 +65,14 @@ export function mountDemo(documentRoot = document, options = {}) {
 
   function dispatch(event) {
     const previousStep = state.step
+    const previousAnswerStatus = state.answerStatus
     state = transitionDemo(state, event)
-    render(true, state.step !== previousStep)
+    const retriedIncorrectAnswer =
+      event?.type === 'retry' &&
+      previousAnswerStatus === 'incorrect' &&
+      state.step === 'recall' &&
+      state.answerStatus === 'unanswered'
+    render(true, state.step !== previousStep, retriedIncorrectAnswer)
   }
 
   function handleClick(event) {

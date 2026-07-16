@@ -146,7 +146,7 @@ test('moves focus only when focus management is enabled', () => {
   controller.destroy()
 })
 
-test('preserves control focus for answer-status-only transitions', () => {
+test('preserves incorrect-choice focus and returns retry focus to the answers', () => {
   const { document, controller } = setup({ manageFocus: true })
   controller.dispatch({ type: 'start' })
   controller.dispatch({ type: 'continue' })
@@ -163,7 +163,10 @@ test('preserves control focus for answer-status-only transitions', () => {
   retry.focus()
   retry.click()
 
-  assert.equal(document.activeElement, retry)
+  assert.equal(
+    document.activeElement,
+    document.querySelector('[data-choice="membrane"]'),
+  )
   controller.destroy()
 })
 
