@@ -66,7 +66,7 @@ Add a helper that augments `withTeachingResources()` with one manifest asset and
 ```ts
 function withPackAssetResource() {
   const pack = withTeachingResources()
-  pack.manifest.capabilities.optional.push({
+  pack.manifest.capabilities.required.push({
     capabilityId: 'learning-resource.pack-asset',
     version: '1',
   })
