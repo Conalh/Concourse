@@ -2,7 +2,8 @@
 
 ## Status
 
-Design approved on 2026-07-16. Written-specification review pending.
+Approved in design and written-specification review on 2026-07-16. Approved
+for staged implementation.
 
 ## Summary
 
