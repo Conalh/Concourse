@@ -5,6 +5,8 @@ export type LearningApplicationErrorCode =
   | 'subject-version-mismatch'
   | 'learner-profile-mismatch'
   | 'session-state-incompatible'
+  | 'pack-asset-integrity-failed'
+  | 'pack-asset-delivery-unavailable'
 
 export class LearningApplicationError extends Error {
   override readonly name = 'LearningApplicationError'

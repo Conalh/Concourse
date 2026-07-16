@@ -116,6 +116,24 @@ function mapLearntError(error: LearningApplicationError): UiError {
         recoverability: 'reload',
         cause: error,
       }
+    case 'pack-asset-integrity-failed':
+      return {
+        title: 'Pack asset unavailable',
+        message:
+          'The installed file did not match its validated learning-pack record, so it was not delivered.',
+        code: error.code,
+        recoverability: 'unavailable',
+        cause: error,
+      }
+    case 'pack-asset-delivery-unavailable':
+      return {
+        title: 'Download unavailable',
+        message:
+          'This runtime is not configured to save files from learning packs.',
+        code: error.code,
+        recoverability: 'retry',
+        cause: error,
+      }
   }
 }
 

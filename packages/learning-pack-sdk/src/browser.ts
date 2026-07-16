@@ -39,6 +39,7 @@ export {
   PUBLISHER_SIGNATURE_EXTENSION_POINT,
 }
 export { loadLearningPackFromFilesAsync } from './documents-browser.js'
+export { sha256Hex } from './hash-browser.js'
 export type { ArchiveLimitAccumulator } from './limits.js'
 
 export async function loadLearningPackArchiveBytes(

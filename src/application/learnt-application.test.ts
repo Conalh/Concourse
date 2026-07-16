@@ -23,12 +23,17 @@ import {
 import { demoLearnerProfile } from '../profiles'
 import { createProductionSubjectRegistry } from '../app/subject-registry'
 import {
+  createPackAssetTestFixture,
+  packAssetBytes,
+} from '../test/pack-asset-fixture'
+import {
   LearntApplication,
   LearningApplicationError,
   type LearningPackDirectoryInstallResult,
   type LearningPackSourcePort,
   type LearningPackSourceReadResult,
   type InstalledLearningPackRecord,
+  type InstalledLearningPackRelease,
   type InstalledLearningPackStore,
   type LearningSessionContext,
   type ValidatedLearningPackCandidate,
@@ -149,6 +154,22 @@ class FixedLearningPackSource implements LearningPackSourcePort {
   }
 }
 
+type RecordedPackAssetSaveRequest = Readonly<{
+  suggestedFileName: string
+  mediaType: string
+  bytes: Uint8Array
+}>
+
+class RecordingPackAssetDelivery {
+  readonly requests: RecordedPackAssetSaveRequest[] = []
+  result: 'saved' | 'cancelled' = 'saved'
+
+  save(request: RecordedPackAssetSaveRequest): Promise<'saved' | 'cancelled'> {
+    this.requests.push(request)
+    return Promise.resolve(this.result)
+  }
+}
+
 function candidate(
   version: Parameters<typeof createLogicFoundationsRelease>[0],
   contentHash: string,
@@ -203,6 +224,60 @@ function createTestApplicationWithPackStore(
     installedLearningPackStore: store,
     ...(source === undefined ? {} : { learningPackSource: source }),
   })
+}
+
+type PackAssetTestFixture = ReturnType<typeof createPackAssetTestFixture>
+
+async function createPackAssetApplication(
+  options: Readonly<{
+    fixture?: PackAssetTestFixture
+    activeRelease?: InstalledLearningPackRelease
+  }> = {},
+) {
+  const fixture = options.fixture ?? createPackAssetTestFixture()
+  const activeRelease = options.activeRelease ?? fixture.activeRelease
+  const store = new InMemoryInstalledLearningPackStore()
+  const delivery = new RecordingPackAssetDelivery()
+  const resourceEngagementStore = new InMemoryResourceEngagementStore()
+  await store.write(installedRecord(activeRelease))
+
+  const clock = new SequenceClock()
+  const engine = new LearningEngine({
+    clock,
+    idGenerator: new SequenceIds(),
+  })
+  const application = new LearntApplication({
+    clock,
+    profile: demoLearnerProfile,
+    subjectRegistry: createProductionSubjectRegistry(),
+    persistentLearningService: new PersistentLearningService({
+      engine,
+      repository: new LocalStorageLearningRepository(new FakeStorage()),
+    }),
+    resourceEngagementStore,
+    installedLearningPacks: [fixture.installedPack],
+    installedLearningPackStore: store,
+    packAssetDelivery: delivery,
+  })
+
+  return {
+    application,
+    fixture,
+    store,
+    delivery,
+    resourceEngagementStore,
+  }
+}
+
+function installedRecord(
+  activeRelease: InstalledLearningPackRelease,
+): InstalledLearningPackRecord {
+  return {
+    packId: activeRelease.documents.manifest.packId,
+    activeReleaseId: activeRelease.releaseId,
+    rollbackReleaseId: null,
+    releases: [activeRelease],
+  }
 }
 
 function firstProductionSubject() {
@@ -469,6 +544,120 @@ describe('LearntApplication installed pack lifecycle', () => {
     )
 
     expect(storage.snapshot()).toEqual(learnerStateBeforeSync)
+  })
+})
+
+describe('LearntApplication pack asset delivery', () => {
+  it('delivers a fresh copy of active-release bytes through the configured port', async () => {
+    const setup = await createPackAssetApplication()
+
+    const result = await setup.application.downloadLearningPackAsset({
+      packId: setup.fixture.installedPack.packId,
+      resourceId: 'resource-lab-01-notebook',
+    })
+
+    expect(result).toBe('saved')
+    expect(setup.delivery.requests).toHaveLength(1)
+    expect(setup.delivery.requests[0]).toMatchObject({
+      suggestedFileName: 'module-01-lab.ipynb',
+      mediaType: 'application/x-ipynb+json',
+    })
+    expect([...(setup.delivery.requests[0]?.bytes ?? [])]).toEqual([
+      ...packAssetBytes,
+    ])
+    expect(setup.delivery.requests[0]?.bytes).not.toBe(
+      setup.fixture.activeRelease.files[0]!.bytes,
+    )
+  })
+
+  it('treats delivery cancellation as a side-effect-free result', async () => {
+    const setup = await createPackAssetApplication()
+    setup.delivery.result = 'cancelled'
+
+    const result = await setup.application.downloadLearningPackAsset({
+      packId: setup.fixture.installedPack.packId,
+      resourceId: 'resource-lab-01-notebook',
+    })
+
+    expect(result).toBe('cancelled')
+    expect(
+      await setup.resourceEngagementStore.listResourceEngagementEvents(),
+    ).toEqual([])
+  })
+
+  it('does not call the delivery port when canonical byte resolution fails', async () => {
+    const fixture = createPackAssetTestFixture()
+    const tamperedRelease = {
+      ...fixture.activeRelease,
+      files: [
+        {
+          ...fixture.activeRelease.files[0]!,
+          sha256: 'f'.repeat(64),
+        },
+      ],
+    }
+    const setup = await createPackAssetApplication({
+      fixture,
+      activeRelease: tamperedRelease,
+    })
+
+    await expect(
+      setup.application.downloadLearningPackAsset({
+        packId: fixture.installedPack.packId,
+        resourceId: 'resource-lab-01-notebook',
+      }),
+    ).rejects.toMatchObject({ code: 'pack-asset-integrity-failed' })
+    expect(setup.delivery.requests).toEqual([])
+  })
+
+  it('reports a visible application error when delivery is not configured', async () => {
+    const fixture = createPackAssetTestFixture()
+    const store = new InMemoryInstalledLearningPackStore()
+    await store.write(installedRecord(fixture.activeRelease))
+    const application = createTestApplicationWithPackStore(store)
+
+    await expect(
+      application.downloadLearningPackAsset({
+        packId: fixture.installedPack.packId,
+        resourceId: 'resource-lab-01-notebook',
+      }),
+    ).rejects.toMatchObject({
+      name: 'LearningApplicationError',
+      code: 'pack-asset-delivery-unavailable',
+    })
+  })
+
+  it('reports a visible application error when installed release storage is not configured', async () => {
+    const fixture = createPackAssetTestFixture()
+    const delivery = new RecordingPackAssetDelivery()
+    const clock = new SequenceClock()
+    const engine = new LearningEngine({
+      clock,
+      idGenerator: new SequenceIds(),
+    })
+    const application = new LearntApplication({
+      clock,
+      profile: demoLearnerProfile,
+      subjectRegistry: createProductionSubjectRegistry(),
+      persistentLearningService: new PersistentLearningService({
+        engine,
+        repository: new LocalStorageLearningRepository(new FakeStorage()),
+      }),
+      resourceEngagementStore: new InMemoryResourceEngagementStore(),
+      installedLearningPacks: [fixture.installedPack],
+      packAssetDelivery: delivery,
+    })
+
+    await expect(
+      application.downloadLearningPackAsset({
+        packId: fixture.installedPack.packId,
+        resourceId: 'resource-lab-01-notebook',
+      }),
+    ).rejects.toMatchObject({
+      name: 'LearningApplicationError',
+      code: 'pack-asset-delivery-unavailable',
+    })
+    expect(delivery.requests).toEqual([])
   })
 })
 

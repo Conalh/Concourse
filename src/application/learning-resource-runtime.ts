@@ -65,6 +65,7 @@ const supportedResourceSourceKinds = new Set<
   'external-audio',
   'bibliographic-reference',
   'interactive-reference',
+  'pack-asset',
 ])
 
 export async function buildLearningResourceTeachingContext(

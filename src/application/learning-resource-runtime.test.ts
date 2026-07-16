@@ -10,6 +10,7 @@ import {
   type StorageLike,
 } from '../infrastructure'
 import { installLearningPackDocuments } from '../learning-packs/learnt-importer'
+import { createPackAssetTestFixture } from '../test/pack-asset-fixture'
 
 class FakeStorage implements StorageLike {
   private readonly values = new Map<string, string>()
@@ -76,6 +77,28 @@ function createResourceApplication() {
 }
 
 describe('Learning resource runtime', () => {
+  it('exposes a validated pack asset resource as supported', async () => {
+    const fixture = createPackAssetTestFixture()
+    const application = composeLearntApplication({
+      clock: new SequenceClock(),
+      idGenerator: new SequenceIds(),
+      repository: new LocalStorageLearningRepository(new FakeStorage()),
+      resourceEngagementStore: new InMemoryResourceEngagementStore(),
+      installedLearningPacks: [fixture.installedPack],
+    })
+
+    const resource = await application.getLearningResource({
+      packId: fixture.installedPack.packId,
+      resourceId: 'resource-lab-01-notebook',
+    })
+
+    expect(resource).toMatchObject({
+      sourceKind: 'pack-asset',
+      supported: true,
+      supportMessage: null,
+    })
+  })
+
   it('looks up canonical resources by pack ID and resource ID without mutating pack content', async () => {
     const { application } = createResourceApplication()
 

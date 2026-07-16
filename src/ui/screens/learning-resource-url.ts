@@ -46,6 +46,7 @@ function externalResourceUrl(
     }
     case 'embedded-content':
     case 'bibliographic-reference':
+    case 'pack-asset':
       return null
   }
 }

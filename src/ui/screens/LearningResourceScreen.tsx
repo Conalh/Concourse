@@ -232,6 +232,14 @@ function ResourceSourceView({
       )
     case 'bibliographic-reference':
       return <BibliographicResourceView source={resource.source} />
+    case 'pack-asset':
+      return (
+        <section aria-labelledby="pack-asset-title">
+          <h2 id="pack-asset-title">Downloadable lab file</h2>
+          <p>{resource.source.suggestedFileName}</p>
+          <p>File-saving controls are not available in this view yet.</p>
+        </section>
+      )
   }
 }
 
@@ -721,6 +729,8 @@ function sourceKindLabel(kind: ResourceSource['kind']): string {
       return 'Bibliographic reference'
     case 'interactive-reference':
       return 'Interactive reference'
+    case 'pack-asset':
+      return 'Pack asset'
   }
 }
 

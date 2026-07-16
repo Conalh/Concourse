@@ -23,6 +23,7 @@ import type {
   AbandonLearntSessionInput,
   AdvanceLearntSessionInput,
   ChangeLearntModeInput,
+  DownloadLearningPackAssetInput,
   GetLearningResourceInput,
   GetEligibleSupportResourcesInput,
   GetPracticeRecommendationsInput,
@@ -88,6 +89,8 @@ import {
   requireInstalledPack,
   validateResourceEngagementForPack,
 } from './learning-resource-runtime'
+import { resolvePackAssetDownload } from './pack-asset-runtime'
+import type { PackAssetSaveResult } from '../learning-packs/pack-asset-delivery-port'
 import {
   assertLearnerCompatible,
   buildLearnerSummary,
@@ -231,6 +234,45 @@ export class LearntApplication {
       installedPacks: this.getInstalledLearningPacks(),
       engagementEvents,
     })
+  }
+
+  async downloadLearningPackAsset(
+    input: DownloadLearningPackAssetInput,
+  ): Promise<PackAssetSaveResult> {
+    const delivery = this.dependencies.packAssetDelivery
+    const store = this.dependencies.installedLearningPackStore
+    if (delivery === undefined || store === undefined) {
+      throw new LearningApplicationError(
+        'pack-asset-delivery-unavailable',
+        'Pack asset delivery is not configured for this runtime.',
+        { details: { packId: input.packId, resourceId: input.resourceId } },
+      )
+    }
+
+    const installedPack = requireInstalledPack(
+      this.getInstalledLearningPacks(),
+      input.packId,
+    )
+    const snapshot = await store.readSnapshot()
+    const record = snapshot.records.find(
+      (candidate) => candidate.packId === input.packId,
+    )
+    const activeRelease =
+      record === undefined ? null : activeInstalledLearningPackRelease(record)
+    if (activeRelease === null) {
+      throw new LearningApplicationError(
+        'pack-asset-integrity-failed',
+        'The installed pack has no persisted active release for asset delivery.',
+        { details: { packId: input.packId, resourceId: input.resourceId } },
+      )
+    }
+
+    const download = await resolvePackAssetDownload({
+      installedPack,
+      activeRelease,
+      resourceId: input.resourceId,
+    })
+    return delivery.save(download)
   }
 
   async listResourcesForPack(input: ListResourcesForPackInput) {

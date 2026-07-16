@@ -13,6 +13,7 @@ export type {
   ActivityNavigationOption,
   AdvanceLearntSessionInput,
   ChangeLearntModeInput,
+  DownloadLearningPackAssetInput,
   ConceptExplorationReference,
   ConceptRelationship,
   ConceptRelationshipKind,
@@ -113,6 +114,11 @@ export type {
   SubmitLearntEvidenceInput,
   UnparkLearntConceptInput,
 } from './learnt-application.types'
+export type {
+  PackAssetDeliveryPort,
+  PackAssetSaveRequest,
+  PackAssetSaveResult,
+} from '../learning-packs/pack-asset-delivery-port'
 export type {
   ConceptEncounterRecap,
   RecapCodeResponse,

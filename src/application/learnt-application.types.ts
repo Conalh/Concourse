@@ -47,6 +47,7 @@ import type {
   ThemePreferenceStore,
 } from '../core/ports'
 import type { InstalledLearningPack } from '../learning-packs/learnt-importer'
+import type { PackAssetDeliveryPort } from '../learning-packs/pack-asset-delivery-port'
 import type {
   InstalledLearningPackRecord,
   InstalledLearningPackStore,
@@ -81,6 +82,7 @@ export type LearntApplicationDependencies = Readonly<{
   firstRunSetupStore?: FirstRunSetupStore
   installedLearningPacks?: readonly InstalledLearningPack[]
   installedLearningPackStore?: InstalledLearningPackStore
+  packAssetDelivery?: PackAssetDeliveryPort
   learningPackSource?: LearningPackSourcePort
   learningPackLibraryStates?: readonly LearningPackLibraryStateEntry[]
 }>
@@ -413,6 +415,11 @@ export type GetLearningResourceInput = Readonly<{
   packId: string
   resourceId: string
   segmentId?: string
+}>
+
+export type DownloadLearningPackAssetInput = Readonly<{
+  packId: string
+  resourceId: string
 }>
 
 export type ListResourcesForPackInput = Readonly<{
