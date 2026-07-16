@@ -470,6 +470,7 @@ describe('Learning Pack Contract v0.1', () => {
     ['module-01\n-lab.ipynb', 'control character'],
     ['module-01-lab.ipynb.', 'trailing dot'],
     ['module-01-lab.ipynb ', 'trailing space'],
+    [' module-01-lab.ipynb', 'leading space'],
     ['module-01-lab.py', 'extension/media mismatch'],
   ])('rejects unsafe pack asset filenames: %s (%s)', (fileName) => {
     const pack = withPackAssetResource()

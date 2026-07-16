@@ -1596,6 +1596,7 @@ function validatePackAssetSource(
     return
   }
   if (
+    fileName !== trimmedFileName ||
     trimmedFileName === '.' ||
     trimmedFileName === '..' ||
     fileName.includes('/') ||
