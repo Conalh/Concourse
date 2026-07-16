@@ -44,7 +44,6 @@ html {
 
 body {
   margin: 0;
-  min-width: 20rem;
   background: var(--canvas);
   color: var(--ink);
   font-size: 1rem;
@@ -111,6 +110,10 @@ a {
 
 .enhanced-control {
   display: none;
+}
+
+html:not(.js) .enhanced-control {
+  display: none !important;
 }
 
 .js button.enhanced-control {
@@ -1407,6 +1410,21 @@ footer nav a:first-child {
 
   .site-header .brand {
     font-size: 1.35rem;
+  }
+
+  .site-header .brand,
+  .first-contribution a,
+  .local-boundary > a,
+  footer .brand,
+  footer nav a {
+    min-height: 2.75rem;
+  }
+
+  .first-contribution a,
+  .local-boundary > a,
+  footer nav a {
+    display: inline-flex;
+    align-items: center;
   }
 
   .site-header .brand img {

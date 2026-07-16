@@ -69,6 +69,32 @@ test('preserves each enhanced control layout and does not mask overflow', () => 
   )
 })
 
+test('allows the narrow layout to account for a vertical scrollbar', () => {
+  assert.doesNotMatch(
+    ruleBody('body'),
+    /min-width\s*:/,
+    'body width floors create horizontal overflow at a 320px viewport',
+  )
+})
+
+test('keeps mobile navigation and editorial links at least 44px tall', () => {
+  const mobileStart = styles.indexOf('@media (max-width: 52rem)')
+  const nextBreakpoint = styles.indexOf('@media (max-width: 30rem)')
+  const mobileStyles = styles.slice(mobileStart, nextBreakpoint)
+
+  assert.match(
+    mobileStyles,
+    /\.site-header \.brand,\s*\.first-contribution a,\s*\.local-boundary > a,\s*footer \.brand,\s*footer nav a\s*\{[^}]*min-height:\s*2\.75rem;/s,
+  )
+})
+
+test('keeps enhanced controls inert and hidden until JavaScript mounts', () => {
+  assert.match(
+    styles,
+    /html:not\(\.js\) \.enhanced-control\s*\{[^}]*display:\s*none\s*!important;/s,
+  )
+})
+
 test('uses focus indicators with at least 3 to 1 adjacent contrast', () => {
   const lightSurfaceRatio = contrastRatio(
     colorToken('cobalt'),
