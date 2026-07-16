@@ -7,7 +7,7 @@ describe('browser pack-asset convergence', () => {
     const calls: string[] = []
     const delivery = new BrowserPackAssetDelivery({
       createObjectUrl(blob) {
-        calls.push(`create:${blob.type}:${blob.size}`)
+        calls.push(`create:${blob.type}:${String(blob.size)}`)
         return 'blob:verified-asset'
       },
       clickDownload(url, fileName) {
