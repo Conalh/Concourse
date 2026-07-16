@@ -116,6 +116,16 @@ html:not(.js) .enhanced-control {
   display: none !important;
 }
 
+html:not(.js) [data-demo-progress] {
+  display: none;
+}
+
+html:not(.js) .static-answer summary {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+
 .js button.enhanced-control {
   display: inline-flex;
 }

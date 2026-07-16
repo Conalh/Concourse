@@ -95,6 +95,21 @@ test('keeps enhanced controls inert and hidden until JavaScript mounts', () => {
   )
 })
 
+test('keeps the no-JavaScript answer disclosure at least 44px tall', () => {
+  const summary = ruleBody('html:not(.js) .static-answer summary')
+
+  assert.match(summary, /display:\s*flex;/)
+  assert.match(summary, /align-items:\s*center;/)
+  assert.match(summary, /min-height:\s*2\.75rem;/)
+})
+
+test('hides runtime-only progress when JavaScript is unavailable', () => {
+  assert.match(
+    ruleBody('html:not(.js) [data-demo-progress]'),
+    /display:\s*none;/,
+  )
+})
+
 test('uses focus indicators with at least 3 to 1 adjacent contrast', () => {
   const lightSurfaceRatio = contrastRatio(
     colorToken('cobalt'),
