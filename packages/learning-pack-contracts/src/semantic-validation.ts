@@ -26,6 +26,7 @@ import type {
   LearningPackDocuments,
   LearningPackManifest,
   LearningResource,
+  PackFileManifestEntry,
   MigrationEntityKind,
   MigrationsDocument,
   PlayMode,
@@ -204,6 +205,7 @@ interface EntityIndex {
   nodes: Set<string>
   themes: Set<string>
   assetIds: Set<string>
+  manifestFilesByAssetId: Map<string, PackFileManifestEntry>
   itemRevisions: Map<string, number>
 }
 
@@ -224,6 +226,7 @@ function buildEntityIndex(
     nodes: new Set(),
     themes: new Set(),
     assetIds: new Set(),
+    manifestFilesByAssetId: new Map(),
     itemRevisions: new Map(),
   }
 
@@ -348,6 +351,12 @@ function buildEntityIndex(
   }
 
   for (const [fileIndex, file] of pack.manifest.files.entries()) {
+    if (
+      file.assetId !== null &&
+      !index.manifestFilesByAssetId.has(file.assetId)
+    ) {
+      index.manifestFilesByAssetId.set(file.assetId, file)
+    }
     if (file.role === 'asset' && file.assetId !== null) {
       addEntityId(
         'asset',
@@ -1381,13 +1390,14 @@ function validateResources(
 
   for (const [resourceIndex, resource] of pack.resources.resources.entries()) {
     const path = `resources.json.resources[${resourceIndex}]`
-    validateResource(resource, path, index, diagnostics)
+    validateResource(resource, path, pack.manifest, index, diagnostics)
   }
 }
 
 function validateResource(
   resource: LearningResource,
   path: string,
+  manifest: LearningPackManifest,
   index: EntityIndex,
   diagnostics: LearningPackDiagnostic[],
 ): void {
@@ -1425,7 +1435,7 @@ function validateResource(
     'StudySet',
     diagnostics,
   )
-  validateResourceSource(resource, path, index.assetIds, diagnostics)
+  validateResourceSource(resource, path, manifest, index, diagnostics)
   validateResourceSegments(resource, path, index, diagnostics)
   validateResourceProvenance(resource, path, diagnostics)
 }
@@ -1433,7 +1443,8 @@ function validateResource(
 function validateResourceSource(
   resource: LearningResource,
   path: string,
-  assetIds: ReadonlySet<string>,
+  manifest: LearningPackManifest,
+  index: EntityIndex,
   diagnostics: LearningPackDiagnostic[],
 ): void {
   const source = resource.source
@@ -1441,7 +1452,7 @@ function validateResourceSource(
     validateContentBlocks(
       source.content,
       `${path}.source.content`,
-      assetIds,
+      index.assetIds,
       diagnostics,
     )
     return
@@ -1487,6 +1498,17 @@ function validateResourceSource(
     return
   }
 
+  if (source.kind === 'pack-asset') {
+    validatePackAssetSource(
+      source,
+      `${path}.source`,
+      manifest,
+      index.manifestFilesByAssetId,
+      diagnostics,
+    )
+    return
+  }
+
   if (
     source.kind === 'bibliographic-reference' &&
     source.canonicalUrl !== undefined
@@ -1497,6 +1519,121 @@ function validateResourceSource(
       diagnostics,
     )
   }
+}
+
+const packAssetExtensionsByMediaType = new Map<string, readonly string[]>([
+  ['application/x-ipynb+json', ['.ipynb']],
+  ['text/x-python', ['.py']],
+  ['text/csv', ['.csv']],
+  ['text/markdown', ['.md']],
+  ['text/plain', ['.txt']],
+  ['application/yaml', ['.yml', '.yaml']],
+])
+
+function validatePackAssetSource(
+  source: Extract<LearningResource['source'], { kind: 'pack-asset' }>,
+  path: string,
+  manifest: LearningPackManifest,
+  manifestFilesByAssetId: ReadonlyMap<string, PackFileManifestEntry>,
+  diagnostics: LearningPackDiagnostic[],
+): void {
+  const requiredCapability = manifest.capabilities.required.some(
+    (capability) =>
+      capability.capabilityId === 'learning-resource.pack-asset' &&
+      capability.version === '1',
+  )
+  if (!requiredCapability) {
+    invalidPackAssetSource(
+      diagnostics,
+      path,
+      'Pack-asset resources require learning-resource.pack-asset@1.',
+    )
+  }
+
+  const manifestEntry = manifestFilesByAssetId.get(source.assetId)
+  if (manifestEntry === undefined) {
+    invalidPackAssetSource(
+      diagnostics,
+      `${path}.assetId`,
+      `Pack asset ${source.assetId} is not declared in the manifest.`,
+    )
+  } else {
+    if (manifestEntry.role !== 'asset') {
+      invalidPackAssetSource(
+        diagnostics,
+        `${path}.assetId`,
+        `Manifest entry ${source.assetId} must have role asset.`,
+      )
+    }
+    if (manifestEntry.mediaType !== source.mediaType) {
+      invalidPackAssetSource(
+        diagnostics,
+        `${path}.mediaType`,
+        `Resource media type ${source.mediaType} does not match manifest media type ${manifestEntry.mediaType}.`,
+      )
+    }
+  }
+
+  const allowedExtensions = packAssetExtensionsByMediaType.get(source.mediaType)
+  if (allowedExtensions === undefined) {
+    invalidPackAssetSource(
+      diagnostics,
+      `${path}.mediaType`,
+      `Media type ${source.mediaType} is not allowed for pack-asset resources.`,
+    )
+    return
+  }
+
+  const fileName = source.suggestedFileName
+  const trimmedFileName = fileName.trim()
+  const characterCount = Array.from(trimmedFileName).length
+  if (characterCount < 1 || characterCount > 128) {
+    invalidPackAssetSource(
+      diagnostics,
+      `${path}.suggestedFileName`,
+      'suggestedFileName must contain 1 to 128 characters after trimming.',
+    )
+    return
+  }
+  if (
+    trimmedFileName === '.' ||
+    trimmedFileName === '..' ||
+    fileName.includes('/') ||
+    fileName.includes('\\') ||
+    /[\u0000-\u001f\u007f]/u.test(fileName) ||
+    /[. ]$/u.test(fileName)
+  ) {
+    invalidPackAssetSource(
+      diagnostics,
+      `${path}.suggestedFileName`,
+      'suggestedFileName must be a safe basename without path separators, control characters, or a trailing dot or space.',
+    )
+    return
+  }
+
+  const lowerFileName = fileName.toLowerCase()
+  if (!allowedExtensions.some((extension) => lowerFileName.endsWith(extension))) {
+    invalidPackAssetSource(
+      diagnostics,
+      `${path}.suggestedFileName`,
+      `suggestedFileName must use ${allowedExtensions.join(' or ')} for media type ${source.mediaType}.`,
+    )
+  }
+}
+
+function invalidPackAssetSource(
+  diagnostics: LearningPackDiagnostic[],
+  path: string,
+  message: string,
+): void {
+  diagnostics.push(
+    makeDiagnostic(
+      LearningPackErrorCode.INVALID_RESOURCE_SOURCE,
+      'error',
+      path,
+      message,
+    ),
+  )
 }
 
 function validateResourceSegments(

@@ -793,6 +793,17 @@ const resourceSourceSchema = {
         requiredEnvironment: { type: 'string', minLength: 1 },
       },
     },
+    {
+      type: 'object',
+      additionalProperties: false,
+      required: ['kind', 'assetId', 'suggestedFileName', 'mediaType'],
+      properties: {
+        kind: { const: 'pack-asset' },
+        assetId: { type: 'string', pattern: localIdPattern },
+        suggestedFileName: { type: 'string' },
+        mediaType: { type: 'string' },
+      },
+    },
   ],
 } as const
 

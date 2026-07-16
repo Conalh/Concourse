@@ -180,6 +180,8 @@ export type {
   NumberInputDefinition,
   Objective,
   PackCapabilities,
+  PackAssetMediaType,
+  PackAssetResourceSource,
   PackFileManifestEntry,
   PackFileRole,
   PackMigration,

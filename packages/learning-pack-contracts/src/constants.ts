@@ -11,6 +11,7 @@ export const SUPPORTED_CAPABILITIES = [
   { capabilityId: 'learning-resource.external-audio', version: '1' },
   { capabilityId: 'learning-resource.bibliographic-reference', version: '1' },
   { capabilityId: 'learning-resource.interactive-reference', version: '1' },
+  { capabilityId: 'learning-resource.pack-asset', version: '1' },
   { capabilityId: 'learning-resource.segments', version: '1' },
   { capabilityId: 'learning-resource.checkpoints', version: '1' },
   { capabilityId: 'curriculum.ordered-resource-entries', version: '1' },

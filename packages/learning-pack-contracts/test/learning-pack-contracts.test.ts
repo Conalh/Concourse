@@ -383,6 +383,101 @@ describe('Learning Pack Contract v0.1', () => {
     ).toEqual([])
   })
 
+  it('accepts a manifest-backed pack asset learning resource', () => {
+    const result = validateLearningPackDocuments(withPackAssetResource())
+
+    expect(result.ok).toBe(true)
+    expect(
+      result.diagnostics.filter(
+        (diagnostic) => diagnostic.severity === 'error',
+      ),
+    ).toEqual([])
+  })
+
+  it('rejects a pack asset resource without the required capability', () => {
+    const pack = withPackAssetResource()
+    pack.manifest.capabilities.required =
+      pack.manifest.capabilities.required.filter(
+        (capability) =>
+          capability.capabilityId !== 'learning-resource.pack-asset',
+      )
+
+    expectInvalidPackAssetSource(pack)
+  })
+
+  it('rejects a pack asset resource whose assetId is missing', () => {
+    const pack = withPackAssetResource()
+    packAssetSource(pack).assetId = 'missing-notebook'
+
+    expectInvalidPackAssetSource(pack)
+  })
+
+  it('rejects a pack asset resource that resolves to a non-asset manifest entry', () => {
+    const pack = withPackAssetResource()
+    const entry = pack.manifest.files.find(
+      (file) => file.assetId === 'lab-01-notebook',
+    )!
+    entry.role = 'documentation'
+
+    expectInvalidPackAssetSource(pack)
+  })
+
+  it('rejects a pack asset resource with a mismatched manifest media type', () => {
+    const pack = withPackAssetResource()
+    packAssetSource(pack).mediaType = 'text/x-python'
+
+    expectInvalidPackAssetSource(pack)
+  })
+
+  it('rejects unsupported pack asset media types', () => {
+    const pack = withPackAssetResource()
+    packAssetSource(pack).mediaType = 'text/html'
+
+    expectInvalidPackAssetSource(pack)
+  })
+
+  it.each([
+    ['module-01-lab.IPYNB', 'application/x-ipynb+json'],
+    ['module-01-lab.py', 'text/x-python'],
+    ['module-01-data.csv', 'text/csv'],
+    ['module-01-readme.md', 'text/markdown'],
+    ['module-01-notes.txt', 'text/plain'],
+    ['environment.yml', 'application/yaml'],
+    ['environment.yaml', 'application/yaml'],
+  ])('accepts the pack asset pair %s and %s', (fileName, mediaType) => {
+    const pack = withPackAssetResource()
+    const source = packAssetSource(pack)
+    const entry = pack.manifest.files.find(
+      (file) => file.assetId === source.assetId,
+    )!
+    source.suggestedFileName = fileName
+    source.mediaType = mediaType
+    entry.mediaType = mediaType
+
+    const result = validateLearningPackDocuments(pack)
+
+    expect(result.ok).toBe(true)
+  })
+
+  it.each([
+    ['', 'empty'],
+    ['a'.repeat(129), 'over 128 characters'],
+    ['.', 'dot'],
+    ['..', 'dot-dot'],
+    ['labs/module-01-lab.ipynb', 'forward-slash path'],
+    ['labs\\module-01-lab.ipynb', 'backslash path'],
+    ['module-01\0-lab.ipynb', 'NUL'],
+    ['module-01\n-lab.ipynb', 'control character'],
+    ['module-01-lab.ipynb.', 'trailing dot'],
+    ['module-01-lab.ipynb ', 'trailing space'],
+    ['module-01-lab.py', 'extension/media mismatch'],
+  ])('rejects unsafe pack asset filenames: %s (%s)', (fileName) => {
+    const pack = withPackAssetResource()
+    packAssetSource(pack).suggestedFileName = fileName
+
+    expectInvalidPackAssetSource(pack)
+  })
+
   it('rejects unsafe resource URL schemes', () => {
     const pack = withTeachingResources()
     const resource = pack.resources!.resources.find(
@@ -1005,6 +1100,62 @@ function withTeachingResources(
   }
 
   return pack
+}
+
+function withPackAssetResource(): LearningPackDocuments {
+  const pack = withTeachingResources()
+  pack.manifest.capabilities.required.push({
+    capabilityId: 'learning-resource.pack-asset',
+    version: '1',
+  })
+  pack.manifest.files.push({
+    assetId: 'lab-01-notebook',
+    path: 'assets/labs/module-01-lab.ipynb',
+    role: 'asset',
+    mediaType: 'application/x-ipynb+json',
+    sha256: hash,
+    bytes: 128,
+  })
+  pack.resources!.resources.push({
+    id: 'resource-lab-01-notebook',
+    contentRevision: 1,
+    title: 'Module 1 learner notebook',
+    modality: 'interactive',
+    roles: ['worked-example'],
+    source: {
+      kind: 'pack-asset',
+      assetId: 'lab-01-notebook',
+      suggestedFileName: 'module-01-lab.ipynb',
+      mediaType: 'application/x-ipynb+json',
+    } as never,
+    provenance: {
+      author: 'Concourse',
+      license: 'CC-BY-4.0',
+      contentOwnership: 'pack-authored',
+    },
+  })
+  return pack
+}
+
+type MutablePackAssetSource = {
+  assetId: string
+  suggestedFileName: string
+  mediaType: string
+}
+
+function packAssetSource(pack: LearningPackDocuments): MutablePackAssetSource {
+  return pack.resources!.resources.find(
+    (resource) => resource.id === 'resource-lab-01-notebook',
+  )!.source as unknown as MutablePackAssetSource
+}
+
+function expectInvalidPackAssetSource(pack: LearningPackDocuments): void {
+  const result = validateLearningPackDocuments(pack)
+
+  expect(result.ok).toBe(false)
+  expect(codes(result.diagnostics)).toContain(
+    LearningPackErrorCode.INVALID_RESOURCE_SOURCE,
+  )
 }
 
 function withMigrations(pack: LearningPackDocuments): LearningPackDocuments {

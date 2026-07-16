@@ -19,6 +19,7 @@ export type CapabilityId =
   | 'learning-resource.external-audio'
   | 'learning-resource.bibliographic-reference'
   | 'learning-resource.interactive-reference'
+  | 'learning-resource.pack-asset'
   | 'learning-resource.segments'
   | 'learning-resource.checkpoints'
   | 'curriculum.ordered-resource-entries'
@@ -378,6 +379,7 @@ export type LearningResourceSource =
   | ExternalAudioResourceSource
   | BibliographicResourceSource
   | InteractiveReferenceResourceSource
+  | PackAssetResourceSource
 
 export interface EmbeddedContentResourceSource {
   kind: 'embedded-content'
@@ -432,6 +434,21 @@ export interface InteractiveReferenceResourceSource {
   providerName?: string
   interactionSummary: string
   requiredEnvironment?: string
+}
+
+export type PackAssetMediaType =
+  | 'application/x-ipynb+json'
+  | 'text/x-python'
+  | 'text/csv'
+  | 'text/markdown'
+  | 'text/plain'
+  | 'application/yaml'
+
+export interface PackAssetResourceSource {
+  kind: 'pack-asset'
+  assetId: string
+  suggestedFileName: string
+  mediaType: PackAssetMediaType
 }
 
 export interface ResourceSegment {
