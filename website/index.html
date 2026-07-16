@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f7f2" />
+    <meta
+      name="description"
+      content="Concourse is an open-source, local-first system for guided learning routes, active recall, and portable course packs."
+    />
+    <meta
+      property="og:title"
+      content="Concourse — Learning should have a route"
+    />
+    <meta
+      property="og:description"
+      content="Follow a guided route, practice recall, and see how portable learning packs work."
+    />
+    <meta
+      property="og:image"
+      content="https://concourse.conalhickey.com/assets/social-preview.svg"
+    />
+    <meta property="og:url" content="https://concourse.conalhickey.com/" />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://concourse.conalhickey.com/" />
+    <link rel="icon" href="./assets/concourse-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Concourse — Learning should have a route</title>
+    <script type="module" src="./main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Concourse home">
+        <img src="./assets/concourse-mark.svg" alt="" width="36" height="36" />
+        <span>Concourse</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#demo">Demo</a><a href="#system">System</a
+        ><a href="#contribute">Contribute</a>
+      </nav>
+      <a class="github-link" href="https://github.com/Conalh/Concourse"
+        >GitHub <span aria-hidden="true">↗</span></a
+      >
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title">Learning should have a route.</h1>
+          <p>
+            Concourse is an open-source, local-first system for building guided
+            learning routes, practicing recall, and sharing portable course
+            packs.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button button-primary"
+              data-primary-cta
+              data-focus-demo
+              href="#demo"
+              >Explore the demo</a
+            >
+            <a
+              class="button button-secondary"
+              data-github-cta
+              href="https://github.com/Conalh/Concourse"
+              >View on GitHub</a
+            >
+          </div>
+        </div>
+        <div class="hero-route" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </section>
+
+      <section
+        class="demo-section"
+        id="demo"
+        tabindex="-1"
+        aria-labelledby="demo-title"
+        data-demo
+      >
+        <header class="section-heading demo-heading">
+          <p class="section-index">01 / Try the idea</p>
+          <h2 id="demo-title">Inside a bacterial cell</h2>
+          <p>
+            One small route. Four deliberate steps. No account and nothing
+            leaves your browser.
+          </p>
+        </header>
+        <ol class="route-map" aria-label="Learning route progress">
+          <li data-route-node="membrane"><span>01</span>Cell membrane</li>
+          <li data-route-node="dna"><span>02</span>DNA</li>
+          <li data-route-node="ribosomes"><span>03</span>Ribosomes</li>
+        </ol>
+        <div class="demo-stage">
+          <article data-demo-panel="route" tabindex="-1">
+            <p class="demo-step">Step 1 · Choose the route</p>
+            <h3>Start with the boundary.</h3>
+            <p>
+              Follow a short path through three structures that keep a bacterial
+              cell working.
+            </p>
+            <button
+              class="button button-demo enhanced-control"
+              data-demo-action="start"
+              type="button"
+            >
+              Start this route
+            </button>
+          </article>
+          <article data-demo-panel="lesson" tabindex="-1">
+            <p class="demo-step">Step 2 · Learn one idea</p>
+            <h3>The membrane is a selective boundary.</h3>
+            <img
+              src="./assets/bacterial-cell.svg"
+              alt="Simplified bacterial cell with the cell membrane emphasized around its outer edge"
+              width="720"
+              height="480"
+            />
+            <p>
+              A bacterial cell’s membrane regulates what moves into and out of
+              the cell, helping it maintain the conditions it needs to function.
+            </p>
+            <div class="demo-actions enhanced-control">
+              <button data-demo-action="back" type="button">Back</button
+              ><button
+                class="button button-demo"
+                data-demo-action="continue"
+                type="button"
+              >
+                Continue to recall
+              </button>
+            </div>
+          </article>
+          <article data-demo-panel="recall" tabindex="-1">
+            <p class="demo-step">Step 3 · Recall it</p>
+            <h3>Which structure controls movement into and out of the cell?</h3>
+            <div
+              class="answer-grid enhanced-control"
+              role="group"
+              aria-label="Answer choices"
+            >
+              <button
+                data-demo-action="answer"
+                data-choice="membrane"
+                type="button"
+              >
+                Cell membrane
+              </button>
+              <button data-demo-action="answer" data-choice="dna" type="button">
+                DNA
+              </button>
+              <button
+                data-demo-action="answer"
+                data-choice="ribosomes"
+                type="button"
+              >
+                Ribosomes
+              </button>
+            </div>
+            <div class="feedback enhanced-control" data-feedback hidden>
+              <strong>Not quite.</strong> DNA stores genetic instructions. The
+              cell membrane regulates movement across the cell boundary.
+              <button data-demo-action="retry" type="button">Try again</button>
+            </div>
+            <details class="static-answer">
+              <summary>Reveal the answer</summary>
+              <p>
+                <strong>Cell membrane.</strong> It regulates movement into and
+                out of the cell.
+              </p>
+            </details>
+            <button
+              class="enhanced-control"
+              data-demo-action="back"
+              type="button"
+            >
+              Back
+            </button>
+          </article>
+          <article data-demo-panel="pack" tabindex="-1">
+            <p class="demo-step">Step 4 · See what moved</p>
+            <h3>One concept learned. The route remembers where you are.</h3>
+            <p class="success-copy">
+              Correct—the cell membrane is the selective boundary.
+            </p>
+            <div class="pack-file">
+              <code>bacterial-cell-basics.learntpack</code>
+              <dl>
+                <div>
+                  <dt>Progress</dt>
+                  <dd>1 of 3 concepts</dd>
+                </div>
+                <div>
+                  <dt>Storage</dt>
+                  <dd>Local</dd>
+                </div>
+                <div>
+                  <dt>Format</dt>
+                  <dd>Portable · Versioned · Editable</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="demo-actions enhanced-control">
+              <button data-demo-action="back" type="button">Back</button
+              ><button data-demo-action="reset" type="button">
+                Reset demo
+              </button>
+            </div>
+          </article>
+        </div>
+        <p class="demo-progress" data-demo-progress>
+          Route ready · 0 of 3 concepts
+        </p>
+        <p class="sr-only" data-demo-status aria-live="polite"></p>
+      </section>
+
+      <section
+        class="system-section"
+        id="system"
+        aria-labelledby="system-title"
+      >
+        <header class="section-heading">
+          <p class="section-index">02 / Open by design</p>
+          <h2 id="system-title">One project. Two open surfaces.</h2>
+          <p>
+            The application makes learning usable. The pack system makes routes
+            portable, inspectable, and extensible.
+          </p>
+        </header>
+        <div class="system-map">
+          <article>
+            <p class="system-label">Learning experience</p>
+            <h3>Follow the route.</h3>
+            <p>Routes · recall · progress · browser and desktop UI</p>
+          </article>
+          <div class="system-connector" aria-hidden="true"><span></span></div>
+          <article>
+            <p class="system-label">Open pack system</p>
+            <h3>Build what travels.</h3>
+            <p>
+              Contracts · validation · archives · local installation · authored
+              content
+            </p>
+          </article>
+        </div>
+        <dl class="product-language">
+          <div>
+            <dt>Route</dt>
+            <dd>Course creation and course learning.</dd>
+          </div>
+          <div>
+            <dt>Loop</dt>
+            <dd>Flashcards, retrieval practice, and review.</dd>
+          </div>
+          <div>
+            <dt>Transfer</dt>
+            <dd>Portable course and pack exchange.</dd>
+          </div>
+          <div>
+            <dt>Concourse</dt>
+            <dd>The open application tying the experience together.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section
+        class="contribute-section"
+        id="contribute"
+        aria-labelledby="contribute-title"
+      >
+        <header class="section-heading">
+          <p class="section-index">03 / Contribute</p>
+          <h2 id="contribute-title">Find your way in.</h2>
+          <p>
+            Concourse has a working foundation and useful edges in every
+            direction.
+          </p>
+        </header>
+        <div class="contribution-list">
+          <a href="https://github.com/Conalh/Concourse/tree/main/src/ui"
+            ><span>01</span>
+            <h3>Shape the experience</h3>
+            <p>
+              React UI, accessibility, learning flows, visualization, and
+              interaction design.
+            </p>
+            <span aria-hidden="true">↗</span></a
+          >
+          <a href="https://github.com/Conalh/Concourse/tree/main/src/core"
+            ><span>02</span>
+            <h3>Build the learning engine</h3>
+            <p>
+              Sequencing, evidence, recall, progress, and the
+              framework-independent core.
+            </p>
+            <span aria-hidden="true">↗</span></a
+          >
+          <a href="https://github.com/Conalh/Concourse/tree/main/packages"
+            ><span>03</span>
+            <h3>Extend portable packs</h3>
+            <p>
+              Contracts, validation, SDK tooling, security boundaries, and
+              import/export.
+            </p>
+            <span aria-hidden="true">↗</span></a
+          >
+          <a
+            href="https://github.com/Conalh/Concourse/tree/main/docs/learning-packs"
+            ><span>04</span>
+            <h3>Create learning routes</h3>
+            <p>
+              Example packs, authoring guidance, templates, documentation, and
+              open course material.
+            </p>
+            <span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <div class="first-contribution">
+          <p>First contribution</p>
+          <code
+            >Clone <span>→</span> npm ci <span>→</span> npm run dev
+            <span>→</span> npm run verify</code
+          ><a
+            href="https://github.com/Conalh/Concourse/blob/main/CONTRIBUTING.md"
+            >Read the contributor guide</a
+          >
+        </div>
+      </section>
+
+      <section
+        class="status-section"
+        id="status"
+        aria-labelledby="status-title"
+      >
+        <header class="section-heading">
+          <p class="section-index">04 / Project truth</p>
+          <h2 id="status-title">Built enough to use. Early enough to shape.</h2>
+        </header>
+        <div class="status-grid">
+          <div>
+            <h3>Delivered in v0.1</h3>
+            <ul>
+              <li>Browser and Tauri desktop learning surfaces</li>
+              <li>Deterministic sessions, evidence, feedback, and recaps</li>
+              <li>
+                Portable pack contracts, validation, archives, and SDK tooling
+              </li>
+              <li>Local persistence and defensive pack installation</li>
+              <li>An openly licensed Logic Foundations example pack</li>
+            </ul>
+          </div>
+          <div class="local-boundary">
+            <h3>The local-first boundary</h3>
+            <ul>
+              <li>No accounts</li>
+              <li>No hosted learner state</li>
+              <li>No analytics</li>
+              <li>No application backend</li>
+              <li>Progress and installed packs stay local</li>
+            </ul>
+            <a href="https://github.com/Conalh/Concourse/blob/main/ROADMAP.md"
+              >See what comes next <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="final-invitation" aria-labelledby="final-title">
+        <h2 id="final-title">Help build better routes through knowledge.</h2>
+        <div>
+          <a
+            class="button button-primary"
+            href="https://github.com/Conalh/Concourse"
+            >Explore the repository</a
+          ><a
+            href="https://github.com/Conalh/Concourse/blob/main/CONTRIBUTING.md"
+            >Contributing</a
+          ><a href="https://github.com/Conalh/Concourse/blob/main/ROADMAP.md"
+            >Roadmap</a
+          ><a href="#demo" data-focus-demo>Run the demo again</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand" href="#top"
+        ><img
+          src="./assets/concourse-mark.svg"
+          alt=""
+          width="30"
+          height="30"
+        /><span>Concourse</span></a
+      >
+      <p>
+        Open-source learning infrastructure. Your routes and progress stay
+        local.
+      </p>
+      <nav aria-label="Project links">
+        <a href="https://github.com/Conalh/Concourse/blob/main/LICENSE"
+          >MIT License</a
+        ><a href="https://github.com/Conalh/Concourse/blob/main/SECURITY.md"
+          >Security</a
+        ><a href="https://github.com/Conalh/Concourse">GitHub</a>
+      </nav>
+    </footer>
+  </body>
+</html>
