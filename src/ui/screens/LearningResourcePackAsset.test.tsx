@@ -46,7 +46,9 @@ describe('LearningResourceScreen pack assets', () => {
 
     await user.click(button)
 
-    await waitFor(() => expect(button).toBeDisabled())
+    await waitFor(() => {
+      expect(button).toBeDisabled()
+    })
     expect(delivery.requests).toHaveLength(1)
     expect(open).not.toHaveBeenCalled()
 

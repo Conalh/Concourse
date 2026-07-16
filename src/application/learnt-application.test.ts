@@ -566,7 +566,7 @@ describe('LearntApplication pack asset delivery', () => {
       ...packAssetBytes,
     ])
     expect(setup.delivery.requests[0]?.bytes).not.toBe(
-      setup.fixture.activeRelease.files[0]!.bytes,
+      setup.fixture.activeRelease.files[0]?.bytes,
     )
   })
 
@@ -587,11 +587,15 @@ describe('LearntApplication pack asset delivery', () => {
 
   it('does not call the delivery port when canonical byte resolution fails', async () => {
     const fixture = createPackAssetTestFixture()
+    const activeFile = fixture.activeRelease.files[0]
+    if (activeFile === undefined) {
+      throw new Error('Expected the pack-asset fixture file.')
+    }
     const tamperedRelease = {
       ...fixture.activeRelease,
       files: [
         {
-          ...fixture.activeRelease.files[0]!,
+          ...activeFile,
           sha256: 'f'.repeat(64),
         },
       ],

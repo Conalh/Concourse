@@ -18,6 +18,7 @@ Good resource examples:
 - An audio episode locator.
 - A textbook chapter citation.
 - A link to an external interactive demonstration.
+- A learner-downloadable notebook, script, small dataset, or environment file.
 
 Do not use resources for learner progress, app settings, scheduling state,
 CSS, HTML pages, JavaScript, React components, plugins, or executable graders.
@@ -71,9 +72,52 @@ CSS, HTML pages, JavaScript, React components, plugins, or executable graders.
 | `external-audio` | The resource is an audio episode or clip. |
 | `bibliographic-reference` | The resource is a book, chapter, paper, DOI, ISBN, or page range. |
 | `interactive-reference` | The resource is an external interactive tool or sandbox. |
+| `pack-asset` | The pack carries a validated lab file for explicit learner download. |
 
 Use HTTPS URLs for all external locators. Do not embed HTML, CSS, JavaScript,
 iframes, or executable snippets.
+
+## Pack Asset Resources
+
+`pack-asset` is a delivery reference, not an embedded renderer or execution
+request. Packs using it must require `learning-resource.pack-asset@1`.
+
+```json
+{
+  "id": "resource-module-01-notebook",
+  "contentRevision": 1,
+  "title": "Module 1 learner notebook",
+  "modality": "interactive",
+  "roles": ["worked-example"],
+  "source": {
+    "kind": "pack-asset",
+    "assetId": "module-01-notebook",
+    "suggestedFileName": "module-01-lab.ipynb",
+    "mediaType": "application/x-ipynb+json"
+  }
+}
+```
+
+The referenced manifest entry must use role `asset`, carry the same media type,
+and contain the canonical hash and byte count. The version-1 allowlist is:
+
+| Filename extension | Media type |
+| --- | --- |
+| `.ipynb` | `application/x-ipynb+json` |
+| `.py` | `text/x-python` |
+| `.csv` | `text/csv` |
+| `.md` | `text/markdown` |
+| `.txt` | `text/plain` |
+| `.yml` or `.yaml` | `application/yaml` |
+
+The suggested filename must be a safe basename of 1 to 128 characters after
+trimming. Do not use paths, `/`, `\\`, control characters, `.` or `..`, or a
+name ending in a dot or space. The extension is case-insensitive but must match
+the media type. Keep files at or below 10 MiB for portable desktop delivery.
+
+Concourse does not execute or preview a pack asset. A successful validation
+proves integrity and contract compatibility, not that the code is benevolent.
+Learners should inspect files from third-party courses before running them.
 
 ## IDs And Revisions
 
@@ -224,6 +268,8 @@ derived completion or "needs reread" views.
 - Segment end time is greater than segment start time.
 - Embedded segment block IDs exist in the embedded source content.
 - External URLs use HTTPS.
+- Every pack asset uses the exact version-1 media type/extension pair, a safe
+  basename, and a manifest entry whose `assetId`, role, and media type match.
 - Required capabilities are supported by target apps.
 - Provenance matches the source kind and ownership.
 - No learner progress or engagement events are embedded in the pack archive.

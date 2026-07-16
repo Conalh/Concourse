@@ -24,7 +24,7 @@ describe('pack asset runtime', () => {
       mediaType: 'application/x-ipynb+json',
     })
     expect([...download.bytes]).toEqual([...packAssetBytes])
-    expect(download.bytes).not.toBe(fixture.activeRelease.files[0]!.bytes)
+    expect(download.bytes).not.toBe(firstPackAssetFile(fixture).bytes)
   })
 
   it('rejects a missing runtime resource', async () => {
@@ -44,7 +44,11 @@ describe('pack asset runtime', () => {
     const documents = cloneDeep(
       fixture.installedPack.documents,
     ) as LearningPackDocuments
-    documents.resources!.resources[0]!.source = {
+    const resource = documents.resources?.resources[0]
+    if (resource === undefined) {
+      throw new Error('Expected the pack-asset fixture resource.')
+    }
+    resource.source = {
       kind: 'embedded-content',
       content: [],
     }
@@ -91,7 +95,7 @@ describe('pack asset runtime', () => {
       ...fixture.activeRelease,
       files: [
         {
-          ...fixture.activeRelease.files[0]!,
+          ...firstPackAssetFile(fixture),
           path: 'assets/labs/different.ipynb',
         },
       ],
@@ -106,7 +110,7 @@ describe('pack asset runtime', () => {
       ...fixture.activeRelease,
       files: [
         {
-          ...fixture.activeRelease.files[0]!,
+          ...firstPackAssetFile(fixture),
           sha256: 'f'.repeat(64),
         },
       ],
@@ -121,7 +125,7 @@ describe('pack asset runtime', () => {
       ...fixture.activeRelease,
       files: [
         {
-          ...fixture.activeRelease.files[0]!,
+          ...firstPackAssetFile(fixture),
           size: packAssetBytes.byteLength + 1,
         },
       ],
@@ -137,7 +141,7 @@ describe('pack asset runtime', () => {
       ...fixture.activeRelease,
       files: [
         {
-          ...fixture.activeRelease.files[0]!,
+          ...firstPackAssetFile(fixture),
           bytes: tamperedBytes,
           size: tamperedBytes.byteLength,
         },
@@ -150,9 +154,13 @@ describe('pack asset runtime', () => {
   it('rejects an active manifest media type that differs from the resource', async () => {
     const fixture = createPackAssetTestFixture()
     const documents = cloneDeep(fixture.activeRelease.documents)
-    documents.manifest.files.find(
+    const manifestEntry = documents.manifest.files.find(
       (file) => file.assetId === 'lab-01-notebook',
-    )!.mediaType = 'text/x-python'
+    )
+    if (manifestEntry === undefined) {
+      throw new Error('Expected the pack-asset fixture manifest entry.')
+    }
+    manifestEntry.mediaType = 'text/x-python'
     const activeRelease = { ...fixture.activeRelease, documents }
 
     await expectResolutionFailure({ ...fixture, activeRelease })
@@ -160,6 +168,16 @@ describe('pack asset runtime', () => {
 })
 
 type PackAssetFixture = ReturnType<typeof createPackAssetTestFixture>
+
+function firstPackAssetFile(fixture: PackAssetFixture) {
+  const file = fixture.activeRelease.files.find(
+    (candidate) => candidate.path === 'assets/labs/module-01-lab.ipynb',
+  )
+  if (file === undefined) {
+    throw new Error('Expected the pack-asset fixture notebook file.')
+  }
+  return file
+}
 
 async function expectResolutionFailure(
   fixture: Pick<PackAssetFixture, 'installedPack' | 'activeRelease'> & {

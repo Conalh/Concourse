@@ -17,9 +17,13 @@ describe('BrowserPackAssetDelivery', () => {
     expect(result).toBe('saved')
     expect(host.createdBlobs).toHaveLength(1)
     expect(host.createdBlobs[0]?.type).toBe('application/x-ipynb+json')
-    expect([
-      ...new Uint8Array(await host.createdBlobs[0]!.arrayBuffer()),
-    ]).toEqual([...bytes])
+    const createdBlob = host.createdBlobs[0]
+    if (createdBlob === undefined) {
+      throw new Error('Expected a created download Blob.')
+    }
+    expect([...new Uint8Array(await createdBlob.arrayBuffer())]).toEqual([
+      ...bytes,
+    ])
     expect(host.clicks).toEqual([
       { url: 'blob:pack-asset-1', fileName: 'module-01-lab.ipynb' },
     ])
@@ -44,7 +48,7 @@ describe('BrowserPackAssetDelivery', () => {
 
 class RecordingBrowserDownloadHost {
   readonly createdBlobs: Blob[] = []
-  readonly clicks: Array<{ url: string; fileName: string }> = []
+  readonly clicks: { url: string; fileName: string }[] = []
   readonly revokedUrls: string[] = []
   clickError: Error | null = null
 

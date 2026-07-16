@@ -23,7 +23,7 @@ export async function resolvePackAssetDownload(
   const resource = input.installedPack.documents.resources?.resources.find(
     (candidate) => candidate.id === input.resourceId,
   )
-  if (resource === undefined || resource.source.kind !== 'pack-asset') {
+  if (resource?.source.kind !== 'pack-asset') {
     throw new LearningApplicationError(
       'session-state-incompatible',
       'Pack asset resource was not found in the installed pack.',
@@ -53,8 +53,7 @@ export async function resolvePackAssetDownload(
       (candidate) => candidate.id === input.resourceId,
     )
   if (
-    releaseResource === undefined ||
-    releaseResource.source.kind !== 'pack-asset' ||
+    releaseResource?.source.kind !== 'pack-asset' ||
     releaseResource.source.assetId !== resource.source.assetId ||
     releaseResource.source.mediaType !== resource.source.mediaType ||
     releaseResource.source.suggestedFileName !==
@@ -71,8 +70,7 @@ export async function resolvePackAssetDownload(
     (candidate) => candidate.assetId === releaseSource.assetId,
   )
   if (
-    manifestEntry === undefined ||
-    manifestEntry.role !== 'asset' ||
+    manifestEntry?.role !== 'asset' ||
     manifestEntry.mediaType !== releaseSource.mediaType
   ) {
     throw packAssetIntegrityError(

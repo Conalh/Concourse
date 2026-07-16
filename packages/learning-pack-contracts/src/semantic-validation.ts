@@ -1612,7 +1612,9 @@ function validatePackAssetSource(
   }
 
   const lowerFileName = fileName.toLowerCase()
-  if (!allowedExtensions.some((extension) => lowerFileName.endsWith(extension))) {
+  if (
+    !allowedExtensions.some((extension) => lowerFileName.endsWith(extension))
+  ) {
     invalidPackAssetSource(
       diagnostics,
       `${path}.suggestedFileName`,

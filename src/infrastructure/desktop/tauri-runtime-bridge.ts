@@ -14,12 +14,12 @@ export type TauriRuntimeBridgeDependencies = Readonly<{
 export type PackAssetSaveDialogOptions = Readonly<{
   title: string
   defaultPath: string
-  filters: Array<
+  filters: Readonly<
     Readonly<{
       name: string
       extensions: string[]
     }>
-  >
+  >[]
 }>
 
 const packAssetDialogFilters = new Map<

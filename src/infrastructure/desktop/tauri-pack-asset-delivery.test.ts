@@ -43,10 +43,10 @@ function request() {
 }
 
 class RecordingPackAssetBridge {
-  readonly writes: Array<{
+  readonly writes: {
     destinationPath: string
     bytes: Uint8Array
-  }> = []
+  }[] = []
   writeError: Error | null = null
   private readonly destination: string | null
 

@@ -14,6 +14,7 @@ content.
 | Embedded resource content | Render as safe app-owned content blocks, not HTML. |
 | External resources | Treat as links or locators; do not fetch during validation. |
 | Engagement events | Treat as private learner data outside the archive. |
+| Pack-asset delivery | Resolve bytes again from the persisted active release; adapters only save the verified copy after a learner action. |
 
 ## Prohibited Pack Content
 
@@ -68,6 +69,31 @@ references.
 
 The SDK does not execute assets and does not load remote assets while
 validating, packing, unpacking, inspecting, or diffing.
+
+## Downloadable Pack Assets
+
+`learning-resource.pack-asset@1` permits only notebooks, Python files, CSV,
+Markdown, plain text, and YAML under a closed media-type/extension allowlist.
+The resource must point to a manifest entry with role `asset`; its media type
+must match; and its suggested filename must be a safe basename rather than a
+filesystem path. Desktop writes add a 10 MiB ceiling and use a same-directory
+temporary file plus atomic replacement.
+
+Install-time validation is necessary but is not the final delivery check. At
+download time, the application selects the persisted active release, resolves
+the canonical manifest entry and stored file, compares identity, path, media
+type, size, and stored hash, and recalculates SHA-256 over the bytes. Only then
+does it give an immutable byte copy to a browser or desktop adapter.
+
+The UI requires an explicit learner action and warns about third-party code.
+The browser adapter creates a download and revokes its temporary object URL.
+The desktop adapter asks the learner for a destination; the pack never supplies
+that path. Cancellation and failure do not change learner progress, engagement,
+evidence, or installed release selection.
+
+Neither validation nor delivery executes, imports, renders, or previews the
+asset. Hash agreement proves that delivered bytes match the installed pack; it
+does not prove that a notebook or script is safe to run.
 
 ## External Interactive Resources
 
@@ -138,6 +164,9 @@ Consuming apps should:
 - Use the SDK or equivalent archive validation before install.
 - Keep resource engagement and review events outside public packs.
 - Use app-owned rendering, link-opening, and privacy controls.
+- Resolve downloadable bytes from the persisted active release and verify their
+  SHA-256 immediately before delivery.
+- Require a learner gesture and keep destination selection outside pack data.
 - Ignore unknown optional capabilities with warnings.
 - Reject unknown required capabilities.
 - Never duplicate the public contract types in app-local code.

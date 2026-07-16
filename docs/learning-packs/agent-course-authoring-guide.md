@@ -552,6 +552,39 @@ Resource source kinds include:
 - `external-audio`
 - `bibliographic-reference`
 - `interactive-reference`
+- `pack-asset`
+
+### Downloadable Lab Files
+
+Use `source.kind: "pack-asset"` for a learner-controlled download such as a
+notebook, Python script, small dataset, lab README, text file, or environment
+YAML. A pack that uses this source must declare the required capability
+`learning-resource.pack-asset@1`.
+
+The source `assetId` must resolve to exactly one `pack.json.files` entry with
+role `asset`. The source and manifest media types must match. Version 1 accepts
+only these pairs:
+
+| Extension       | Media type                 |
+| --------------- | -------------------------- |
+| `.ipynb`        | `application/x-ipynb+json` |
+| `.py`           | `text/x-python`            |
+| `.csv`          | `text/csv`                 |
+| `.md`           | `text/markdown`            |
+| `.txt`          | `text/plain`               |
+| `.yml`, `.yaml` | `application/yaml`         |
+
+`suggestedFileName` is a basename, not a path. It must contain 1 to 128
+characters after trimming; must not be `.` or `..`; and must not contain `/`,
+`\\`, control characters, a trailing dot, or a trailing space. Its extension
+must match the declared media type. Keep each downloadable lab file at or below
+10 MiB for desktop delivery.
+
+Concourse validates, stores, and copies these bytes only after the learner
+chooses Download. It does not preview, import, execute, or grant trust to the
+file. Third-party courses can contain harmful code even when their pack is
+structurally valid, so authors must tell learners to inspect notebooks, scripts,
+and related files before running them.
 
 Recommended source policy:
 

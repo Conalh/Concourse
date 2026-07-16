@@ -18,8 +18,9 @@ export class BrowserPackAssetDelivery implements PackAssetDeliveryPort {
   }
 
   async save(request: PackAssetSaveRequest): Promise<PackAssetSaveResult> {
+    await Promise.resolve()
     const bytes = new Uint8Array(request.bytes)
-    const blob = new Blob([bytes.buffer as ArrayBuffer], {
+    const blob = new Blob([bytes.buffer], {
       type: request.mediaType,
     })
     const url = this.host.createObjectUrl(blob)
