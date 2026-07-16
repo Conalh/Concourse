@@ -21,6 +21,8 @@ import {
 } from './desktop-composition-root'
 import type { TauriInstalledLearningPackStoreBridge } from '../infrastructure/desktop/tauri-installed-learning-pack-store'
 import type { TauriLearningPackSourceBridge } from '../infrastructure/desktop/tauri-learning-pack-source'
+import type { TauriPackAssetDeliveryBridge } from '../infrastructure/desktop/tauri-pack-asset-delivery'
+import { createPackAssetTestFixture } from '../test/pack-asset-fixture'
 
 class InMemoryInstalledLearningPackStore implements InstalledLearningPackStore {
   private readonly records = new Map<string, InstalledLearningPackRecord>()
@@ -62,7 +64,8 @@ class FixedLearningPackSource implements LearningPackSourcePort {
 class FixedTauriDesktopBridge
   implements
     TauriLearningPackSourceBridge,
-    TauriInstalledLearningPackStoreBridge
+    TauriInstalledLearningPackStoreBridge,
+    TauriPackAssetDeliveryBridge
 {
   private readonly result: unknown
   private readonly records: unknown[] = []
@@ -111,9 +114,47 @@ class FixedTauriDesktopBridge
     }
     return Promise.resolve()
   }
+
+  choosePackAssetDestination(): Promise<string | null> {
+    return Promise.resolve(null)
+  }
+
+  writePackAsset(): Promise<void> {
+    return Promise.resolve()
+  }
 }
 
 describe('createDesktopLearntApplication', () => {
+  it('passes a desktop pack asset delivery port through the shared facade', async () => {
+    const fixture = createPackAssetTestFixture()
+    const installedPackStore = new InMemoryInstalledLearningPackStore()
+    await installedPackStore.write({
+      packId: fixture.installedPack.packId,
+      activeReleaseId: fixture.activeRelease.releaseId,
+      rollbackReleaseId: null,
+      releases: [fixture.activeRelease],
+    })
+    const requests: unknown[] = []
+    const application = await createDesktopLearntApplication({
+      sourcePort: new FixedLearningPackSource(null),
+      installedPackStore,
+      packAssetDelivery: {
+        save: (request) => {
+          requests.push(request)
+          return Promise.resolve('saved')
+        },
+      },
+    })
+
+    await expect(
+      application.downloadLearningPackAsset({
+        packId: fixture.installedPack.packId,
+        resourceId: 'resource-lab-01-notebook',
+      }),
+    ).resolves.toBe('saved')
+    expect(requests).toHaveLength(1)
+  })
+
   it('syncs a native source through the shared installed-pack lifecycle', async () => {
     const sourcePort = new FixedLearningPackSource({
       sourceName: 'Courses',
@@ -139,6 +180,7 @@ describe('createDesktopLearntApplication', () => {
     const application = await createDesktopLearntApplication({
       sourcePort,
       installedPackStore,
+      packAssetDelivery: { save: () => Promise.resolve('cancelled') },
     })
     const result = await application.syncSelectedLearningPackDirectory()
 
@@ -172,6 +214,7 @@ describe('createDesktopLearntApplication', () => {
     const first = await createDesktopLearntApplication({
       sourcePort,
       installedPackStore,
+      packAssetDelivery: { save: () => Promise.resolve('cancelled') },
     })
     await first.installValidatedLearningPack({
       contentHash: 'logic-v1',
@@ -182,6 +225,7 @@ describe('createDesktopLearntApplication', () => {
     const reloaded = await createDesktopLearntApplication({
       sourcePort,
       installedPackStore,
+      packAssetDelivery: { save: () => Promise.resolve('cancelled') },
     })
 
     expect((await reloaded.getLearningPackLibrary()).packs).toEqual(

@@ -1,12 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { invoke } from '@tauri-apps/api/core'
-import { open } from '@tauri-apps/plugin-dialog'
+import { open, save } from '@tauri-apps/plugin-dialog'
 import {
   createBrowserLearntApplication,
   createTauriDesktopApplication,
 } from './app'
 import { isTauriRuntime } from './app/tauri-runtime-detection'
+import { packAssetSaveDialogOptions } from './infrastructure/desktop/tauri-runtime-bridge'
 import {
   App,
   AppErrorBoundary,
@@ -55,6 +56,8 @@ function createRuntimeLearntApplication() {
 
   return createTauriDesktopApplication({
     openDirectory: () => open({ directory: true, multiple: false }),
+    choosePackAssetDestination: (input) =>
+      save(packAssetSaveDialogOptions(input)),
     invoke: (command, args) => invoke(command, args),
   })
 }

@@ -1,9 +1,15 @@
 import type { TauriInstalledLearningPackStoreBridge } from './tauri-installed-learning-pack-store'
 import type { TauriLearningPackSourceBridge } from './tauri-learning-pack-source'
+import type { TauriPackAssetDeliveryBridge } from './tauri-pack-asset-delivery'
 import type { ArchiveLimits } from '@learnt/learning-pack-sdk'
 
 export type TauriDesktopBridgeDependencies = Readonly<{
   chooseCourseFolder(): Promise<string | null>
+  choosePackAssetDestination(
+    input: Parameters<
+      TauriPackAssetDeliveryBridge['choosePackAssetDestination']
+    >[0],
+  ): Promise<string | null>
   invoke(command: string, args?: Record<string, unknown>): Promise<unknown>
 }>
 
@@ -14,7 +20,8 @@ export type TauriDesktopBridgeDependencies = Readonly<{
 export class TauriDesktopBridge
   implements
     TauriLearningPackSourceBridge,
-    TauriInstalledLearningPackStoreBridge
+    TauriInstalledLearningPackStoreBridge,
+    TauriPackAssetDeliveryBridge
 {
   private readonly dependencies: TauriDesktopBridgeDependencies
 
@@ -24,6 +31,21 @@ export class TauriDesktopBridge
 
   chooseCourseFolder(): Promise<string | null> {
     return this.dependencies.chooseCourseFolder()
+  }
+
+  choosePackAssetDestination(
+    input: Parameters<
+      TauriPackAssetDeliveryBridge['choosePackAssetDestination']
+    >[0],
+  ): Promise<string | null> {
+    return this.dependencies.choosePackAssetDestination(input)
+  }
+
+  writePackAsset(destinationPath: string, bytes: Uint8Array): Promise<void> {
+    return this.dependencies.invoke('write_pack_asset', {
+      destinationPath,
+      bytes: Array.from(bytes),
+    }) as Promise<void>
   }
 
   async loadSelectedCourseFolder(): Promise<string | null> {

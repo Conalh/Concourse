@@ -3,5 +3,5 @@
   "identifier": "default",
   "description": "Concourse local-first desktop capability set.",
   "windows": ["main"],
-  "permissions": ["core:default", "dialog:allow-open"]
+  "permissions": ["core:default", "dialog:allow-open", "dialog:allow-save"]
 }

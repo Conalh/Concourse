@@ -8,6 +8,7 @@ describe('createTauriDesktopApplication', () => {
 
     const application = await createTauriDesktopApplication({
       openDirectory: () => Promise.resolve(null),
+      choosePackAssetDestination: () => Promise.resolve(null),
       invoke: (command) => {
         commands.push(command)
         if (command === 'read_installed_pack_records') {

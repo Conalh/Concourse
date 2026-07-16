@@ -2,6 +2,7 @@ import type {
   InstalledLearningPackStore,
   LearntApplication,
   LearningPackSourcePort,
+  PackAssetDeliveryPort,
 } from '../application'
 import {
   createBrowserFirstRunSetupStore,
@@ -20,16 +21,23 @@ import {
   TauriLearningPackSource,
   type TauriLearningPackSourceBridge,
 } from '../infrastructure/desktop/tauri-learning-pack-source'
+import {
+  TauriPackAssetDelivery,
+  type TauriPackAssetDeliveryBridge,
+} from '../infrastructure/desktop/tauri-pack-asset-delivery'
 
 import { composeLearntApplication } from './composition-root'
 
 export type DesktopLearntApplicationOptions = Readonly<{
   sourcePort: LearningPackSourcePort
   installedPackStore: InstalledLearningPackStore
+  packAssetDelivery: PackAssetDeliveryPort
 }>
 
 export type TauriDesktopLearntApplicationOptions = Readonly<{
-  bridge: TauriLearningPackSourceBridge & TauriInstalledLearningPackStoreBridge
+  bridge: TauriLearningPackSourceBridge &
+    TauriInstalledLearningPackStoreBridge &
+    TauriPackAssetDeliveryBridge
 }>
 
 /**
@@ -49,6 +57,7 @@ export async function createDesktopLearntApplication(
       createBrowserProductVocabularyPreferenceStore(),
     firstRunSetupStore: createBrowserFirstRunSetupStore(),
     installedLearningPackStore: options.installedPackStore,
+    packAssetDelivery: options.packAssetDelivery,
     learningPackSource: options.sourcePort,
   })
   await application.restoreInstalledLearningPacks(options.installedPackStore)
@@ -61,5 +70,6 @@ export function createTauriDesktopLearntApplication(
   return createDesktopLearntApplication({
     sourcePort: new TauriLearningPackSource(options.bridge),
     installedPackStore: new TauriInstalledLearningPackStore(options.bridge),
+    packAssetDelivery: new TauriPackAssetDelivery(options.bridge),
   })
 }
