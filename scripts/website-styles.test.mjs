@@ -70,18 +70,30 @@ test('preserves each enhanced control layout and does not mask overflow', () => 
 })
 
 test('uses focus indicators with at least 3 to 1 adjacent contrast', () => {
-  const lightRatio = contrastRatio(colorToken('cobalt'), colorToken('canvas'))
-  const darkRatio = contrastRatio(colorToken('lime'), colorToken('midnight'))
-  const cobaltRatio = contrastRatio(colorToken('ink'), colorToken('cobalt'))
+  const lightSurfaceRatio = contrastRatio(
+    colorToken('cobalt'),
+    colorToken('canvas'),
+  )
+  const darkSurfaceRatio = contrastRatio(
+    colorToken('lime'),
+    colorToken('midnight'),
+  )
+  const primaryOnCanvasRatio = contrastRatio(
+    colorToken('ink'),
+    colorToken('canvas'),
+  )
 
   assert.ok(
-    lightRatio >= 3,
-    `light focus contrast is ${lightRatio.toFixed(2)}:1`,
+    lightSurfaceRatio >= 3,
+    `light-surface focus contrast is ${lightSurfaceRatio.toFixed(2)}:1`,
   )
-  assert.ok(darkRatio >= 3, `dark focus contrast is ${darkRatio.toFixed(2)}:1`)
   assert.ok(
-    cobaltRatio >= 3,
-    `cobalt-surface focus contrast is ${cobaltRatio.toFixed(2)}:1`,
+    darkSurfaceRatio >= 3,
+    `dark-surface focus contrast is ${darkSurfaceRatio.toFixed(2)}:1`,
+  )
+  assert.ok(
+    primaryOnCanvasRatio >= 3,
+    `primary focus against canvas is ${primaryOnCanvasRatio.toFixed(2)}:1`,
   )
 
   assert.match(styles, /--focus-light:\s*var\(--cobalt\);/)
@@ -95,7 +107,33 @@ test('uses focus indicators with at least 3 to 1 adjacent contrast', () => {
     /outline-color:\s*var\(--ink\);/,
   )
   assert.match(
+    ruleBody('.skip-link:focus-visible'),
+    /outline-color:\s*var\(--focus-light\);/,
+  )
+  assert.match(
     styles,
-    /\.demo-section\s+:focus-visible,[\s\S]*?\.final-invitation\s+:focus-visible,[\s\S]*?\.skip-link:focus-visible\s*\{[^}]*outline-color:\s*var\(--focus-dark\);/,
+    /\.demo-stage \.button-demo:focus-visible,[\s\S]*?\.demo-stage \.button-primary:focus-visible,[\s\S]*?\.final-invitation \.button-primary:focus-visible\s*\{[^}]*outline-color:\s*var\(--focus-dark\);/,
+  )
+
+  const genericPrimaryFocus = styles.indexOf('.button-primary:focus-visible')
+  const skipLinkFocus = styles.lastIndexOf('.skip-link:focus-visible')
+  const demoPrimaryFocus = styles.lastIndexOf(
+    '.demo-stage .button-demo:focus-visible',
+  )
+  const invitationPrimaryFocus = styles.lastIndexOf(
+    '.final-invitation .button-primary:focus-visible',
+  )
+
+  assert.ok(
+    skipLinkFocus > genericPrimaryFocus,
+    'skip-link surface override must follow generic primary focus',
+  )
+  assert.ok(
+    demoPrimaryFocus > genericPrimaryFocus,
+    'demo dark-surface override must follow generic primary focus',
+  )
+  assert.ok(
+    invitationPrimaryFocus > genericPrimaryFocus,
+    'invitation dark-surface override must follow generic primary focus',
   )
 })

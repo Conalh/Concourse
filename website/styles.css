@@ -77,8 +77,7 @@ a {
 }
 
 .demo-section :focus-visible,
-.final-invitation :focus-visible,
-.skip-link:focus-visible {
+.final-invitation :focus-visible {
   outline-color: var(--focus-dark);
 }
 
@@ -330,6 +329,16 @@ main > section {
   border-color: var(--ink);
   outline-color: var(--ink);
   background: var(--ink);
+}
+
+.skip-link:focus-visible {
+  outline-color: var(--focus-light);
+}
+
+.demo-stage .button-demo:focus-visible,
+.demo-stage .button-primary:focus-visible,
+.final-invitation .button-primary:focus-visible {
+  outline-color: var(--focus-dark);
 }
 
 .button-secondary {
