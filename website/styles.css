@@ -16,6 +16,8 @@
   --lime: #c7f34a;
   --coral: #ff6b57;
   --midnight: #141b2d;
+  --focus-light: var(--cobalt);
+  --focus-dark: var(--lime);
   --font-sans: 'Instrument Sans', 'Segoe UI Variable', 'Segoe UI', sans-serif;
   --font-mono:
     ui-monospace, 'Cascadia Code', 'SFMono-Regular', Consolas, monospace;
@@ -43,7 +45,6 @@ html {
 body {
   margin: 0;
   min-width: 20rem;
-  overflow-x: hidden;
   background: var(--canvas);
   color: var(--ink);
   font-size: 1rem;
@@ -71,8 +72,14 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid var(--coral);
+  outline: 3px solid var(--focus-light);
   outline-offset: 4px;
+}
+
+.demo-section :focus-visible,
+.final-invitation :focus-visible,
+.skip-link:focus-visible {
+  outline-color: var(--focus-dark);
 }
 
 .sr-only {
@@ -107,8 +114,20 @@ a {
   display: none;
 }
 
-.js .enhanced-control {
+.js button.enhanced-control {
+  display: inline-flex;
+}
+
+.js .demo-actions.enhanced-control {
   display: flex;
+}
+
+.js .answer-grid.enhanced-control {
+  display: grid;
+}
+
+.js .feedback.enhanced-control {
+  display: block;
 }
 
 .js .static-answer {
@@ -309,6 +328,7 @@ main > section {
 .button-primary:hover,
 .button-primary:focus-visible {
   border-color: var(--ink);
+  outline-color: var(--ink);
   background: var(--ink);
 }
 
@@ -682,9 +702,8 @@ main > section {
   font-size: 1rem;
 }
 
-[data-demo-panel][hidden],
-[data-feedback][hidden] {
-  display: none;
+[hidden] {
+  display: none !important;
 }
 
 .demo-progress {
@@ -1852,7 +1871,7 @@ footer nav a:first-child {
     font-size: 1.85rem;
   }
 
-  .demo-stage [data-demo-panel='route'] {
+  .demo-stage [data-demo-panel='route']:not([hidden]) {
     display: block;
   }
 
