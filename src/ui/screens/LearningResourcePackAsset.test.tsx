@@ -77,6 +77,30 @@ describe('LearningResourceScreen pack assets', () => {
     ).toBeInTheDocument()
     expect(screen.getByRole('alert')).toBeInTheDocument()
   })
+
+  it('clears the previous download outcome when the resource changes', async () => {
+    const user = userEvent.setup()
+    const view = renderPackAssetScreen(new RecordingDelivery())
+    const notebookButton = await screen.findByRole('button', {
+      name: /download module-01-lab\.ipynb/i,
+    })
+
+    await user.click(notebookButton)
+    expect(
+      await screen.findByText(/save request completed/i),
+    ).toBeInTheDocument()
+
+    view.showResource('resource-lab-01-data')
+
+    expect(
+      await screen.findByRole('button', {
+        name: /download module-01-data\.csv/i,
+      }),
+    ).toBeEnabled()
+    expect(
+      screen.queryByText(/save request completed/i),
+    ).not.toBeInTheDocument()
+  })
 })
 
 type SaveRequest = Readonly<{
@@ -112,7 +136,9 @@ class DeferredDelivery extends RecordingDelivery {
   }
 }
 
-function renderPackAssetScreen(delivery: RecordingDelivery): void {
+function renderPackAssetScreen(delivery: RecordingDelivery): Readonly<{
+  showResource(resourceId: string): void
+}> {
   const fixture = createPackAssetTestFixture()
   const record = {
     packId: fixture.installedPack.packId,
@@ -132,16 +158,23 @@ function renderPackAssetScreen(delivery: RecordingDelivery): void {
     packAssetDelivery: delivery,
   })
 
-  render(
+  const resourceScreen = (resourceId: string) => (
     <LearntApplicationProvider application={application}>
       <ProductVocabularyProvider mode="branded">
         <LearningResourceScreen
           packId={fixture.installedPack.packId}
-          resourceId="resource-lab-01-notebook"
+          resourceId={resourceId}
         />
       </ProductVocabularyProvider>
-    </LearntApplicationProvider>,
+    </LearntApplicationProvider>
   )
+  const view = render(resourceScreen('resource-lab-01-notebook'))
+
+  return {
+    showResource(resourceId) {
+      view.rerender(resourceScreen(resourceId))
+    },
+  }
 }
 
 class FakeStorage implements StorageLike {

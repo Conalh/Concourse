@@ -17,6 +17,11 @@ export type PackAssetDownloadState =
   | { status: 'cancelled' }
   | { status: 'error'; error: UiError }
 
+type ScopedPackAssetDownloadState = Readonly<{
+  identity: string
+  state: PackAssetDownloadState
+}>
+
 export function useLearningResource(
   packId: string,
   resourceId: string,
@@ -48,8 +53,16 @@ export function useLearningResource(
   const [commandState, setCommandState] = useState<CommandState>({
     status: 'idle',
   })
-  const [assetDownloadState, setAssetDownloadState] =
-    useState<PackAssetDownloadState>({ status: 'idle' })
+  const assetIdentity = `${packId}\u0000${resourceId}`
+  const [scopedAssetDownloadState, setScopedAssetDownloadState] =
+    useState<ScopedPackAssetDownloadState>({
+      identity: assetIdentity,
+      state: { status: 'idle' },
+    })
+  const assetDownloadState: PackAssetDownloadState =
+    scopedAssetDownloadState.identity === assetIdentity
+      ? scopedAssetDownloadState.state
+      : { status: 'idle' }
   const stateRef = useRef(state)
 
   const commitState = useCallback(
@@ -213,23 +226,35 @@ export function useLearningResource(
   ])
 
   const downloadAsset = useCallback(async () => {
-    setAssetDownloadState({ status: 'pending' })
+    setScopedAssetDownloadState({
+      identity: assetIdentity,
+      state: { status: 'pending' },
+    })
 
     try {
       const result = await application.downloadLearningPackAsset({
         packId,
         resourceId,
       })
-      setAssetDownloadState({ status: result })
+      setScopedAssetDownloadState((current) =>
+        current.identity === assetIdentity
+          ? { identity: assetIdentity, state: { status: result } }
+          : current,
+      )
       return result
     } catch (error) {
-      setAssetDownloadState({
-        status: 'error',
-        error: mapApplicationError(error),
-      })
+      const mappedError = mapApplicationError(error)
+      setScopedAssetDownloadState((current) =>
+        current.identity === assetIdentity
+          ? {
+              identity: assetIdentity,
+              state: { status: 'error', error: mappedError },
+            }
+          : current,
+      )
       return null
     }
-  }, [application, packId, resourceId])
+  }, [application, assetIdentity, packId, resourceId])
 
   const startCheckpoint = useCallback(
     async (studySetId: string, origin: LearningFlowOrigin) => {
