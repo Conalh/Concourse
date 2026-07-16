@@ -57,6 +57,7 @@ function createStructuralApplication(): LearntApplicationClient {
         isEmpty: true,
       }),
     getLearningResource: () => Promise.reject(new Error('unused')),
+    downloadLearningPackAsset: () => Promise.resolve('cancelled'),
     listResourcesForPack: () => Promise.resolve([]),
     listResourcesForConcept: () => Promise.resolve([]),
     listResourcesForObjective: () => Promise.resolve([]),

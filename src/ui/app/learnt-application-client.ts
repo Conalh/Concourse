@@ -17,6 +17,7 @@ export type LearntApplicationClient = Pick<
   | 'chooseAndInstallLearningPackDirectory'
   | 'syncSelectedLearningPackDirectory'
   | 'getLearningResource'
+  | 'downloadLearningPackAsset'
   | 'listResourcesForPack'
   | 'listResourcesForConcept'
   | 'listResourcesForObjective'

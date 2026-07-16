@@ -2,12 +2,20 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import type {
   LearningResourceTeachingContext,
+  PackAssetSaveResult,
   StudySetSessionStartResult,
 } from '../../application'
 import type { LearningFlowOrigin } from '../../core/contracts'
 import { useLearntApplication } from '../app/learnt-application-context'
 import { mapApplicationError, type UiError } from '../errors'
 import { latestData, type AsyncState, type CommandState } from './async-state'
+
+export type PackAssetDownloadState =
+  | { status: 'idle' }
+  | { status: 'pending' }
+  | { status: 'saved' }
+  | { status: 'cancelled' }
+  | { status: 'error'; error: UiError }
 
 export function useLearningResource(
   packId: string,
@@ -17,10 +25,12 @@ export function useLearningResource(
   state: AsyncState<LearningResourceTeachingContext>
   resource: LearningResourceTeachingContext | null
   commandState: CommandState
+  assetDownloadState: PackAssetDownloadState
   reload: () => void
   markComplete: () => Promise<boolean>
   leaveResource: () => Promise<boolean>
   recordExternalOpen: () => Promise<boolean>
+  downloadAsset: () => Promise<PackAssetSaveResult | null>
   startCheckpoint: (
     studySetId: string,
     origin: LearningFlowOrigin,
@@ -38,6 +48,8 @@ export function useLearningResource(
   const [commandState, setCommandState] = useState<CommandState>({
     status: 'idle',
   })
+  const [assetDownloadState, setAssetDownloadState] =
+    useState<PackAssetDownloadState>({ status: 'idle' })
   const stateRef = useRef(state)
 
   const commitState = useCallback(
@@ -200,6 +212,25 @@ export function useLearningResource(
     segmentId,
   ])
 
+  const downloadAsset = useCallback(async () => {
+    setAssetDownloadState({ status: 'pending' })
+
+    try {
+      const result = await application.downloadLearningPackAsset({
+        packId,
+        resourceId,
+      })
+      setAssetDownloadState({ status: result })
+      return result
+    } catch (error) {
+      setAssetDownloadState({
+        status: 'error',
+        error: mapApplicationError(error),
+      })
+      return null
+    }
+  }, [application, packId, resourceId])
+
   const startCheckpoint = useCallback(
     async (studySetId: string, origin: LearningFlowOrigin) => {
       let result: StudySetSessionStartResult | null = null
@@ -220,10 +251,12 @@ export function useLearningResource(
     state,
     resource: latestData(state),
     commandState,
+    assetDownloadState,
     reload,
     markComplete,
     leaveResource,
     recordExternalOpen,
+    downloadAsset,
     startCheckpoint,
   }
 }

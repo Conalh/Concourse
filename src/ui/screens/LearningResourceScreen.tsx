@@ -56,6 +56,7 @@ export function LearningResourceScreen({
           resource={resource}
           {...(origin === undefined ? {} : { origin })}
           commandState={controller.commandState}
+          assetDownloadState={controller.assetDownloadState}
           onMarkComplete={() => {
             void controller.markComplete()
           }}
@@ -64,6 +65,9 @@ export function LearningResourceScreen({
           }}
           onExternalOpen={() => {
             void controller.recordExternalOpen()
+          }}
+          onDownloadAsset={() => {
+            void controller.downloadAsset()
           }}
           onStartCheckpoint={(checkpoint) => {
             void controller
@@ -88,18 +92,24 @@ function LearningResourceContent({
   resource,
   origin,
   commandState,
+  assetDownloadState,
   onMarkComplete,
   onLeave,
   onExternalOpen,
+  onDownloadAsset,
   onStartCheckpoint,
   onReload,
 }: Readonly<{
   resource: LearningResourceTeachingContext
   origin?: LearningFlowOrigin
   commandState: ReturnType<typeof useLearningResource>['commandState']
+  assetDownloadState: ReturnType<
+    typeof useLearningResource
+  >['assetDownloadState']
   onMarkComplete: () => void
   onLeave: () => void
   onExternalOpen: () => void
+  onDownloadAsset: () => void
   onStartCheckpoint: (checkpoint: LearningResourceCheckpointReference) => void
   onReload: () => void
 }>) {
@@ -170,6 +180,8 @@ function LearningResourceContent({
           <ResourceSourceView
             resource={resource}
             onExternalOpen={onExternalOpen}
+            assetDownloadState={assetDownloadState}
+            onDownloadAsset={onDownloadAsset}
           />
           <SegmentList resource={resource} />
         </article>
@@ -193,9 +205,15 @@ function LearningResourceContent({
 function ResourceSourceView({
   resource,
   onExternalOpen,
+  assetDownloadState,
+  onDownloadAsset,
 }: Readonly<{
   resource: LearningResourceTeachingContext
   onExternalOpen: () => void
+  assetDownloadState: ReturnType<
+    typeof useLearningResource
+  >['assetDownloadState']
+  onDownloadAsset: () => void
 }>) {
   const vocabulary = useProductVocabulary()
 
@@ -234,10 +252,48 @@ function ResourceSourceView({
       return <BibliographicResourceView source={resource.source} />
     case 'pack-asset':
       return (
-        <section aria-labelledby="pack-asset-title">
+        <section className="learnt-panel" aria-labelledby="pack-asset-title">
           <h2 id="pack-asset-title">Downloadable lab file</h2>
-          <p>{resource.source.suggestedFileName}</p>
-          <p>File-saving controls are not available in this view yet.</p>
+          <dl className="learnt-detail-grid">
+            <div>
+              <dt>Filename</dt>
+              <dd>{resource.source.suggestedFileName}</dd>
+            </div>
+            <div>
+              <dt>Media type</dt>
+              <dd>{resource.source.mediaType}</dd>
+            </div>
+          </dl>
+          <p className="learnt-callout learnt-callout-warning">
+            This file may contain code. Inspect it before running it, especially
+            when the course came from a third party.
+          </p>
+          <button
+            className="learnt-button"
+            type="button"
+            aria-label={`Download ${resource.source.suggestedFileName}`}
+            disabled={assetDownloadState.status === 'pending'}
+            onClick={onDownloadAsset}
+          >
+            {assetDownloadState.status === 'pending'
+              ? 'Preparing download…'
+              : 'Download lab file'}
+          </button>
+          {assetDownloadState.status === 'saved' ? (
+            <p role="status">Save request completed.</p>
+          ) : null}
+          {assetDownloadState.status === 'cancelled' ? (
+            <p role="status">
+              Save cancelled. No learner progress was changed.
+            </p>
+          ) : null}
+          {assetDownloadState.status === 'error' ? (
+            <RecoverableError
+              error={assetDownloadState.error}
+              actionLabel="Try download again"
+              onAction={onDownloadAsset}
+            />
+          ) : null}
         </section>
       )
   }
