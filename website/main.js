@@ -29,7 +29,7 @@ export function mountDemo(documentRoot = document, options = {}) {
 
   documentRoot.documentElement?.classList.add('js')
 
-  function render(announce = false) {
+  function render(announce = false, moveFocus = false) {
     for (const panel of panels)
       panel.hidden = panel.dataset.demoPanel !== state.step
     for (const node of nodes) {
@@ -50,17 +50,22 @@ export function mountDemo(documentRoot = document, options = {}) {
         state.answerStatus === 'incorrect'
           ? 'Not quite. DNA stores genetic instructions. The cell membrane regulates movement across the cell boundary.'
           : STEP_MESSAGES[state.step]
-    if (manageFocus && announce) {
+    if (manageFocus && moveFocus) {
       const activePanel = panels.find(
         (panel) => panel.dataset.demoPanel === state.step,
       )
-      activePanel?.focus({ preventScroll: true })
+      const focusTarget =
+        state.step === 'route'
+          ? root.querySelector('[data-demo-action="start"]')
+          : activePanel
+      focusTarget?.focus({ preventScroll: true })
     }
   }
 
   function dispatch(event) {
+    const previousStep = state.step
     state = transitionDemo(state, event)
-    render(true)
+    render(true, state.step !== previousStep)
   }
 
   function handleClick(event) {
@@ -80,13 +85,18 @@ export function mountDemo(documentRoot = document, options = {}) {
   }
 }
 
-function mountPage() {
-  const controller = mountDemo(document)
-  for (const link of document.querySelectorAll('[data-focus-demo]')) {
+export function mountPage(documentRoot = document, windowRoot = window) {
+  const controller = mountDemo(documentRoot)
+  for (const link of documentRoot.querySelectorAll('[data-focus-demo]')) {
+    const resetsDemo = link.closest('.final-invitation') !== null
     link.addEventListener('click', () => {
-      window.requestAnimationFrame(() =>
-        document.querySelector('#demo')?.focus({ preventScroll: true }),
-      )
+      if (resetsDemo) controller.dispatch({ type: 'reset' })
+      windowRoot.requestAnimationFrame(() => {
+        const focusTarget = resetsDemo
+          ? documentRoot.querySelector('[data-demo-action="start"]')
+          : documentRoot.querySelector('#demo')
+        focusTarget?.focus({ preventScroll: true })
+      })
     })
   }
   return controller

@@ -2,7 +2,9 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { JSDOM } from 'jsdom'
-import { mountDemo } from '../website/main.js'
+import * as runtime from '../website/main.js'
+
+const { mountDemo } = runtime
 
 const html = await readFile(
   new URL('../website/index.html', import.meta.url),
@@ -139,7 +141,51 @@ test('moves focus only when focus management is enabled', () => {
 
   assert.equal(
     document.activeElement,
-    document.querySelector('[data-demo-panel="route"]'),
+    document.querySelector('[data-demo-action="start"]'),
+  )
+  controller.destroy()
+})
+
+test('preserves control focus for answer-status-only transitions', () => {
+  const { document, controller } = setup({ manageFocus: true })
+  controller.dispatch({ type: 'start' })
+  controller.dispatch({ type: 'continue' })
+
+  const incorrectChoice = document.querySelector('[data-choice="dna"]')
+  assert.ok(incorrectChoice)
+  incorrectChoice.focus()
+  incorrectChoice.click()
+
+  assert.equal(document.activeElement, incorrectChoice)
+
+  const retry = document.querySelector('[data-demo-action="retry"]')
+  assert.ok(retry)
+  retry.focus()
+  retry.click()
+
+  assert.equal(document.activeElement, retry)
+  controller.destroy()
+})
+
+test('resets a completed demo when the final rerun link is activated', () => {
+  assert.equal(typeof runtime.mountPage, 'function')
+
+  const dom = new JSDOM(html, { url: 'https://concourse.test/' })
+  dom.window.requestAnimationFrame = (callback) => callback()
+  const controller = runtime.mountPage(dom.window.document, dom.window)
+  controller.dispatch({ type: 'start' })
+  controller.dispatch({ type: 'continue' })
+  controller.dispatch({ type: 'answer', choice: 'membrane' })
+
+  click(dom.window.document, '.final-invitation [data-focus-demo]')
+
+  assert.deepEqual(controller.getState(), {
+    step: 'route',
+    answerStatus: 'unanswered',
+  })
+  assert.equal(
+    dom.window.document.activeElement,
+    dom.window.document.querySelector('[data-demo-action="start"]'),
   )
   controller.destroy()
 })
