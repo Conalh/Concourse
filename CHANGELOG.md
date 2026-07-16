@@ -6,7 +6,17 @@ to follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-_Nothing yet._
+### Added
+
+- Optional `learning-resource.pack-asset@1` support for learner-controlled
+  notebook, script, dataset, Markdown, text, and YAML downloads.
+- Active-release byte-count and SHA-256 re-verification before delivery,
+  explicit browser downloads, and bounded atomic desktop saves.
+
+### Security
+
+- Pack assets remain non-rendering and non-executing; save cancellation or
+  failure does not alter learner progress or installed-release state.
 
 ## [0.1.0] - 2026-07-16
 

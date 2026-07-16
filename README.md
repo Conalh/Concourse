@@ -26,9 +26,13 @@ runs in the browser and in a Tauri desktop shell.
 - Defensive handling for untrusted packs: bounded archive reads, path checks,
   capability validation, canonical-byte verification, and known-good release
   preservation.
+- Learner-controlled pack-asset delivery for notebooks, scripts, datasets, and
+  text-based lab files. Concourse re-verifies active-release bytes before an
+  explicit browser download or bounded atomic desktop save, and never previews
+  or executes the asset.
 - Three built-in subjects plus a distributable Logic Foundations course pack
   adapted from CC BY 4.0 source material.
-- 406 TypeScript tests and 12 Rust tests across contracts, pack tooling,
+- Comprehensive TypeScript and Rust coverage across contracts, pack tooling,
   application flows, browser persistence, React UI, and native storage.
 
 ## Product Language
@@ -105,6 +109,12 @@ pack can be rebuilt with:
 ```bash
 npm run build:logic-foundations
 ```
+
+Pack authors can expose learner-saved notebooks, Python files, CSV data,
+Markdown, plain text, and YAML through the optional
+`learning-resource.pack-asset@1` capability. See the
+[resource authoring guide](packages/learning-pack-contracts/docs/resource-authoring-guide.md)
+and [delivery-boundary decision](docs/decisions/0014-pack-asset-delivery-boundary.md).
 
 ## License
 
