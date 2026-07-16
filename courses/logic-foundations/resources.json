@@ -1,0 +1,5065 @@
+{
+  "resources": [
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "argument-structure"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-1-1-arguments-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "identify-premises-and-conclusion"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch1.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "An argument is a set of claims in which some claims—the premises—are presented as reasons for another claim—the conclusion. Finding the conclusion first often makes the structure easier to see."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: The server is unreachable, so the deployment cannot finish. “The server is unreachable” is the premise; “the deployment cannot finish” is the conclusion signaled by “so.”"
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A topic is not automatically a conclusion. The conclusion is the claim the other statements are meant to support."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Separate an argument into premises offered as reasons and the conclusion they support.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "1.1 Arguments: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "argument-structure"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-1-1-arguments-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "identify-premises-and-conclusion"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch1.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch1.html",
+        "chapter": "Chapter 1",
+        "citationText": "forall x: Calgary, Chapter 1.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 1.1 Arguments.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 1"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "logical-consequence"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-1-2-scope-of-logic-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "distinguish-validity-from-truth"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch2.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Logic evaluates the relationship between premises and a conclusion. A valid pattern cannot have true premises and a false conclusion, even when the particular premises used in an example are not actually true."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: All robots are poets. Ada is a robot. Therefore Ada is a poet. The first premise may be false in the real world, but the conclusion follows from the two premises, so the pattern is valid."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Do not reject a valid form merely because its subject matter is fictional or one premise is false."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Distinguish whether reasoning follows from whether its premises happen to be true.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "1.2 The Scope of Logic: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "logical-consequence"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-1-2-scope-of-logic-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "distinguish-validity-from-truth"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch2.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch2.html",
+        "chapter": "Chapter 2",
+        "citationText": "forall x: Calgary, Chapter 2.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 1.2 The Scope of Logic.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 2"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "logical-relations"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-1-3-other-logical-notions-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "compare-logical-relations"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch3.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Validity describes an argument. Consistency describes whether claims could all be true together. Equivalence describes claims that always share a truth value. A contradiction cannot be true under any interpretation."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: “The build passed” and “The build did not pass” are inconsistent because they cannot both be true. Their conjunction is a contradiction, but neither sentence by itself is an argument."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Disagreement is not always contradiction. The claims must rule each other out under the same interpretation."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Relate validity, consistency, equivalence, and contradiction without treating them as synonyms.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "1.3 Other Logical Notions: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "logical-relations"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-1-3-other-logical-notions-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "compare-logical-relations"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch3.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch3.html",
+        "chapter": "Chapter 3",
+        "citationText": "forall x: Calgary, Chapter 3.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 1.3 Other Logical Notions.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 3"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "sentence-form"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-2-1-first-steps-symbolization-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "abstract-argument-form"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch4.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Symbolization separates logical structure from subject matter. Start by assigning one sentence letter to each distinct atomic claim, then preserve repeated claims with the same letter."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: “The cache is warm. If the cache is warm, the response is fast. Therefore the response is fast” has the form C, C → F, therefore F."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A sentence letter stands for a complete atomic claim, not for an individual word inside it."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Expose an argument pattern by replacing complete atomic claims with stable sentence letters.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "2.1 First Steps to Symbolization: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "sentence-form"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-2-1-first-steps-symbolization-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "abstract-argument-form"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch4.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch4.html",
+        "chapter": "Chapter 4",
+        "citationText": "forall x: Calgary, Chapter 4.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 2.1 First Steps to Symbolization.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 4"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "truth-functional-connectives"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-2-2-connectives-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "symbolize-connectives"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch5.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "TFL builds complex sentences with five connectives: ¬, ∧, ∨, →, and ↔. Translate the logical job of the English expression rather than matching words mechanically."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: With R for “The release is ready” and A for “Approval arrived,” “The release is ready only if approval arrived” becomes R → A."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: “Only if” introduces a necessary condition and points toward the consequent of a conditional."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Translate negation, conjunction, disjunction, conditional, and biconditional structure into TFL.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "2.2 Connectives: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "truth-functional-connectives"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-2-2-connectives-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "symbolize-connectives"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch5.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch5.html",
+        "chapter": "Chapter 5",
+        "citationText": "forall x: Calgary, Chapter 5.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 2.2 Connectives.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 5"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "tfl-syntax"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-2-3-sentences-of-tfl-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "parse-tfl-sentences"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch6.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "A TFL sentence is built recursively: atomic letters are sentences; negating a sentence makes a sentence; and joining two sentences with a binary connective inside brackets makes a sentence."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: In ¬(A ∨ B), the outermost operation is negation. In (¬A ∨ B), the main connective is disjunction."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: The visually central symbol is not necessarily the main connective; use the sentence’s construction and brackets."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Recognize well-formed TFL sentences and identify their main connective.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "2.3 Sentences of TFL: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "tfl-syntax"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-2-3-sentences-of-tfl-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "parse-tfl-sentences"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch6.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch6.html",
+        "chapter": "Chapter 6",
+        "citationText": "forall x: Calgary, Chapter 6.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 2.3 Sentences of TFL.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 6"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "structural-ambiguity"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-2-4-ambiguity-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "disambiguate-before-symbolizing"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch7.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "One English sentence can express different claims in different contexts. Formalization begins by stating the intended reading, especially when grouping changes the logical structure."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: “The monitor is quiet or the service is slow and overloaded” could mean Q ∨ (S ∧ O) or (Q ∨ S) ∧ O. The context must choose."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Do not treat ordinary-language punctuation as a complete substitute for identifying the intended grouping."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Resolve lexical or structural ambiguity before committing to one formalization.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "2.4 Ambiguity: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "structural-ambiguity"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-2-4-ambiguity-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "disambiguate-before-symbolizing"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch7.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch7.html",
+        "chapter": "Chapter 7",
+        "citationText": "forall x: Calgary, Chapter 7.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 2.4 Ambiguity.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 7"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "use-mention-distinction"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-2-5-use-and-mention-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "distinguish-use-from-mention"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch8.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Using a name talks about its bearer; mentioning a name talks about the expression. Quotation marks and metavariables keep the object language separate from the language used to describe it."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: Ada was a mathematician uses “Ada” to name a person. “Ada” has three letters mentions the written name."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Quotation marks change what the sentence is about; they are not decorative emphasis."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Distinguish using an expression to talk about the world from mentioning the expression itself.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "2.5 Use and Mention: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "use-mention-distinction"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-2-5-use-and-mention-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "distinguish-use-from-mention"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch8.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch8.html",
+        "chapter": "Chapter 8",
+        "citationText": "forall x: Calgary, Chapter 8.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 2.5 Use and Mention.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 8"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "characteristic-truth-tables"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-3-1-characteristic-truth-tables-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "evaluate-connectives"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch9.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "A characteristic truth table defines a connective. Negation flips one value; conjunction requires both true; inclusive disjunction requires at least one true; a conditional is false only from true to false; a biconditional requires matching values."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: If A is true and B is false, then A ∧ B is false, A ∨ B is true, A → B is false, and A ↔ B is false."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: TFL disjunction is inclusive unless explicitly represented otherwise; both disjuncts may be true."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Evaluate each TFL connective from the truth values of its immediate components.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "3.1 Characteristic Truth Tables: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "characteristic-truth-tables"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-3-1-characteristic-truth-tables-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "evaluate-connectives"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch9.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch9.html",
+        "chapter": "Chapter 9",
+        "citationText": "forall x: Calgary, Chapter 9.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 3.1 Characteristic Truth Tables.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 9"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "truth-functionality"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-3-2-truth-functional-connectives-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "identify-truth-functional-operators"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch10.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "A connective is truth-functional when component truth values uniquely determine the compound truth value. TFL deliberately models these connectives and leaves intensional notions such as necessity outside its scope."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: Knowing P is true completely determines ¬P as false. Knowing P is true does not by itself determine “It is necessarily the case that P.”"
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A connective appearing between two truth-valued claims is not automatically truth-functional."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Determine whether a connective’s output is fixed entirely by its component truth values.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "3.2 Truth-Functional Connectives: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "truth-functionality"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-3-2-truth-functional-connectives-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "identify-truth-functional-operators"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch10.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch10.html",
+        "chapter": "Chapter 10",
+        "citationText": "forall x: Calgary, Chapter 10.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 3.2 Truth-Functional Connectives.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 10"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "complete-truth-tables"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-3-3-complete-truth-tables-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "construct-complete-truth-table"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch11.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "A complete table with n atomic letters has 2ⁿ rows. List valuations systematically, then calculate the smallest subsentences before the main connective."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: A formula containing A and B needs four rows: TT, TF, FT, FF. For (A ∧ B) → A, evaluate A ∧ B first and the conditional last."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Do not calculate the main connective before the truth values of its immediate components are available."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Construct every valuation for a formula and evaluate it from the inside out.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "3.3 Complete Truth Tables: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "complete-truth-tables"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-3-3-complete-truth-tables-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "construct-complete-truth-table"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch11.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch11.html",
+        "chapter": "Chapter 11",
+        "citationText": "forall x: Calgary, Chapter 11.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 3.3 Complete Truth Tables.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 11"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "tfl-semantic-properties"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-3-4-semantic-concepts-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "test-semantic-properties"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch12.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Semantic tests ask what happens across valuations. A tautology is always true, a contradiction always false, equivalent formulas match on every row, and a valid argument has no row with true premises and a false conclusion."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: A ∨ ¬A is true on both valuations of A, so it is a tautology. A ∧ ¬A is false on both, so it is a contradiction."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: One matching row does not establish equivalence; the columns must match on all valuations."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Use truth tables to test tautology, contradiction, equivalence, satisfiability, entailment, and validity.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "3.4 Semantic Concepts: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "tfl-semantic-properties"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-3-4-semantic-concepts-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "test-semantic-properties"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch12.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch12.html",
+        "chapter": "Chapter 12",
+        "citationText": "forall x: Calgary, Chapter 12.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 3.4 Semantic Concepts.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 12"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "expressive-limits"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-4-1-limitations-of-tfl-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "recognize-tfl-limitations"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch13.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "TFL analyzes truth-functional structure, not internal subject–predicate structure, vagueness, modality, or explanation. A poor formalization can therefore miss genuine validity or introduce consequences the English claim did not have."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: “Every square has four sides; this shape is a square; therefore it has four sides” is valid, but treating each whole sentence as an unrelated TFL atom hides why."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A failed TFL validity test may reveal an inadequate formalization rather than bad reasoning in the original language."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Recognize valid reasoning that TFL cannot reveal because atomic sentence structure has been hidden.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "4.1 Limitations of TFL: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "expressive-limits"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-4-1-limitations-of-tfl-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "recognize-tfl-limitations"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch13.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch13.html",
+        "chapter": "Chapter 13",
+        "citationText": "forall x: Calgary, Chapter 13.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 4.1 Limitations of TFL.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 13"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "truth-table-shortcuts"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-4-2-truth-table-shortcuts-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-truth-table-shortcuts"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch14.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "A true disjunct settles a disjunction, a false conjunct settles a conjunction, and a conditional is settled true by a false antecedent or true consequent. For validity, focus on candidate rows where every premise is true."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: If P is false, P → Q is true without evaluating Q. If P ∧ Q must be true, both P and Q are forced true."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A shortcut is justified by a connective’s truth condition; it is not permission to omit a row that could still be decisive."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Skip unnecessary component calculations while preserving a justified semantic test.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "4.2 Truth Table Shortcuts: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "truth-table-shortcuts"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-4-2-truth-table-shortcuts-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-truth-table-shortcuts"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch14.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch14.html",
+        "chapter": "Chapter 14",
+        "citationText": "forall x: Calgary, Chapter 14.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 4.2 Truth Table Shortcuts.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 14"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "partial-truth-tables"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-4-3-partial-truth-tables-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "construct-countervaluation"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch15.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Universal claims need every valuation, but failures often need only one. To refute tautology, find one false row; to refute validity, find one row with true premises and a false conclusion."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: To show A → B is not a tautology, assign A true and B false. That single valuation makes the conditional false."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A row is a counterexample to validity only when every premise is true and the conclusion is false on that same row."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Construct a decisive valuation instead of a full table when one counterexample is enough.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "4.3 Partial Truth Tables: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "partial-truth-tables"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-4-3-partial-truth-tables-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "construct-countervaluation"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch15.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch15.html",
+        "chapter": "Chapter 15",
+        "citationText": "forall x: Calgary, Chapter 15.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 4.3 Partial Truth Tables.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 15"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "natural-deduction"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-5-1-idea-natural-deduction-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "explain-proof-purpose"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch16.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Truth tables test cases; natural deduction transforms formulas using rules. A derivation makes the route from assumptions to conclusion explicit and can scale without enumerating every valuation."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: From P ∨ Q and ¬P, a derivation can infer Q by a licensed rule, recording the reason on the line where Q appears."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A derivation is not a list of formulas that happen to be true; every non-assumption line needs a valid justification."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Explain how a derivation displays a chain of licensed inference rather than checking every valuation.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "5.1 The Idea of Natural Deduction: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "natural-deduction"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-5-1-idea-natural-deduction-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "explain-proof-purpose"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch16.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch16.html",
+        "chapter": "Chapter 16",
+        "citationText": "forall x: Calgary, Chapter 16.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 5.1 The Idea of Natural Deduction.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 16"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "tfl-proof-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-5-2-basic-rules-tfl-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-basic-tfl-rules"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch17.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Introduction rules build a formula with a chosen main connective; elimination rules use such a formula. Subproofs temporarily add assumptions and discharge them only through the rule that licenses closure."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: From A and B, infer A ∧ B by conjunction introduction. From A ∧ B, infer either conjunct by conjunction elimination."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A formula proved inside a subproof cannot be used outside after closure unless the governing rule permits it."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Select introduction or elimination rules based on the main connective of available formulas and goals.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "5.2 Basic Rules for TFL: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "tfl-proof-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-5-2-basic-rules-tfl-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-basic-tfl-rules"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch17.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch17.html",
+        "chapter": "Chapter 17",
+        "citationText": "forall x: Calgary, Chapter 17.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 5.2 Basic Rules for TFL.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 17"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "proof-strategy"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-5-3-constructing-proofs-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "plan-tfl-proof"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch18.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "The goal’s main connective suggests an introduction rule; the premises’ main connectives suggest elimination rules. When direct progress stalls, a carefully scoped subproof can expose the missing route."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: To prove A → (B ∧ A), assume A, derive B from available premises, combine B with A, then close the subproof with conditional introduction."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Writing the desired conclusion does not prove it; every planned line must be reachable by a rule from accessible earlier lines."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Plan a proof by working backward from the goal and forward from usable premises.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "5.3 Constructing Proofs: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "proof-strategy"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-5-3-constructing-proofs-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "plan-tfl-proof"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch18.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch18.html",
+        "chapter": "Chapter 18",
+        "citationText": "forall x: Calgary, Chapter 18.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 5.3 Constructing Proofs.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 18"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "additional-tfl-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-6-1-additional-rules-tfl-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-additional-tfl-rules"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch19.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Additional rules compress common derivations. Their convenience does not relax matching requirements: disjunctive syllogism needs a disjunction plus the negation of one disjunct, and modus tollens needs a conditional plus a negated consequent."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: From A ∨ B and ¬A, infer B by DS. From A → B and ¬B, infer ¬A by MT."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Affirming the consequent—from A → B and B to A—is not modus tollens and is invalid."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Apply convenient rules such as DS, MT, DNE, excluded middle, and De Morgan transformations with exact premises.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "6.1 Additional Rules for TFL: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "additional-tfl-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-6-1-additional-rules-tfl-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-additional-tfl-rules"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch19.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch19.html",
+        "chapter": "Chapter 19",
+        "citationText": "forall x: Calgary, Chapter 19.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 6.1 Additional Rules for TFL.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 19"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "proof-theoretic-concepts"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-6-2-proof-theoretic-concepts-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "distinguish-turnstiles"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch20.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Γ ⊢ A says there is a derivation of A from assumptions in Γ. Γ ⊨ A says no interpretation makes Γ true and A false. One is proof-theoretic; the other is semantic."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: ⊢ A ∨ ¬A says the formula is a theorem with no undischarged assumptions. ⊨ A ∨ ¬A says it is true on every valuation."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: The single and double turnstiles are not interchangeable notation merely because they often agree in TFL."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Read the single turnstile as a claim about derivability and distinguish it from semantic entailment.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "6.2 Proof-Theoretic Concepts: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "proof-theoretic-concepts"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-6-2-proof-theoretic-concepts-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "distinguish-turnstiles"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch20.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch20.html",
+        "chapter": "Chapter 20",
+        "citationText": "forall x: Calgary, Chapter 20.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 6.2 Proof-Theoretic Concepts.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 20"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "derived-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-6-3-derived-rules-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "expand-derived-rule"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch21.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "A derived rule is admissible because every use can be replaced by a pattern of basic-rule steps. It shortens proofs without adding new derivable conclusions."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: A DS step from A ∨ B and ¬A can be expanded by disjunction elimination: handle the A branch via contradiction and infer B directly in the B branch."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A familiar valid argument form is not automatically a rule of the chosen proof system until its derivation or authorization is established."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Expand a convenient derived-rule step into a proof using only the basic rules.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "6.3 Derived Rules: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "derived-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-6-3-derived-rules-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "expand-derived-rule"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch21.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch21.html",
+        "chapter": "Chapter 21",
+        "citationText": "forall x: Calgary, Chapter 21.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 6.3 Derived Rules.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 21"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "soundness-completeness"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-6-4-soundness-completeness-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "relate-proof-and-semantics"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch22.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Soundness says derivable conclusions are semantically entailed: Γ ⊢ A implies Γ ⊨ A. Completeness says every semantic consequence is derivable: Γ ⊨ A implies Γ ⊢ A."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: If the proof system derives B from A and A → B, soundness guarantees no valuation makes both premises true and B false. Completeness guarantees every TFL-valid pattern has some derivation."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Soundness and completeness are metatheoretic claims about the proof system, not labels for individual premises."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Relate derivability and semantic consequence through the soundness and completeness guarantees.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "6.4 Soundness and Completeness: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "soundness-completeness"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-6-4-soundness-completeness-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "relate-proof-and-semantics"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch22.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch22.html",
+        "chapter": "Chapter 22",
+        "citationText": "forall x: Calgary, Chapter 22.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 6.4 Soundness and Completeness.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 22"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "fol-building-blocks"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-7-1-building-blocks-fol-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "identify-fol-building-blocks"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch23.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "First-order logic opens atomic claims to show which objects are discussed and what is said of them. Names pick out domain members, predicates express properties or relations, variables hold places, and quantifiers say how widely those variables range."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: Let the domain be devices, d name the dashboard, and O mean “is offline.” Od says the dashboard is offline, while ∃xOx says at least one device is offline, whether named or not."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A quantified variable ranges over the entire stated domain, not merely the objects that happen to have names."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Distinguish names, predicates, variables, quantifiers, and the domain when decomposing an atomic claim.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "7.1 Building Blocks of FOL: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "fol-building-blocks"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-7-1-building-blocks-fol-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "identify-fol-building-blocks"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch23.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch23.html",
+        "chapter": "Chapter 23",
+        "citationText": "forall x: Calgary, Chapter 23.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 7.1 Building Blocks of FOL.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 23"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "quantifier-symbolization"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-7-2-one-quantifier-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "symbolize-single-quantifier-claims"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch24.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Universal claims usually restrict a class with a conditional, while existential claims usually join the witness conditions with a conjunction. Paraphrasing first makes the intended quantifier, restriction, and scope visible."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: With domain services, A for “is an API,” and M for “is monitored,” “Every API is monitored” becomes ∀x(Ax → Mx); “Some API is monitored” becomes ∃x(Ax ∧ Mx)."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: An existential conditional such as ∃x(Lx → Ex) is usually too weak because any non-log can make its conditional true."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Choose a domain and symbolize common one-quantifier claims with the correct connective and scope.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "7.2 Sentences with One Quantifier: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "quantifier-symbolization"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-7-2-one-quantifier-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "symbolize-single-quantifier-claims"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch24.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch24.html",
+        "chapter": "Chapter 24",
+        "citationText": "forall x: Calgary, Chapter 24.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 7.2 Sentences with One Quantifier.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 24"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "multiple-generality"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-7-3-multiple-generality-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "distinguish-quantifier-order"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch25.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Many-place predicates preserve an ordered relation between objects. With multiple quantifiers, changing which quantifier has wider scope can change whether witnesses may differ or must be shared."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: If Rxy means “x reviews y,” ∀x∃yRxy allows each reviewer a different item. ∃y∀xRxy requires one particular item reviewed by everyone."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Do not swap predicate places or quantifier order as a cosmetic rewrite; either change can alter the claim."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Track predicate-place order and quantifier order in claims about several objects.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "7.3 Multiple Generality: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "multiple-generality"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-7-3-multiple-generality-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "distinguish-quantifier-order"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch25.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch25.html",
+        "chapter": "Chapter 25",
+        "citationText": "forall x: Calgary, Chapter 25.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 7.3 Multiple Generality.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 25"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "fol-identity"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-7-4-identity-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "symbolize-identity-and-quantity"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch26.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "The identity sign says that two terms pick out one and the same object. Its negation guarantees distinct witnesses, which lets FOL express “someone else,” exclusions, and minimum or exact quantities."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: With A for “is an alert,” ∃x∃y(Ax ∧ Ay ∧ x ≠ y) says there are at least two alerts because the two witnesses must be distinct."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Two existential variables do not automatically denote two objects; add non-identity when distinctness matters."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Use identity and non-identity to express sameness, exceptions, and finite numerical claims.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "7.4 Identity: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "fol-identity"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-7-4-identity-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "symbolize-identity-and-quantity"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch26.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch26.html",
+        "chapter": "Chapter 26",
+        "citationText": "forall x: Calgary, Chapter 26.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 7.4 Identity.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 26"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "fol-syntax"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-8-1-sentences-fol-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "identify-fol-sentences"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch27.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Names and variables are terms. Predicates applied to the right number of terms form atomic formulas, and connectives and quantifiers build larger formulas. A formula is a sentence only when every variable occurrence is bound."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: In ∀x(Rxy → Py), x is bound by ∀x but both occurrences of y are free, so the expression is a formula but not a sentence. ∀x∃y(Rxy → Py) binds both variables."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A quantifier binds only matching variable occurrences within its scope, not every variable visible nearby."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Recognize FOL terms, formulas, sentences, bound variables, and free variables by the formation rules.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "8.1 Sentences of FOL: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "fol-syntax"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-8-1-sentences-fol-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "identify-fol-sentences"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch27.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch27.html",
+        "chapter": "Chapter 27",
+        "citationText": "forall x: Calgary, Chapter 27.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 8.1 Sentences of FOL.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 27"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "definite-descriptions"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-8-2-definite-descriptions-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "analyze-definite-descriptions"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch28.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "A definite description aims at exactly one object. A Russell-style analysis replaces “the” with a quantified claim: at least one object is F, at most one object is F, and that object is G."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: With D for “is the deploy leader” and O for “is online,” “The deploy leader is online” can be rendered ∃x(Dx ∧ ∀y(Dy → y = x) ∧ Ox)."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: ∃x(Cx ∧ Ax) supplies existence but not uniqueness, so it means only that some coordinator is available."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Analyze “the F is G” as existence, uniqueness, and predication without inventing a name.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "8.2 Definite Descriptions: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "definite-descriptions"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-8-2-definite-descriptions-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "analyze-definite-descriptions"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch28.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch28.html",
+        "chapter": "Chapter 28",
+        "citationText": "forall x: Calgary, Chapter 28.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 8.2 Definite Descriptions.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 28"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "fol-scope-ambiguity"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-8-3-ambiguity-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "distinguish-fol-scope-readings"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch29.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "FOL makes the scope of every quantifier and connective explicit. An English sentence may leave open whether a witness is shared, whether negation is inside a quantifier, or which phrase “only” restricts."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: “Every analyst checked a report” may mean ∀x(Ax → ∃y(Ry ∧ Cxy)), allowing different reports, or ∃y(Ry ∧ ∀x(Ax → Cxy)), requiring one shared report."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Do not grade an ambiguous English sentence against one formula until the intended scope reading has been stated."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Separate scope readings of ordinary-language claims before selecting a first-order formula.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "8.3 Ambiguity: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "fol-scope-ambiguity"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-8-3-ambiguity-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "distinguish-fol-scope-readings"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch29.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch29.html",
+        "chapter": "Chapter 29",
+        "citationText": "forall x: Calgary, Chapter 29.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 8.3 Ambiguity.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 29"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "fol-extensions"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-9-1-extensionality-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "specify-fol-interpretation"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch30.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "FOL is extensional: an interpretation fixes a nonempty domain, assigns names to domain members, and assigns each predicate an extension. If two predicates have the same extension, FOL cannot distinguish them merely because their ordinary-language meanings differ. One-place extensions contain objects; many-place extensions contain ordered tuples."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: In domain {α, β}, let P mean “is on call” and Q mean “is on the response team,” but assign both the same extension {α}. The phrases have different meanings, yet P and Q have the same extension, so every atomic sentence formed with the same name gets the same truth value under this interpretation."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Matching extensions do not make two ordinary-language predicates synonymous; they only make FOL unable to represent their difference in meaning on that interpretation."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Specify predicate extensions and explain why FOL cannot distinguish predicates with the same extension merely by differences in meaning.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "9.1 Extensionality: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "fol-extensions"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-9-1-extensionality-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "specify-fol-interpretation"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch30.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch30.html",
+        "chapter": "Chapter 30",
+        "citationText": "forall x: Calgary, Chapter 30.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 9.1 Extensionality.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 30"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "truth-in-fol"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-9-2-truth-fol-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "evaluate-fol-truth"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch31.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Atomic truth follows from referents and extensions, and the familiar connectives retain their TFL truth conditions. A universal is true when every domain member satisfies its formula; an existential is true when at least one member does."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: In domain {a, b} with P extension {a}, ∃xPx is true because a is a witness, while ∀xPx is false because b is a counterexample."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Quantifiers range over all domain members, including unnamed members; checking only named objects is insufficient."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Evaluate atomic, truth-functional, and quantified FOL sentences in a finite interpretation.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "9.2 Truth in FOL: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "truth-in-fol"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-9-2-truth-fol-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "evaluate-fol-truth"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch31.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch31.html",
+        "chapter": "Chapter 31",
+        "citationText": "forall x: Calgary, Chapter 31.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 9.2 Truth in FOL.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 31"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "fol-semantic-concepts"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-9-3-semantic-concepts-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "classify-fol-semantic-relations"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch32.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "FOL semantic notions quantify over interpretations rather than TFL valuations. A validity is true in every interpretation; an entailment has no interpretation with true premises and false conclusion; satisfiable sentences share at least one model."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: ∀xPx entails Pa when a is a name, because every interpretation that makes all domain members P also makes the referent of a P. By contrast, Pa does not entail ∀xPx when another domain member may fail P."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: One favorable interpretation proves satisfiability, not validity; validity requires truth in every interpretation."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Classify validity, contradiction, equivalence, entailment, and joint satisfiability across interpretations.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "9.3 Semantic Concepts: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "fol-semantic-concepts"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-9-3-semantic-concepts-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "classify-fol-semantic-relations"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch32.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch32.html",
+        "chapter": "Chapter 32",
+        "citationText": "forall x: Calgary, Chapter 32.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 9.3 Semantic Concepts.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 32"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "counter-interpretations"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-10-1-using-interpretations-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "construct-counter-interpretation"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch33.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "A single carefully chosen interpretation can refute a universal semantic claim. Work backward from the truth values required, choose the smallest useful domain, then assign predicate extensions and name referents to realize them."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: To refute Pa ⊨ ∀xPx, use domain {a, b}, let the name a denote a, and let P have extension {a}. The premise is true while the conclusion is false at b."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A counter-interpretation must satisfy every premise and falsify the conclusion at the same time."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Construct a small counter-interpretation to refute a proposed validity, entailment, equivalence, or contradiction.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "10.1 Using Interpretations: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "counter-interpretations"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-10-1-using-interpretations-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "construct-counter-interpretation"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch33.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch33.html",
+        "chapter": "Chapter 33",
+        "citationText": "forall x: Calgary, Chapter 33.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 10.1 Using Interpretations.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 33"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "interpretation-reasoning"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-10-2-reasoning-about-interpretations-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "reason-across-interpretations"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch34.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "One model proves satisfiability, and one countermodel disproves validity or entailment. Positive universal claims—validity, contradiction, equivalence, unsatisfiability, and entailment—require an argument covering every interpretation."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: A one-object domain whose sole member is in P shows ∃xPx satisfiable. To show ∀x(Px ∨ ¬Px) valid, reason that every object in every interpretation either satisfies P or does not."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Many supporting examples do not establish a claim quantified over every interpretation."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Distinguish claims settled by one interpretation from claims that require reasoning about all interpretations.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "10.2 Reasoning About Interpretations: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "interpretation-reasoning"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-10-2-reasoning-about-interpretations-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "reason-across-interpretations"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch34.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch34.html",
+        "chapter": "Chapter 34",
+        "citationText": "forall x: Calgary, Chapter 34.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 10.2 Reasoning About Interpretations.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 34"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "relation-properties"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-10-3-properties-relations-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "classify-relation-properties"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch35.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Relation properties add structure not guaranteed by an arbitrary two-place predicate. Reflexivity requires Rxx for every x; symmetry reverses every related pair; transitivity closes two-step paths; antisymmetry forces mutually related objects to be identical."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: On {1, 2}, R = {⟨1,1⟩, ⟨2,2⟩, ⟨1,2⟩, ⟨2,1⟩} is reflexive and symmetric. It is also transitive because every required composite pair is already present."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Antisymmetric does not mean “never symmetric”; it forbids two distinct objects from being related both ways."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Recognize and formalize reflexive, symmetric, transitive, and antisymmetric relation properties.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "10.3 Properties of Relations: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "relation-properties"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-10-3-properties-relations-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "classify-relation-properties"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch35.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch35.html",
+        "chapter": "Chapter 35",
+        "citationText": "forall x: Calgary, Chapter 35.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 10.3 Properties of Relations.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 35"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "fol-quantifier-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-11-1-basic-rules-fol-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-fol-quantifier-rules"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch36.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "The quantifier rules control when a quantified claim may yield an instance and when an instance may support a quantified claim. Universal elimination instantiates any name; existential introduction generalizes from a named case. Universal introduction requires a genuinely arbitrary name, and existential elimination requires a fresh temporary witness whose identity does not leak into the conclusion."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: From ∀x(Px → Qx) and Pa: 1. instantiate the universal as Pa → Qa by ∀E; 2. combine it with Pa by →E; 3. conclude Qa. By contrast, deriving ∀xQx from Qa is licensed by ∀I only when a occurs in no premise or undischarged assumption."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A name used for ∀I must be arbitrary, and a name introduced inside ∃E must be fresh; a convenient letter is not automatically eligible."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Apply universal and existential introduction and elimination while checking substitution and fresh-name restrictions.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "11.1 Basic Rules for FOL: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "fol-quantifier-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-11-1-basic-rules-fol-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-fol-quantifier-rules"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch36.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch36.html",
+        "chapter": "Chapter 36",
+        "citationText": "forall x: Calgary, Chapter 36.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 11.1 Basic Rules for FOL.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 36"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "quantifier-proof-strategy"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-11-2-proofs-quantifiers-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "construct-quantifier-proofs"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch37.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Proof construction combines the familiar connective strategies with quantifier-specific moves. Work backward from a universal goal using a fresh arbitrary name, forward from an existential premise using a fresh-witness subproof, and delay existential introduction or universal elimination until the needed instance is clear."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: To derive ∀x(Px → Qx) from ∀xPx and ∀xQx, choose a fresh a, instantiate Pa and Qa, open a conditional subproof with Pa, reiterate Qa, close with →I, and only then generalize with ∀I. That order keeps a arbitrary."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Do not generalize from a name that occurs in a premise or undischarged assumption; that object is no longer arbitrary."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Order forward and backward proof moves so quantifier restrictions and subproof goals are satisfied.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "11.2 Proofs with Quantifiers: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "quantifier-proof-strategy"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-11-2-proofs-quantifiers-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "construct-quantifier-proofs"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch37.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch37.html",
+        "chapter": "Chapter 37",
+        "citationText": "forall x: Calgary, Chapter 37.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 11.2 Proofs with Quantifiers.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 37"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "quantifier-conversion"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-11-3-conversion-quantifiers-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-quantifier-conversion"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch38.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Quantifier conversion pairs negation with a quantifier switch: denying that everything is F is equivalent to saying something is not F, while denying that anything is F is equivalent to saying everything is not F. The conversion changes both the quantifier and the scope of negation."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: ¬∀xRx converts to ∃x¬Rx. Read left to right: it is not the case that every object is reliable, so at least one object is not reliable. Keeping ∀ while merely pushing the negation inward would change the claim."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Pushing negation across a quantifier without switching ∀ and ∃ produces a non-equivalent formula."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Move negation across quantifiers with the correct quantifier switch and justify the conversion.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "11.3 Conversion of Quantifiers: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "quantifier-conversion"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-11-3-conversion-quantifiers-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-quantifier-conversion"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch38.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch38.html",
+        "chapter": "Chapter 38",
+        "citationText": "forall x: Calgary, Chapter 38.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 11.3 Conversion of Quantifiers.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 38"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "identity-proof-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-11-4-rules-identity-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-identity-proof-rules"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch39.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Identity introduction licenses a = a without premises. Identity elimination uses a = b plus a formula containing one name to replace one or more eligible occurrences with the other. Substitution transfers a property or relation; it does not manufacture identity from merely similar descriptions."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: From a = b and Rab: 1. cite a = b; 2. replace the first occurrence of a in Rab with b by =E; 3. obtain Rbb. The identity statement is cited before the formula being transformed."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Identity elimination needs an identity premise; sharing every listed predicate does not by itself prove that two names denote one object."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Use identity introduction for reflexivity and identity elimination to substitute co-referring names in a controlled proof step.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "11.4 Rules for Identity: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "identity-proof-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-11-4-rules-identity-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "apply-identity-proof-rules"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch39.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch39.html",
+        "chapter": "Chapter 39",
+        "citationText": "forall x: Calgary, Chapter 39.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 11.4 Rules for Identity.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 39"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "fol-derived-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-12-1-derived-rules-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "justify-derived-quantifier-rules"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch40.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "A quantifier-conversion rule is derived when every use can be expanded into the basic quantifier and connective rules. The shortcut is safe because it compresses an available derivation rather than adding a new consequence."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: Expand ¬∀xPx to ∃x¬Px using only basic rules: 1. ¬∀xPx Premise. 2. Assume ¬∃x¬Px for indirect proof. 3. Choose a fresh arbitrary name a. 4. Assume ¬Pa. 5. Infer ∃x¬Px by ∃I from line 4. 6. Derive ⊥ from assumption 2 and line 5. 7. Discharge the nested assumption by ¬I to obtain ¬¬Pa. 8. Infer Pa by DNE. 9. Infer ∀xPx by ∀I; a occurs in no premise or undischarged assumption. 10. Derive ⊥ from premise 1 and line 9. 11. Discharge assumption 2 by ¬I to obtain ¬¬∃x¬Px. 12. Infer ∃x¬Px by DNE. This dependency order derives the CQ direction without using CQ in its own justification."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Calling a transformation intuitive does not establish it as a derived rule; the expansion must obey every basic-rule restriction."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Justify quantifier-conversion shortcuts by expanding them into basic-rule derivations.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "12.1 Derived Rules: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "fol-derived-rules"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-12-1-derived-rules-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "justify-derived-quantifier-rules"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch40.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch40.html",
+        "chapter": "Chapter 40",
+        "citationText": "forall x: Calgary, Chapter 40.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 12.1 Derived Rules.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 40"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "proofs-and-semantics"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-12-2-proofs-semantics-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "choose-proof-or-model"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch41.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Derivability and semantic entailment are different definitions even when soundness and completeness connect them. A proof is a finite certificate for derivability. One interpretation refutes entailment, and a counter-interpretation may have any nonempty domain allowed by FOL. By contrast, establishing entailment semantically must cover every interpretation. Pick the method whose polarity matches the task."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: To establish Pa ⊨ ∃xPx, either give the two-line proof Pa, then ∃xPx by ∃I, or argue semantically that the referent of a is a witness. To refute ∃xPx ⊨ ∀xPx, one two-object counter-interpretation is decisive."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: A model can prove satisfiability or refute entailment, but one favorable model cannot establish a claim about every interpretation."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Choose a proof or an interpretation as the efficient witness for a positive or negative logical claim while keeping turnstiles distinct.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "12.2 Proofs and Semantics: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "proofs-and-semantics"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-12-2-proofs-semantics-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "choose-proof-or-model"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch41.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch41.html",
+        "chapter": "Chapter 41",
+        "citationText": "forall x: Calgary, Chapter 41.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 12.2 Proofs and Semantics.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 41"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "normal-forms"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-12-3-normal-forms-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "construct-normal-forms"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch45.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "DNF is a disjunction of conjunctions of literals; CNF is a conjunction of disjunctions of literals. Negation has minimal scope in both. A complete truth table constructs DNF from its true rows and CNF from its false rows, guaranteeing an equivalent formula."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: For A ↔ B, the true rows TT and FF yield DNF (A ∧ B) ∨ (¬A ∧ ¬B). The false rows TF and FT yield CNF (¬A ∨ B) ∧ (A ∨ ¬B). Each form matches the original column on all four rows."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Normal form is a structural condition, not merely a formula that happens to use conjunction or disjunction."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Recognize and construct equivalent disjunctive and conjunctive normal forms from decisive truth-table rows.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "12.3 Normal Forms: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "normal-forms"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-12-3-normal-forms-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "construct-normal-forms"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch45.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch45.html",
+        "chapter": "Chapter 45",
+        "citationText": "forall x: Calgary, Chapter 45.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 12.3 Normal Forms.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 45"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "functional-completeness"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-12-4-functional-completeness-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "evaluate-functional-completeness"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch46.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "A set of connectives is functionally complete when formulas using only that set can realize every possible truth table. Normal forms use ¬, ∧, and ∨. After recovering ¬ and ∧ from NAND, define disjunction by A ∨ B ≡ ¬(¬A ∧ ¬B); the recovered {¬, ∧, ∨} normal-form basis is functionally complete. NOR supports the analogous recovery, so either NAND or NOR can serve alone."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: Let A | B mean NAND. Then ¬A is A | A. Conjunction is ¬(A | B), written using only NAND as (A | B) | (A | B). Now use A ∨ B ≡ ¬(¬A ∧ ¬B): replace each negation and conjunction in that definition with its NAND formula. NAND therefore recovers the full {¬, ∧, ∨} basis used by normal forms, which establishes functional completeness."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: Showing that a basis expresses several familiar connectives is not enough unless those connectives are themselves known to generate every truth function."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Explain functional completeness and test whether a proposed connective basis can express every truth function.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "12.4 Functional Completeness: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "functional-completeness"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-12-4-functional-completeness-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "evaluate-functional-completeness"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch46.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch46.html",
+        "chapter": "Chapter 46",
+        "citationText": "forall x: Calgary, Chapter 46.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 12.4 Functional Completeness.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 46"
+    },
+    {
+      "accessibility": {
+        "language": "en-US",
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true
+      },
+      "conceptIds": [
+        "equivalence-transformations"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-12-5-proving-equivalences-teaching",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "prove-equivalence-chain"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "Concourse",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch47.html",
+        "contentOwnership": "pack-authored",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "explanation",
+        "worked-example"
+      ],
+      "source": {
+        "content": [
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": null,
+            "kind": "text",
+            "language": null,
+            "text": "Equivalent formulas may replace one another inside a larger formula without changing its truth value. A chain records one local law per step—such as conditional elimination, De Morgan, double negation, distribution, or absorption—so the whole transformation remains auditable."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "tip",
+            "kind": "callout",
+            "language": null,
+            "text": "Worked example: Transform ¬(A → B): first replace A → B with ¬A ∨ B; apply De Morgan to get ¬¬A ∧ ¬B; apply double negation to reach A ∧ ¬B. Each replacement targets a displayed subformula and names one equivalence."
+          },
+          {
+            "altText": null,
+            "assetId": null,
+            "calloutRole": "warning",
+            "kind": "callout",
+            "language": null,
+            "text": "Common mistake: An algebraic-looking rewrite is not a proof of equivalence unless the replaced subformula and governing equivalence are identifiable."
+          }
+        ],
+        "kind": "embedded-content"
+      },
+      "summary": "Build a checkable chain of equivalence-preserving replacements and use it to reach a requested normal form.",
+      "tags": [
+        "logic",
+        "lesson"
+      ],
+      "title": "12.5 Proving Equivalences: explanation and worked example"
+    },
+    {
+      "accessibility": {
+        "language": "en-US"
+      },
+      "conceptIds": [
+        "equivalence-transformations"
+      ],
+      "contentRevision": 1,
+      "difficulty": "introductory",
+      "id": "resource-logic-12-5-proving-equivalences-source",
+      "language": "en-US",
+      "modality": "text",
+      "objectiveIds": [
+        "prove-equivalence-chain"
+      ],
+      "provenance": {
+        "attributionText": "Concourse adapted the organization, examples, and learning activities from forall x: Calgary by P. D. Magnus, Tim Button, Robert Trueman, and Richard Zach, licensed CC BY 4.0.",
+        "author": "P. D. Magnus, Tim Button, Robert Trueman, Richard Zach",
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch47.html",
+        "contentOwnership": "external-link-only",
+        "license": "CC-BY-4.0",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+        "publisher": "Open Logic Project",
+        "sourceTitle": "forall x: Calgary"
+      },
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "authors": [
+          "P. D. Magnus",
+          "Tim Button",
+          "Robert Trueman",
+          "Richard Zach"
+        ],
+        "canonicalUrl": "https://forallx.openlogicproject.org/html/Ch47.html",
+        "chapter": "Chapter 47",
+        "citationText": "forall x: Calgary, Chapter 47.",
+        "kind": "bibliographic-reference",
+        "publisher": "Open Logic Project",
+        "title": "forall x: Calgary"
+      },
+      "summary": "Primary curriculum reference for 12.5 Proving Equivalences.",
+      "tags": [
+        "logic",
+        "source"
+      ],
+      "title": "forall x: Calgary: Chapter 47"
+    }
+  ],
+  "schemaVersion": "0.1"
+}

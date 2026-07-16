@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "0.1",
+  "subjects": [
+    {
+      "subjectId": "subject-propositional-logic",
+      "title": "Propositional Logic",
+      "summary": "Truth values, connectives, and truth-table reasoning.",
+      "tags": [
+        "logic",
+        "truth-tables"
+      ],
+      "conceptIds": [
+        "concept-truth-values",
+        "concept-propositions",
+        "concept-logical-connectives",
+        "concept-truth-tables"
+      ],
+      "objectiveIds": [
+        "objective-recognize-truth-values",
+        "objective-evaluate-negation",
+        "objective-build-truth-table"
+      ],
+      "courseIds": [
+        "course-logic-core"
+      ]
+    },
+    {
+      "subjectId": "subject-proof-strategies",
+      "title": "Proof Strategies",
+      "summary": "Validity, soundness, and argument checking.",
+      "tags": [
+        "logic",
+        "proofs"
+      ],
+      "conceptIds": [
+        "concept-truth-values",
+        "concept-validity",
+        "concept-soundness"
+      ],
+      "objectiveIds": [
+        "objective-identify-valid-argument",
+        "objective-explain-soundness"
+      ],
+      "courseIds": [
+        "course-proof-practice"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "conceptId": "concept-truth-values",
+      "title": "Truth Values",
+      "summary": "The values true and false used to evaluate propositions.",
+      "tags": [
+        "shared",
+        "foundations"
+      ],
+      "prerequisiteConceptIds": [],
+      "relatedConceptIds": [
+        "concept-propositions",
+        "concept-validity"
+      ]
+    },
+    {
+      "conceptId": "concept-propositions",
+      "title": "Propositions",
+      "summary": "Statements that can be evaluated as true or false.",
+      "tags": [
+        "statements"
+      ],
+      "prerequisiteConceptIds": [
+        "concept-truth-values"
+      ],
+      "relatedConceptIds": [
+        "concept-logical-connectives",
+        "concept-validity"
+      ]
+    },
+    {
+      "conceptId": "concept-logical-connectives",
+      "title": "Logical Connectives",
+      "summary": "Operators such as NOT, AND, OR, and IF-THEN.",
+      "tags": [
+        "operators"
+      ],
+      "prerequisiteConceptIds": [
+        "concept-propositions"
+      ],
+      "relatedConceptIds": [
+        "concept-truth-tables"
+      ]
+    },
+    {
+      "conceptId": "concept-truth-tables",
+      "title": "Truth Tables",
+      "summary": "Rows that enumerate possible truth-value assignments.",
+      "tags": [
+        "tables"
+      ],
+      "prerequisiteConceptIds": [
+        "concept-logical-connectives"
+      ],
+      "relatedConceptIds": [
+        "concept-validity"
+      ]
+    },
+    {
+      "conceptId": "concept-validity",
+      "title": "Validity",
+      "summary": "A valid argument cannot have true premises and a false conclusion.",
+      "tags": [
+        "arguments"
+      ],
+      "prerequisiteConceptIds": [
+        "concept-propositions"
+      ],
+      "relatedConceptIds": [
+        "concept-soundness",
+        "concept-truth-tables"
+      ]
+    },
+    {
+      "conceptId": "concept-soundness",
+      "title": "Soundness",
+      "summary": "A sound argument is valid and has true premises.",
+      "tags": [
+        "arguments"
+      ],
+      "prerequisiteConceptIds": [
+        "concept-validity"
+      ],
+      "relatedConceptIds": [
+        "concept-truth-values"
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "objectiveId": "objective-recognize-truth-values",
+      "statement": "Recognize true and false as truth values.",
+      "successCriteria": [
+        "Distinguish truth values from ordinary labels."
+      ],
+      "conceptIds": [
+        "concept-truth-values"
+      ]
+    },
+    {
+      "objectiveId": "objective-evaluate-negation",
+      "statement": "Evaluate the negation of a proposition.",
+      "successCriteria": [
+        "Select the opposite truth value for NOT statements."
+      ],
+      "conceptIds": [
+        "concept-truth-values",
+        "concept-logical-connectives"
+      ]
+    },
+    {
+      "objectiveId": "objective-build-truth-table",
+      "statement": "Determine the row count for a truth table.",
+      "successCriteria": [
+        "Compute rows from the number of atomic propositions."
+      ],
+      "conceptIds": [
+        "concept-truth-tables"
+      ]
+    },
+    {
+      "objectiveId": "objective-identify-valid-argument",
+      "statement": "Identify the condition that makes an argument valid.",
+      "successCriteria": [
+        "Name validity from true-premise false-conclusion impossibility."
+      ],
+      "conceptIds": [
+        "concept-validity"
+      ]
+    },
+    {
+      "objectiveId": "objective-explain-soundness",
+      "statement": "Explain how soundness relates to validity and truth.",
+      "successCriteria": [
+        "State both required parts of soundness."
+      ],
+      "conceptIds": [
+        "concept-soundness",
+        "concept-validity"
+      ]
+    }
+  ]
+}

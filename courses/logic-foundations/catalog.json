@@ -1,0 +1,2589 @@
+{
+  "concepts": [
+    {
+      "conceptId": "argument-structure",
+      "prerequisiteConceptIds": [],
+      "relatedConceptIds": [
+        "logical-consequence",
+        "logical-relations"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-1-1-arguments-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-1-1-arguments-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "An argument is a set of claims in which some claims—the premises—are presented as reasons for another claim—the conclusion. Finding the conclusion first often makes the structure easier to see.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Argument Structure"
+    },
+    {
+      "conceptId": "logical-consequence",
+      "prerequisiteConceptIds": [],
+      "relatedConceptIds": [
+        "argument-structure",
+        "logical-relations"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-1-2-scope-of-logic-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-1-2-scope-of-logic-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Logic evaluates the relationship between premises and a conclusion. A valid pattern cannot have true premises and a false conclusion, even when the particular premises used in an example are not actually true.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Logical Consequence"
+    },
+    {
+      "conceptId": "logical-relations",
+      "prerequisiteConceptIds": [],
+      "relatedConceptIds": [
+        "argument-structure",
+        "logical-consequence"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-1-3-other-logical-notions-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-1-3-other-logical-notions-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Validity describes an argument. Consistency describes whether claims could all be true together. Equivalence describes claims that always share a truth value. A contradiction cannot be true under any interpretation.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Logical Relations"
+    },
+    {
+      "conceptId": "sentence-form",
+      "prerequisiteConceptIds": [
+        "logical-relations"
+      ],
+      "relatedConceptIds": [
+        "logical-relations",
+        "truth-functional-connectives",
+        "tfl-syntax",
+        "structural-ambiguity",
+        "use-mention-distinction"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-2-1-first-steps-symbolization-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-2-1-first-steps-symbolization-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Symbolization separates logical structure from subject matter. Start by assigning one sentence letter to each distinct atomic claim, then preserve repeated claims with the same letter.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Sentence Form"
+    },
+    {
+      "conceptId": "truth-functional-connectives",
+      "prerequisiteConceptIds": [
+        "logical-relations"
+      ],
+      "relatedConceptIds": [
+        "logical-relations",
+        "sentence-form",
+        "tfl-syntax",
+        "structural-ambiguity",
+        "use-mention-distinction"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-2-2-connectives-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-2-2-connectives-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "TFL builds complex sentences with five connectives: ¬, ∧, ∨, →, and ↔. Translate the logical job of the English expression rather than matching words mechanically.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Truth Functional Connectives"
+    },
+    {
+      "conceptId": "tfl-syntax",
+      "prerequisiteConceptIds": [
+        "logical-relations"
+      ],
+      "relatedConceptIds": [
+        "logical-relations",
+        "sentence-form",
+        "truth-functional-connectives",
+        "structural-ambiguity",
+        "use-mention-distinction"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-2-3-sentences-of-tfl-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-2-3-sentences-of-tfl-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "A TFL sentence is built recursively: atomic letters are sentences; negating a sentence makes a sentence; and joining two sentences with a binary connective inside brackets makes a sentence.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "TFL Syntax"
+    },
+    {
+      "conceptId": "structural-ambiguity",
+      "prerequisiteConceptIds": [
+        "logical-relations"
+      ],
+      "relatedConceptIds": [
+        "logical-relations",
+        "sentence-form",
+        "truth-functional-connectives",
+        "tfl-syntax",
+        "use-mention-distinction"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-2-4-ambiguity-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-2-4-ambiguity-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "One English sentence can express different claims in different contexts. Formalization begins by stating the intended reading, especially when grouping changes the logical structure.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Structural Ambiguity"
+    },
+    {
+      "conceptId": "use-mention-distinction",
+      "prerequisiteConceptIds": [
+        "logical-relations"
+      ],
+      "relatedConceptIds": [
+        "logical-relations",
+        "sentence-form",
+        "truth-functional-connectives",
+        "tfl-syntax",
+        "structural-ambiguity"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-2-5-use-and-mention-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-2-5-use-and-mention-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Using a name talks about its bearer; mentioning a name talks about the expression. Quotation marks and metavariables keep the object language separate from the language used to describe it.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Use Mention Distinction"
+    },
+    {
+      "conceptId": "characteristic-truth-tables",
+      "prerequisiteConceptIds": [
+        "truth-functional-connectives",
+        "tfl-syntax"
+      ],
+      "relatedConceptIds": [
+        "truth-functional-connectives",
+        "tfl-syntax",
+        "truth-functionality",
+        "complete-truth-tables",
+        "tfl-semantic-properties"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-3-1-characteristic-truth-tables-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-3-1-characteristic-truth-tables-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "A characteristic truth table defines a connective. Negation flips one value; conjunction requires both true; inclusive disjunction requires at least one true; a conditional is false only from true to false; a biconditional requires matching values.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Characteristic Truth Tables"
+    },
+    {
+      "conceptId": "truth-functionality",
+      "prerequisiteConceptIds": [
+        "truth-functional-connectives",
+        "tfl-syntax"
+      ],
+      "relatedConceptIds": [
+        "truth-functional-connectives",
+        "tfl-syntax",
+        "characteristic-truth-tables",
+        "complete-truth-tables",
+        "tfl-semantic-properties"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-3-2-truth-functional-connectives-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-3-2-truth-functional-connectives-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "A connective is truth-functional when component truth values uniquely determine the compound truth value. TFL deliberately models these connectives and leaves intensional notions such as necessity outside its scope.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Truth Functionality"
+    },
+    {
+      "conceptId": "complete-truth-tables",
+      "prerequisiteConceptIds": [
+        "truth-functional-connectives",
+        "tfl-syntax"
+      ],
+      "relatedConceptIds": [
+        "truth-functional-connectives",
+        "tfl-syntax",
+        "characteristic-truth-tables",
+        "truth-functionality",
+        "tfl-semantic-properties"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-3-3-complete-truth-tables-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-3-3-complete-truth-tables-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "A complete table with n atomic letters has 2ⁿ rows. List valuations systematically, then calculate the smallest subsentences before the main connective.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Complete Truth Tables"
+    },
+    {
+      "conceptId": "tfl-semantic-properties",
+      "prerequisiteConceptIds": [
+        "truth-functional-connectives",
+        "tfl-syntax"
+      ],
+      "relatedConceptIds": [
+        "truth-functional-connectives",
+        "tfl-syntax",
+        "characteristic-truth-tables",
+        "truth-functionality",
+        "complete-truth-tables"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-3-4-semantic-concepts-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-3-4-semantic-concepts-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Semantic tests ask what happens across valuations. A tautology is always true, a contradiction always false, equivalent formulas match on every row, and a valid argument has no row with true premises and a false conclusion.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "TFL Semantic Properties"
+    },
+    {
+      "conceptId": "expressive-limits",
+      "prerequisiteConceptIds": [
+        "complete-truth-tables",
+        "tfl-semantic-properties"
+      ],
+      "relatedConceptIds": [
+        "complete-truth-tables",
+        "tfl-semantic-properties",
+        "truth-table-shortcuts",
+        "partial-truth-tables"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-4-1-limitations-of-tfl-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-4-1-limitations-of-tfl-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "TFL analyzes truth-functional structure, not internal subject–predicate structure, vagueness, modality, or explanation. A poor formalization can therefore miss genuine validity or introduce consequences the English claim did not have.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Expressive Limits"
+    },
+    {
+      "conceptId": "truth-table-shortcuts",
+      "prerequisiteConceptIds": [
+        "complete-truth-tables",
+        "tfl-semantic-properties"
+      ],
+      "relatedConceptIds": [
+        "complete-truth-tables",
+        "tfl-semantic-properties",
+        "expressive-limits",
+        "partial-truth-tables"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-4-2-truth-table-shortcuts-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-4-2-truth-table-shortcuts-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "A true disjunct settles a disjunction, a false conjunct settles a conjunction, and a conditional is settled true by a false antecedent or true consequent. For validity, focus on candidate rows where every premise is true.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Truth Table Shortcuts"
+    },
+    {
+      "conceptId": "partial-truth-tables",
+      "prerequisiteConceptIds": [
+        "complete-truth-tables",
+        "tfl-semantic-properties"
+      ],
+      "relatedConceptIds": [
+        "complete-truth-tables",
+        "tfl-semantic-properties",
+        "expressive-limits",
+        "truth-table-shortcuts"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-4-3-partial-truth-tables-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-4-3-partial-truth-tables-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Universal claims need every valuation, but failures often need only one. To refute tautology, find one false row; to refute validity, find one row with true premises and a false conclusion.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Partial Truth Tables"
+    },
+    {
+      "conceptId": "natural-deduction",
+      "prerequisiteConceptIds": [
+        "tfl-syntax",
+        "tfl-semantic-properties"
+      ],
+      "relatedConceptIds": [
+        "tfl-syntax",
+        "tfl-semantic-properties",
+        "tfl-proof-rules",
+        "proof-strategy"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-5-1-idea-natural-deduction-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-5-1-idea-natural-deduction-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Truth tables test cases; natural deduction transforms formulas using rules. A derivation makes the route from assumptions to conclusion explicit and can scale without enumerating every valuation.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Natural Deduction"
+    },
+    {
+      "conceptId": "tfl-proof-rules",
+      "prerequisiteConceptIds": [
+        "tfl-syntax",
+        "tfl-semantic-properties"
+      ],
+      "relatedConceptIds": [
+        "tfl-syntax",
+        "tfl-semantic-properties",
+        "natural-deduction",
+        "proof-strategy"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-5-2-basic-rules-tfl-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-5-2-basic-rules-tfl-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Introduction rules build a formula with a chosen main connective; elimination rules use such a formula. Subproofs temporarily add assumptions and discharge them only through the rule that licenses closure.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "TFL Proof Rules"
+    },
+    {
+      "conceptId": "proof-strategy",
+      "prerequisiteConceptIds": [
+        "tfl-syntax",
+        "tfl-semantic-properties"
+      ],
+      "relatedConceptIds": [
+        "tfl-syntax",
+        "tfl-semantic-properties",
+        "natural-deduction",
+        "tfl-proof-rules"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-5-3-constructing-proofs-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-5-3-constructing-proofs-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "The goal’s main connective suggests an introduction rule; the premises’ main connectives suggest elimination rules. When direct progress stalls, a carefully scoped subproof can expose the missing route.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Proof Strategy"
+    },
+    {
+      "conceptId": "additional-tfl-rules",
+      "prerequisiteConceptIds": [
+        "natural-deduction",
+        "tfl-proof-rules",
+        "proof-strategy"
+      ],
+      "relatedConceptIds": [
+        "natural-deduction",
+        "tfl-proof-rules",
+        "proof-strategy",
+        "proof-theoretic-concepts",
+        "derived-rules",
+        "soundness-completeness"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-6-1-additional-rules-tfl-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-6-1-additional-rules-tfl-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Additional rules compress common derivations. Their convenience does not relax matching requirements: disjunctive syllogism needs a disjunction plus the negation of one disjunct, and modus tollens needs a conditional plus a negated consequent.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Additional TFL Rules"
+    },
+    {
+      "conceptId": "proof-theoretic-concepts",
+      "prerequisiteConceptIds": [
+        "natural-deduction",
+        "tfl-proof-rules",
+        "proof-strategy"
+      ],
+      "relatedConceptIds": [
+        "natural-deduction",
+        "tfl-proof-rules",
+        "proof-strategy",
+        "additional-tfl-rules",
+        "derived-rules",
+        "soundness-completeness"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-6-2-proof-theoretic-concepts-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-6-2-proof-theoretic-concepts-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Γ ⊢ A says there is a derivation of A from assumptions in Γ. Γ ⊨ A says no interpretation makes Γ true and A false. One is proof-theoretic; the other is semantic.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Proof Theoretic Concepts"
+    },
+    {
+      "conceptId": "derived-rules",
+      "prerequisiteConceptIds": [
+        "natural-deduction",
+        "tfl-proof-rules",
+        "proof-strategy"
+      ],
+      "relatedConceptIds": [
+        "natural-deduction",
+        "tfl-proof-rules",
+        "proof-strategy",
+        "additional-tfl-rules",
+        "proof-theoretic-concepts",
+        "soundness-completeness"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-6-3-derived-rules-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-6-3-derived-rules-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "A derived rule is admissible because every use can be replaced by a pattern of basic-rule steps. It shortens proofs without adding new derivable conclusions.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Derived Rules"
+    },
+    {
+      "conceptId": "soundness-completeness",
+      "prerequisiteConceptIds": [
+        "natural-deduction",
+        "tfl-proof-rules",
+        "proof-strategy"
+      ],
+      "relatedConceptIds": [
+        "natural-deduction",
+        "tfl-proof-rules",
+        "proof-strategy",
+        "additional-tfl-rules",
+        "proof-theoretic-concepts",
+        "derived-rules"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-6-4-soundness-completeness-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-6-4-soundness-completeness-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Soundness says derivable conclusions are semantically entailed: Γ ⊢ A implies Γ ⊨ A. Completeness says every semantic consequence is derivable: Γ ⊨ A implies Γ ⊢ A.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Soundness Completeness"
+    },
+    {
+      "conceptId": "fol-building-blocks",
+      "prerequisiteConceptIds": [
+        "tfl-syntax"
+      ],
+      "relatedConceptIds": [
+        "tfl-syntax",
+        "quantifier-symbolization"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-7-1-building-blocks-fol-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-7-1-building-blocks-fol-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "First-order logic opens atomic claims to show which objects are discussed and what is said of them. Names pick out domain members, predicates express properties or relations, variables hold places, and quantifiers say how widely those variables range.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Fol Building Blocks"
+    },
+    {
+      "conceptId": "quantifier-symbolization",
+      "prerequisiteConceptIds": [
+        "fol-building-blocks",
+        "truth-functional-connectives"
+      ],
+      "relatedConceptIds": [
+        "fol-building-blocks",
+        "truth-functional-connectives",
+        "multiple-generality"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-7-2-one-quantifier-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-7-2-one-quantifier-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Universal claims usually restrict a class with a conditional, while existential claims usually join the witness conditions with a conjunction. Paraphrasing first makes the intended quantifier, restriction, and scope visible.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Quantifier Symbolization"
+    },
+    {
+      "conceptId": "multiple-generality",
+      "prerequisiteConceptIds": [
+        "quantifier-symbolization"
+      ],
+      "relatedConceptIds": [
+        "quantifier-symbolization",
+        "fol-identity"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-7-3-multiple-generality-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-7-3-multiple-generality-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Many-place predicates preserve an ordered relation between objects. With multiple quantifiers, changing which quantifier has wider scope can change whether witnesses may differ or must be shared.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Multiple Generality"
+    },
+    {
+      "conceptId": "fol-identity",
+      "prerequisiteConceptIds": [
+        "multiple-generality"
+      ],
+      "relatedConceptIds": [
+        "multiple-generality"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-7-4-identity-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-7-4-identity-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "The identity sign says that two terms pick out one and the same object. Its negation guarantees distinct witnesses, which lets FOL express “someone else,” exclusions, and minimum or exact quantities.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Fol Identity"
+    },
+    {
+      "conceptId": "fol-syntax",
+      "prerequisiteConceptIds": [
+        "fol-building-blocks"
+      ],
+      "relatedConceptIds": [
+        "fol-building-blocks",
+        "definite-descriptions"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-8-1-sentences-fol-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-8-1-sentences-fol-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Names and variables are terms. Predicates applied to the right number of terms form atomic formulas, and connectives and quantifiers build larger formulas. A formula is a sentence only when every variable occurrence is bound.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Fol Syntax"
+    },
+    {
+      "conceptId": "definite-descriptions",
+      "prerequisiteConceptIds": [
+        "fol-identity",
+        "quantifier-symbolization"
+      ],
+      "relatedConceptIds": [
+        "fol-identity",
+        "quantifier-symbolization",
+        "fol-syntax",
+        "fol-scope-ambiguity"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-8-2-definite-descriptions-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-8-2-definite-descriptions-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "A definite description aims at exactly one object. A Russell-style analysis replaces “the” with a quantified claim: at least one object is F, at most one object is F, and that object is G.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Definite Descriptions"
+    },
+    {
+      "conceptId": "fol-scope-ambiguity",
+      "prerequisiteConceptIds": [
+        "fol-syntax",
+        "multiple-generality"
+      ],
+      "relatedConceptIds": [
+        "fol-syntax",
+        "multiple-generality",
+        "definite-descriptions"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-8-3-ambiguity-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-8-3-ambiguity-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "FOL makes the scope of every quantifier and connective explicit. An English sentence may leave open whether a witness is shared, whether negation is inside a quantifier, or which phrase “only” restricts.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Fol Scope Ambiguity"
+    },
+    {
+      "conceptId": "fol-extensions",
+      "prerequisiteConceptIds": [
+        "fol-syntax"
+      ],
+      "relatedConceptIds": [
+        "fol-syntax",
+        "truth-in-fol"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-9-1-extensionality-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-9-1-extensionality-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "FOL is extensional: an interpretation fixes a nonempty domain, assigns names to domain members, and assigns each predicate an extension. If two predicates have the same extension, FOL cannot distinguish them merely because their ordinary-language meanings differ. One-place extensions contain objects; many-place extensions contain ordered tuples.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Fol Extensions"
+    },
+    {
+      "conceptId": "truth-in-fol",
+      "prerequisiteConceptIds": [
+        "fol-extensions",
+        "quantifier-symbolization"
+      ],
+      "relatedConceptIds": [
+        "fol-extensions",
+        "quantifier-symbolization",
+        "fol-semantic-concepts"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-9-2-truth-fol-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-9-2-truth-fol-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Atomic truth follows from referents and extensions, and the familiar connectives retain their TFL truth conditions. A universal is true when every domain member satisfies its formula; an existential is true when at least one member does.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Truth In Fol"
+    },
+    {
+      "conceptId": "fol-semantic-concepts",
+      "prerequisiteConceptIds": [
+        "truth-in-fol",
+        "logical-relations"
+      ],
+      "relatedConceptIds": [
+        "truth-in-fol",
+        "logical-relations"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-9-3-semantic-concepts-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-9-3-semantic-concepts-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "FOL semantic notions quantify over interpretations rather than TFL valuations. A validity is true in every interpretation; an entailment has no interpretation with true premises and false conclusion; satisfiable sentences share at least one model.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Fol Semantic Concepts"
+    },
+    {
+      "conceptId": "counter-interpretations",
+      "prerequisiteConceptIds": [
+        "fol-semantic-concepts",
+        "fol-extensions"
+      ],
+      "relatedConceptIds": [
+        "fol-semantic-concepts",
+        "fol-extensions",
+        "interpretation-reasoning"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-10-1-using-interpretations-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-10-1-using-interpretations-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "A single carefully chosen interpretation can refute a universal semantic claim. Work backward from the truth values required, choose the smallest useful domain, then assign predicate extensions and name referents to realize them.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Counter Interpretations"
+    },
+    {
+      "conceptId": "interpretation-reasoning",
+      "prerequisiteConceptIds": [
+        "counter-interpretations"
+      ],
+      "relatedConceptIds": [
+        "counter-interpretations",
+        "relation-properties"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-10-2-reasoning-about-interpretations-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-10-2-reasoning-about-interpretations-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "One model proves satisfiability, and one countermodel disproves validity or entailment. Positive universal claims—validity, contradiction, equivalence, unsatisfiability, and entailment—require an argument covering every interpretation.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Interpretation Reasoning"
+    },
+    {
+      "conceptId": "relation-properties",
+      "prerequisiteConceptIds": [
+        "multiple-generality",
+        "fol-semantic-concepts"
+      ],
+      "relatedConceptIds": [
+        "multiple-generality",
+        "fol-semantic-concepts",
+        "interpretation-reasoning"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-10-3-properties-relations-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-10-3-properties-relations-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Relation properties add structure not guaranteed by an arbitrary two-place predicate. Reflexivity requires Rxx for every x; symmetry reverses every related pair; transitivity closes two-step paths; antisymmetry forces mutually related objects to be identical.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Relation Properties"
+    },
+    {
+      "conceptId": "fol-quantifier-rules",
+      "prerequisiteConceptIds": [
+        "proof-strategy",
+        "quantifier-symbolization"
+      ],
+      "relatedConceptIds": [
+        "proof-strategy",
+        "quantifier-symbolization",
+        "quantifier-proof-strategy"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-11-1-basic-rules-fol-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-11-1-basic-rules-fol-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "The quantifier rules control when a quantified claim may yield an instance and when an instance may support a quantified claim. Universal elimination instantiates any name; existential introduction generalizes from a named case. Universal introduction requires a genuinely arbitrary name, and existential elimination requires a fresh temporary witness whose identity does not leak into the conclusion.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Fol Quantifier Rules"
+    },
+    {
+      "conceptId": "quantifier-proof-strategy",
+      "prerequisiteConceptIds": [
+        "fol-quantifier-rules",
+        "proof-strategy"
+      ],
+      "relatedConceptIds": [
+        "fol-quantifier-rules",
+        "proof-strategy",
+        "quantifier-conversion"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-11-2-proofs-quantifiers-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-11-2-proofs-quantifiers-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Proof construction combines the familiar connective strategies with quantifier-specific moves. Work backward from a universal goal using a fresh arbitrary name, forward from an existential premise using a fresh-witness subproof, and delay existential introduction or universal elimination until the needed instance is clear.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Quantifier Proof Strategy"
+    },
+    {
+      "conceptId": "quantifier-conversion",
+      "prerequisiteConceptIds": [
+        "fol-quantifier-rules",
+        "truth-functional-connectives"
+      ],
+      "relatedConceptIds": [
+        "fol-quantifier-rules",
+        "truth-functional-connectives",
+        "quantifier-proof-strategy",
+        "identity-proof-rules"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-11-3-conversion-quantifiers-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-11-3-conversion-quantifiers-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Quantifier conversion pairs negation with a quantifier switch: denying that everything is F is equivalent to saying something is not F, while denying that anything is F is equivalent to saying everything is not F. The conversion changes both the quantifier and the scope of negation.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Quantifier Conversion"
+    },
+    {
+      "conceptId": "identity-proof-rules",
+      "prerequisiteConceptIds": [
+        "fol-identity",
+        "fol-quantifier-rules"
+      ],
+      "relatedConceptIds": [
+        "fol-identity",
+        "fol-quantifier-rules",
+        "quantifier-conversion"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-11-4-rules-identity-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-11-4-rules-identity-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Identity introduction licenses a = a without premises. Identity elimination uses a = b plus a formula containing one name to replace one or more eligible occurrences with the other. Substitution transfers a property or relation; it does not manufacture identity from merely similar descriptions.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Identity Proof Rules"
+    },
+    {
+      "conceptId": "fol-derived-rules",
+      "prerequisiteConceptIds": [
+        "quantifier-conversion",
+        "derived-rules"
+      ],
+      "relatedConceptIds": [
+        "quantifier-conversion",
+        "derived-rules",
+        "proofs-and-semantics"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-12-1-derived-rules-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-12-1-derived-rules-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "A quantifier-conversion rule is derived when every use can be expanded into the basic quantifier and connective rules. The shortcut is safe because it compresses an available derivation rather than adding a new consequence.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Fol Derived Rules"
+    },
+    {
+      "conceptId": "proofs-and-semantics",
+      "prerequisiteConceptIds": [
+        "fol-derived-rules",
+        "fol-semantic-concepts"
+      ],
+      "relatedConceptIds": [
+        "fol-derived-rules",
+        "fol-semantic-concepts",
+        "normal-forms"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-12-2-proofs-semantics-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-12-2-proofs-semantics-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Derivability and semantic entailment are different definitions even when soundness and completeness connect them. A proof is a finite certificate for derivability. One interpretation refutes entailment, and a counter-interpretation may have any nonempty domain allowed by FOL. By contrast, establishing entailment semantically must cover every interpretation. Pick the method whose polarity matches the task.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Proofs And Semantics"
+    },
+    {
+      "conceptId": "normal-forms",
+      "prerequisiteConceptIds": [
+        "complete-truth-tables",
+        "tfl-semantic-properties"
+      ],
+      "relatedConceptIds": [
+        "complete-truth-tables",
+        "tfl-semantic-properties",
+        "proofs-and-semantics",
+        "functional-completeness"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-12-3-normal-forms-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-12-3-normal-forms-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "DNF is a disjunction of conjunctions of literals; CNF is a conjunction of disjunctions of literals. Negation has minimal scope in both. A complete truth table constructs DNF from its true rows and CNF from its false rows, guaranteeing an equivalent formula.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Normal Forms"
+    },
+    {
+      "conceptId": "functional-completeness",
+      "prerequisiteConceptIds": [
+        "normal-forms",
+        "truth-functional-connectives"
+      ],
+      "relatedConceptIds": [
+        "normal-forms",
+        "truth-functional-connectives",
+        "equivalence-transformations"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-12-4-functional-completeness-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-12-4-functional-completeness-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "A set of connectives is functionally complete when formulas using only that set can realize every possible truth table. Normal forms use ¬, ∧, and ∨. After recovering ¬ and ∧ from NAND, define disjunction by A ∨ B ≡ ¬(¬A ∧ ¬B); the recovered {¬, ∧, ∨} normal-form basis is functionally complete. NOR supports the analogous recovery, so either NAND or NOR can serve alone.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Functional Completeness"
+    },
+    {
+      "conceptId": "equivalence-transformations",
+      "prerequisiteConceptIds": [
+        "normal-forms",
+        "functional-completeness"
+      ],
+      "relatedConceptIds": [
+        "normal-forms",
+        "functional-completeness"
+      ],
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-12-5-proving-equivalences-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-12-5-proving-equivalences-source",
+          "role": "reference"
+        }
+      ],
+      "summary": "Equivalent formulas may replace one another inside a larger formula without changing its truth value. A chain records one local law per step—such as conditional elimination, De Morgan, double negation, distribution, or absorption—so the whole transformation remains auditable.",
+      "tags": [
+        "logic",
+        "foundations"
+      ],
+      "title": "Equivalence Transformations"
+    }
+  ],
+  "objectives": [
+    {
+      "conceptIds": [
+        "argument-structure"
+      ],
+      "objectiveId": "identify-premises-and-conclusion",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-1-1-arguments-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-1-1-arguments-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Separate an argument into premises offered as reasons and the conclusion they support.",
+      "successCriteria": [
+        "Produces the reviewed result for “Write one premise and one conclusion for an argument about whether a software change should be reviewed before release.” and avoids this named error: A topic is not automatically a conclusion. The conclusion is the claim the other statements are meant to support."
+      ]
+    },
+    {
+      "conceptIds": [
+        "logical-consequence"
+      ],
+      "objectiveId": "distinguish-validity-from-truth",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-1-2-scope-of-logic-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-1-2-scope-of-logic-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Distinguish whether reasoning follows from whether its premises happen to be true.",
+      "successCriteria": [
+        "Produces the reviewed result for “Explain why an argument may be valid even when one of its premises is false.” and avoids this named error: Do not reject a valid form merely because its subject matter is fictional or one premise is false."
+      ]
+    },
+    {
+      "conceptIds": [
+        "logical-relations"
+      ],
+      "objectiveId": "compare-logical-relations",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-1-3-other-logical-notions-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-1-3-other-logical-notions-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Relate validity, consistency, equivalence, and contradiction without treating them as synonyms.",
+      "successCriteria": [
+        "Produces the reviewed result for “Give a pair of contradictory claims and explain why no situation makes both true.” and avoids this named error: Disagreement is not always contradiction. The claims must rule each other out under the same interpretation."
+      ]
+    },
+    {
+      "conceptIds": [
+        "sentence-form"
+      ],
+      "objectiveId": "abstract-argument-form",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-2-1-first-steps-symbolization-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-2-1-first-steps-symbolization-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Expose an argument pattern by replacing complete atomic claims with stable sentence letters.",
+      "successCriteria": [
+        "Produces the reviewed result for “Give a symbolization key and form for: “If the build passes, deployment starts. The build passes. So deployment starts.”” and avoids this named error: A sentence letter stands for a complete atomic claim, not for an individual word inside it."
+      ]
+    },
+    {
+      "conceptIds": [
+        "truth-functional-connectives"
+      ],
+      "objectiveId": "symbolize-connectives",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-2-2-connectives-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-2-2-connectives-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Translate negation, conjunction, disjunction, conditional, and biconditional structure into TFL.",
+      "successCriteria": [
+        "Produces the reviewed result for “Symbolize “The job runs unless the queue is paused,” using J and P.” and avoids this named error: “Only if” introduces a necessary condition and points toward the consequent of a conditional."
+      ]
+    },
+    {
+      "conceptIds": [
+        "tfl-syntax"
+      ],
+      "objectiveId": "parse-tfl-sentences",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-2-3-sentences-of-tfl-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-2-3-sentences-of-tfl-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Recognize well-formed TFL sentences and identify their main connective.",
+      "successCriteria": [
+        "Produces the reviewed result for “Identify the main connective and immediate components of ((A ∧ B) → ¬C).” and avoids this named error: The visually central symbol is not necessarily the main connective; use the sentence’s construction and brackets."
+      ]
+    },
+    {
+      "conceptIds": [
+        "structural-ambiguity"
+      ],
+      "objectiveId": "disambiguate-before-symbolizing",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-2-4-ambiguity-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-2-4-ambiguity-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Resolve lexical or structural ambiguity before committing to one formalization.",
+      "successCriteria": [
+        "Produces the reviewed result for “Give two bracketings for “A or B and C” and explain how their truth conditions differ.” and avoids this named error: Do not treat ordinary-language punctuation as a complete substitute for identifying the intended grouping."
+      ]
+    },
+    {
+      "conceptIds": [
+        "use-mention-distinction"
+      ],
+      "objectiveId": "distinguish-use-from-mention",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-2-5-use-and-mention-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-2-5-use-and-mention-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Distinguish using an expression to talk about the world from mentioning the expression itself.",
+      "successCriteria": [
+        "Produces the reviewed result for “Explain the difference between A and “A” in a sentence about TFL.” and avoids this named error: Quotation marks change what the sentence is about; they are not decorative emphasis."
+      ]
+    },
+    {
+      "conceptIds": [
+        "characteristic-truth-tables"
+      ],
+      "objectiveId": "evaluate-connectives",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-3-1-characteristic-truth-tables-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-3-1-characteristic-truth-tables-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Evaluate each TFL connective from the truth values of its immediate components.",
+      "successCriteria": [
+        "Produces the reviewed result for “Evaluate ¬A, A ∨ B, and A ↔ B when A is false and B is true.” and avoids this named error: TFL disjunction is inclusive unless explicitly represented otherwise; both disjuncts may be true."
+      ]
+    },
+    {
+      "conceptIds": [
+        "truth-functionality"
+      ],
+      "objectiveId": "identify-truth-functional-operators",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-3-2-truth-functional-connectives-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-3-2-truth-functional-connectives-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Determine whether a connective’s output is fixed entirely by its component truth values.",
+      "successCriteria": [
+        "Produces the reviewed result for “Explain why “because” cannot be represented merely by a TFL connective with a truth table.” and avoids this named error: A connective appearing between two truth-valued claims is not automatically truth-functional."
+      ]
+    },
+    {
+      "conceptIds": [
+        "complete-truth-tables"
+      ],
+      "objectiveId": "construct-complete-truth-table",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-3-3-complete-truth-tables-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-3-3-complete-truth-tables-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Construct every valuation for a formula and evaluate it from the inside out.",
+      "successCriteria": [
+        "Produces the reviewed result for “Describe the evaluation order for ¬(A ∨ B) ↔ C.” and avoids this named error: Do not calculate the main connective before the truth values of its immediate components are available."
+      ]
+    },
+    {
+      "conceptIds": [
+        "tfl-semantic-properties"
+      ],
+      "objectiveId": "test-semantic-properties",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-3-4-semantic-concepts-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-3-4-semantic-concepts-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Use truth tables to test tautology, contradiction, equivalence, satisfiability, entailment, and validity.",
+      "successCriteria": [
+        "Produces the reviewed result for “State the truth-table test for equivalence between formulas A and B.” and avoids this named error: One matching row does not establish equivalence; the columns must match on all valuations."
+      ]
+    },
+    {
+      "conceptIds": [
+        "expressive-limits"
+      ],
+      "objectiveId": "recognize-tfl-limitations",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-4-1-limitations-of-tfl-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-4-1-limitations-of-tfl-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Recognize valid reasoning that TFL cannot reveal because atomic sentence structure has been hidden.",
+      "successCriteria": [
+        "Produces the reviewed result for “Name one feature of meaning that TFL deliberately leaves unanalyzed and explain the consequence.” and avoids this named error: A failed TFL validity test may reveal an inadequate formalization rather than bad reasoning in the original language."
+      ]
+    },
+    {
+      "conceptIds": [
+        "truth-table-shortcuts"
+      ],
+      "objectiveId": "apply-truth-table-shortcuts",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-4-2-truth-table-shortcuts-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-4-2-truth-table-shortcuts-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Skip unnecessary component calculations while preserving a justified semantic test.",
+      "successCriteria": [
+        "Produces the reviewed result for “Explain how to narrow a validity test whose first premise is A ∧ B.” and avoids this named error: A shortcut is justified by a connective’s truth condition; it is not permission to omit a row that could still be decisive."
+      ]
+    },
+    {
+      "conceptIds": [
+        "partial-truth-tables"
+      ],
+      "objectiveId": "construct-countervaluation",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-4-3-partial-truth-tables-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-4-3-partial-truth-tables-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Construct a decisive valuation instead of a full table when one counterexample is enough.",
+      "successCriteria": [
+        "Produces the reviewed result for “Give a valuation showing that A ∨ B does not entail A.” and avoids this named error: A row is a counterexample to validity only when every premise is true and the conclusion is false on that same row."
+      ]
+    },
+    {
+      "conceptIds": [
+        "natural-deduction"
+      ],
+      "objectiveId": "explain-proof-purpose",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-5-1-idea-natural-deduction-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-5-1-idea-natural-deduction-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Explain how a derivation displays a chain of licensed inference rather than checking every valuation.",
+      "successCriteria": [
+        "Produces the reviewed result for “Contrast the information supplied by a truth-table validity test with the information supplied by a derivation.” and avoids this named error: A derivation is not a list of formulas that happen to be true; every non-assumption line needs a valid justification."
+      ]
+    },
+    {
+      "conceptIds": [
+        "tfl-proof-rules"
+      ],
+      "objectiveId": "apply-basic-tfl-rules",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-5-2-basic-rules-tfl-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-5-2-basic-rules-tfl-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Select introduction or elimination rules based on the main connective of available formulas and goals.",
+      "successCriteria": [
+        "Produces the reviewed result for “Describe the subproof needed to derive A → B by conditional introduction.” and avoids this named error: A formula proved inside a subproof cannot be used outside after closure unless the governing rule permits it."
+      ]
+    },
+    {
+      "conceptIds": [
+        "proof-strategy"
+      ],
+      "objectiveId": "plan-tfl-proof",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-5-3-constructing-proofs-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-5-3-constructing-proofs-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Plan a proof by working backward from the goal and forward from usable premises.",
+      "successCriteria": [
+        "Produces the reviewed result for “Give a forward and backward planning observation for premises A → B and A with goal B ∧ A.” and avoids this named error: Writing the desired conclusion does not prove it; every planned line must be reachable by a rule from accessible earlier lines."
+      ]
+    },
+    {
+      "conceptIds": [
+        "additional-tfl-rules"
+      ],
+      "objectiveId": "apply-additional-tfl-rules",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-6-1-additional-rules-tfl-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-6-1-additional-rules-tfl-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Apply convenient rules such as DS, MT, DNE, excluded middle, and De Morgan transformations with exact premises.",
+      "successCriteria": [
+        "Produces the reviewed result for “Use a named additional rule to derive ¬C from C → D and ¬D.” and avoids this named error: Affirming the consequent—from A → B and B to A—is not modus tollens and is invalid."
+      ]
+    },
+    {
+      "conceptIds": [
+        "proof-theoretic-concepts"
+      ],
+      "objectiveId": "distinguish-turnstiles",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-6-2-proof-theoretic-concepts-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-6-2-proof-theoretic-concepts-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Read the single turnstile as a claim about derivability and distinguish it from semantic entailment.",
+      "successCriteria": [
+        "Produces the reviewed result for “Explain the difference between ⊢ A and ⊨ A without assuming soundness or completeness.” and avoids this named error: The single and double turnstiles are not interchangeable notation merely because they often agree in TFL."
+      ]
+    },
+    {
+      "conceptIds": [
+        "derived-rules"
+      ],
+      "objectiveId": "expand-derived-rule",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-6-3-derived-rules-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-6-3-derived-rules-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Expand a convenient derived-rule step into a proof using only the basic rules.",
+      "successCriteria": [
+        "Produces the reviewed result for “Explain why adding a derived rule can shorten proofs without increasing what the system can prove.” and avoids this named error: A familiar valid argument form is not automatically a rule of the chosen proof system until its derivation or authorization is established."
+      ]
+    },
+    {
+      "conceptIds": [
+        "soundness-completeness"
+      ],
+      "objectiveId": "relate-proof-and-semantics",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-6-4-soundness-completeness-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-6-4-soundness-completeness-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Relate derivability and semantic consequence through the soundness and completeness guarantees.",
+      "successCriteria": [
+        "Produces the reviewed result for “State what soundness protects us from and what completeness promises.” and avoids this named error: Soundness and completeness are metatheoretic claims about the proof system, not labels for individual premises."
+      ]
+    },
+    {
+      "conceptIds": [
+        "fol-building-blocks"
+      ],
+      "objectiveId": "identify-fol-building-blocks",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-7-1-building-blocks-fol-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-7-1-building-blocks-fol-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Distinguish names, predicates, variables, quantifiers, and the domain when decomposing an atomic claim.",
+      "successCriteria": [
+        "Produces the reviewed result for “Using domain servers, s for Sol, and R for “is restarting,” identify the job of each symbol in ∃xRx and Rs.” and avoids this named error: A quantified variable ranges over the entire stated domain, not merely the objects that happen to have names."
+      ]
+    },
+    {
+      "conceptIds": [
+        "quantifier-symbolization"
+      ],
+      "objectiveId": "symbolize-single-quantifier-claims",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-7-2-one-quantifier-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-7-2-one-quantifier-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Choose a domain and symbolize common one-quantifier claims with the correct connective and scope.",
+      "successCriteria": [
+        "Produces the reviewed result for “Using domain files, L for “is a log,” and E for “is encrypted,” symbolize “No log is encrypted” and give one equivalent formulation.” and avoids this named error: An existential conditional such as ∃x(Lx → Ex) is usually too weak because any non-log can make its conditional true."
+      ]
+    },
+    {
+      "conceptIds": [
+        "multiple-generality"
+      ],
+      "objectiveId": "distinguish-quantifier-order",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-7-3-multiple-generality-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-7-3-multiple-generality-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Track predicate-place order and quantifier order in claims about several objects.",
+      "successCriteria": [
+        "Produces the reviewed result for “Using domain people and Mxy for “x messages y,” compare ∀x∃yMxy with ∃y∀xMxy by describing a three-person case where only the first is true.” and avoids this named error: Do not swap predicate places or quantifier order as a cosmetic rewrite; either change can alter the claim."
+      ]
+    },
+    {
+      "conceptIds": [
+        "fol-identity"
+      ],
+      "objectiveId": "symbolize-identity-and-quantity",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-7-4-identity-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-7-4-identity-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Use identity and non-identity to express sameness, exceptions, and finite numerical claims.",
+      "successCriteria": [
+        "Produces the reviewed result for “Using domain users, a for Ari, and Fxy for “x follows y,” symbolize “Ari follows everyone other than Ari.”” and avoids this named error: Two existential variables do not automatically denote two objects; add non-identity when distinctness matters."
+      ]
+    },
+    {
+      "conceptIds": [
+        "fol-syntax"
+      ],
+      "objectiveId": "identify-fol-sentences",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-8-1-sentences-fol-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-8-1-sentences-fol-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Recognize FOL terms, formulas, sentences, bound variables, and free variables by the formation rules.",
+      "successCriteria": [
+        "Produces the reviewed result for “For ∃y(Qy ∧ Rxy), list every bound and free variable occurrence and state whether the formula is a sentence.” and avoids this named error: A quantifier binds only matching variable occurrences within its scope, not every variable visible nearby."
+      ]
+    },
+    {
+      "conceptIds": [
+        "definite-descriptions"
+      ],
+      "objectiveId": "analyze-definite-descriptions",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-8-2-definite-descriptions-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-8-2-definite-descriptions-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Analyze “the F is G” as existence, uniqueness, and predication without inventing a name.",
+      "successCriteria": [
+        "Produces the reviewed result for “Using C for “is a current coordinator” and A for “is available,” symbolize “The current coordinator is available” and label the existence, uniqueness, and availability parts.” and avoids this named error: ∃x(Cx ∧ Ax) supplies existence but not uniqueness, so it means only that some coordinator is available."
+      ]
+    },
+    {
+      "conceptIds": [
+        "fol-scope-ambiguity"
+      ],
+      "objectiveId": "distinguish-fol-scope-readings",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-8-3-ambiguity-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-8-3-ambiguity-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Separate scope readings of ordinary-language claims before selecting a first-order formula.",
+      "successCriteria": [
+        "Produces the reviewed result for “Give two readings of “Not every service passed a check” using Sx, Cy, and Pxy, and explain where negation or existential scope differs.” and avoids this named error: Do not grade an ambiguous English sentence against one formula until the intended scope reading has been stated."
+      ]
+    },
+    {
+      "conceptIds": [
+        "fol-extensions"
+      ],
+      "objectiveId": "specify-fol-interpretation",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-9-1-extensionality-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-9-1-extensionality-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Specify predicate extensions and explain why FOL cannot distinguish predicates with the same extension merely by differences in meaning.",
+      "successCriteria": [
+        "Produces the reviewed result for “For domain {1, 2}, c denotes 1, d denotes 2, P and Q both have extension {2}, and R has extension {⟨1,2⟩}. Evaluate Pc, Qc, Pd, Qd, Rcd, and Rdc, then state what P and Q show about extensionality.” and avoids this named error: Matching extensions do not make two ordinary-language predicates synonymous; they only make FOL unable to represent their difference in meaning on that interpretation."
+      ]
+    },
+    {
+      "conceptIds": [
+        "truth-in-fol"
+      ],
+      "objectiveId": "evaluate-fol-truth",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-9-2-truth-fol-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-9-2-truth-fol-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Evaluate atomic, truth-functional, and quantified FOL sentences in a finite interpretation.",
+      "successCriteria": [
+        "Produces the reviewed result for “In domain {1, 2, 3}, let e denote 2 and E have extension {2}. Evaluate ∀x(Ex → x = e), ∃xEx, and ∀xEx.” and avoids this named error: Quantifiers range over all domain members, including unnamed members; checking only named objects is insufficient."
+      ]
+    },
+    {
+      "conceptIds": [
+        "fol-semantic-concepts"
+      ],
+      "objectiveId": "classify-fol-semantic-relations",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-9-3-semantic-concepts-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-9-3-semantic-concepts-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Classify validity, contradiction, equivalence, entailment, and joint satisfiability across interpretations.",
+      "successCriteria": [
+        "Produces the reviewed result for “Classify the pair ∃xPx and ∀x¬Px as jointly satisfiable or unsatisfiable, and justify your answer semantically.” and avoids this named error: One favorable interpretation proves satisfiability, not validity; validity requires truth in every interpretation."
+      ]
+    },
+    {
+      "conceptIds": [
+        "counter-interpretations"
+      ],
+      "objectiveId": "construct-counter-interpretation",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-10-1-using-interpretations-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-10-1-using-interpretations-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Construct a small counter-interpretation to refute a proposed validity, entailment, equivalence, or contradiction.",
+      "successCriteria": [
+        "Produces the reviewed result for “Give a two-object counter-interpretation to ∃xPx ⊨ ∀xPx, including the domain and extension of P.” and avoids this named error: A counter-interpretation must satisfy every premise and falsify the conclusion at the same time."
+      ]
+    },
+    {
+      "conceptIds": [
+        "interpretation-reasoning"
+      ],
+      "objectiveId": "reason-across-interpretations",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-10-2-reasoning-about-interpretations-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-10-2-reasoning-about-interpretations-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Distinguish claims settled by one interpretation from claims that require reasoning about all interpretations.",
+      "successCriteria": [
+        "Produces the reviewed result for “Explain why checking 100 interpretations cannot prove an FOL sentence valid, while one false interpretation can prove it invalid.” and avoids this named error: Many supporting examples do not establish a claim quantified over every interpretation."
+      ]
+    },
+    {
+      "conceptIds": [
+        "relation-properties"
+      ],
+      "objectiveId": "classify-relation-properties",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-10-3-properties-relations-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-10-3-properties-relations-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Recognize and formalize reflexive, symmetric, transitive, and antisymmetric relation properties.",
+      "successCriteria": [
+        "Produces the reviewed result for “For domain {1, 2} and R = {⟨1,1⟩, ⟨2,2⟩, ⟨1,2⟩}, classify R as reflexive, symmetric, transitive, and antisymmetric.” and avoids this named error: Antisymmetric does not mean “never symmetric”; it forbids two distinct objects from being related both ways."
+      ]
+    },
+    {
+      "conceptIds": [
+        "fol-quantifier-rules"
+      ],
+      "objectiveId": "apply-fol-quantifier-rules",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-11-1-basic-rules-fol-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-11-1-basic-rules-fol-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Apply universal and existential introduction and elimination while checking substitution and fresh-name restrictions.",
+      "successCriteria": [
+        "Produces the reviewed result for “Give a line-by-line derivation of ∃xQx from ∀x(Px → Qx) and Pa, naming every quantifier and connective rule.” and avoids this named error: A name used for ∀I must be arbitrary, and a name introduced inside ∃E must be fresh; a convenient letter is not automatically eligible."
+      ]
+    },
+    {
+      "conceptIds": [
+        "quantifier-proof-strategy"
+      ],
+      "objectiveId": "construct-quantifier-proofs",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-11-2-proofs-quantifiers-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-11-2-proofs-quantifiers-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Order forward and backward proof moves so quantifier restrictions and subproof goals are satisfied.",
+      "successCriteria": [
+        "Produces the reviewed result for “Construct a proof of ∀xQx from ∀x(Px → Qx) and ∀xPx, showing the exact order of instantiation, connective elimination, and generalization.” and avoids this named error: Do not generalize from a name that occurs in a premise or undischarged assumption; that object is no longer arbitrary."
+      ]
+    },
+    {
+      "conceptIds": [
+        "quantifier-conversion"
+      ],
+      "objectiveId": "apply-quantifier-conversion",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-11-3-conversion-quantifiers-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-11-3-conversion-quantifiers-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Move negation across quantifiers with the correct quantifier switch and justify the conversion.",
+      "successCriteria": [
+        "Produces the reviewed result for “Derive or justify the equivalence between ¬∀x(Px → Qx) and ∃x(Px ∧ ¬Qx), showing each conversion or TFL equivalence used.” and avoids this named error: Pushing negation across a quantifier without switching ∀ and ∃ produces a non-equivalent formula."
+      ]
+    },
+    {
+      "conceptIds": [
+        "identity-proof-rules"
+      ],
+      "objectiveId": "apply-identity-proof-rules",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-11-4-rules-identity-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-11-4-rules-identity-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Use identity introduction for reflexivity and identity elimination to substitute co-referring names in a controlled proof step.",
+      "successCriteria": [
+        "Produces the reviewed result for “Prove ∀x∀y(x = y → y = x) using =I, =E, conditional introduction, and universal introduction.” and avoids this named error: Identity elimination needs an identity premise; sharing every listed predicate does not by itself prove that two names denote one object."
+      ]
+    },
+    {
+      "conceptIds": [
+        "fol-derived-rules"
+      ],
+      "objectiveId": "justify-derived-quantifier-rules",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-12-1-derived-rules-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-12-1-derived-rules-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Justify quantifier-conversion shortcuts by expanding them into basic-rule derivations.",
+      "successCriteria": [
+        "Produces the reviewed result for “Outline a basic-rule derivation that justifies one direction of ¬∃xPx therefore ∀x¬Px, naming the contradiction and discharge steps.” and avoids this named error: Calling a transformation intuitive does not establish it as a derived rule; the expansion must obey every basic-rule restriction."
+      ]
+    },
+    {
+      "conceptIds": [
+        "proofs-and-semantics"
+      ],
+      "objectiveId": "choose-proof-or-model",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-12-2-proofs-semantics-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-12-2-proofs-semantics-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Choose a proof or an interpretation as the efficient witness for a positive or negative logical claim while keeping turnstiles distinct.",
+      "successCriteria": [
+        "Produces the reviewed result for “For ∀x(Px → Qx), ∃xPx ⊨ ∃xQx, give either a formal derivation or a semantic argument and explain why your certificate establishes entailment.” and avoids this named error: A model can prove satisfiability or refute entailment, but one favorable model cannot establish a claim about every interpretation."
+      ]
+    },
+    {
+      "conceptIds": [
+        "normal-forms"
+      ],
+      "objectiveId": "construct-normal-forms",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-12-3-normal-forms-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-12-3-normal-forms-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Recognize and construct equivalent disjunctive and conjunctive normal forms from decisive truth-table rows.",
+      "successCriteria": [
+        "Produces the reviewed result for “Construct one DNF and one CNF equivalent to A → B, and verify each against the conditional false row.” and avoids this named error: Normal form is a structural condition, not merely a formula that happens to use conjunction or disjunction."
+      ]
+    },
+    {
+      "conceptIds": [
+        "functional-completeness"
+      ],
+      "objectiveId": "evaluate-functional-completeness",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-12-4-functional-completeness-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-12-4-functional-completeness-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Explain functional completeness and test whether a proposed connective basis can express every truth function.",
+      "successCriteria": [
+        "Produces the reviewed result for “Using NAND notation A | B, express ¬A and A ∧ B, then explain why those definitions support functional completeness.” and avoids this named error: Showing that a basis expresses several familiar connectives is not enough unless those connectives are themselves known to generate every truth function."
+      ]
+    },
+    {
+      "conceptIds": [
+        "equivalence-transformations"
+      ],
+      "objectiveId": "prove-equivalence-chain",
+      "resourceLinks": [
+        {
+          "priority": 1,
+          "recommendedUse": "before-attempt",
+          "resourceId": "resource-logic-12-5-proving-equivalences-teaching",
+          "role": "explanation"
+        },
+        {
+          "priority": 2,
+          "recommendedUse": "optional",
+          "resourceId": "resource-logic-12-5-proving-equivalences-source",
+          "role": "reference"
+        }
+      ],
+      "statement": "Build a checkable chain of equivalence-preserving replacements and use it to reach a requested normal form.",
+      "successCriteria": [
+        "Produces the reviewed result for “Give a named equivalence chain converting ¬(A ∧ (B ∨ C)) into DNF, one local replacement per line.” and avoids this named error: An algebraic-looking rewrite is not a proof of equivalence unless the replaced subformula and governing equivalence are identifiable."
+      ]
+    }
+  ],
+  "schemaVersion": "0.1",
+  "subjects": [
+    {
+      "conceptIds": [
+        "argument-structure",
+        "logical-consequence",
+        "logical-relations",
+        "sentence-form",
+        "truth-functional-connectives",
+        "tfl-syntax",
+        "structural-ambiguity",
+        "use-mention-distinction",
+        "characteristic-truth-tables",
+        "truth-functionality",
+        "complete-truth-tables",
+        "tfl-semantic-properties",
+        "expressive-limits",
+        "truth-table-shortcuts",
+        "partial-truth-tables",
+        "natural-deduction",
+        "tfl-proof-rules",
+        "proof-strategy",
+        "additional-tfl-rules",
+        "proof-theoretic-concepts",
+        "derived-rules",
+        "soundness-completeness",
+        "fol-building-blocks",
+        "quantifier-symbolization",
+        "multiple-generality",
+        "fol-identity",
+        "fol-syntax",
+        "definite-descriptions",
+        "fol-scope-ambiguity",
+        "fol-extensions",
+        "truth-in-fol",
+        "fol-semantic-concepts",
+        "counter-interpretations",
+        "interpretation-reasoning",
+        "relation-properties",
+        "fol-quantifier-rules",
+        "quantifier-proof-strategy",
+        "quantifier-conversion",
+        "identity-proof-rules",
+        "fol-derived-rules",
+        "proofs-and-semantics",
+        "normal-forms",
+        "functional-completeness",
+        "equivalence-transformations"
+      ],
+      "courseIds": [
+        "logic-foundations"
+      ],
+      "objectiveIds": [
+        "identify-premises-and-conclusion",
+        "distinguish-validity-from-truth",
+        "compare-logical-relations",
+        "abstract-argument-form",
+        "symbolize-connectives",
+        "parse-tfl-sentences",
+        "disambiguate-before-symbolizing",
+        "distinguish-use-from-mention",
+        "evaluate-connectives",
+        "identify-truth-functional-operators",
+        "construct-complete-truth-table",
+        "test-semantic-properties",
+        "recognize-tfl-limitations",
+        "apply-truth-table-shortcuts",
+        "construct-countervaluation",
+        "explain-proof-purpose",
+        "apply-basic-tfl-rules",
+        "plan-tfl-proof",
+        "apply-additional-tfl-rules",
+        "distinguish-turnstiles",
+        "expand-derived-rule",
+        "relate-proof-and-semantics",
+        "identify-fol-building-blocks",
+        "symbolize-single-quantifier-claims",
+        "distinguish-quantifier-order",
+        "symbolize-identity-and-quantity",
+        "identify-fol-sentences",
+        "analyze-definite-descriptions",
+        "distinguish-fol-scope-readings",
+        "specify-fol-interpretation",
+        "evaluate-fol-truth",
+        "classify-fol-semantic-relations",
+        "construct-counter-interpretation",
+        "reason-across-interpretations",
+        "classify-relation-properties",
+        "apply-fol-quantifier-rules",
+        "construct-quantifier-proofs",
+        "apply-quantifier-conversion",
+        "apply-identity-proof-rules",
+        "justify-derived-quantifier-rules",
+        "choose-proof-or-model",
+        "construct-normal-forms",
+        "evaluate-functional-completeness",
+        "prove-equivalence-chain"
+      ],
+      "subjectId": "logic",
+      "summary": "Learn to analyze arguments and reason precisely with formal tools.",
+      "tags": [
+        "logic",
+        "reasoning",
+        "philosophy"
+      ],
+      "title": "Logic Foundations"
+    }
+  ]
+}

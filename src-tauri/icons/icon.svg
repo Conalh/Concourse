@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Concourse">
+  <rect width="512" height="512" rx="112" fill="#101827"/>
+  <path d="M372 151c-31-28-70-42-116-42-90 0-163 66-163 147s73 147 163 147c46 0 85-14 116-42l-47-52c-18 16-41 24-69 24-48 0-87-34-87-77s39-77 87-77c28 0 51 8 69 24l47-52Z" fill="#79B8FF"/>
+  <circle cx="358" cy="256" r="24" fill="#F7C948"/>
+</svg>

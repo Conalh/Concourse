@@ -1,0 +1,43 @@
+{
+  "name": "@learnt/learning-pack-contracts",
+  "version": "0.1.0",
+  "description": "Framework-independent TypeScript contracts, JSON Schemas, validators, and helpers for Learnt learning packs.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "docs",
+    "fixtures"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "generate:logic-foundations": "npm run build && node scripts/generate-logic-foundations-fixture.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vitest": "^4.1.9"
+  },
+  "license": "MIT",
+  "author": "Conal Hickey",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Conalh/Concourse.git",
+    "directory": "packages/learning-pack-contracts"
+  },
+  "bugs": {
+    "url": "https://github.com/Conalh/Concourse/issues"
+  }
+}

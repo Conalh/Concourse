@@ -1,0 +1,981 @@
+{
+  "manifest": {
+    "schemaVersion": "0.1",
+    "packId": "learnt.logic-foundations",
+    "version": "1.0.0",
+    "title": "Logic Foundations",
+    "summary": "Core propositional logic and proof foundations for portable study.",
+    "language": "en-US",
+    "license": "CC-BY-4.0",
+    "authors": [
+      {
+        "name": "Learnt"
+      }
+    ],
+    "releasedAt": "2026-06-23T00:00:00.000Z",
+    "capabilities": {
+      "required": [
+        {
+          "capabilityId": "core.learning-pack",
+          "version": "0.1"
+        }
+      ],
+      "optional": [
+        {
+          "capabilityId": "theme.metadata",
+          "version": "0.1"
+        },
+        {
+          "capabilityId": "assets.static",
+          "version": "0.1"
+        }
+      ]
+    },
+    "files": [
+      {
+        "assetId": null,
+        "path": "catalog.json",
+        "role": "catalog",
+        "mediaType": "application/json",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "bytes": 1000
+      },
+      {
+        "assetId": null,
+        "path": "courses.json",
+        "role": "courses",
+        "mediaType": "application/json",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "bytes": 1000
+      },
+      {
+        "assetId": null,
+        "path": "items.json",
+        "role": "items",
+        "mediaType": "application/json",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "bytes": 1000
+      },
+      {
+        "assetId": null,
+        "path": "sets.json",
+        "role": "sets",
+        "mediaType": "application/json",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "bytes": 1000
+      },
+      {
+        "assetId": null,
+        "path": "theme.json",
+        "role": "theme",
+        "mediaType": "application/json",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "bytes": 1000
+      },
+      {
+        "assetId": "asset-logic-cover",
+        "path": "assets/logic-cover.svg",
+        "role": "asset",
+        "mediaType": "image/svg+xml",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "bytes": 256
+      },
+      {
+        "assetId": "asset-logic-icon",
+        "path": "assets/logic-icon.svg",
+        "role": "asset",
+        "mediaType": "image/svg+xml",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "bytes": 256
+      }
+    ],
+    "keywords": [
+      "logic",
+      "proofs",
+      "truth tables",
+      "foundations"
+    ]
+  },
+  "catalog": {
+    "schemaVersion": "0.1",
+    "subjects": [
+      {
+        "subjectId": "subject-propositional-logic",
+        "title": "Propositional Logic",
+        "summary": "Truth values, logical connectives, and truth-table reasoning.",
+        "tags": [
+          "logic",
+          "truth-tables"
+        ],
+        "conceptIds": [
+          "concept-truth-values",
+          "concept-propositions",
+          "concept-logical-connectives",
+          "concept-truth-tables"
+        ],
+        "objectiveIds": [
+          "objective-recognize-truth-values",
+          "objective-evaluate-negation",
+          "objective-build-truth-table"
+        ],
+        "courseIds": [
+          "course-logic-core"
+        ]
+      },
+      {
+        "subjectId": "subject-proof-strategies",
+        "title": "Proof Strategies",
+        "summary": "Validity, soundness, and argument checking.",
+        "tags": [
+          "logic",
+          "proofs"
+        ],
+        "conceptIds": [
+          "concept-truth-values",
+          "concept-validity",
+          "concept-soundness"
+        ],
+        "objectiveIds": [
+          "objective-identify-valid-argument",
+          "objective-explain-soundness"
+        ],
+        "courseIds": [
+          "course-proof-practice"
+        ]
+      }
+    ],
+    "concepts": [
+      {
+        "conceptId": "concept-truth-values",
+        "title": "Truth Values",
+        "summary": "The values true and false used to evaluate propositions.",
+        "tags": [
+          "shared",
+          "foundations"
+        ],
+        "prerequisiteConceptIds": [],
+        "relatedConceptIds": [
+          "concept-propositions",
+          "concept-validity"
+        ]
+      },
+      {
+        "conceptId": "concept-propositions",
+        "title": "Propositions",
+        "summary": "Statements that can be evaluated as true or false.",
+        "tags": [
+          "statements"
+        ],
+        "prerequisiteConceptIds": [
+          "concept-truth-values"
+        ],
+        "relatedConceptIds": [
+          "concept-logical-connectives",
+          "concept-validity"
+        ]
+      },
+      {
+        "conceptId": "concept-logical-connectives",
+        "title": "Logical Connectives",
+        "summary": "Operators such as NOT, AND, OR, and IF-THEN.",
+        "tags": [
+          "operators"
+        ],
+        "prerequisiteConceptIds": [
+          "concept-propositions"
+        ],
+        "relatedConceptIds": [
+          "concept-truth-tables"
+        ]
+      },
+      {
+        "conceptId": "concept-truth-tables",
+        "title": "Truth Tables",
+        "summary": "Rows that enumerate possible truth-value assignments.",
+        "tags": [
+          "tables"
+        ],
+        "prerequisiteConceptIds": [
+          "concept-logical-connectives"
+        ],
+        "relatedConceptIds": [
+          "concept-validity"
+        ]
+      },
+      {
+        "conceptId": "concept-validity",
+        "title": "Validity",
+        "summary": "A valid argument cannot have true premises and a false conclusion.",
+        "tags": [
+          "arguments"
+        ],
+        "prerequisiteConceptIds": [
+          "concept-propositions"
+        ],
+        "relatedConceptIds": [
+          "concept-soundness",
+          "concept-truth-tables"
+        ]
+      },
+      {
+        "conceptId": "concept-soundness",
+        "title": "Soundness",
+        "summary": "A sound argument is valid and has true premises.",
+        "tags": [
+          "arguments"
+        ],
+        "prerequisiteConceptIds": [
+          "concept-validity"
+        ],
+        "relatedConceptIds": [
+          "concept-truth-values"
+        ]
+      }
+    ],
+    "objectives": [
+      {
+        "objectiveId": "objective-recognize-truth-values",
+        "statement": "Recognize true and false as truth values.",
+        "successCriteria": [
+          "Distinguish truth values from ordinary labels."
+        ],
+        "conceptIds": [
+          "concept-truth-values"
+        ]
+      },
+      {
+        "objectiveId": "objective-evaluate-negation",
+        "statement": "Evaluate the negation of a proposition.",
+        "successCriteria": [
+          "Select the opposite truth value for NOT statements."
+        ],
+        "conceptIds": [
+          "concept-truth-values",
+          "concept-logical-connectives"
+        ]
+      },
+      {
+        "objectiveId": "objective-build-truth-table",
+        "statement": "Determine the row count for a truth table.",
+        "successCriteria": [
+          "Compute rows from the number of atomic propositions."
+        ],
+        "conceptIds": [
+          "concept-truth-tables"
+        ]
+      },
+      {
+        "objectiveId": "objective-identify-valid-argument",
+        "statement": "Identify the condition that makes an argument valid.",
+        "successCriteria": [
+          "Name validity from true-premise false-conclusion impossibility."
+        ],
+        "conceptIds": [
+          "concept-validity"
+        ]
+      },
+      {
+        "objectiveId": "objective-explain-soundness",
+        "statement": "Explain how soundness relates to validity and truth.",
+        "successCriteria": [
+          "State both required parts of soundness."
+        ],
+        "conceptIds": [
+          "concept-soundness",
+          "concept-validity"
+        ]
+      }
+    ]
+  },
+  "courses": {
+    "schemaVersion": "0.1",
+    "courses": [
+      {
+        "courseId": "course-logic-core",
+        "title": "Logic Core",
+        "summary": "A structured path through truth values, connectives, and tables.",
+        "subjectIds": [
+          "subject-propositional-logic"
+        ],
+        "tags": [
+          "logic",
+          "core"
+        ],
+        "rootNodes": [
+          {
+            "nodeId": "node-core-module",
+            "kind": "module",
+            "title": "Core Logic Module",
+            "summary": "Core Logic Module",
+            "itemIds": [],
+            "conceptIds": [
+              "concept-truth-values",
+              "concept-logical-connectives",
+              "concept-truth-tables"
+            ],
+            "objectiveIds": [
+              "objective-recognize-truth-values",
+              "objective-evaluate-negation",
+              "objective-build-truth-table"
+            ],
+            "children": [
+              {
+                "nodeId": "node-core-truth-chapter",
+                "kind": "chapter",
+                "title": "Truth Values Chapter",
+                "summary": "Truth Values Chapter",
+                "itemIds": [],
+                "conceptIds": [
+                  "concept-truth-values"
+                ],
+                "objectiveIds": [
+                  "objective-recognize-truth-values",
+                  "objective-evaluate-negation"
+                ],
+                "children": [
+                  {
+                    "nodeId": "node-core-truth-values-lesson",
+                    "kind": "lesson",
+                    "title": "Truth Values Lesson",
+                    "summary": "Truth Values Lesson",
+                    "itemIds": [
+                      "item-truth-values-flashcard",
+                      "item-negation-single-choice"
+                    ],
+                    "conceptIds": [
+                      "concept-truth-values"
+                    ],
+                    "objectiveIds": [
+                      "objective-recognize-truth-values",
+                      "objective-evaluate-negation"
+                    ],
+                    "children": [],
+                    "customKindLabel": null
+                  }
+                ],
+                "customKindLabel": null
+              },
+              {
+                "nodeId": "node-core-tables-chapter",
+                "kind": "chapter",
+                "title": "Truth Tables Chapter",
+                "summary": "Truth Tables Chapter",
+                "itemIds": [],
+                "conceptIds": [
+                  "concept-logical-connectives",
+                  "concept-truth-tables"
+                ],
+                "objectiveIds": [
+                  "objective-build-truth-table"
+                ],
+                "children": [
+                  {
+                    "nodeId": "node-core-connectives-lesson",
+                    "kind": "lesson",
+                    "title": "Connectives Lesson",
+                    "summary": "Connectives Lesson",
+                    "itemIds": [
+                      "item-connectives-multiple-choice",
+                      "item-truth-table-row-count"
+                    ],
+                    "conceptIds": [
+                      "concept-logical-connectives",
+                      "concept-truth-tables"
+                    ],
+                    "objectiveIds": [
+                      "objective-build-truth-table"
+                    ],
+                    "children": [],
+                    "customKindLabel": null
+                  }
+                ],
+                "customKindLabel": null
+              }
+            ],
+            "customKindLabel": null
+          }
+        ]
+      },
+      {
+        "courseId": "course-proof-practice",
+        "title": "Proof Practice",
+        "summary": "A practical path through validity and soundness checks.",
+        "subjectIds": [
+          "subject-proof-strategies"
+        ],
+        "tags": [
+          "logic",
+          "proofs"
+        ],
+        "rootNodes": [
+          {
+            "nodeId": "node-proof-module",
+            "kind": "module",
+            "title": "Proof Strategies Module",
+            "summary": "Proof Strategies Module",
+            "itemIds": [],
+            "conceptIds": [
+              "concept-validity",
+              "concept-truth-values",
+              "concept-soundness"
+            ],
+            "objectiveIds": [
+              "objective-identify-valid-argument",
+              "objective-explain-soundness"
+            ],
+            "children": [
+              {
+                "nodeId": "node-proof-validity-chapter",
+                "kind": "chapter",
+                "title": "Validity Chapter",
+                "summary": "Validity Chapter",
+                "itemIds": [],
+                "conceptIds": [
+                  "concept-validity",
+                  "concept-truth-values"
+                ],
+                "objectiveIds": [
+                  "objective-identify-valid-argument"
+                ],
+                "children": [
+                  {
+                    "nodeId": "node-proof-validity-lesson",
+                    "kind": "lesson",
+                    "title": "Validity Lesson",
+                    "summary": "Validity Lesson",
+                    "itemIds": [
+                      "item-validity-text-recall"
+                    ],
+                    "conceptIds": [
+                      "concept-validity",
+                      "concept-truth-values"
+                    ],
+                    "objectiveIds": [
+                      "objective-identify-valid-argument"
+                    ],
+                    "children": [],
+                    "customKindLabel": null
+                  }
+                ],
+                "customKindLabel": null
+              },
+              {
+                "nodeId": "node-proof-soundness-chapter",
+                "kind": "chapter",
+                "title": "Soundness Chapter",
+                "summary": "Soundness Chapter",
+                "itemIds": [],
+                "conceptIds": [
+                  "concept-soundness",
+                  "concept-validity"
+                ],
+                "objectiveIds": [
+                  "objective-explain-soundness"
+                ],
+                "children": [
+                  {
+                    "nodeId": "node-proof-soundness-lesson",
+                    "kind": "lesson",
+                    "title": "Soundness Lesson",
+                    "summary": "Soundness Lesson",
+                    "itemIds": [
+                      "item-soundness-manual-read"
+                    ],
+                    "conceptIds": [
+                      "concept-soundness",
+                      "concept-validity"
+                    ],
+                    "objectiveIds": [
+                      "objective-explain-soundness"
+                    ],
+                    "children": [],
+                    "customKindLabel": null
+                  }
+                ],
+                "customKindLabel": null
+              }
+            ],
+            "customKindLabel": null
+          }
+        ]
+      }
+    ]
+  },
+  "items": {
+    "schemaVersion": "0.1",
+    "items": [
+      {
+        "itemId": "item-truth-values-flashcard",
+        "learningRevision": 1,
+        "title": "Truth Values",
+        "promptBlocks": [
+          {
+            "kind": "question",
+            "text": "What are the two basic truth values in propositional logic?",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "response": {
+          "kind": "self-grade",
+          "options": [],
+          "textInput": null,
+          "numberInput": null
+        },
+        "evaluation": {
+          "kind": "self-grade",
+          "correctOptionIds": [],
+          "acceptedAnswers": [],
+          "caseSensitive": false,
+          "trimWhitespace": true,
+          "expectedNumber": null,
+          "absoluteTolerance": null,
+          "passingSelfGrades": [
+            "good",
+            "easy"
+          ]
+        },
+        "reviewedSolutionBlocks": [
+          {
+            "kind": "text",
+            "text": "The two basic truth values are true and false.",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          },
+          {
+            "kind": "callout",
+            "text": "A proposition is evaluated using exactly one truth value at a time.",
+            "language": null,
+            "calloutRole": "definition",
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "conceptIds": [
+          "concept-truth-values"
+        ],
+        "objectiveIds": [
+          "objective-recognize-truth-values"
+        ],
+        "allowedPlayModes": [
+          "flashcard",
+          "self-grade-review"
+        ],
+        "reviewEvents": [
+          {
+            "eventId": "forbidden-progress-event",
+            "itemId": "item-truth-values-flashcard",
+            "learningRevision": 1
+          }
+        ]
+      },
+      {
+        "itemId": "item-negation-single-choice",
+        "learningRevision": 1,
+        "title": "Evaluate NOT true",
+        "promptBlocks": [
+          {
+            "kind": "question",
+            "text": "What is NOT true?",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "response": {
+          "kind": "single-choice",
+          "options": [
+            {
+              "optionId": "option-true",
+              "label": "true",
+              "contentBlocks": []
+            },
+            {
+              "optionId": "option-false",
+              "label": "false",
+              "contentBlocks": []
+            }
+          ],
+          "textInput": null,
+          "numberInput": null
+        },
+        "evaluation": {
+          "kind": "choice-selection",
+          "correctOptionIds": [
+            "option-false"
+          ],
+          "acceptedAnswers": [],
+          "caseSensitive": false,
+          "trimWhitespace": true,
+          "expectedNumber": null,
+          "absoluteTolerance": null,
+          "passingSelfGrades": []
+        },
+        "reviewedSolutionBlocks": [
+          {
+            "kind": "text",
+            "text": "NOT true evaluates to false.",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "conceptIds": [
+          "concept-truth-values",
+          "concept-logical-connectives"
+        ],
+        "objectiveIds": [
+          "objective-evaluate-negation"
+        ],
+        "allowedPlayModes": [
+          "single-choice-quiz",
+          "flashcard"
+        ]
+      },
+      {
+        "itemId": "item-connectives-multiple-choice",
+        "learningRevision": 1,
+        "title": "Identify Binary Connectives",
+        "promptBlocks": [
+          {
+            "kind": "question",
+            "text": "Which connectives combine two propositions?",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "response": {
+          "kind": "multiple-choice",
+          "options": [
+            {
+              "optionId": "option-and",
+              "label": "AND",
+              "contentBlocks": []
+            },
+            {
+              "optionId": "option-or",
+              "label": "OR",
+              "contentBlocks": []
+            },
+            {
+              "optionId": "option-not",
+              "label": "NOT",
+              "contentBlocks": []
+            },
+            {
+              "optionId": "option-if-then",
+              "label": "IF-THEN",
+              "contentBlocks": []
+            }
+          ],
+          "textInput": null,
+          "numberInput": null
+        },
+        "evaluation": {
+          "kind": "choice-selection",
+          "correctOptionIds": [
+            "option-and",
+            "option-or",
+            "option-if-then"
+          ],
+          "acceptedAnswers": [],
+          "caseSensitive": false,
+          "trimWhitespace": true,
+          "expectedNumber": null,
+          "absoluteTolerance": null,
+          "passingSelfGrades": []
+        },
+        "reviewedSolutionBlocks": [
+          {
+            "kind": "text",
+            "text": "AND, OR, and IF-THEN combine two propositions; NOT applies to one proposition.",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "conceptIds": [
+          "concept-logical-connectives"
+        ],
+        "objectiveIds": [
+          "objective-build-truth-table"
+        ],
+        "allowedPlayModes": [
+          "multiple-choice-quiz",
+          "flashcard"
+        ]
+      },
+      {
+        "itemId": "item-validity-text-recall",
+        "learningRevision": 1,
+        "title": "Name the Argument Property",
+        "promptBlocks": [
+          {
+            "kind": "question",
+            "text": "What property means an argument cannot have true premises and a false conclusion?",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "response": {
+          "kind": "text",
+          "options": [],
+          "textInput": {
+            "placeholder": "property name",
+            "minLength": 3,
+            "maxLength": 32
+          },
+          "numberInput": null
+        },
+        "evaluation": {
+          "kind": "exact-text",
+          "correctOptionIds": [],
+          "acceptedAnswers": [
+            "validity",
+            "valid"
+          ],
+          "caseSensitive": false,
+          "trimWhitespace": true,
+          "expectedNumber": null,
+          "absoluteTolerance": null,
+          "passingSelfGrades": []
+        },
+        "reviewedSolutionBlocks": [
+          {
+            "kind": "text",
+            "text": "The property is validity. A valid argument rules out true premises with a false conclusion.",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "conceptIds": [
+          "concept-validity"
+        ],
+        "objectiveIds": [
+          "objective-identify-valid-argument"
+        ],
+        "allowedPlayModes": [
+          "text-recall",
+          "flashcard"
+        ]
+      },
+      {
+        "itemId": "item-truth-table-row-count",
+        "learningRevision": 1,
+        "title": "Truth Table Rows",
+        "promptBlocks": [
+          {
+            "kind": "question",
+            "text": "How many rows does a truth table with two atomic propositions have?",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "response": {
+          "kind": "number",
+          "options": [],
+          "textInput": null,
+          "numberInput": {
+            "placeholder": "row count",
+            "unitLabel": "rows",
+            "min": 0,
+            "max": 16
+          }
+        },
+        "evaluation": {
+          "kind": "numerical-tolerance",
+          "correctOptionIds": [],
+          "acceptedAnswers": [],
+          "caseSensitive": false,
+          "trimWhitespace": true,
+          "expectedNumber": 4,
+          "absoluteTolerance": 0,
+          "passingSelfGrades": []
+        },
+        "reviewedSolutionBlocks": [
+          {
+            "kind": "text",
+            "text": "Two atomic propositions produce 2^2 rows, so the truth table has 4 rows.",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "conceptIds": [
+          "concept-truth-tables",
+          "concept-truth-values"
+        ],
+        "objectiveIds": [
+          "objective-build-truth-table"
+        ],
+        "allowedPlayModes": [
+          "number-recall",
+          "flashcard"
+        ]
+      },
+      {
+        "itemId": "item-soundness-manual-read",
+        "learningRevision": 1,
+        "title": "Soundness Reading",
+        "promptBlocks": [
+          {
+            "kind": "text",
+            "text": "Read the definition of soundness and compare it with validity.",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          },
+          {
+            "kind": "image",
+            "text": "",
+            "language": null,
+            "calloutRole": null,
+            "assetId": "asset-logic-cover",
+            "altText": "Logic foundations cover image"
+          }
+        ],
+        "response": {
+          "kind": "none",
+          "options": [],
+          "textInput": null,
+          "numberInput": null
+        },
+        "evaluation": {
+          "kind": "manual-completion",
+          "correctOptionIds": [],
+          "acceptedAnswers": [],
+          "caseSensitive": false,
+          "trimWhitespace": true,
+          "expectedNumber": null,
+          "absoluteTolerance": null,
+          "passingSelfGrades": []
+        },
+        "reviewedSolutionBlocks": [
+          {
+            "kind": "text",
+            "text": "Soundness requires validity plus actually true premises.",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          },
+          {
+            "kind": "callout",
+            "text": "A sound argument is always valid, but a valid argument need not be sound.",
+            "language": null,
+            "calloutRole": "tip",
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "conceptIds": [
+          "concept-soundness",
+          "concept-validity",
+          "concept-truth-values"
+        ],
+        "objectiveIds": [
+          "objective-explain-soundness"
+        ],
+        "allowedPlayModes": [
+          "manual-read"
+        ]
+      }
+    ]
+  },
+  "sets": {
+    "schemaVersion": "0.1",
+    "sets": [
+      {
+        "setId": "set-logic-flashcards",
+        "kind": "deck",
+        "title": "Logic Flashcards",
+        "summary": "Reusable flashcards for shared logic concepts.",
+        "selection": {
+          "kind": "explicit",
+          "itemIds": [
+            "item-truth-values-flashcard",
+            "item-negation-single-choice",
+            "item-validity-text-recall"
+          ]
+        },
+        "playModes": [
+          "flashcard"
+        ],
+        "ordering": "authored",
+        "timeLimitSeconds": null,
+        "attemptLimit": null
+      },
+      {
+        "setId": "set-core-quiz",
+        "kind": "quiz",
+        "title": "Core Logic Quiz",
+        "summary": "Quiz items selected from the core logic course.",
+        "selection": {
+          "kind": "rule",
+          "include": {
+            "subjectIds": [
+              "subject-propositional-logic"
+            ],
+            "courseIds": [
+              "course-logic-core"
+            ],
+            "nodeIds": [
+              "node-core-connectives-lesson"
+            ],
+            "conceptIds": [
+              "concept-logical-connectives"
+            ],
+            "objectiveIds": [],
+            "allowedPlayModes": [
+              "single-choice-quiz",
+              "multiple-choice-quiz",
+              "number-recall"
+            ],
+            "tags": []
+          },
+          "exclude": {
+            "itemIds": [],
+            "conceptIds": [],
+            "objectiveIds": [],
+            "tags": []
+          },
+          "limit": 10
+        },
+        "playModes": [
+          "single-choice-quiz",
+          "multiple-choice-quiz",
+          "number-recall"
+        ],
+        "ordering": "shuffle",
+        "timeLimitSeconds": 600,
+        "attemptLimit": null
+      }
+    ]
+  },
+  "theme": {
+    "schemaVersion": "0.1",
+    "themeId": "theme-logic-foundations",
+    "displayName": "Logic Foundations",
+    "accentColor": "#3366CC",
+    "backgroundRole": "system",
+    "iconAssetId": "asset-logic-icon",
+    "coverAssetId": "asset-logic-cover"
+  }
+}

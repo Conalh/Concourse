@@ -1,0 +1,78 @@
+{
+  "releaseVersion": "2.0.0",
+  "questions": [
+    {
+      "itemId": "item-negation-single-choice",
+      "playMode": "single-choice-quiz",
+      "promptText": "What is NOT false?",
+      "optionIds": [
+        "option-true",
+        "option-false"
+      ],
+      "correctOptionIds": [
+        "option-true"
+      ],
+      "acceptedAnswers": [],
+      "expectedNumber": null,
+      "absoluteTolerance": null
+    },
+    {
+      "itemId": "item-connectives-multiple-choice",
+      "playMode": "multiple-choice-quiz",
+      "promptText": "Which connectives combine two propositions?",
+      "optionIds": [
+        "option-and",
+        "option-or",
+        "option-not",
+        "option-if-then"
+      ],
+      "correctOptionIds": [
+        "option-and",
+        "option-or",
+        "option-if-then"
+      ],
+      "acceptedAnswers": [],
+      "expectedNumber": null,
+      "absoluteTolerance": null
+    },
+    {
+      "itemId": "item-validity-text-recall",
+      "playMode": "text-recall",
+      "promptText": "What property means an argument cannot have true premises and a false conclusion?",
+      "optionIds": [],
+      "correctOptionIds": [],
+      "acceptedAnswers": [
+        "validity",
+        "valid"
+      ],
+      "expectedNumber": null,
+      "absoluteTolerance": null
+    },
+    {
+      "itemId": "item-truth-table-row-count",
+      "playMode": "number-recall",
+      "promptText": "How many rows does a truth table with two atomic propositions have?",
+      "optionIds": [],
+      "correctOptionIds": [],
+      "acceptedAnswers": [],
+      "expectedNumber": 4,
+      "absoluteTolerance": 0
+    },
+    {
+      "itemId": "item-conditional-single-choice",
+      "playMode": "single-choice-quiz",
+      "promptText": "When is IF P THEN Q false?",
+      "optionIds": [
+        "option-p-true-q-false",
+        "option-p-false-q-true",
+        "option-p-false-q-false"
+      ],
+      "correctOptionIds": [
+        "option-p-true-q-false"
+      ],
+      "acceptedAnswers": [],
+      "expectedNumber": null,
+      "absoluteTolerance": null
+    }
+  ]
+}

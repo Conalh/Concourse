@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "0.1",
+  "migrations": [
+    {
+      "fromVersion": "1.1.0",
+      "toVersion": "2.0.0",
+      "notes": "Version 2.0.0 revises the negation prompt. Review history is retained, but current mastery resets for the revised item.",
+      "entityMappings": [
+        {
+          "entityKind": "item",
+          "fromId": "item-truth-values-flashcard",
+          "toId": "item-truth-values-flashcard",
+          "changeKind": "unchanged",
+          "fromLearningRevision": 1,
+          "toLearningRevision": 1,
+          "progressPolicy": "preserve",
+          "rationale": "No educational meaning changed."
+        },
+        {
+          "entityKind": "item",
+          "fromId": "item-negation-single-choice",
+          "toId": "item-negation-single-choice",
+          "changeKind": "revised",
+          "fromLearningRevision": 1,
+          "toLearningRevision": 2,
+          "progressPolicy": "reset-mastery",
+          "rationale": "The prompt and correct answer changed from NOT true to NOT false."
+        },
+        {
+          "entityKind": "item",
+          "fromId": "item-connectives-multiple-choice",
+          "toId": "item-connectives-multiple-choice",
+          "changeKind": "unchanged",
+          "fromLearningRevision": 1,
+          "toLearningRevision": 1,
+          "progressPolicy": "preserve",
+          "rationale": "No educational meaning changed."
+        },
+        {
+          "entityKind": "item",
+          "fromId": "item-validity-text-recall",
+          "toId": "item-validity-text-recall",
+          "changeKind": "unchanged",
+          "fromLearningRevision": 1,
+          "toLearningRevision": 1,
+          "progressPolicy": "preserve",
+          "rationale": "No educational meaning changed."
+        },
+        {
+          "entityKind": "item",
+          "fromId": "item-truth-table-row-count",
+          "toId": "item-truth-table-row-count",
+          "changeKind": "unchanged",
+          "fromLearningRevision": 1,
+          "toLearningRevision": 1,
+          "progressPolicy": "preserve",
+          "rationale": "No educational meaning changed."
+        },
+        {
+          "entityKind": "item",
+          "fromId": "item-soundness-manual-read",
+          "toId": "item-soundness-manual-read",
+          "changeKind": "unchanged",
+          "fromLearningRevision": 1,
+          "toLearningRevision": 1,
+          "progressPolicy": "preserve",
+          "rationale": "No educational meaning changed."
+        },
+        {
+          "entityKind": "course",
+          "fromId": "course-logic-core",
+          "toId": "course-logic-core",
+          "changeKind": "unchanged",
+          "fromLearningRevision": null,
+          "toLearningRevision": null,
+          "progressPolicy": "preserve",
+          "rationale": "Course identity did not change."
+        },
+        {
+          "entityKind": "resource",
+          "fromId": "resource-logic-reading",
+          "toId": "resource-logic-reading",
+          "changeKind": "revised",
+          "fromLearningRevision": null,
+          "toLearningRevision": null,
+          "fromContentRevision": 1,
+          "toContentRevision": 2,
+          "progressPolicy": "manual-review",
+          "engagementPolicy": "preserve-history-reset-completion",
+          "rationale": "The reading was revised; engagement history remains, but completion can be treated as stale."
+        }
+      ]
+    }
+  ]
+}

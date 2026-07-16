@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Concourse - Open-source learning with more than one route</title>
+    <meta
+      name="description"
+      content="Concourse is a local-first learning suite for routes, retrieval practice, portable course packs, and configurable learning modes."
+    />
+    <meta
+      property="og:title"
+      content="Learning should have more than one route."
+    />
+    <meta
+      property="og:description"
+      content="Build a Route. Practice in Loop. Import packs through Transfer. Learn with Modes."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./social-preview.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Learning should have more than one route."
+    />
+    <meta
+      name="twitter:description"
+      content="Build a Route. Practice in Loop. Import packs through Transfer. Learn with Modes."
+    />
+    <link rel="icon" type="image/svg+xml" href="./assets/concourse-icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" data-header>
+      <div class="header-inner">
+        <a class="brand-link" href="#top" aria-label="Concourse home">
+          <img
+            class="brand-icon"
+            src="./assets/concourse-icon.svg"
+            width="34"
+            height="34"
+            alt=""
+          />
+          <span>Concourse</span>
+        </a>
+
+        <button
+          class="menu-button"
+          type="button"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+          aria-controls="site-navigation"
+          data-menu-button
+        >
+          <span class="menu-button-lines" aria-hidden="true"></span>
+          <span>Menu</span>
+        </button>
+
+        <nav
+          class="site-nav"
+          id="site-navigation"
+          aria-label="Primary navigation"
+          data-site-nav
+        >
+          <a href="#suite">Suite</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#modes">Modes</a>
+          <a href="#open-source">Open Source</a>
+          <a href="#contribute">Contribute</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            class="button button-secondary"
+            href="https://github.com/Conalh/Concourse/tree/main/docs"
+            >Read the docs</a
+          >
+          <a
+            class="button button-primary"
+            href="https://github.com/Conalh/Concourse"
+          >
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="hero-section" id="top" aria-labelledby="hero-title">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Open-source learning suite</p>
+            <h1 id="hero-title">
+              <span class="hero-title-line">Learning should</span>
+              <span class="hero-title-line">have more than one route.</span>
+            </h1>
+            <p class="hero-lede">
+              Create flexible routes, practice them in Loop, import portable
+              packs through Transfer, and shape sessions with Modes.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary button-large" href="#suite">
+                Explore Concourse
+              </a>
+              <a
+                class="button button-ghost button-large"
+                href="https://github.com/Conalh/Concourse"
+              >
+                View the source
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-labelledby="ecosystem-title">
+            <div class="status-row">
+              <span class="status-badge">Active development</span>
+              <span>Built as open learning infrastructure.</span>
+            </div>
+            <div class="ecosystem-panel">
+              <h2 class="sr-only" id="ecosystem-title">
+                Concourse ecosystem map
+              </h2>
+              <p class="sr-only">
+                Concourse is the hub. It connects Route for course learning,
+                Loop for practice, Transfer for local packs, and Modes for
+                session presentation settings.
+              </p>
+              <svg
+                class="ecosystem-map"
+                viewBox="0 0 680 520"
+                role="img"
+                aria-label="Transit map connecting Concourse to Route, Loop, Transfer, and Modes"
+              >
+                <g class="route-lines" aria-hidden="true">
+                  <path
+                    class="map-line map-line-route"
+                    d="M340 250 C252 250 228 134 144 132"
+                  />
+                  <path
+                    class="map-line map-line-loop"
+                    d="M340 250 C442 238 481 131 548 122"
+                  />
+                  <path
+                    class="map-line map-line-transfer"
+                    d="M340 250 C448 279 488 382 568 395"
+                  />
+                  <path
+                    class="map-line map-line-modes"
+                    d="M340 250 C249 277 217 382 130 390"
+                  />
+                  <path class="map-line map-line-gold" d="M144 132 H548" />
+                  <path class="map-line map-line-red" d="M130 390 H568" />
+                </g>
+                <g class="station hub-station" aria-hidden="true">
+                  <circle cx="340" cy="250" r="67" />
+                  <circle cx="340" cy="250" r="36" />
+                  <text x="340" y="256">Concourse</text>
+                </g>
+                <g class="station route-station" aria-hidden="true">
+                  <circle cx="144" cy="132" r="31" />
+                  <text x="144" y="191">Route</text>
+                </g>
+                <g class="station loop-station" aria-hidden="true">
+                  <circle cx="548" cy="122" r="31" />
+                  <text x="548" y="181">Loop</text>
+                </g>
+                <g class="station transfer-station" aria-hidden="true">
+                  <circle cx="568" cy="395" r="31" />
+                  <text x="568" y="454">Transfer</text>
+                </g>
+                <g class="station modes-station" aria-hidden="true">
+                  <circle cx="130" cy="390" r="31" />
+                  <text x="130" y="449">Modes</text>
+                </g>
+              </svg>
+
+              <div class="station-controls" aria-label="Explore the suite">
+                <button
+                  class="station-button is-active"
+                  type="button"
+                  data-station="route"
+                  aria-pressed="true"
+                >
+                  <span
+                    class="station-dot station-dot-route"
+                    aria-hidden="true"
+                  ></span>
+                  <span>Route</span>
+                </button>
+                <button
+                  class="station-button"
+                  type="button"
+                  data-station="loop"
+                  aria-pressed="false"
+                >
+                  <span
+                    class="station-dot station-dot-loop"
+                    aria-hidden="true"
+                  ></span>
+                  <span>Loop</span>
+                </button>
+                <button
+                  class="station-button"
+                  type="button"
+                  data-station="transfer"
+                  aria-pressed="false"
+                >
+                  <span
+                    class="station-dot station-dot-transfer"
+                    aria-hidden="true"
+                  ></span>
+                  <span>Transfer</span>
+                </button>
+                <button
+                  class="station-button"
+                  type="button"
+                  data-station="modes"
+                  aria-pressed="false"
+                >
+                  <span
+                    class="station-dot station-dot-modes"
+                    aria-hidden="true"
+                  ></span>
+                  <span>Modes</span>
+                </button>
+              </div>
+
+              <p class="station-description" data-station-description>
+                Route is the course builder and learning environment.
+              </p>
+            </div>
+            <p class="hero-note">
+              Designed with ADHD and AuDHD learners and creators in mind. Useful
+              wherever people need flexible ways to learn.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="principles-strip" aria-label="Concourse principles">
+        <div class="principles-inner">
+          <div class="principle-item">
+            <span
+              class="legend-node legend-node-blue"
+              aria-hidden="true"
+            ></span>
+            <span>
+              <strong>Open source by design</strong>
+              <small>Code, docs, and decisions stay inspectable.</small>
+            </span>
+          </div>
+          <div class="principle-item">
+            <span
+              class="legend-node legend-node-gold"
+              aria-hidden="true"
+            ></span>
+            <span>
+              <strong>Easy to create</strong>
+              <small>Start with one lesson, a template, or an import.</small>
+            </span>
+          </div>
+          <div class="principle-item">
+            <span
+              class="legend-node legend-node-orange"
+              aria-hidden="true"
+            ></span>
+            <span>
+              <strong>Built to be portable</strong>
+              <small>Attribution and source history travel with content.</small>
+            </span>
+          </div>
+          <div class="principle-item">
+            <span
+              class="legend-node legend-node-green"
+              aria-hidden="true"
+            ></span>
+            <span>
+              <strong>Flexible by mode</strong>
+              <small>Formats and supports belong to the material.</small>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section light-section manifesto"
+        aria-labelledby="manifesto-title"
+      >
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2 id="manifesto-title">
+              Knowledge moves when people can shape it.
+            </h2>
+            <p>
+              People learn through different combinations of explanation,
+              practice, structure, pacing, media, and context. Concourse gives
+              creators a way to build those options into learning material from
+              the beginning.
+            </p>
+          </div>
+
+          <div class="principle-card-grid">
+            <article class="principle-card">
+              <h3>Create without unnecessary friction</h3>
+              <p>
+                Course creation should feel closer to arranging ideas than
+                configuring software. Start with a blank Route, use a template,
+                or import a validated pack.
+              </p>
+            </article>
+            <article class="principle-card">
+              <h3>Adapt the experience</h3>
+              <p>
+                Attach Modes to lessons and activities so learners can find
+                formats and supports that suit the task, environment, and
+                available energy.
+              </p>
+            </article>
+            <article class="principle-card">
+              <h3>Keep knowledge moving</h3>
+              <p>
+                Move courses and packs with clear attribution, version history,
+                and licensing information so people can inspect what they use.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section suite-section"
+        id="suite"
+        aria-labelledby="suite-title"
+      >
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2 id="suite-title">One connected learning system.</h2>
+            <p>
+              Each part of Concourse has a specific role. Together, they form a
+              continuous path from creating material to practicing, importing,
+              and improving it.
+            </p>
+          </div>
+
+          <div class="product-stack">
+            <article class="product-card product-route">
+              <div class="product-copy">
+                <p class="product-label">Create and learn</p>
+                <h3>Route</h3>
+                <p>
+                  Route is the course builder and learning environment. Organize
+                  a subject into lessons, resources, exercises, branches, and
+                  reusable content blocks.
+                </p>
+                <ul class="compact-list" aria-label="Route design goals">
+                  <li>Start from a template, import, or blank canvas</li>
+                  <li>Arrange lessons into clear paths</li>
+                  <li>Preview the learner experience</li>
+                  <li>Connect course material to Loop</li>
+                </ul>
+              </div>
+              <div
+                class="route-editor-preview"
+                aria-label="Conceptual Route editor preview"
+              >
+                <div class="preview-toolbar">
+                  <span>Human Anatomy Route</span>
+                  <span>Draft saved</span>
+                </div>
+                <div class="route-preview-grid">
+                  <div class="module-rail">
+                    <span>Foundations</span>
+                    <span class="is-selected">Neuron signals</span>
+                    <span>Practice pack</span>
+                  </div>
+                  <div class="node-board">
+                    <span class="route-node node-blue">Lesson</span>
+                    <span class="route-node node-green">Visual Mode</span>
+                    <span class="route-node node-purple">Loop prompt</span>
+                    <span class="route-node node-orange">Resource</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="product-card product-loop">
+              <div class="product-copy">
+                <p class="product-label">Practice and return</p>
+                <h3>Loop</h3>
+                <p>
+                  Loop turns learning material into focused retrieval practice,
+                  review packs, and repeatable study sessions. Learners return
+                  to important ideas without losing the original Route.
+                </p>
+                <ul class="compact-list" aria-label="Loop design goals">
+                  <li>Flashcards and retrieval prompts</li>
+                  <li>Review packs connected to courses</li>
+                  <li>Focused, low-friction sessions</li>
+                  <li>Clear progress without pressure-heavy streaks</li>
+                </ul>
+              </div>
+              <div
+                class="loop-preview"
+                aria-label="Conceptual Loop review preview"
+              >
+                <div class="loop-icon" aria-hidden="true">
+                  <span></span>
+                </div>
+                <p class="preview-kicker">Review pack</p>
+                <h4>What opens the sodium channel?</h4>
+                <p>Hint available. Source lesson: Neuron signals.</p>
+                <button class="preview-button" type="button">
+                  Reveal answer
+                </button>
+              </div>
+            </article>
+
+            <article class="product-card product-transfer">
+              <div class="product-copy">
+                <p class="product-label">Import and exchange</p>
+                <h3>Transfer</h3>
+                <p>
+                  Transfer is where course packs move into and out of a local
+                  library. Import packs, sync a Courses folder, inspect source
+                  details, and use the official static catalog when available.
+                </p>
+                <ul class="compact-list" aria-label="Transfer design goals">
+                  <li>Local Courses folder sync</li>
+                  <li>Open-license information</li>
+                  <li>Source attribution and pack versions</li>
+                  <li>Static catalog discovery</li>
+                </ul>
+              </div>
+              <div
+                class="transfer-grid"
+                aria-label="Example Transfer pack cards"
+              >
+                <article>
+                  <span>Route</span>
+                  <h4>Logic Foundations</h4>
+                  <p>Publisher: Concourse</p>
+                  <small>CC BY 4.0 | v1.0.0</small>
+                </article>
+                <article>
+                  <span>Loop Pack</span>
+                  <h4>Retrieval Practice Basics</h4>
+                  <p>Publisher: Concourse</p>
+                  <small>CC BY 4.0 | local file</small>
+                </article>
+                <article>
+                  <span>Route</span>
+                  <h4>Machine Learning Foundations</h4>
+                  <p>Publisher: Concourse</p>
+                  <small>CC BY 4.0 | update available</small>
+                </article>
+              </div>
+            </article>
+
+            <article class="product-card product-modes">
+              <div class="product-copy">
+                <p class="product-label">Shape the experience</p>
+                <h3>Modes</h3>
+                <p>
+                  Modes are lightweight, reusable chips that describe how
+                  content can be presented or supported. A lesson can offer
+                  several Modes without assigning a permanent label to the
+                  learner.
+                </p>
+                <div class="mode-chip-cloud" aria-label="Example Modes">
+                  <span>Visual</span>
+                  <span>Audio</span>
+                  <span>Guided</span>
+                  <span>Chunked</span>
+                  <span>Hands-on</span>
+                  <span>Low Stimulation</span>
+                  <span>Quick Session</span>
+                  <span>Deep Focus</span>
+                  <span>Read Aloud</span>
+                  <span>Example First</span>
+                </div>
+              </div>
+              <div
+                class="lesson-preview"
+                aria-label="Conceptual lesson preview with Modes"
+              >
+                <div class="lesson-preview-header">
+                  <span>Lesson preview</span>
+                  <span>Modes attached</span>
+                </div>
+                <h4>How neurons send a signal</h4>
+                <p>
+                  A signal moves when charge changes across the cell membrane
+                  and opens nearby channels in sequence.
+                </p>
+                <div class="mini-mode-row">
+                  <span>Chunked</span>
+                  <span>Visual</span>
+                  <span>Guided</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section light-section how-section"
+        id="how-it-works"
+        aria-labelledby="how-title"
+      >
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2 id="how-title">From an idea to shared learning.</h2>
+          </div>
+          <ol class="transit-timeline">
+            <li>
+              <span
+                class="timeline-node timeline-blue"
+                aria-hidden="true"
+              ></span>
+              <h3>Build a Route</h3>
+              <p>
+                Start from a blank course, template, or imported pack. Add
+                lessons using modular blocks.
+              </p>
+            </li>
+            <li>
+              <span
+                class="timeline-node timeline-green"
+                aria-hidden="true"
+              ></span>
+              <h3>Add Modes</h3>
+              <p>
+                Attach alternate formats, supports, and contextual options to
+                the content.
+              </p>
+            </li>
+            <li>
+              <span
+                class="timeline-node timeline-purple"
+                aria-hidden="true"
+              ></span>
+              <h3>Practice in Loop</h3>
+              <p>
+                Turn important concepts into retrieval prompts and reusable
+                review packs.
+              </p>
+            </li>
+            <li>
+              <span
+                class="timeline-node timeline-orange"
+                aria-hidden="true"
+              ></span>
+              <h3>Install through Transfer</h3>
+              <p>
+                Move material into a local Courses folder with licensing,
+                attribution, source history, and version information.
+              </p>
+            </li>
+            <li>
+              <span
+                class="timeline-node timeline-red"
+                aria-hidden="true"
+              ></span>
+              <h3>Revise and improve</h3>
+              <p>
+                Pack authors can revise the work, release updated versions, and
+                keep learner progress separate from authored content.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section creator-section" aria-labelledby="creator-title">
+        <div class="section-inner">
+          <div class="creator-grid">
+            <div class="creator-copy">
+              <h2 id="creator-title">
+                Course creation should feel approachable.
+              </h2>
+              <p>
+                Concourse is being designed so useful learning material can be
+                made by teachers, students, experts, and study groups without
+                requiring a production team.
+              </p>
+            </div>
+            <div
+              class="creator-editor"
+              aria-label="Conceptual Route editor interface"
+            >
+              <div class="editor-topbar">
+                <span>Plant Biology Basics</span>
+                <span>Design goal</span>
+              </div>
+              <div class="editor-layout">
+                <aside>
+                  <button type="button" class="is-active">Module list</button>
+                  <button type="button">Mode chips</button>
+                  <button type="button">License</button>
+                </aside>
+                <div class="editor-main">
+                  <div class="editor-row">
+                    <span>Course title</span>
+                    <strong>Photosynthesis foundations</strong>
+                  </div>
+                  <div class="editor-node-row">
+                    <span>Text</span>
+                    <span>Diagram</span>
+                    <span>Question</span>
+                    <span>Flashcard</span>
+                  </div>
+                  <div class="editor-preview-box">
+                    <h3>Lesson preview</h3>
+                    <p>
+                      A calm preview shows what learners see before a pack is
+                      exported.
+                    </p>
+                  </div>
+                  <button class="preview-button" type="button">
+                    Send to Loop
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="support-grid">
+            <article>
+              <h3>Start small</h3>
+              <p>
+                Design goal: create one lesson or an entire course with the same
+                underlying tools.
+              </p>
+            </article>
+            <article>
+              <h3>Reuse what works</h3>
+              <p>
+                Design goal: save blocks, exercises, and review prompts for use
+                across multiple Routes.
+              </p>
+            </article>
+            <article>
+              <h3>Preview different Modes</h3>
+              <p>Design goal: see how a lesson changes before exporting it.</p>
+            </article>
+            <article>
+              <h3>Keep attribution attached</h3>
+              <p>
+                Design goal: source and creator information stays visible when
+                material is exported or imported.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section light-section modes-section"
+        id="modes"
+        aria-labelledby="modes-title"
+      >
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2 id="modes-title">One lesson. Several useful ways through.</h2>
+            <p>
+              Modes let content respond to context. Learners can choose the
+              presentation or level of support that helps with the current task.
+            </p>
+          </div>
+
+          <div class="modes-demo" data-modes-demo>
+            <div class="mode-controls" aria-label="Choose lesson Modes">
+              <button type="button" aria-pressed="true" data-mode="chunked">
+                Chunked
+              </button>
+              <button type="button" aria-pressed="false" data-mode="visual">
+                Visual
+              </button>
+              <button type="button" aria-pressed="false" data-mode="audio">
+                Audio
+              </button>
+              <button type="button" aria-pressed="false" data-mode="guided">
+                Guided
+              </button>
+              <button type="button" aria-pressed="false" data-mode="low">
+                Low Stimulation
+              </button>
+              <button type="button" aria-pressed="false" data-mode="quick">
+                Quick Session
+              </button>
+            </div>
+
+            <div
+              class="lesson-demo-preview"
+              aria-live="polite"
+              aria-atomic="true"
+              data-mode-preview
+            >
+              <p class="preview-kicker">Sample lesson</p>
+              <h3>How neurons send a signal</h3>
+              <div class="mode-output mode-output-chunked">
+                <ol>
+                  <li>The neuron receives enough input to start a signal.</li>
+                  <li>
+                    Channels open and charged particles move across the
+                    membrane.
+                  </li>
+                  <li>The next section opens, carrying the signal forward.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <p class="modes-note">
+            Modes describe available formats and supports. They do not assign
+            people to fixed learning types.
+          </p>
+        </div>
+      </section>
+
+      <section class="section loop-feature" aria-labelledby="loop-title">
+        <div class="section-inner">
+          <div class="loop-feature-grid">
+            <div>
+              <div class="loop-icon loop-icon-large" aria-hidden="true">
+                <span></span>
+              </div>
+              <h2 id="loop-title">Return to what matters.</h2>
+              <p>
+                Loop provides a focused place for recall, reinforcement, and
+                review. Packs can stand alone or remain connected to the Route
+                they came from.
+              </p>
+            </div>
+            <div class="review-card">
+              <p class="preview-kicker">Cell signaling pack</p>
+              <h3>What changes during depolarization?</h3>
+              <p>
+                Optional hint: think about charge and the movement of sodium
+                ions.
+              </p>
+              <a href="https://github.com/Conalh/Concourse/tree/main/docs">
+                Source lesson
+              </a>
+              <button class="preview-button" type="button">
+                Reveal answer
+              </button>
+              <div
+                class="confidence-row"
+                aria-label="Confidence response options"
+              >
+                <button type="button">Still learning</button>
+                <button type="button">Getting familiar</button>
+                <button type="button">Ready later</button>
+              </div>
+            </div>
+          </div>
+          <div class="idea-row">
+            <article>
+              <h3>Connected context</h3>
+              <p>
+                Jump back to the lesson when a prompt needs more explanation.
+              </p>
+            </article>
+            <article>
+              <h3>Flexible sessions</h3>
+              <p>
+                Review a full pack or choose a shorter session for the moment.
+              </p>
+            </article>
+            <article>
+              <h3>Meaningful progress</h3>
+              <p>
+                Show what is becoming familiar without turning learning into
+                punishment or obligation.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section light-section transfer-section"
+        aria-labelledby="transfer-title"
+      >
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2 id="transfer-title">
+              Learning material should be easy to pass on.
+            </h2>
+            <p>
+              Transfer gives learners and authors a clear way to import,
+              inspect, sync, and update local educational resources.
+            </p>
+          </div>
+
+          <div class="exchange-layout">
+            <div class="filter-chip-row" aria-label="Transfer filters">
+              <span>Topic</span>
+              <span>Format</span>
+              <span>Mode</span>
+              <span>Language</span>
+              <span>License</span>
+              <span>Course length</span>
+              <span>Installed</span>
+              <span>Update</span>
+            </div>
+            <div class="content-card-grid">
+              <article>
+                <span>Route</span>
+                <h3>Introduction to Logic</h3>
+                <p>Publisher: Concourse. Language: English.</p>
+                <small>CC BY 4.0 | Version 1.0.0</small>
+              </article>
+              <article>
+                <span>Route</span>
+                <h3>Machine Learning Foundations</h3>
+                <p>Publisher: Concourse. Modes: Guided, Visual.</p>
+                <small>CC BY 4.0 | Catalog fixture</small>
+              </article>
+              <article>
+                <span>Loop Pack</span>
+                <h3>Study Skills For Recall</h3>
+                <p>Publisher: Concourse. Modes: Quick Session, Chunked.</p>
+                <small>CC BY 4.0 | Downloaded pack</small>
+              </article>
+            </div>
+            <div class="lineage-box">
+              <span>Downloaded Pack</span>
+              <span>Local Sync</span>
+              <span>Offline Study</span>
+            </div>
+            <p class="license-note">
+              Creator credit and source history travel with the content. Course
+              pack licenses are pack metadata; Concourse software is available
+              under the MIT License.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section source-section"
+        id="open-source"
+        aria-labelledby="source-title"
+      >
+        <div class="section-inner source-grid">
+          <div>
+            <h2 id="source-title">Built in public.</h2>
+            <p>
+              Concourse is open source under the MIT License. The code,
+              documentation, design decisions, and contribution process are
+              visible so the project can be examined, improved, translated,
+              adapted, and maintained by its community.
+            </p>
+            <div class="source-actions">
+              <a
+                class="button button-primary"
+                href="https://github.com/Conalh/Concourse"
+              >
+                View the repository
+              </a>
+              <a
+                class="button button-ghost"
+                href="https://github.com/Conalh/Concourse/blob/main/CONTRIBUTING.md"
+              >
+                Read the contribution guide
+              </a>
+            </div>
+          </div>
+          <div class="repo-panel" aria-label="Project source panel">
+            <dl class="badge-list">
+              <div>
+                <dt>License</dt>
+                <dd>MIT</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd>Active development</dd>
+              </div>
+              <div>
+                <dt>Repository</dt>
+                <dd>Public</dd>
+              </div>
+              <div>
+                <dt>Contributions</dt>
+                <dd>Welcome</dd>
+              </div>
+            </dl>
+            <pre><code>git clone https://github.com/Conalh/Concourse.git</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section light-section contribute-section"
+        id="contribute"
+        aria-labelledby="contribute-title"
+      >
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2 id="contribute-title">
+              There is more than one way to contribute.
+            </h2>
+            <p>
+              Contributions do not need to begin with code. A clear bug report,
+              useful course, accessibility review, or documentation improvement
+              can move the project forward.
+            </p>
+          </div>
+          <div class="contribution-grid">
+            <article>
+              <h3>Build</h3>
+              <p>
+                Work on applications, infrastructure, integrations, and tooling.
+              </p>
+            </article>
+            <article>
+              <h3>Create</h3>
+              <p>Create courses, lessons, examples, and Loop packs.</p>
+            </article>
+            <article>
+              <h3>Design</h3>
+              <p>
+                Improve interfaces, workflows, visual systems, and interaction
+                patterns.
+              </p>
+            </article>
+            <article>
+              <h3>Test</h3>
+              <p>
+                Report bugs, test accessibility, and document confusing
+                experiences.
+              </p>
+            </article>
+            <article>
+              <h3>Translate</h3>
+              <p>
+                Help make interfaces and open course content available in more
+                languages.
+              </p>
+            </article>
+            <article>
+              <h3>Document</h3>
+              <p>
+                Write guides, examples, contributor resources, and technical
+                documentation.
+              </p>
+            </article>
+          </div>
+          <a
+            class="button button-primary"
+            href="https://github.com/Conalh/Concourse/blob/main/CONTRIBUTING.md"
+          >
+            Find a place to contribute
+          </a>
+        </div>
+      </section>
+
+      <section class="section roadmap-section" aria-labelledby="roadmap-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2 id="roadmap-title">Follow the line as it develops.</h2>
+          </div>
+          <ol class="roadmap-line">
+            <li><span>Core architecture</span><strong>In progress</strong></li>
+            <li><span>Pack import/export</span><strong>In progress</strong></li>
+            <li><span>Local folder sync</span><strong>Planned</strong></li>
+            <li><span>Static catalog</span><strong>Planned</strong></li>
+            <li><span>Transfer UI</span><strong>Planned</strong></li>
+            <li><span>Desktop shell</span><strong>Planned</strong></li>
+            <li><span>Pack release</span><strong>Planned</strong></li>
+          </ol>
+          <a href="https://github.com/Conalh/Concourse/blob/main/ROADMAP.md">
+            View the project roadmap
+          </a>
+        </div>
+      </section>
+
+      <section
+        class="section light-section faq-section"
+        id="faq"
+        aria-labelledby="faq-title"
+      >
+        <div class="section-inner faq-grid">
+          <div>
+            <h2 id="faq-title">Questions people may have first.</h2>
+            <p>
+              Short answers for learners, educators, contributors, and
+              communities evaluating whether Concourse fits their work.
+            </p>
+          </div>
+          <div class="faq-list" data-faq-list>
+            <details open>
+              <summary>What is Concourse?</summary>
+              <p>
+                Concourse is a local-first learning suite for creating,
+                learning, practicing, and importing educational material. Route,
+                Loop, Transfer, and Modes handle different parts of that
+                process.
+              </p>
+            </details>
+            <details>
+              <summary>
+                Is Concourse only for people with ADHD or AuDHD?
+              </summary>
+              <p>
+                Concourse is designed with ADHD and AuDHD needs in mind,
+                including flexible structure, adjustable formats, clearer
+                navigation, and lower-stimulation options. The tools are
+                available to anyone.
+              </p>
+            </details>
+            <details>
+              <summary>What is a Mode?</summary>
+              <p>
+                A Mode is a reusable chip describing a presentation format,
+                support, or learning context. Examples include Visual, Audio,
+                Chunked, Guided, Low Stimulation, and Quick Session.
+              </p>
+            </details>
+            <details>
+              <summary>Can I create and publish my own courses?</summary>
+              <p>
+                You can author and export learning packs. Public publishing,
+                creator dashboards, and community submissions are planned later
+                only after a separate product spec.
+              </p>
+            </details>
+            <details>
+              <summary>Can I remix someone else's course?</summary>
+              <p>
+                The pack format tracks attribution, source history, licenses,
+                and versions. What can be reused depends on the content license
+                selected by the creator.
+              </p>
+            </details>
+            <details>
+              <summary>Is the project free and open source?</summary>
+              <p>
+                Yes. Concourse software is available under the MIT License. Each
+                learning pack declares its own content license and attribution
+                metadata.
+              </p>
+            </details>
+            <details>
+              <summary>Can I contribute without being a developer?</summary>
+              <p>
+                Yes. Course creation, documentation, translation, testing,
+                accessibility reviews, research, design, and pack examples are
+                all useful forms of contribution.
+              </p>
+            </details>
+            <details>
+              <summary>Can Concourse be self-hosted?</summary>
+              <p>
+                There is no hosted backend in the local-first MVP. The browser
+                app can run locally during development, and the future catalog
+                is intended to be static.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="final-cta" aria-labelledby="final-title">
+        <div class="final-linework" aria-hidden="true"></div>
+        <div class="section-inner final-inner">
+          <img
+            class="final-mark"
+            src="./assets/concourse-icon.svg"
+            width="56"
+            height="56"
+            alt=""
+          />
+          <h2 id="final-title">Help build a more open path to learning.</h2>
+          <p>
+            Create a Route, contribute to the codebase, test an interface,
+            author a pack, or help document the project. Concourse grows through
+            the people who use and improve it.
+          </p>
+          <div class="final-actions">
+            <a
+              class="button button-primary button-large"
+              href="https://github.com/Conalh/Concourse"
+            >
+              View Concourse on GitHub
+            </a>
+            <a
+              class="button button-ghost button-large"
+              href="https://github.com/Conalh/Concourse/blob/main/ROADMAP.md"
+            >
+              Read the project vision
+            </a>
+          </div>
+          <p class="product-line">
+            Build a Route. Practice in Loop. Import through Transfer. Learn with
+            Modes.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <a class="brand-link" href="#top" aria-label="Concourse home">
+            <img
+              class="brand-icon"
+              src="./assets/concourse-icon.svg"
+              width="34"
+              height="34"
+              alt=""
+            />
+            <span>Concourse</span>
+          </a>
+          <p>
+            Concourse is an open-source learning project built by its
+            contributors.
+          </p>
+          <p><span data-current-year></span> Concourse contributors.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="https://github.com/Conalh/Concourse">GitHub</a>
+          <a href="https://github.com/Conalh/Concourse/tree/main/docs">
+            Documentation
+          </a>
+          <a href="https://github.com/Conalh/Concourse/blob/main/ROADMAP.md">
+            Roadmap
+          </a>
+          <a
+            href="https://github.com/Conalh/Concourse/blob/main/CONTRIBUTING.md"
+          >
+            Contribution guide
+          </a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="./main.js" defer></script>
+  </body>
+</html>

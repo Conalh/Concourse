@@ -1,0 +1,272 @@
+{
+  "schemaVersion": "0.1",
+  "resources": [
+    {
+      "id": "resource-logic-reading",
+      "contentRevision": 2,
+      "title": "Five-Minute Logic Reading",
+      "summary": "A revised pack-native reading that introduces truth values and negation checkpoints.",
+      "modality": "text",
+      "roles": [
+        "introduction",
+        "explanation"
+      ],
+      "conceptIds": [
+        "concept-truth-values",
+        "concept-propositions"
+      ],
+      "objectiveIds": [
+        "objective-recognize-truth-values",
+        "objective-evaluate-negation"
+      ],
+      "estimatedDurationSeconds": 300,
+      "difficulty": "introductory",
+      "language": "en-US",
+      "source": {
+        "kind": "embedded-content",
+        "content": [
+          {
+            "kind": "text",
+            "text": "A proposition is a statement that can be evaluated as true or false.",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null,
+            "blockId": "block-reading-intro"
+          },
+          {
+            "kind": "callout",
+            "text": "Negation flips the truth value of a proposition.",
+            "language": null,
+            "calloutRole": "definition",
+            "assetId": null,
+            "altText": null,
+            "blockId": "block-reading-negation"
+          }
+        ]
+      },
+      "segments": [
+        {
+          "id": "segment-reading-intro",
+          "title": "Truth-value intuition",
+          "summary": "Introduces propositions and truth values.",
+          "contentBlockStartId": "block-reading-intro",
+          "contentBlockEndId": "block-reading-negation",
+          "conceptIds": [
+            "concept-truth-values"
+          ],
+          "objectiveIds": [
+            "objective-recognize-truth-values"
+          ],
+          "checkpointStudySetIds": [
+            "set-core-quiz"
+          ],
+          "tags": [
+            "reading"
+          ]
+        }
+      ],
+      "checkpointStudySetIds": [
+        "set-core-quiz"
+      ],
+      "tags": [
+        "reading",
+        "intro"
+      ],
+      "provenance": {
+        "author": "Learnt",
+        "license": "CC-BY-4.0",
+        "attributionText": "Logic reading by Learnt.",
+        "contentOwnership": "pack-authored"
+      },
+      "accessibility": {
+        "screenReaderOptimized": true,
+        "textAlternativeAvailable": true,
+        "language": "en-US"
+      },
+      "metadata": {
+        "fixturePurpose": "embedded-reading"
+      }
+    },
+    {
+      "id": "resource-logic-article",
+      "contentRevision": 1,
+      "title": "External Article On Propositions",
+      "summary": "A curated external article for alternate explanation.",
+      "modality": "text",
+      "roles": [
+        "remediation",
+        "reference"
+      ],
+      "source": {
+        "kind": "external-link",
+        "url": "https://example.com/logic/propositions",
+        "providerName": "Example University",
+        "contentTypeHint": "article"
+      },
+      "tags": [
+        "article"
+      ],
+      "provenance": {
+        "sourceTitle": "Example University Logic Notes",
+        "canonicalUrl": "https://example.com/logic/propositions",
+        "contentOwnership": "external-link-only"
+      }
+    },
+    {
+      "id": "resource-negation-video",
+      "contentRevision": 1,
+      "title": "Negation Walkthrough Video",
+      "summary": "A safe external video locator with timestamped key moments.",
+      "modality": "video",
+      "roles": [
+        "demonstration",
+        "worked-example"
+      ],
+      "conceptIds": [
+        "concept-truth-values",
+        "concept-logical-connectives"
+      ],
+      "objectiveIds": [
+        "objective-evaluate-negation"
+      ],
+      "estimatedDurationSeconds": 420,
+      "source": {
+        "kind": "external-video",
+        "provider": "youtube",
+        "mediaId": "dQw4w9WgXcQ",
+        "canonicalUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "startSeconds": 0,
+        "endSeconds": 420
+      },
+      "segments": [
+        {
+          "id": "segment-video-intro",
+          "title": "Negation setup",
+          "startSeconds": 10,
+          "endSeconds": 90,
+          "conceptIds": [
+            "concept-truth-values"
+          ],
+          "objectiveIds": [
+            "objective-evaluate-negation"
+          ],
+          "checkpointStudySetIds": [],
+          "tags": [
+            "video"
+          ]
+        },
+        {
+          "id": "segment-video-worked-example",
+          "title": "Worked NOT example",
+          "startSeconds": 91,
+          "endSeconds": 180,
+          "conceptIds": [
+            "concept-truth-values",
+            "concept-logical-connectives"
+          ],
+          "objectiveIds": [
+            "objective-evaluate-negation"
+          ],
+          "checkpointStudySetIds": [
+            "set-core-quiz"
+          ],
+          "tags": [
+            "worked-example"
+          ]
+        }
+      ],
+      "provenance": {
+        "sourceTitle": "Negation Walkthrough",
+        "canonicalUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "contentOwnership": "external-link-only"
+      },
+      "accessibility": {
+        "captionsAvailable": true,
+        "transcriptAvailable": false,
+        "language": "en-US"
+      }
+    },
+    {
+      "id": "resource-logic-podcast",
+      "contentRevision": 1,
+      "title": "Logic Podcast Segment",
+      "modality": "audio",
+      "roles": [
+        "enrichment"
+      ],
+      "source": {
+        "kind": "external-audio",
+        "provider": "example-podcast",
+        "mediaId": "logic-episode-1",
+        "canonicalUrl": "https://example.com/podcasts/logic-episode-1",
+        "startSeconds": 30,
+        "endSeconds": 240
+      },
+      "provenance": {
+        "sourceTitle": "Logic Podcast",
+        "contentOwnership": "external-link-only"
+      },
+      "accessibility": {
+        "transcriptAvailable": true,
+        "language": "en-US"
+      }
+    },
+    {
+      "id": "resource-logic-book-chapter",
+      "contentRevision": 1,
+      "title": "Logic Textbook Chapter",
+      "modality": "text",
+      "roles": [
+        "reference"
+      ],
+      "source": {
+        "kind": "bibliographic-reference",
+        "title": "Introduction to Logic",
+        "authors": [
+          "A. Author"
+        ],
+        "publisher": "Example Press",
+        "publicationYear": 2020,
+        "chapter": "Chapter 1",
+        "pageRange": "1-24",
+        "canonicalUrl": "https://example.com/books/intro-logic",
+        "citationText": "A. Author, Introduction to Logic, Chapter 1."
+      },
+      "provenance": {
+        "sourceTitle": "Introduction to Logic",
+        "contentOwnership": "external-link-only"
+      }
+    },
+    {
+      "id": "resource-truth-table-demo",
+      "contentRevision": 1,
+      "title": "Truth Table Sandbox",
+      "modality": "interactive",
+      "roles": [
+        "demonstration",
+        "worked-example"
+      ],
+      "conceptIds": [
+        "concept-truth-tables"
+      ],
+      "objectiveIds": [
+        "objective-build-truth-table"
+      ],
+      "source": {
+        "kind": "interactive-reference",
+        "url": "https://example.com/sandboxes/truth-table",
+        "providerName": "Example Sandbox",
+        "interactionSummary": "Learners toggle proposition values to observe truth-table rows.",
+        "requiredEnvironment": "modern browser"
+      },
+      "provenance": {
+        "sourceTitle": "Truth Table Sandbox",
+        "contentOwnership": "external-link-only"
+      },
+      "accessibility": {
+        "accessibilityNotes": "External sandbox accessibility is provider-owned."
+      }
+    }
+  ]
+}

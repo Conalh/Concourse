@@ -1,0 +1,253 @@
+{
+  "schemaVersion": "0.1",
+  "courses": [
+    {
+      "courseId": "course-logic-core",
+      "title": "Logic Core",
+      "summary": "A structured path through truth values, connectives, and tables.",
+      "subjectIds": [
+        "subject-propositional-logic"
+      ],
+      "tags": [
+        "logic",
+        "core"
+      ],
+      "rootNodes": [
+        {
+          "nodeId": "node-core-module",
+          "kind": "module",
+          "title": "Core Logic Module",
+          "summary": "Core Logic Module",
+          "itemIds": [],
+          "conceptIds": [
+            "concept-truth-values",
+            "concept-logical-connectives",
+            "concept-truth-tables"
+          ],
+          "objectiveIds": [
+            "objective-recognize-truth-values",
+            "objective-evaluate-negation",
+            "objective-build-truth-table"
+          ],
+          "children": [
+            {
+              "nodeId": "node-core-truth-chapter",
+              "kind": "chapter",
+              "title": "Truth Values Chapter",
+              "summary": "Truth Values Chapter",
+              "itemIds": [],
+              "conceptIds": [
+                "concept-truth-values"
+              ],
+              "objectiveIds": [
+                "objective-recognize-truth-values",
+                "objective-evaluate-negation"
+              ],
+              "children": [
+                {
+                  "nodeId": "node-core-truth-values-lesson",
+                  "kind": "lesson",
+                  "title": "Truth Values Lesson",
+                  "summary": "Truth Values Lesson",
+                  "itemIds": [
+                    "item-truth-values-flashcard",
+                    "item-negation-single-choice"
+                  ],
+                  "conceptIds": [
+                    "concept-truth-values"
+                  ],
+                  "objectiveIds": [
+                    "objective-recognize-truth-values",
+                    "objective-evaluate-negation"
+                  ],
+                  "children": [],
+                  "entries": [
+                    {
+                      "kind": "resource",
+                      "resourceId": "resource-logic-reading"
+                    },
+                    {
+                      "kind": "item",
+                      "itemId": "item-truth-values-flashcard"
+                    },
+                    {
+                      "kind": "resource",
+                      "resourceId": "resource-negation-video",
+                      "segmentId": "segment-video-worked-example"
+                    },
+                    {
+                      "kind": "study-set",
+                      "studySetId": "set-core-quiz"
+                    },
+                    {
+                      "kind": "item",
+                      "itemId": "item-negation-single-choice"
+                    }
+                  ],
+                  "customKindLabel": null
+                }
+              ],
+              "customKindLabel": null
+            },
+            {
+              "nodeId": "node-core-tables-chapter",
+              "kind": "chapter",
+              "title": "Truth Tables Chapter",
+              "summary": "Truth Tables Chapter",
+              "itemIds": [],
+              "conceptIds": [
+                "concept-logical-connectives",
+                "concept-truth-tables"
+              ],
+              "objectiveIds": [
+                "objective-build-truth-table"
+              ],
+              "children": [
+                {
+                  "nodeId": "node-core-connectives-lesson",
+                  "kind": "lesson",
+                  "title": "Connectives Lesson",
+                  "summary": "Connectives Lesson",
+                  "itemIds": [
+                    "item-connectives-multiple-choice",
+                    "item-truth-table-row-count",
+                    "item-conditional-single-choice"
+                  ],
+                  "conceptIds": [
+                    "concept-logical-connectives",
+                    "concept-truth-tables"
+                  ],
+                  "objectiveIds": [
+                    "objective-build-truth-table"
+                  ],
+                  "children": [],
+                  "entries": [
+                    {
+                      "kind": "resource",
+                      "resourceId": "resource-truth-table-demo"
+                    },
+                    {
+                      "kind": "item",
+                      "itemId": "item-connectives-multiple-choice"
+                    },
+                    {
+                      "kind": "study-set",
+                      "studySetId": "set-core-quiz"
+                    }
+                  ],
+                  "customKindLabel": null
+                }
+              ],
+              "customKindLabel": null
+            }
+          ],
+          "customKindLabel": null
+        }
+      ]
+    },
+    {
+      "courseId": "course-proof-practice",
+      "title": "Proof Practice",
+      "summary": "A practical path through validity and soundness checks.",
+      "subjectIds": [
+        "subject-proof-strategies"
+      ],
+      "tags": [
+        "logic",
+        "proofs"
+      ],
+      "rootNodes": [
+        {
+          "nodeId": "node-proof-module",
+          "kind": "module",
+          "title": "Proof Strategies Module",
+          "summary": "Proof Strategies Module",
+          "itemIds": [],
+          "conceptIds": [
+            "concept-validity",
+            "concept-truth-values",
+            "concept-soundness"
+          ],
+          "objectiveIds": [
+            "objective-identify-valid-argument",
+            "objective-explain-soundness"
+          ],
+          "children": [
+            {
+              "nodeId": "node-proof-validity-chapter",
+              "kind": "chapter",
+              "title": "Validity Chapter",
+              "summary": "Validity Chapter",
+              "itemIds": [],
+              "conceptIds": [
+                "concept-validity",
+                "concept-truth-values"
+              ],
+              "objectiveIds": [
+                "objective-identify-valid-argument"
+              ],
+              "children": [
+                {
+                  "nodeId": "node-proof-validity-lesson",
+                  "kind": "lesson",
+                  "title": "Validity Lesson",
+                  "summary": "Validity Lesson",
+                  "itemIds": [
+                    "item-validity-text-recall",
+                    "item-validity-flashcard"
+                  ],
+                  "conceptIds": [
+                    "concept-validity",
+                    "concept-truth-values"
+                  ],
+                  "objectiveIds": [
+                    "objective-identify-valid-argument"
+                  ],
+                  "children": [],
+                  "customKindLabel": null
+                }
+              ],
+              "customKindLabel": null
+            },
+            {
+              "nodeId": "node-proof-soundness-chapter",
+              "kind": "chapter",
+              "title": "Soundness Chapter",
+              "summary": "Soundness Chapter",
+              "itemIds": [],
+              "conceptIds": [
+                "concept-soundness",
+                "concept-validity"
+              ],
+              "objectiveIds": [
+                "objective-explain-soundness"
+              ],
+              "children": [
+                {
+                  "nodeId": "node-proof-soundness-lesson",
+                  "kind": "lesson",
+                  "title": "Soundness Lesson",
+                  "summary": "Soundness Lesson",
+                  "itemIds": [
+                    "item-soundness-manual-read"
+                  ],
+                  "conceptIds": [
+                    "concept-soundness",
+                    "concept-validity"
+                  ],
+                  "objectiveIds": [
+                    "objective-explain-soundness"
+                  ],
+                  "children": [],
+                  "customKindLabel": null
+                }
+              ],
+              "customKindLabel": null
+            }
+          ],
+          "customKindLabel": null
+        }
+      ]
+    }
+  ]
+}

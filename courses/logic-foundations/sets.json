@@ -1,0 +1,631 @@
+{
+  "schemaVersion": "0.1",
+  "sets": [
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-1-1-arguments-guided",
+          "item-logic-1-1-arguments-independent",
+          "item-logic-1-2-scope-of-logic-guided",
+          "item-logic-1-2-scope-of-logic-independent",
+          "item-logic-1-3-other-logical-notions-guided",
+          "item-logic-1-3-other-logical-notions-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-1-deck",
+      "summary": "Retrieve the key ideas from Logic, Arguments, and Meaning.",
+      "timeLimitSeconds": null,
+      "title": "1.0 Logic, Arguments, and Meaning Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-1-0-orientation",
+          "item-logic-1-0-review-1",
+          "item-logic-1-0-review-2",
+          "item-logic-1-0-checkpoint-1",
+          "item-logic-1-0-checkpoint-2",
+          "item-logic-1-0-checkpoint-3"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-1-checkpoint",
+      "summary": "Analyze a short argument, identify its structure, and classify the logical relationship among its claims.",
+      "timeLimitSeconds": null,
+      "title": "1.0 Logic, Arguments, and Meaning Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-2-1-first-steps-symbolization-guided",
+          "item-logic-2-1-first-steps-symbolization-independent",
+          "item-logic-2-2-connectives-guided",
+          "item-logic-2-2-connectives-independent",
+          "item-logic-2-3-sentences-of-tfl-guided",
+          "item-logic-2-3-sentences-of-tfl-independent",
+          "item-logic-2-4-ambiguity-guided",
+          "item-logic-2-4-ambiguity-independent",
+          "item-logic-2-5-use-and-mention-guided",
+          "item-logic-2-5-use-and-mention-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-2-deck",
+      "summary": "Retrieve the key ideas from Truth-Functional Language.",
+      "timeLimitSeconds": null,
+      "title": "2.0 Truth-Functional Language Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-2-0-review-1",
+          "item-logic-2-0-checkpoint-1"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-2-checkpoint",
+      "summary": "Disambiguate a short passage, give its symbolization key and TFL form, and identify the main connective.",
+      "timeLimitSeconds": null,
+      "title": "2.0 Truth-Functional Language Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-3-1-characteristic-truth-tables-guided",
+          "item-logic-3-1-characteristic-truth-tables-independent",
+          "item-logic-3-2-truth-functional-connectives-guided",
+          "item-logic-3-2-truth-functional-connectives-independent",
+          "item-logic-3-3-complete-truth-tables-guided",
+          "item-logic-3-3-complete-truth-tables-independent",
+          "item-logic-3-4-semantic-concepts-guided",
+          "item-logic-3-4-semantic-concepts-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-3-deck",
+      "summary": "Retrieve the key ideas from Truth Tables.",
+      "timeLimitSeconds": null,
+      "title": "3.0 Truth Tables Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-3-0-orientation",
+          "item-logic-3-0-review-1",
+          "item-logic-3-0-review-2",
+          "item-logic-3-0-checkpoint-1"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-3-checkpoint",
+      "summary": "Build or inspect a truth table, identify a decisive row, and justify a semantic verdict.",
+      "timeLimitSeconds": null,
+      "title": "3.0 Truth Tables Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-4-1-limitations-of-tfl-guided",
+          "item-logic-4-1-limitations-of-tfl-independent",
+          "item-logic-4-2-truth-table-shortcuts-guided",
+          "item-logic-4-2-truth-table-shortcuts-independent",
+          "item-logic-4-3-partial-truth-tables-guided",
+          "item-logic-4-3-partial-truth-tables-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-4-deck",
+      "summary": "Retrieve the key ideas from Semantic Reasoning in TFL.",
+      "timeLimitSeconds": null,
+      "title": "4.0 Semantic Reasoning in TFL Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-4-0-orientation",
+          "item-logic-4-0-review-1",
+          "item-logic-4-0-review-2",
+          "item-logic-4-0-checkpoint-1",
+          "item-logic-4-0-checkpoint-2",
+          "item-logic-4-0-checkpoint-3"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-4-checkpoint",
+      "summary": "Find and explain a decisive valuation, or explain why TFL is too coarse to capture the original inference.",
+      "timeLimitSeconds": null,
+      "title": "4.0 Semantic Reasoning in TFL Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-5-1-idea-natural-deduction-guided",
+          "item-logic-5-1-idea-natural-deduction-independent",
+          "item-logic-5-2-basic-rules-tfl-guided",
+          "item-logic-5-2-basic-rules-tfl-independent",
+          "item-logic-5-3-constructing-proofs-guided",
+          "item-logic-5-3-constructing-proofs-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-5-deck",
+      "summary": "Retrieve the key ideas from Natural Deduction Foundations.",
+      "timeLimitSeconds": null,
+      "title": "5.0 Natural Deduction Foundations Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-5-0-orientation",
+          "item-logic-5-0-review-1",
+          "item-logic-5-0-review-2",
+          "item-logic-5-0-checkpoint-1",
+          "item-logic-5-0-checkpoint-2",
+          "item-logic-5-0-checkpoint-3"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-5-checkpoint",
+      "summary": "Plan and explain a short derivation, including every assumption, rule choice, and discharged subproof.",
+      "timeLimitSeconds": null,
+      "title": "5.0 Natural Deduction Foundations Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-6-1-additional-rules-tfl-guided",
+          "item-logic-6-1-additional-rules-tfl-independent",
+          "item-logic-6-2-proof-theoretic-concepts-guided",
+          "item-logic-6-2-proof-theoretic-concepts-independent",
+          "item-logic-6-3-derived-rules-guided",
+          "item-logic-6-3-derived-rules-independent",
+          "item-logic-6-4-soundness-completeness-guided",
+          "item-logic-6-4-soundness-completeness-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-6-deck",
+      "summary": "Retrieve the key ideas from Proof Strategy.",
+      "timeLimitSeconds": null,
+      "title": "6.0 Proof Strategy Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-6-0-orientation",
+          "item-logic-6-0-review-1",
+          "item-logic-6-0-review-2",
+          "item-logic-6-0-checkpoint-1"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-6-checkpoint",
+      "summary": "Analyze a short proof strategy and explain how soundness, completeness, or derived-rule expansion justifies it.",
+      "timeLimitSeconds": null,
+      "title": "6.0 Proof Strategy Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-7-1-building-blocks-fol-guided",
+          "item-logic-7-1-building-blocks-fol-independent",
+          "item-logic-7-2-one-quantifier-guided",
+          "item-logic-7-2-one-quantifier-independent",
+          "item-logic-7-3-multiple-generality-guided",
+          "item-logic-7-3-multiple-generality-independent",
+          "item-logic-7-4-identity-guided",
+          "item-logic-7-4-identity-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-7-deck",
+      "summary": "Retrieve the key ideas from First-Order Language.",
+      "timeLimitSeconds": null,
+      "title": "7.0 First-Order Language Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-7-0-orientation",
+          "item-logic-7-0-review-1",
+          "item-logic-7-0-review-2",
+          "item-logic-7-0-checkpoint-1"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-7-checkpoint",
+      "summary": "Build and explain a finite first-order symbolization key, then compare formulas that differ in quantifier order or identity.",
+      "timeLimitSeconds": null,
+      "title": "7.0 First-Order Language Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-8-1-sentences-fol-guided",
+          "item-logic-8-1-sentences-fol-independent",
+          "item-logic-8-2-definite-descriptions-guided",
+          "item-logic-8-2-definite-descriptions-independent",
+          "item-logic-8-3-ambiguity-guided",
+          "item-logic-8-3-ambiguity-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-8-deck",
+      "summary": "Retrieve the key ideas from Expressing First-Order Claims.",
+      "timeLimitSeconds": null,
+      "title": "8.0 Expressing First-Order Claims Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-8-0-orientation",
+          "item-logic-8-0-review-1",
+          "item-logic-8-0-review-2",
+          "item-logic-8-0-checkpoint-1",
+          "item-logic-8-0-checkpoint-2",
+          "item-logic-8-0-checkpoint-3"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-8-checkpoint",
+      "summary": "Diagnose a first-order expression for free variables, uniqueness, and scope, then defend one explicit reading of an ambiguous claim.",
+      "timeLimitSeconds": null,
+      "title": "8.0 Expressing First-Order Claims Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-9-1-extensionality-guided",
+          "item-logic-9-1-extensionality-independent",
+          "item-logic-9-2-truth-fol-guided",
+          "item-logic-9-2-truth-fol-independent",
+          "item-logic-9-3-semantic-concepts-guided",
+          "item-logic-9-3-semantic-concepts-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-9-deck",
+      "summary": "Retrieve the key ideas from Interpretations.",
+      "timeLimitSeconds": null,
+      "title": "9.0 Interpretations Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-9-0-orientation",
+          "item-logic-9-0-review-1",
+          "item-logic-9-0-review-2",
+          "item-logic-9-0-checkpoint-1",
+          "item-logic-9-0-checkpoint-2",
+          "item-logic-9-0-checkpoint-3"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-9-checkpoint",
+      "summary": "Evaluate a finite interpretation and use it to classify a semantic claim with an explicit witness or counterexample.",
+      "timeLimitSeconds": null,
+      "title": "9.0 Interpretations Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-10-1-using-interpretations-guided",
+          "item-logic-10-1-using-interpretations-independent",
+          "item-logic-10-2-reasoning-about-interpretations-guided",
+          "item-logic-10-2-reasoning-about-interpretations-independent",
+          "item-logic-10-3-properties-relations-guided",
+          "item-logic-10-3-properties-relations-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-10-deck",
+      "summary": "Retrieve the key ideas from Relational Reasoning.",
+      "timeLimitSeconds": null,
+      "title": "10.0 Relational Reasoning Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-10-0-orientation",
+          "item-logic-10-0-review-1",
+          "item-logic-10-0-review-2",
+          "item-logic-10-0-checkpoint-1",
+          "item-logic-10-0-checkpoint-2",
+          "item-logic-10-0-checkpoint-3"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-10-checkpoint",
+      "summary": "Construct or diagnose a finite interpretation, then state exactly which semantic claim and relation properties it establishes.",
+      "timeLimitSeconds": null,
+      "title": "10.0 Relational Reasoning Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-11-1-basic-rules-fol-guided",
+          "item-logic-11-1-basic-rules-fol-independent",
+          "item-logic-11-2-proofs-quantifiers-guided",
+          "item-logic-11-2-proofs-quantifiers-independent",
+          "item-logic-11-3-conversion-quantifiers-guided",
+          "item-logic-11-3-conversion-quantifiers-independent",
+          "item-logic-11-4-rules-identity-guided",
+          "item-logic-11-4-rules-identity-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-11-deck",
+      "summary": "Retrieve the key ideas from Quantifier and Identity Proofs.",
+      "timeLimitSeconds": null,
+      "title": "11.0 Quantifier and Identity Proofs Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-11-0-orientation",
+          "item-logic-11-0-review-1",
+          "item-logic-11-0-review-2",
+          "item-logic-11-0-checkpoint-1"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-11-checkpoint",
+      "summary": "Construct or diagnose a quantified proof, citing each line and checking fresh-name, scope, subproof, and identity-substitution conditions.",
+      "timeLimitSeconds": null,
+      "title": "11.0 Quantifier and Identity Proofs Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-12-1-derived-rules-guided",
+          "item-logic-12-1-derived-rules-independent",
+          "item-logic-12-2-proofs-semantics-guided",
+          "item-logic-12-2-proofs-semantics-independent",
+          "item-logic-12-3-normal-forms-guided",
+          "item-logic-12-3-normal-forms-independent",
+          "item-logic-12-4-functional-completeness-guided",
+          "item-logic-12-4-functional-completeness-independent",
+          "item-logic-12-5-proving-equivalences-guided",
+          "item-logic-12-5-proving-equivalences-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-12-deck",
+      "summary": "Retrieve the key ideas from Proof Mastery.",
+      "timeLimitSeconds": null,
+      "title": "12.0 Proof Mastery Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-12-0-review-1",
+          "item-logic-12-0-checkpoint-1"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-12-checkpoint",
+      "summary": "Choose and complete a proof, countermodel, normal-form construction, or equivalence chain, then audit every dependency and transformation.",
+      "timeLimitSeconds": null,
+      "title": "12.0 Proof Mastery Checkpoint"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "deck",
+      "ordering": "authored",
+      "playModes": [
+        "flashcard"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-1-1-arguments-guided",
+          "item-logic-2-1-first-steps-symbolization-guided",
+          "item-logic-3-1-characteristic-truth-tables-guided",
+          "item-logic-4-1-limitations-of-tfl-guided",
+          "item-logic-5-1-idea-natural-deduction-guided",
+          "item-logic-6-1-additional-rules-tfl-guided",
+          "item-logic-7-1-building-blocks-fol-guided",
+          "item-logic-8-1-sentences-fol-guided",
+          "item-logic-9-1-extensionality-guided",
+          "item-logic-10-1-using-interpretations-guided",
+          "item-logic-11-1-basic-rules-fol-guided",
+          "item-logic-12-1-derived-rules-guided"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-cumulative-review",
+      "summary": "Retrieve one foundational idea from every module in authored course order.",
+      "timeLimitSeconds": null,
+      "title": "Logic Foundations Cumulative Review"
+    },
+    {
+      "attemptLimit": null,
+      "kind": "quiz",
+      "ordering": "shuffle",
+      "playModes": [
+        "single-choice-quiz",
+        "self-grade-review"
+      ],
+      "selection": {
+        "itemIds": [
+          "item-logic-1-0-checkpoint-1",
+          "item-logic-2-2-connectives-guided",
+          "item-logic-3-0-checkpoint-1",
+          "item-logic-4-2-truth-table-shortcuts-guided",
+          "item-logic-5-0-checkpoint-1",
+          "item-logic-6-2-proof-theoretic-concepts-guided",
+          "item-logic-7-0-checkpoint-1",
+          "item-logic-8-2-definite-descriptions-guided",
+          "item-logic-9-0-checkpoint-1",
+          "item-logic-10-2-reasoning-about-interpretations-guided",
+          "item-logic-11-2-proofs-quantifiers-independent",
+          "item-logic-11-3-conversion-quantifiers-independent",
+          "item-logic-12-3-normal-forms-independent",
+          "item-logic-12-4-functional-completeness-independent",
+          "item-logic-12-5-proving-equivalences-independent"
+        ],
+        "kind": "explicit"
+      },
+      "setId": "set-logic-final-transfer",
+      "summary": "Transfer semantic, symbolic, proof, and metatheoretic skills across the full course.",
+      "timeLimitSeconds": null,
+      "title": "Logic Foundations Final Mixed Transfer"
+    }
+  ]
+}

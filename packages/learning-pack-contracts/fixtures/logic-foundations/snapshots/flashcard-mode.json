@@ -1,0 +1,93 @@
+{
+  "releaseVersion": "2.0.0",
+  "cards": [
+    {
+      "itemId": "item-truth-values-flashcard",
+      "title": "Truth Values",
+      "frontText": "What are the two basic truth values in propositional logic?",
+      "solutionText": "The two basic truth values are true and false.\nA proposition is evaluated using exactly one truth value at a time.",
+      "conceptIds": [
+        "concept-truth-values"
+      ],
+      "objectiveIds": [
+        "objective-recognize-truth-values"
+      ]
+    },
+    {
+      "itemId": "item-negation-single-choice",
+      "title": "Evaluate NOT false",
+      "frontText": "What is NOT false?",
+      "solutionText": "NOT false evaluates to true, so prior mastery for NOT true must be reset.",
+      "conceptIds": [
+        "concept-truth-values",
+        "concept-logical-connectives"
+      ],
+      "objectiveIds": [
+        "objective-evaluate-negation"
+      ]
+    },
+    {
+      "itemId": "item-connectives-multiple-choice",
+      "title": "Identify Binary Connectives",
+      "frontText": "Which connectives combine two propositions?",
+      "solutionText": "AND, OR, and IF-THEN combine two propositions; NOT applies to one proposition.",
+      "conceptIds": [
+        "concept-logical-connectives"
+      ],
+      "objectiveIds": [
+        "objective-build-truth-table"
+      ]
+    },
+    {
+      "itemId": "item-validity-text-recall",
+      "title": "Name the Argument Property",
+      "frontText": "What property means an argument cannot have true premises and a false conclusion?",
+      "solutionText": "The property is validity. A valid argument rules out true premises with a false conclusion.",
+      "conceptIds": [
+        "concept-validity"
+      ],
+      "objectiveIds": [
+        "objective-identify-valid-argument"
+      ]
+    },
+    {
+      "itemId": "item-truth-table-row-count",
+      "title": "Truth Table Rows",
+      "frontText": "How many rows does a truth table with two atomic propositions have?",
+      "solutionText": "Two atomic propositions produce 2^2 rows, so the truth table has 4 rows.",
+      "conceptIds": [
+        "concept-truth-tables",
+        "concept-truth-values"
+      ],
+      "objectiveIds": [
+        "objective-build-truth-table"
+      ]
+    },
+    {
+      "itemId": "item-conditional-single-choice",
+      "title": "Conditional False Case",
+      "frontText": "When is IF P THEN Q false?",
+      "solutionText": "A conditional is false only when the antecedent is true and the consequent is false.",
+      "conceptIds": [
+        "concept-logical-connectives",
+        "concept-truth-tables"
+      ],
+      "objectiveIds": [
+        "objective-build-truth-table"
+      ]
+    },
+    {
+      "itemId": "item-validity-flashcard",
+      "title": "Validity Flashcard",
+      "frontText": "What does validity preserve from premises to conclusion?",
+      "solutionText": "Validity preserves truth conditionally: if the premises are true, the conclusion cannot be false.",
+      "conceptIds": [
+        "concept-validity",
+        "concept-truth-values"
+      ],
+      "objectiveIds": [
+        "objective-identify-valid-argument"
+      ]
+    }
+  ]
+}

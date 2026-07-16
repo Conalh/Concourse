@@ -1,0 +1,391 @@
+{
+  "schemaVersion": "0.1",
+  "items": [
+    {
+      "itemId": "item-truth-values-flashcard",
+      "learningRevision": 1,
+      "title": "Truth Values",
+      "promptBlocks": [
+        {
+          "kind": "question",
+          "text": "What are the two basic truth values in propositional logic?",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        }
+      ],
+      "response": {
+        "kind": "self-grade",
+        "options": [],
+        "textInput": null,
+        "numberInput": null
+      },
+      "evaluation": {
+        "kind": "self-grade",
+        "correctOptionIds": [],
+        "acceptedAnswers": [],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "expectedNumber": null,
+        "absoluteTolerance": null,
+        "passingSelfGrades": [
+          "good",
+          "easy"
+        ]
+      },
+      "reviewedSolutionBlocks": [
+        {
+          "kind": "text",
+          "text": "The two basic truth values are true and false.",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        },
+        {
+          "kind": "callout",
+          "text": "A proposition is evaluated using exactly one truth value at a time.",
+          "language": null,
+          "calloutRole": "definition",
+          "assetId": null,
+          "altText": null
+        }
+      ],
+      "conceptIds": [
+        "concept-truth-values"
+      ],
+      "objectiveIds": [
+        "objective-recognize-truth-values"
+      ],
+      "allowedPlayModes": [
+        "flashcard",
+        "self-grade-review"
+      ]
+    },
+    {
+      "itemId": "item-negation-single-choice",
+      "learningRevision": 1,
+      "title": "Evaluate NOT true",
+      "promptBlocks": [
+        {
+          "kind": "question",
+          "text": "What is NOT true?",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        }
+      ],
+      "response": {
+        "kind": "single-choice",
+        "options": [
+          {
+            "optionId": "option-true",
+            "label": "true",
+            "contentBlocks": []
+          },
+          {
+            "optionId": "option-false",
+            "label": "false",
+            "contentBlocks": []
+          }
+        ],
+        "textInput": null,
+        "numberInput": null
+      },
+      "evaluation": {
+        "kind": "choice-selection",
+        "correctOptionIds": [
+          "option-false"
+        ],
+        "acceptedAnswers": [],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "expectedNumber": null,
+        "absoluteTolerance": null,
+        "passingSelfGrades": []
+      },
+      "reviewedSolutionBlocks": [
+        {
+          "kind": "text",
+          "text": "NOT true evaluates to false.",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        }
+      ],
+      "conceptIds": [
+        "concept-truth-values",
+        "concept-logical-connectives"
+      ],
+      "objectiveIds": [
+        "objective-evaluate-negation"
+      ],
+      "allowedPlayModes": [
+        "single-choice-quiz",
+        "flashcard"
+      ]
+    },
+    {
+      "itemId": "item-connectives-multiple-choice",
+      "learningRevision": 1,
+      "title": "Identify Binary Connectives",
+      "promptBlocks": [
+        {
+          "kind": "question",
+          "text": "Which connectives combine two propositions?",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        }
+      ],
+      "response": {
+        "kind": "multiple-choice",
+        "options": [
+          {
+            "optionId": "option-and",
+            "label": "AND",
+            "contentBlocks": []
+          },
+          {
+            "optionId": "option-or",
+            "label": "OR",
+            "contentBlocks": []
+          },
+          {
+            "optionId": "option-not",
+            "label": "NOT",
+            "contentBlocks": []
+          },
+          {
+            "optionId": "option-if-then",
+            "label": "IF-THEN",
+            "contentBlocks": []
+          }
+        ],
+        "textInput": null,
+        "numberInput": null
+      },
+      "evaluation": {
+        "kind": "choice-selection",
+        "correctOptionIds": [
+          "option-and",
+          "option-or",
+          "option-if-then"
+        ],
+        "acceptedAnswers": [],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "expectedNumber": null,
+        "absoluteTolerance": null,
+        "passingSelfGrades": []
+      },
+      "reviewedSolutionBlocks": [
+        {
+          "kind": "text",
+          "text": "AND, OR, and IF-THEN combine two propositions; NOT applies to one proposition.",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        }
+      ],
+      "conceptIds": [
+        "concept-logical-connectives"
+      ],
+      "objectiveIds": [
+        "objective-build-truth-table"
+      ],
+      "allowedPlayModes": [
+        "multiple-choice-quiz",
+        "flashcard"
+      ]
+    },
+    {
+      "itemId": "item-validity-text-recall",
+      "learningRevision": 1,
+      "title": "Name the Argument Property",
+      "promptBlocks": [
+        {
+          "kind": "question",
+          "text": "What property means an argument cannot have true premises and a false conclusion?",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        }
+      ],
+      "response": {
+        "kind": "text",
+        "options": [],
+        "textInput": {
+          "placeholder": "property name",
+          "minLength": 3,
+          "maxLength": 32
+        },
+        "numberInput": null
+      },
+      "evaluation": {
+        "kind": "exact-text",
+        "correctOptionIds": [],
+        "acceptedAnswers": [
+          "validity",
+          "valid"
+        ],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "expectedNumber": null,
+        "absoluteTolerance": null,
+        "passingSelfGrades": []
+      },
+      "reviewedSolutionBlocks": [
+        {
+          "kind": "text",
+          "text": "The property is validity. A valid argument rules out true premises with a false conclusion.",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        }
+      ],
+      "conceptIds": [
+        "concept-validity"
+      ],
+      "objectiveIds": [
+        "objective-identify-valid-argument"
+      ],
+      "allowedPlayModes": [
+        "text-recall",
+        "flashcard"
+      ]
+    },
+    {
+      "itemId": "item-truth-table-row-count",
+      "learningRevision": 1,
+      "title": "Truth Table Rows",
+      "promptBlocks": [
+        {
+          "kind": "question",
+          "text": "How many rows does a truth table with two atomic propositions have?",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        }
+      ],
+      "response": {
+        "kind": "number",
+        "options": [],
+        "textInput": null,
+        "numberInput": {
+          "placeholder": "row count",
+          "unitLabel": "rows",
+          "min": 0,
+          "max": 16
+        }
+      },
+      "evaluation": {
+        "kind": "numerical-tolerance",
+        "correctOptionIds": [],
+        "acceptedAnswers": [],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "expectedNumber": 4,
+        "absoluteTolerance": 0,
+        "passingSelfGrades": []
+      },
+      "reviewedSolutionBlocks": [
+        {
+          "kind": "text",
+          "text": "Two atomic propositions produce 2^2 rows, so the truth table has 4 rows.",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        }
+      ],
+      "conceptIds": [
+        "concept-truth-tables",
+        "concept-truth-values"
+      ],
+      "objectiveIds": [
+        "objective-build-truth-table"
+      ],
+      "allowedPlayModes": [
+        "number-recall",
+        "flashcard"
+      ]
+    },
+    {
+      "itemId": "item-soundness-manual-read",
+      "learningRevision": 1,
+      "title": "Soundness Reading",
+      "promptBlocks": [
+        {
+          "kind": "text",
+          "text": "Read the definition of soundness and compare it with validity.",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        },
+        {
+          "kind": "image",
+          "text": "",
+          "language": null,
+          "calloutRole": null,
+          "assetId": "asset-logic-cover",
+          "altText": "Logic foundations cover image"
+        }
+      ],
+      "response": {
+        "kind": "none",
+        "options": [],
+        "textInput": null,
+        "numberInput": null
+      },
+      "evaluation": {
+        "kind": "manual-completion",
+        "correctOptionIds": [],
+        "acceptedAnswers": [],
+        "caseSensitive": false,
+        "trimWhitespace": true,
+        "expectedNumber": null,
+        "absoluteTolerance": null,
+        "passingSelfGrades": []
+      },
+      "reviewedSolutionBlocks": [
+        {
+          "kind": "text",
+          "text": "Soundness requires validity plus actually true premises.",
+          "language": null,
+          "calloutRole": null,
+          "assetId": null,
+          "altText": null
+        },
+        {
+          "kind": "callout",
+          "text": "A sound argument is always valid, but a valid argument need not be sound.",
+          "language": null,
+          "calloutRole": "tip",
+          "assetId": null,
+          "altText": null
+        }
+      ],
+      "conceptIds": [
+        "concept-soundness",
+        "concept-validity",
+        "concept-truth-values"
+      ],
+      "objectiveIds": [
+        "objective-explain-soundness"
+      ],
+      "allowedPlayModes": [
+        "manual-read"
+      ]
+    }
+  ]
+}

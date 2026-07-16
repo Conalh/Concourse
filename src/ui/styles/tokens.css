@@ -1,0 +1,115 @@
+:root {
+  color-scheme: dark;
+  --learnt-line-a: #0072bc;
+  --learnt-line-b: #e3131b;
+  --learnt-line-c: #58a738;
+  --learnt-line-d: #a05da5;
+  --learnt-line-e: #f7b618;
+  --learnt-line-k: #e96bb0;
+  --learnt-line-a-rgb: 0 114 188;
+  --learnt-line-b-rgb: 227 19 27;
+  --learnt-line-c-rgb: 88 167 56;
+  --learnt-line-d-rgb: 160 93 165;
+  --learnt-line-e-rgb: 247 182 24;
+  --learnt-line-k-rgb: 233 107 176;
+  --learnt-route-stripe: linear-gradient(
+    90deg,
+    var(--learnt-line-a),
+    var(--learnt-line-e),
+    var(--learnt-line-b),
+    var(--learnt-line-c),
+    var(--learnt-line-d),
+    var(--learnt-line-k)
+  );
+  --learnt-route-stack: linear-gradient(
+    180deg,
+    var(--learnt-line-a),
+    var(--learnt-line-e),
+    var(--learnt-line-b),
+    var(--learnt-line-c),
+    var(--learnt-line-d),
+    var(--learnt-line-k)
+  );
+  --learnt-color-canvas: #050505;
+  --learnt-color-surface-elevated: #121212;
+  --learnt-color-surface-secondary: #1b1b1b;
+  --learnt-color-surface-raised: #262626;
+  --learnt-color-border: rgb(255 255 255 / 0.115);
+  --learnt-color-border-strong: rgb(255 255 255 / 0.19);
+  --learnt-color-text-primary: #fbfbf7;
+  --learnt-color-text-secondary: #d6d6d0;
+  --learnt-color-text-muted: #a6a6a0;
+  --learnt-color-text-dim: #70706a;
+  --learnt-color-active: #56b8ff;
+  --learnt-color-active-contrast: #050505;
+  --learnt-color-retry: #ff6b5b;
+  --learnt-color-warning: var(--learnt-line-e);
+  --learnt-color-warning-contrast: #050505;
+  --learnt-color-success: #7ac85d;
+  --learnt-color-focus: var(--learnt-line-k);
+  --learnt-color-checker-dark: #050505;
+  --learnt-color-checker-light: #fbfbf7;
+  --learnt-color-header-background: rgb(5 5 5 / 0.88);
+  --learnt-color-body-glow: rgb(255 255 255 / 0.028);
+  --learnt-color-panel-sheen: rgb(255 255 255 / 0.026);
+  --learnt-color-panel-sheen-strong: rgb(255 255 255 / 0.032);
+  --learnt-font-interface:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    sans-serif;
+  --learnt-font-mono:
+    ui-monospace, 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  --learnt-type-label: 0.75rem;
+  --learnt-type-body: 1rem;
+  --learnt-type-body-compact: 0.9rem;
+  --learnt-type-heading-1: 2.125rem;
+  --learnt-type-heading-2: 1.35rem;
+  --learnt-type-heading-3: 1rem;
+  --learnt-type-code: 0.88rem;
+  --learnt-space-1: 0.25rem;
+  --learnt-space-2: 0.5rem;
+  --learnt-space-3: 0.75rem;
+  --learnt-space-4: 1rem;
+  --learnt-space-6: 1.5rem;
+  --learnt-space-8: 2rem;
+  --learnt-space-12: 3rem;
+  --learnt-radius-1: 4px;
+  --learnt-radius-2: 8px;
+  --learnt-border-width: 1px;
+  --learnt-shadow-panel: 0 18px 52px rgb(0 0 0 / 0.22);
+  --learnt-duration-fast: 120ms;
+  --learnt-duration-normal: 180ms;
+  --learnt-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --learnt-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --learnt-ease-hover: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --learnt-measure: 72ch;
+  --learnt-sidebar-width: 18rem;
+  --learnt-context-width: 20rem;
+  --learnt-header-height: 3.375rem;
+  --learnt-touch-target: 2.75rem;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --learnt-color-canvas: #f4f3ee;
+  --learnt-color-surface-elevated: #ffffff;
+  --learnt-color-surface-secondary: #ecebe5;
+  --learnt-color-surface-raised: #e1e0d8;
+  --learnt-color-border: rgb(5 5 5 / 0.13);
+  --learnt-color-border-strong: rgb(5 5 5 / 0.22);
+  --learnt-color-text-primary: #050505;
+  --learnt-color-text-secondary: #2b2b29;
+  --learnt-color-text-muted: #5f5f58;
+  --learnt-color-text-dim: #7b7b72;
+  --learnt-color-active: var(--learnt-line-a);
+  --learnt-color-active-contrast: #ffffff;
+  --learnt-color-retry: #b42318;
+  --learnt-color-warning: #8a5d00;
+  --learnt-color-warning-contrast: #ffffff;
+  --learnt-color-success: #347a1f;
+  --learnt-color-focus: var(--learnt-line-d);
+  --learnt-color-header-background: rgb(255 255 255 / 0.88);
+  --learnt-color-body-glow: rgb(5 5 5 / 0.035);
+  --learnt-color-panel-sheen: rgb(5 5 5 / 0.018);
+  --learnt-color-panel-sheen-strong: rgb(5 5 5 / 0.024);
+  --learnt-shadow-panel: 0 18px 46px rgb(5 5 5 / 0.11);
+}

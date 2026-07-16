@@ -1,0 +1,31 @@
+{
+  "releaseVersion": "2.0.0",
+  "sets": [
+    {
+      "setId": "set-logic-flashcards",
+      "selectionKind": "explicit",
+      "resolvedItemIds": [
+        "item-truth-values-flashcard",
+        "item-negation-single-choice",
+        "item-validity-text-recall",
+        "item-validity-flashcard"
+      ],
+      "playModes": [
+        "flashcard"
+      ]
+    },
+    {
+      "setId": "set-core-quiz",
+      "selectionKind": "rule",
+      "resolvedItemIds": [
+        "item-connectives-multiple-choice",
+        "item-conditional-single-choice"
+      ],
+      "playModes": [
+        "single-choice-quiz",
+        "multiple-choice-quiz",
+        "number-recall"
+      ]
+    }
+  ]
+}

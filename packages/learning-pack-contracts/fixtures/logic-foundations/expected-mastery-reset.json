@@ -1,0 +1,9 @@
+{
+  "fromVersion": "1.1.0",
+  "toVersion": "2.0.0",
+  "itemId": "item-negation-single-choice",
+  "fromLearningRevision": 1,
+  "toLearningRevision": 2,
+  "progressPolicy": "reset-mastery",
+  "expectedBehavior": "retain-review-history-reset-current-mastery"
+}

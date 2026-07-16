@@ -1,0 +1,48 @@
+{
+  "name": "@learnt/learning-pack-sdk",
+  "version": "0.1.0",
+  "description": "Archive and filesystem tooling for Learnt learning packs.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "learntpack": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@learnt/learning-pack-contracts": "0.1.0",
+    "fflate": "^0.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.4",
+    "typescript": "^5.5.4",
+    "vitest": "^4.1.9"
+  },
+  "license": "MIT",
+  "author": "Conal Hickey",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Conalh/Concourse.git",
+    "directory": "packages/learning-pack-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/Conalh/Concourse/issues"
+  }
+}

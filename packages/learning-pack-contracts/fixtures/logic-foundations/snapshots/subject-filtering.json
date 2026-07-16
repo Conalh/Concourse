@@ -1,0 +1,49 @@
+{
+  "releaseVersion": "2.0.0",
+  "subjects": [
+    {
+      "subjectId": "subject-propositional-logic",
+      "courseIds": [
+        "course-logic-core"
+      ],
+      "conceptIds": [
+        "concept-truth-values",
+        "concept-propositions",
+        "concept-logical-connectives",
+        "concept-truth-tables"
+      ],
+      "objectiveIds": [
+        "objective-recognize-truth-values",
+        "objective-evaluate-negation",
+        "objective-build-truth-table"
+      ],
+      "itemIds": [
+        "item-truth-values-flashcard",
+        "item-negation-single-choice",
+        "item-connectives-multiple-choice",
+        "item-truth-table-row-count",
+        "item-conditional-single-choice"
+      ]
+    },
+    {
+      "subjectId": "subject-proof-strategies",
+      "courseIds": [
+        "course-proof-practice"
+      ],
+      "conceptIds": [
+        "concept-truth-values",
+        "concept-validity",
+        "concept-soundness"
+      ],
+      "objectiveIds": [
+        "objective-identify-valid-argument",
+        "objective-explain-soundness"
+      ],
+      "itemIds": [
+        "item-validity-text-recall",
+        "item-validity-flashcard",
+        "item-soundness-manual-read"
+      ]
+    }
+  ]
+}

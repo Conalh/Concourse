@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "0.1",
+  "themeId": "theme-logic-foundations",
+  "displayName": "Logic Foundations",
+  "accentColor": "#3366CC",
+  "backgroundRole": "system",
+  "iconAssetId": "asset-logic-icon",
+  "coverAssetId": "asset-logic-cover"
+}

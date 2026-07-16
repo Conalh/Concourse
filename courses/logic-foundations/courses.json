@@ -1,0 +1,3185 @@
+{
+  "courses": [
+    {
+      "courseId": "logic-foundations",
+      "rootNodes": [
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "argument-structure"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-1-1-arguments-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-1-1-arguments-source"
+                },
+                {
+                  "itemId": "item-logic-1-1-arguments-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-1-1-arguments-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-1-1-arguments-guided",
+                "item-logic-1-1-arguments-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-1-1-arguments",
+              "objectiveIds": [
+                "identify-premises-and-conclusion"
+              ],
+              "summary": "Separate an argument into premises offered as reasons and the conclusion they support.",
+              "title": "1.1 Arguments"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "logical-consequence"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-1-2-scope-of-logic-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-1-2-scope-of-logic-source"
+                },
+                {
+                  "itemId": "item-logic-1-2-scope-of-logic-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-1-2-scope-of-logic-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-1-2-scope-of-logic-guided",
+                "item-logic-1-2-scope-of-logic-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-1-2-scope-of-logic",
+              "objectiveIds": [
+                "distinguish-validity-from-truth"
+              ],
+              "summary": "Distinguish whether reasoning follows from whether its premises happen to be true.",
+              "title": "1.2 The Scope of Logic"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "logical-relations"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-1-3-other-logical-notions-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-1-3-other-logical-notions-source"
+                },
+                {
+                  "itemId": "item-logic-1-3-other-logical-notions-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-1-3-other-logical-notions-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-1-3-other-logical-notions-guided",
+                "item-logic-1-3-other-logical-notions-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-1-3-other-logical-notions",
+              "objectiveIds": [
+                "compare-logical-relations"
+              ],
+              "summary": "Relate validity, consistency, equivalence, and contradiction without treating them as synonyms.",
+              "title": "1.3 Other Logical Notions"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "argument-structure",
+                "logical-consequence",
+                "logical-relations"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-1-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-1-0-review-2",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-1-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-1-0-review-1",
+                "item-logic-1-0-review-2"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-1-0-arguments-and-meaning-review",
+              "objectiveIds": [
+                "identify-premises-and-conclusion",
+                "distinguish-validity-from-truth",
+                "compare-logical-relations"
+              ],
+              "summary": "Review how premises support conclusions and how validity differs from truth, consistency, and contradiction.",
+              "title": "1.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "argument-structure",
+                "logical-consequence",
+                "logical-relations"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-1-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-1-0-checkpoint-2",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-1-0-checkpoint-3",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-1-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-1-0-checkpoint-1",
+                "item-logic-1-0-checkpoint-2",
+                "item-logic-1-0-checkpoint-3"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-1-0-arguments-and-meaning-checkpoint",
+              "objectiveIds": [
+                "identify-premises-and-conclusion",
+                "distinguish-validity-from-truth",
+                "compare-logical-relations"
+              ],
+              "summary": "Analyze a short argument, identify its structure, and classify the logical relationship among its claims.",
+              "title": "1.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "argument-structure",
+            "logical-consequence",
+            "logical-relations"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "itemId": "item-logic-1-0-orientation",
+              "kind": "item"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-1-1-arguments"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-1-2-scope-of-logic"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-1-3-other-logical-notions"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-1-0-arguments-and-meaning-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-1-0-arguments-and-meaning-checkpoint"
+            }
+          ],
+          "itemIds": [
+            "item-logic-1-0-orientation"
+          ],
+          "kind": "module",
+          "nodeId": "node-logic-1-0-arguments-and-meaning",
+          "objectiveIds": [
+            "identify-premises-and-conclusion",
+            "distinguish-validity-from-truth",
+            "compare-logical-relations"
+          ],
+          "summary": "Review how premises support conclusions and how validity differs from truth, consistency, and contradiction.",
+          "title": "1.0 Logic, Arguments, and Meaning"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "sentence-form"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-2-1-first-steps-symbolization-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-2-1-first-steps-symbolization-source"
+                },
+                {
+                  "itemId": "item-logic-2-1-first-steps-symbolization-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-2-1-first-steps-symbolization-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-2-1-first-steps-symbolization-guided",
+                "item-logic-2-1-first-steps-symbolization-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-2-1-first-steps-symbolization",
+              "objectiveIds": [
+                "abstract-argument-form"
+              ],
+              "summary": "Expose an argument pattern by replacing complete atomic claims with stable sentence letters.",
+              "title": "2.1 First Steps to Symbolization"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "truth-functional-connectives"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-2-2-connectives-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-2-2-connectives-source"
+                },
+                {
+                  "itemId": "item-logic-2-2-connectives-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-2-2-connectives-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-2-2-connectives-guided",
+                "item-logic-2-2-connectives-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-2-2-connectives",
+              "objectiveIds": [
+                "symbolize-connectives"
+              ],
+              "summary": "Translate negation, conjunction, disjunction, conditional, and biconditional structure into TFL.",
+              "title": "2.2 Connectives"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "tfl-syntax"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-2-3-sentences-of-tfl-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-2-3-sentences-of-tfl-source"
+                },
+                {
+                  "itemId": "item-logic-2-3-sentences-of-tfl-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-2-3-sentences-of-tfl-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-2-3-sentences-of-tfl-guided",
+                "item-logic-2-3-sentences-of-tfl-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-2-3-sentences-of-tfl",
+              "objectiveIds": [
+                "parse-tfl-sentences"
+              ],
+              "summary": "Recognize well-formed TFL sentences and identify their main connective.",
+              "title": "2.3 Sentences of TFL"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "structural-ambiguity"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-2-4-ambiguity-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-2-4-ambiguity-source"
+                },
+                {
+                  "itemId": "item-logic-2-4-ambiguity-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-2-4-ambiguity-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-2-4-ambiguity-guided",
+                "item-logic-2-4-ambiguity-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-2-4-ambiguity",
+              "objectiveIds": [
+                "disambiguate-before-symbolizing"
+              ],
+              "summary": "Resolve lexical or structural ambiguity before committing to one formalization.",
+              "title": "2.4 Ambiguity"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "use-mention-distinction"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-2-5-use-and-mention-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-2-5-use-and-mention-source"
+                },
+                {
+                  "itemId": "item-logic-2-5-use-and-mention-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-2-5-use-and-mention-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-2-5-use-and-mention-guided",
+                "item-logic-2-5-use-and-mention-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-2-5-use-and-mention",
+              "objectiveIds": [
+                "distinguish-use-from-mention"
+              ],
+              "summary": "Distinguish using an expression to talk about the world from mentioning the expression itself.",
+              "title": "2.5 Use and Mention"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "logical-relations",
+                "sentence-form",
+                "truth-functional-connectives",
+                "tfl-syntax",
+                "structural-ambiguity",
+                "use-mention-distinction"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-2-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-2-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-2-0-review-1"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-2-0-truth-functional-language-review",
+              "objectiveIds": [
+                "abstract-argument-form",
+                "symbolize-connectives",
+                "parse-tfl-sentences",
+                "disambiguate-before-symbolizing",
+                "distinguish-use-from-mention"
+              ],
+              "summary": "Translate ordinary claims into well-formed TFL while preserving repeated atoms, grouping, and the use–mention distinction.",
+              "title": "2.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "logical-relations",
+                "sentence-form",
+                "truth-functional-connectives",
+                "tfl-syntax",
+                "structural-ambiguity",
+                "use-mention-distinction"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-2-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-2-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-2-0-checkpoint-1"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-2-0-truth-functional-language-checkpoint",
+              "objectiveIds": [
+                "abstract-argument-form",
+                "symbolize-connectives",
+                "parse-tfl-sentences",
+                "disambiguate-before-symbolizing",
+                "distinguish-use-from-mention"
+              ],
+              "summary": "Disambiguate a short passage, give its symbolization key and TFL form, and identify the main connective.",
+              "title": "2.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "logical-relations",
+            "sentence-form",
+            "truth-functional-connectives",
+            "tfl-syntax",
+            "structural-ambiguity",
+            "use-mention-distinction"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-2-1-first-steps-symbolization"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-2-2-connectives"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-2-3-sentences-of-tfl"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-2-4-ambiguity"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-2-5-use-and-mention"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-2-0-truth-functional-language-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-2-0-truth-functional-language-checkpoint"
+            }
+          ],
+          "itemIds": [],
+          "kind": "module",
+          "nodeId": "node-logic-2-0-truth-functional-language",
+          "objectiveIds": [
+            "abstract-argument-form",
+            "symbolize-connectives",
+            "parse-tfl-sentences",
+            "disambiguate-before-symbolizing",
+            "distinguish-use-from-mention"
+          ],
+          "summary": "Translate ordinary claims into well-formed TFL while preserving repeated atoms, grouping, and the use–mention distinction.",
+          "title": "2.0 Truth-Functional Language"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "characteristic-truth-tables"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-3-1-characteristic-truth-tables-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-3-1-characteristic-truth-tables-source"
+                },
+                {
+                  "itemId": "item-logic-3-1-characteristic-truth-tables-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-3-1-characteristic-truth-tables-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-3-1-characteristic-truth-tables-guided",
+                "item-logic-3-1-characteristic-truth-tables-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-3-1-characteristic-truth-tables",
+              "objectiveIds": [
+                "evaluate-connectives"
+              ],
+              "summary": "Evaluate each TFL connective from the truth values of its immediate components.",
+              "title": "3.1 Characteristic Truth Tables"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "truth-functionality"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-3-2-truth-functional-connectives-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-3-2-truth-functional-connectives-source"
+                },
+                {
+                  "itemId": "item-logic-3-2-truth-functional-connectives-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-3-2-truth-functional-connectives-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-3-2-truth-functional-connectives-guided",
+                "item-logic-3-2-truth-functional-connectives-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-3-2-truth-functional-connectives",
+              "objectiveIds": [
+                "identify-truth-functional-operators"
+              ],
+              "summary": "Determine whether a connective’s output is fixed entirely by its component truth values.",
+              "title": "3.2 Truth-Functional Connectives"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "complete-truth-tables"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-3-3-complete-truth-tables-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-3-3-complete-truth-tables-source"
+                },
+                {
+                  "itemId": "item-logic-3-3-complete-truth-tables-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-3-3-complete-truth-tables-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-3-3-complete-truth-tables-guided",
+                "item-logic-3-3-complete-truth-tables-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-3-3-complete-truth-tables",
+              "objectiveIds": [
+                "construct-complete-truth-table"
+              ],
+              "summary": "Construct every valuation for a formula and evaluate it from the inside out.",
+              "title": "3.3 Complete Truth Tables"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "tfl-semantic-properties"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-3-4-semantic-concepts-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-3-4-semantic-concepts-source"
+                },
+                {
+                  "itemId": "item-logic-3-4-semantic-concepts-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-3-4-semantic-concepts-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-3-4-semantic-concepts-guided",
+                "item-logic-3-4-semantic-concepts-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-3-4-semantic-concepts",
+              "objectiveIds": [
+                "test-semantic-properties"
+              ],
+              "summary": "Use truth tables to test tautology, contradiction, equivalence, satisfiability, entailment, and validity.",
+              "title": "3.4 Semantic Concepts"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "truth-functional-connectives",
+                "tfl-syntax",
+                "characteristic-truth-tables",
+                "truth-functionality",
+                "complete-truth-tables",
+                "tfl-semantic-properties"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-3-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-3-0-review-2",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-3-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-3-0-review-1",
+                "item-logic-3-0-review-2"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-3-0-truth-tables-review",
+              "objectiveIds": [
+                "evaluate-connectives",
+                "identify-truth-functional-operators",
+                "construct-complete-truth-table",
+                "test-semantic-properties"
+              ],
+              "summary": "Evaluate TFL formulas systematically and connect complete truth-table patterns to semantic classifications.",
+              "title": "3.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "truth-functional-connectives",
+                "tfl-syntax",
+                "characteristic-truth-tables",
+                "truth-functionality",
+                "complete-truth-tables",
+                "tfl-semantic-properties"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-3-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-3-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-3-0-checkpoint-1"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-3-0-truth-tables-checkpoint",
+              "objectiveIds": [
+                "evaluate-connectives",
+                "identify-truth-functional-operators",
+                "construct-complete-truth-table",
+                "test-semantic-properties"
+              ],
+              "summary": "Build or inspect a truth table, identify a decisive row, and justify a semantic verdict.",
+              "title": "3.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "truth-functional-connectives",
+            "tfl-syntax",
+            "characteristic-truth-tables",
+            "truth-functionality",
+            "complete-truth-tables",
+            "tfl-semantic-properties"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "itemId": "item-logic-3-0-orientation",
+              "kind": "item"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-3-1-characteristic-truth-tables"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-3-2-truth-functional-connectives"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-3-3-complete-truth-tables"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-3-4-semantic-concepts"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-3-0-truth-tables-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-3-0-truth-tables-checkpoint"
+            }
+          ],
+          "itemIds": [
+            "item-logic-3-0-orientation"
+          ],
+          "kind": "module",
+          "nodeId": "node-logic-3-0-truth-tables",
+          "objectiveIds": [
+            "evaluate-connectives",
+            "identify-truth-functional-operators",
+            "construct-complete-truth-table",
+            "test-semantic-properties"
+          ],
+          "summary": "Evaluate TFL formulas systematically and connect complete truth-table patterns to semantic classifications.",
+          "title": "3.0 Truth Tables"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "expressive-limits"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-4-1-limitations-of-tfl-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-4-1-limitations-of-tfl-source"
+                },
+                {
+                  "itemId": "item-logic-4-1-limitations-of-tfl-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-4-1-limitations-of-tfl-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-4-1-limitations-of-tfl-guided",
+                "item-logic-4-1-limitations-of-tfl-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-4-1-limitations-of-tfl",
+              "objectiveIds": [
+                "recognize-tfl-limitations"
+              ],
+              "summary": "Recognize valid reasoning that TFL cannot reveal because atomic sentence structure has been hidden.",
+              "title": "4.1 Limitations of TFL"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "truth-table-shortcuts"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-4-2-truth-table-shortcuts-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-4-2-truth-table-shortcuts-source"
+                },
+                {
+                  "itemId": "item-logic-4-2-truth-table-shortcuts-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-4-2-truth-table-shortcuts-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-4-2-truth-table-shortcuts-guided",
+                "item-logic-4-2-truth-table-shortcuts-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-4-2-truth-table-shortcuts",
+              "objectiveIds": [
+                "apply-truth-table-shortcuts"
+              ],
+              "summary": "Skip unnecessary component calculations while preserving a justified semantic test.",
+              "title": "4.2 Truth Table Shortcuts"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "partial-truth-tables"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-4-3-partial-truth-tables-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-4-3-partial-truth-tables-source"
+                },
+                {
+                  "itemId": "item-logic-4-3-partial-truth-tables-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-4-3-partial-truth-tables-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-4-3-partial-truth-tables-guided",
+                "item-logic-4-3-partial-truth-tables-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-4-3-partial-truth-tables",
+              "objectiveIds": [
+                "construct-countervaluation"
+              ],
+              "summary": "Construct a decisive valuation instead of a full table when one counterexample is enough.",
+              "title": "4.3 Partial Truth Tables"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "complete-truth-tables",
+                "tfl-semantic-properties",
+                "expressive-limits",
+                "truth-table-shortcuts",
+                "partial-truth-tables"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-4-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-4-0-review-2",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-4-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-4-0-review-1",
+                "item-logic-4-0-review-2"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-4-0-semantic-reasoning-tfl-review",
+              "objectiveIds": [
+                "recognize-tfl-limitations",
+                "apply-truth-table-shortcuts",
+                "construct-countervaluation"
+              ],
+              "summary": "Choose between complete and partial truth-table methods while respecting what TFL can and cannot represent.",
+              "title": "4.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "complete-truth-tables",
+                "tfl-semantic-properties",
+                "expressive-limits",
+                "truth-table-shortcuts",
+                "partial-truth-tables"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-4-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-4-0-checkpoint-2",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-4-0-checkpoint-3",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-4-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-4-0-checkpoint-1",
+                "item-logic-4-0-checkpoint-2",
+                "item-logic-4-0-checkpoint-3"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-4-0-semantic-reasoning-tfl-checkpoint",
+              "objectiveIds": [
+                "recognize-tfl-limitations",
+                "apply-truth-table-shortcuts",
+                "construct-countervaluation"
+              ],
+              "summary": "Find and explain a decisive valuation, or explain why TFL is too coarse to capture the original inference.",
+              "title": "4.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "complete-truth-tables",
+            "tfl-semantic-properties",
+            "expressive-limits",
+            "truth-table-shortcuts",
+            "partial-truth-tables"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "itemId": "item-logic-4-0-orientation",
+              "kind": "item"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-4-1-limitations-of-tfl"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-4-2-truth-table-shortcuts"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-4-3-partial-truth-tables"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-4-0-semantic-reasoning-tfl-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-4-0-semantic-reasoning-tfl-checkpoint"
+            }
+          ],
+          "itemIds": [
+            "item-logic-4-0-orientation"
+          ],
+          "kind": "module",
+          "nodeId": "node-logic-4-0-semantic-reasoning-tfl",
+          "objectiveIds": [
+            "recognize-tfl-limitations",
+            "apply-truth-table-shortcuts",
+            "construct-countervaluation"
+          ],
+          "summary": "Choose between complete and partial truth-table methods while respecting what TFL can and cannot represent.",
+          "title": "4.0 Semantic Reasoning in TFL"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "natural-deduction"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-5-1-idea-natural-deduction-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-5-1-idea-natural-deduction-source"
+                },
+                {
+                  "itemId": "item-logic-5-1-idea-natural-deduction-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-5-1-idea-natural-deduction-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-5-1-idea-natural-deduction-guided",
+                "item-logic-5-1-idea-natural-deduction-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-5-1-idea-natural-deduction",
+              "objectiveIds": [
+                "explain-proof-purpose"
+              ],
+              "summary": "Explain how a derivation displays a chain of licensed inference rather than checking every valuation.",
+              "title": "5.1 The Idea of Natural Deduction"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "tfl-proof-rules"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-5-2-basic-rules-tfl-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-5-2-basic-rules-tfl-source"
+                },
+                {
+                  "itemId": "item-logic-5-2-basic-rules-tfl-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-5-2-basic-rules-tfl-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-5-2-basic-rules-tfl-guided",
+                "item-logic-5-2-basic-rules-tfl-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-5-2-basic-rules-tfl",
+              "objectiveIds": [
+                "apply-basic-tfl-rules"
+              ],
+              "summary": "Select introduction or elimination rules based on the main connective of available formulas and goals.",
+              "title": "5.2 Basic Rules for TFL"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "proof-strategy"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-5-3-constructing-proofs-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-5-3-constructing-proofs-source"
+                },
+                {
+                  "itemId": "item-logic-5-3-constructing-proofs-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-5-3-constructing-proofs-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-5-3-constructing-proofs-guided",
+                "item-logic-5-3-constructing-proofs-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-5-3-constructing-proofs",
+              "objectiveIds": [
+                "plan-tfl-proof"
+              ],
+              "summary": "Plan a proof by working backward from the goal and forward from usable premises.",
+              "title": "5.3 Constructing Proofs"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "tfl-syntax",
+                "tfl-semantic-properties",
+                "natural-deduction",
+                "tfl-proof-rules",
+                "proof-strategy"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-5-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-5-0-review-2",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-5-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-5-0-review-1",
+                "item-logic-5-0-review-2"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-5-0-natural-deduction-foundations-review",
+              "objectiveIds": [
+                "explain-proof-purpose",
+                "apply-basic-tfl-rules",
+                "plan-tfl-proof"
+              ],
+              "summary": "Match proof goals and available formulas to introduction, elimination, and subproof strategies.",
+              "title": "5.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "tfl-syntax",
+                "tfl-semantic-properties",
+                "natural-deduction",
+                "tfl-proof-rules",
+                "proof-strategy"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-5-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-5-0-checkpoint-2",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-5-0-checkpoint-3",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-5-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-5-0-checkpoint-1",
+                "item-logic-5-0-checkpoint-2",
+                "item-logic-5-0-checkpoint-3"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-5-0-natural-deduction-foundations-checkpoint",
+              "objectiveIds": [
+                "explain-proof-purpose",
+                "apply-basic-tfl-rules",
+                "plan-tfl-proof"
+              ],
+              "summary": "Plan and explain a short derivation, including every assumption, rule choice, and discharged subproof.",
+              "title": "5.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "tfl-syntax",
+            "tfl-semantic-properties",
+            "natural-deduction",
+            "tfl-proof-rules",
+            "proof-strategy"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "itemId": "item-logic-5-0-orientation",
+              "kind": "item"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-5-1-idea-natural-deduction"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-5-2-basic-rules-tfl"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-5-3-constructing-proofs"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-5-0-natural-deduction-foundations-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-5-0-natural-deduction-foundations-checkpoint"
+            }
+          ],
+          "itemIds": [
+            "item-logic-5-0-orientation"
+          ],
+          "kind": "module",
+          "nodeId": "node-logic-5-0-natural-deduction-foundations",
+          "objectiveIds": [
+            "explain-proof-purpose",
+            "apply-basic-tfl-rules",
+            "plan-tfl-proof"
+          ],
+          "summary": "Match proof goals and available formulas to introduction, elimination, and subproof strategies.",
+          "title": "5.0 Natural Deduction Foundations"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "additional-tfl-rules"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-6-1-additional-rules-tfl-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-6-1-additional-rules-tfl-source"
+                },
+                {
+                  "itemId": "item-logic-6-1-additional-rules-tfl-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-6-1-additional-rules-tfl-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-6-1-additional-rules-tfl-guided",
+                "item-logic-6-1-additional-rules-tfl-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-6-1-additional-rules-tfl",
+              "objectiveIds": [
+                "apply-additional-tfl-rules"
+              ],
+              "summary": "Apply convenient rules such as DS, MT, DNE, excluded middle, and De Morgan transformations with exact premises.",
+              "title": "6.1 Additional Rules for TFL"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "proof-theoretic-concepts"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-6-2-proof-theoretic-concepts-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-6-2-proof-theoretic-concepts-source"
+                },
+                {
+                  "itemId": "item-logic-6-2-proof-theoretic-concepts-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-6-2-proof-theoretic-concepts-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-6-2-proof-theoretic-concepts-guided",
+                "item-logic-6-2-proof-theoretic-concepts-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-6-2-proof-theoretic-concepts",
+              "objectiveIds": [
+                "distinguish-turnstiles"
+              ],
+              "summary": "Read the single turnstile as a claim about derivability and distinguish it from semantic entailment.",
+              "title": "6.2 Proof-Theoretic Concepts"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "derived-rules"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-6-3-derived-rules-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-6-3-derived-rules-source"
+                },
+                {
+                  "itemId": "item-logic-6-3-derived-rules-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-6-3-derived-rules-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-6-3-derived-rules-guided",
+                "item-logic-6-3-derived-rules-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-6-3-derived-rules",
+              "objectiveIds": [
+                "expand-derived-rule"
+              ],
+              "summary": "Expand a convenient derived-rule step into a proof using only the basic rules.",
+              "title": "6.3 Derived Rules"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "soundness-completeness"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-6-4-soundness-completeness-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-6-4-soundness-completeness-source"
+                },
+                {
+                  "itemId": "item-logic-6-4-soundness-completeness-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-6-4-soundness-completeness-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-6-4-soundness-completeness-guided",
+                "item-logic-6-4-soundness-completeness-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-6-4-soundness-completeness",
+              "objectiveIds": [
+                "relate-proof-and-semantics"
+              ],
+              "summary": "Relate derivability and semantic consequence through the soundness and completeness guarantees.",
+              "title": "6.4 Soundness and Completeness"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "natural-deduction",
+                "tfl-proof-rules",
+                "proof-strategy",
+                "additional-tfl-rules",
+                "proof-theoretic-concepts",
+                "derived-rules",
+                "soundness-completeness"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-6-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-6-0-review-2",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-6-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-6-0-review-1",
+                "item-logic-6-0-review-2"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-6-0-proof-strategy-review",
+              "objectiveIds": [
+                "apply-additional-tfl-rules",
+                "distinguish-turnstiles",
+                "expand-derived-rule",
+                "relate-proof-and-semantics"
+              ],
+              "summary": "Use additional and derived rules accurately while keeping proof-theoretic and semantic claims distinct.",
+              "title": "6.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "natural-deduction",
+                "tfl-proof-rules",
+                "proof-strategy",
+                "additional-tfl-rules",
+                "proof-theoretic-concepts",
+                "derived-rules",
+                "soundness-completeness"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-6-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-6-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-6-0-checkpoint-1"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-6-0-proof-strategy-checkpoint",
+              "objectiveIds": [
+                "apply-additional-tfl-rules",
+                "distinguish-turnstiles",
+                "expand-derived-rule",
+                "relate-proof-and-semantics"
+              ],
+              "summary": "Analyze a short proof strategy and explain how soundness, completeness, or derived-rule expansion justifies it.",
+              "title": "6.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "natural-deduction",
+            "tfl-proof-rules",
+            "proof-strategy",
+            "additional-tfl-rules",
+            "proof-theoretic-concepts",
+            "derived-rules",
+            "soundness-completeness"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "itemId": "item-logic-6-0-orientation",
+              "kind": "item"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-6-1-additional-rules-tfl"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-6-2-proof-theoretic-concepts"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-6-3-derived-rules"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-6-4-soundness-completeness"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-6-0-proof-strategy-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-6-0-proof-strategy-checkpoint"
+            }
+          ],
+          "itemIds": [
+            "item-logic-6-0-orientation"
+          ],
+          "kind": "module",
+          "nodeId": "node-logic-6-0-proof-strategy",
+          "objectiveIds": [
+            "apply-additional-tfl-rules",
+            "distinguish-turnstiles",
+            "expand-derived-rule",
+            "relate-proof-and-semantics"
+          ],
+          "summary": "Use additional and derived rules accurately while keeping proof-theoretic and semantic claims distinct.",
+          "title": "6.0 Proof Strategy"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-building-blocks"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-7-1-building-blocks-fol-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-7-1-building-blocks-fol-source"
+                },
+                {
+                  "itemId": "item-logic-7-1-building-blocks-fol-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-7-1-building-blocks-fol-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-7-1-building-blocks-fol-guided",
+                "item-logic-7-1-building-blocks-fol-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-7-1-building-blocks-fol",
+              "objectiveIds": [
+                "identify-fol-building-blocks"
+              ],
+              "summary": "Distinguish names, predicates, variables, quantifiers, and the domain when decomposing an atomic claim.",
+              "title": "7.1 Building Blocks of FOL"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "quantifier-symbolization"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-7-2-one-quantifier-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-7-2-one-quantifier-source"
+                },
+                {
+                  "itemId": "item-logic-7-2-one-quantifier-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-7-2-one-quantifier-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-7-2-one-quantifier-guided",
+                "item-logic-7-2-one-quantifier-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-7-2-one-quantifier",
+              "objectiveIds": [
+                "symbolize-single-quantifier-claims"
+              ],
+              "summary": "Choose a domain and symbolize common one-quantifier claims with the correct connective and scope.",
+              "title": "7.2 Sentences with One Quantifier"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "multiple-generality"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-7-3-multiple-generality-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-7-3-multiple-generality-source"
+                },
+                {
+                  "itemId": "item-logic-7-3-multiple-generality-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-7-3-multiple-generality-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-7-3-multiple-generality-guided",
+                "item-logic-7-3-multiple-generality-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-7-3-multiple-generality",
+              "objectiveIds": [
+                "distinguish-quantifier-order"
+              ],
+              "summary": "Track predicate-place order and quantifier order in claims about several objects.",
+              "title": "7.3 Multiple Generality"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-identity"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-7-4-identity-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-7-4-identity-source"
+                },
+                {
+                  "itemId": "item-logic-7-4-identity-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-7-4-identity-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-7-4-identity-guided",
+                "item-logic-7-4-identity-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-7-4-identity",
+              "objectiveIds": [
+                "symbolize-identity-and-quantity"
+              ],
+              "summary": "Use identity and non-identity to express sameness, exceptions, and finite numerical claims.",
+              "title": "7.4 Identity"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "tfl-syntax",
+                "truth-functional-connectives",
+                "fol-building-blocks",
+                "quantifier-symbolization",
+                "multiple-generality",
+                "fol-identity"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-7-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-7-0-review-2",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-7-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-7-0-review-1",
+                "item-logic-7-0-review-2"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-7-0-first-order-language-review",
+              "objectiveIds": [
+                "identify-fol-building-blocks",
+                "symbolize-single-quantifier-claims",
+                "distinguish-quantifier-order",
+                "symbolize-identity-and-quantity"
+              ],
+              "summary": "Retrieve how domains, predicate places, quantifier scope, and identity determine a first-order symbolization.",
+              "title": "7.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "tfl-syntax",
+                "truth-functional-connectives",
+                "fol-building-blocks",
+                "quantifier-symbolization",
+                "multiple-generality",
+                "fol-identity"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-7-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-7-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-7-0-checkpoint-1"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-7-0-first-order-language-checkpoint",
+              "objectiveIds": [
+                "identify-fol-building-blocks",
+                "symbolize-single-quantifier-claims",
+                "distinguish-quantifier-order",
+                "symbolize-identity-and-quantity"
+              ],
+              "summary": "Build and explain a finite first-order symbolization key, then compare formulas that differ in quantifier order or identity.",
+              "title": "7.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "tfl-syntax",
+            "truth-functional-connectives",
+            "fol-building-blocks",
+            "quantifier-symbolization",
+            "multiple-generality",
+            "fol-identity"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "itemId": "item-logic-7-0-orientation",
+              "kind": "item"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-7-1-building-blocks-fol"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-7-2-one-quantifier"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-7-3-multiple-generality"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-7-4-identity"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-7-0-first-order-language-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-7-0-first-order-language-checkpoint"
+            }
+          ],
+          "itemIds": [
+            "item-logic-7-0-orientation"
+          ],
+          "kind": "module",
+          "nodeId": "node-logic-7-0-first-order-language",
+          "objectiveIds": [
+            "identify-fol-building-blocks",
+            "symbolize-single-quantifier-claims",
+            "distinguish-quantifier-order",
+            "symbolize-identity-and-quantity"
+          ],
+          "summary": "Retrieve how domains, predicate places, quantifier scope, and identity determine a first-order symbolization.",
+          "title": "7.0 First-Order Language"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-syntax"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-8-1-sentences-fol-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-8-1-sentences-fol-source"
+                },
+                {
+                  "itemId": "item-logic-8-1-sentences-fol-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-8-1-sentences-fol-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-8-1-sentences-fol-guided",
+                "item-logic-8-1-sentences-fol-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-8-1-sentences-fol",
+              "objectiveIds": [
+                "identify-fol-sentences"
+              ],
+              "summary": "Recognize FOL terms, formulas, sentences, bound variables, and free variables by the formation rules.",
+              "title": "8.1 Sentences of FOL"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "definite-descriptions"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-8-2-definite-descriptions-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-8-2-definite-descriptions-source"
+                },
+                {
+                  "itemId": "item-logic-8-2-definite-descriptions-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-8-2-definite-descriptions-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-8-2-definite-descriptions-guided",
+                "item-logic-8-2-definite-descriptions-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-8-2-definite-descriptions",
+              "objectiveIds": [
+                "analyze-definite-descriptions"
+              ],
+              "summary": "Analyze “the F is G” as existence, uniqueness, and predication without inventing a name.",
+              "title": "8.2 Definite Descriptions"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-scope-ambiguity"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-8-3-ambiguity-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-8-3-ambiguity-source"
+                },
+                {
+                  "itemId": "item-logic-8-3-ambiguity-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-8-3-ambiguity-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-8-3-ambiguity-guided",
+                "item-logic-8-3-ambiguity-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-8-3-ambiguity",
+              "objectiveIds": [
+                "distinguish-fol-scope-readings"
+              ],
+              "summary": "Separate scope readings of ordinary-language claims before selecting a first-order formula.",
+              "title": "8.3 Ambiguity"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-building-blocks",
+                "quantifier-symbolization",
+                "multiple-generality",
+                "fol-identity",
+                "fol-syntax",
+                "definite-descriptions",
+                "fol-scope-ambiguity"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-8-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-8-0-review-2",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-8-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-8-0-review-1",
+                "item-logic-8-0-review-2"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-8-0-expressing-first-order-claims-review",
+              "objectiveIds": [
+                "identify-fol-sentences",
+                "analyze-definite-descriptions",
+                "distinguish-fol-scope-readings"
+              ],
+              "summary": "Review well-formed FOL sentences, Russell-style descriptions, and the scope choices that distinguish competing readings.",
+              "title": "8.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-building-blocks",
+                "quantifier-symbolization",
+                "multiple-generality",
+                "fol-identity",
+                "fol-syntax",
+                "definite-descriptions",
+                "fol-scope-ambiguity"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-8-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-8-0-checkpoint-2",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-8-0-checkpoint-3",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-8-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-8-0-checkpoint-1",
+                "item-logic-8-0-checkpoint-2",
+                "item-logic-8-0-checkpoint-3"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-8-0-expressing-first-order-claims-checkpoint",
+              "objectiveIds": [
+                "identify-fol-sentences",
+                "analyze-definite-descriptions",
+                "distinguish-fol-scope-readings"
+              ],
+              "summary": "Diagnose a first-order expression for free variables, uniqueness, and scope, then defend one explicit reading of an ambiguous claim.",
+              "title": "8.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "fol-building-blocks",
+            "quantifier-symbolization",
+            "multiple-generality",
+            "fol-identity",
+            "fol-syntax",
+            "definite-descriptions",
+            "fol-scope-ambiguity"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "itemId": "item-logic-8-0-orientation",
+              "kind": "item"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-8-1-sentences-fol"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-8-2-definite-descriptions"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-8-3-ambiguity"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-8-0-expressing-first-order-claims-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-8-0-expressing-first-order-claims-checkpoint"
+            }
+          ],
+          "itemIds": [
+            "item-logic-8-0-orientation"
+          ],
+          "kind": "module",
+          "nodeId": "node-logic-8-0-expressing-first-order-claims",
+          "objectiveIds": [
+            "identify-fol-sentences",
+            "analyze-definite-descriptions",
+            "distinguish-fol-scope-readings"
+          ],
+          "summary": "Review well-formed FOL sentences, Russell-style descriptions, and the scope choices that distinguish competing readings.",
+          "title": "8.0 Expressing First-Order Claims"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-extensions"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-9-1-extensionality-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-9-1-extensionality-source"
+                },
+                {
+                  "itemId": "item-logic-9-1-extensionality-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-9-1-extensionality-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-9-1-extensionality-guided",
+                "item-logic-9-1-extensionality-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-9-1-extensionality",
+              "objectiveIds": [
+                "specify-fol-interpretation"
+              ],
+              "summary": "Specify predicate extensions and explain why FOL cannot distinguish predicates with the same extension merely by differences in meaning.",
+              "title": "9.1 Extensionality"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "truth-in-fol"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-9-2-truth-fol-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-9-2-truth-fol-source"
+                },
+                {
+                  "itemId": "item-logic-9-2-truth-fol-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-9-2-truth-fol-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-9-2-truth-fol-guided",
+                "item-logic-9-2-truth-fol-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-9-2-truth-fol",
+              "objectiveIds": [
+                "evaluate-fol-truth"
+              ],
+              "summary": "Evaluate atomic, truth-functional, and quantified FOL sentences in a finite interpretation.",
+              "title": "9.2 Truth in FOL"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-semantic-concepts"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-9-3-semantic-concepts-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-9-3-semantic-concepts-source"
+                },
+                {
+                  "itemId": "item-logic-9-3-semantic-concepts-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-9-3-semantic-concepts-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-9-3-semantic-concepts-guided",
+                "item-logic-9-3-semantic-concepts-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-9-3-semantic-concepts",
+              "objectiveIds": [
+                "classify-fol-semantic-relations"
+              ],
+              "summary": "Classify validity, contradiction, equivalence, entailment, and joint satisfiability across interpretations.",
+              "title": "9.3 Semantic Concepts"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-syntax",
+                "definite-descriptions",
+                "fol-scope-ambiguity",
+                "fol-extensions",
+                "truth-in-fol",
+                "fol-semantic-concepts"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-9-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-9-0-review-2",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-9-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-9-0-review-1",
+                "item-logic-9-0-review-2"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-9-0-interpretations-review",
+              "objectiveIds": [
+                "specify-fol-interpretation",
+                "evaluate-fol-truth",
+                "classify-fol-semantic-relations"
+              ],
+              "summary": "Retrieve how domains, referents, extensions, satisfaction, and interpretation-wide definitions determine FOL semantics.",
+              "title": "9.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-syntax",
+                "definite-descriptions",
+                "fol-scope-ambiguity",
+                "fol-extensions",
+                "truth-in-fol",
+                "fol-semantic-concepts"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-9-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-9-0-checkpoint-2",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-9-0-checkpoint-3",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-9-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-9-0-checkpoint-1",
+                "item-logic-9-0-checkpoint-2",
+                "item-logic-9-0-checkpoint-3"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-9-0-interpretations-checkpoint",
+              "objectiveIds": [
+                "specify-fol-interpretation",
+                "evaluate-fol-truth",
+                "classify-fol-semantic-relations"
+              ],
+              "summary": "Evaluate a finite interpretation and use it to classify a semantic claim with an explicit witness or counterexample.",
+              "title": "9.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "fol-syntax",
+            "definite-descriptions",
+            "fol-scope-ambiguity",
+            "fol-extensions",
+            "truth-in-fol",
+            "fol-semantic-concepts"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "itemId": "item-logic-9-0-orientation",
+              "kind": "item"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-9-1-extensionality"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-9-2-truth-fol"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-9-3-semantic-concepts"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-9-0-interpretations-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-9-0-interpretations-checkpoint"
+            }
+          ],
+          "itemIds": [
+            "item-logic-9-0-orientation"
+          ],
+          "kind": "module",
+          "nodeId": "node-logic-9-0-interpretations",
+          "objectiveIds": [
+            "specify-fol-interpretation",
+            "evaluate-fol-truth",
+            "classify-fol-semantic-relations"
+          ],
+          "summary": "Retrieve how domains, referents, extensions, satisfaction, and interpretation-wide definitions determine FOL semantics.",
+          "title": "9.0 Interpretations"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "counter-interpretations"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-10-1-using-interpretations-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-10-1-using-interpretations-source"
+                },
+                {
+                  "itemId": "item-logic-10-1-using-interpretations-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-10-1-using-interpretations-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-10-1-using-interpretations-guided",
+                "item-logic-10-1-using-interpretations-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-10-1-using-interpretations",
+              "objectiveIds": [
+                "construct-counter-interpretation"
+              ],
+              "summary": "Construct a small counter-interpretation to refute a proposed validity, entailment, equivalence, or contradiction.",
+              "title": "10.1 Using Interpretations"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "interpretation-reasoning"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-10-2-reasoning-about-interpretations-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-10-2-reasoning-about-interpretations-source"
+                },
+                {
+                  "itemId": "item-logic-10-2-reasoning-about-interpretations-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-10-2-reasoning-about-interpretations-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-10-2-reasoning-about-interpretations-guided",
+                "item-logic-10-2-reasoning-about-interpretations-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-10-2-reasoning-about-interpretations",
+              "objectiveIds": [
+                "reason-across-interpretations"
+              ],
+              "summary": "Distinguish claims settled by one interpretation from claims that require reasoning about all interpretations.",
+              "title": "10.2 Reasoning About Interpretations"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "relation-properties"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-10-3-properties-relations-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-10-3-properties-relations-source"
+                },
+                {
+                  "itemId": "item-logic-10-3-properties-relations-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-10-3-properties-relations-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-10-3-properties-relations-guided",
+                "item-logic-10-3-properties-relations-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-10-3-properties-relations",
+              "objectiveIds": [
+                "classify-relation-properties"
+              ],
+              "summary": "Recognize and formalize reflexive, symmetric, transitive, and antisymmetric relation properties.",
+              "title": "10.3 Properties of Relations"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-extensions",
+                "truth-in-fol",
+                "fol-semantic-concepts",
+                "counter-interpretations",
+                "interpretation-reasoning",
+                "relation-properties"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-10-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-10-0-review-2",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-10-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-10-0-review-1",
+                "item-logic-10-0-review-2"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-10-0-relational-reasoning-review",
+              "objectiveIds": [
+                "construct-counter-interpretation",
+                "reason-across-interpretations",
+                "classify-relation-properties"
+              ],
+              "summary": "Retrieve how countermodels, all-interpretation arguments, and named relation properties support semantic reasoning.",
+              "title": "10.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-extensions",
+                "truth-in-fol",
+                "fol-semantic-concepts",
+                "counter-interpretations",
+                "interpretation-reasoning",
+                "relation-properties"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-10-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-10-0-checkpoint-2",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-10-0-checkpoint-3",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-10-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-10-0-checkpoint-1",
+                "item-logic-10-0-checkpoint-2",
+                "item-logic-10-0-checkpoint-3"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-10-0-relational-reasoning-checkpoint",
+              "objectiveIds": [
+                "construct-counter-interpretation",
+                "reason-across-interpretations",
+                "classify-relation-properties"
+              ],
+              "summary": "Construct or diagnose a finite interpretation, then state exactly which semantic claim and relation properties it establishes.",
+              "title": "10.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "fol-extensions",
+            "truth-in-fol",
+            "fol-semantic-concepts",
+            "counter-interpretations",
+            "interpretation-reasoning",
+            "relation-properties"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "itemId": "item-logic-10-0-orientation",
+              "kind": "item"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-10-1-using-interpretations"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-10-2-reasoning-about-interpretations"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-10-3-properties-relations"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-10-0-relational-reasoning-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-10-0-relational-reasoning-checkpoint"
+            }
+          ],
+          "itemIds": [
+            "item-logic-10-0-orientation"
+          ],
+          "kind": "module",
+          "nodeId": "node-logic-10-0-relational-reasoning",
+          "objectiveIds": [
+            "construct-counter-interpretation",
+            "reason-across-interpretations",
+            "classify-relation-properties"
+          ],
+          "summary": "Retrieve how countermodels, all-interpretation arguments, and named relation properties support semantic reasoning.",
+          "title": "10.0 Relational Reasoning"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-quantifier-rules"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-11-1-basic-rules-fol-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-11-1-basic-rules-fol-source"
+                },
+                {
+                  "itemId": "item-logic-11-1-basic-rules-fol-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-11-1-basic-rules-fol-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-11-1-basic-rules-fol-guided",
+                "item-logic-11-1-basic-rules-fol-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-11-1-basic-rules-fol",
+              "objectiveIds": [
+                "apply-fol-quantifier-rules"
+              ],
+              "summary": "Apply universal and existential introduction and elimination while checking substitution and fresh-name restrictions.",
+              "title": "11.1 Basic Rules for FOL"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "quantifier-proof-strategy"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-11-2-proofs-quantifiers-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-11-2-proofs-quantifiers-source"
+                },
+                {
+                  "itemId": "item-logic-11-2-proofs-quantifiers-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-11-2-proofs-quantifiers-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-11-2-proofs-quantifiers-guided",
+                "item-logic-11-2-proofs-quantifiers-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-11-2-proofs-quantifiers",
+              "objectiveIds": [
+                "construct-quantifier-proofs"
+              ],
+              "summary": "Order forward and backward proof moves so quantifier restrictions and subproof goals are satisfied.",
+              "title": "11.2 Proofs with Quantifiers"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "quantifier-conversion"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-11-3-conversion-quantifiers-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-11-3-conversion-quantifiers-source"
+                },
+                {
+                  "itemId": "item-logic-11-3-conversion-quantifiers-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-11-3-conversion-quantifiers-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-11-3-conversion-quantifiers-guided",
+                "item-logic-11-3-conversion-quantifiers-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-11-3-conversion-quantifiers",
+              "objectiveIds": [
+                "apply-quantifier-conversion"
+              ],
+              "summary": "Move negation across quantifiers with the correct quantifier switch and justify the conversion.",
+              "title": "11.3 Conversion of Quantifiers"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "identity-proof-rules"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-11-4-rules-identity-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-11-4-rules-identity-source"
+                },
+                {
+                  "itemId": "item-logic-11-4-rules-identity-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-11-4-rules-identity-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-11-4-rules-identity-guided",
+                "item-logic-11-4-rules-identity-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-11-4-rules-identity",
+              "objectiveIds": [
+                "apply-identity-proof-rules"
+              ],
+              "summary": "Use identity introduction for reflexivity and identity elimination to substitute co-referring names in a controlled proof step.",
+              "title": "11.4 Rules for Identity"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "proof-strategy",
+                "quantifier-symbolization",
+                "fol-identity",
+                "fol-quantifier-rules",
+                "quantifier-proof-strategy",
+                "quantifier-conversion",
+                "identity-proof-rules"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-11-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-11-0-review-2",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-11-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-11-0-review-1",
+                "item-logic-11-0-review-2"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-11-0-quantifier-identity-proofs-review",
+              "objectiveIds": [
+                "apply-fol-quantifier-rules",
+                "construct-quantifier-proofs",
+                "apply-quantifier-conversion",
+                "apply-identity-proof-rules"
+              ],
+              "summary": "Retrieve quantifier-rule restrictions, proof-order strategy, conversion laws, and identity substitution without treating names as arbitrary by default.",
+              "title": "11.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "proof-strategy",
+                "quantifier-symbolization",
+                "fol-identity",
+                "fol-quantifier-rules",
+                "quantifier-proof-strategy",
+                "quantifier-conversion",
+                "identity-proof-rules"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-11-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-11-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-11-0-checkpoint-1"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-11-0-quantifier-identity-proofs-checkpoint",
+              "objectiveIds": [
+                "apply-fol-quantifier-rules",
+                "construct-quantifier-proofs",
+                "apply-quantifier-conversion",
+                "apply-identity-proof-rules"
+              ],
+              "summary": "Construct or diagnose a quantified proof, citing each line and checking fresh-name, scope, subproof, and identity-substitution conditions.",
+              "title": "11.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "proof-strategy",
+            "quantifier-symbolization",
+            "fol-identity",
+            "fol-quantifier-rules",
+            "quantifier-proof-strategy",
+            "quantifier-conversion",
+            "identity-proof-rules"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "itemId": "item-logic-11-0-orientation",
+              "kind": "item"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-11-1-basic-rules-fol"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-11-2-proofs-quantifiers"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-11-3-conversion-quantifiers"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-11-4-rules-identity"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-11-0-quantifier-identity-proofs-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-11-0-quantifier-identity-proofs-checkpoint"
+            }
+          ],
+          "itemIds": [
+            "item-logic-11-0-orientation"
+          ],
+          "kind": "module",
+          "nodeId": "node-logic-11-0-quantifier-identity-proofs",
+          "objectiveIds": [
+            "apply-fol-quantifier-rules",
+            "construct-quantifier-proofs",
+            "apply-quantifier-conversion",
+            "apply-identity-proof-rules"
+          ],
+          "summary": "Retrieve quantifier-rule restrictions, proof-order strategy, conversion laws, and identity substitution without treating names as arbitrary by default.",
+          "title": "11.0 Quantifier and Identity Proofs"
+        },
+        {
+          "children": [
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-derived-rules"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-12-1-derived-rules-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-12-1-derived-rules-source"
+                },
+                {
+                  "itemId": "item-logic-12-1-derived-rules-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-12-1-derived-rules-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-12-1-derived-rules-guided",
+                "item-logic-12-1-derived-rules-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-12-1-derived-rules",
+              "objectiveIds": [
+                "justify-derived-quantifier-rules"
+              ],
+              "summary": "Justify quantifier-conversion shortcuts by expanding them into basic-rule derivations.",
+              "title": "12.1 Derived Rules"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "proofs-and-semantics"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-12-2-proofs-semantics-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-12-2-proofs-semantics-source"
+                },
+                {
+                  "itemId": "item-logic-12-2-proofs-semantics-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-12-2-proofs-semantics-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-12-2-proofs-semantics-guided",
+                "item-logic-12-2-proofs-semantics-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-12-2-proofs-semantics",
+              "objectiveIds": [
+                "choose-proof-or-model"
+              ],
+              "summary": "Choose a proof or an interpretation as the efficient witness for a positive or negative logical claim while keeping turnstiles distinct.",
+              "title": "12.2 Proofs and Semantics"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "normal-forms"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-12-3-normal-forms-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-12-3-normal-forms-source"
+                },
+                {
+                  "itemId": "item-logic-12-3-normal-forms-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-12-3-normal-forms-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-12-3-normal-forms-guided",
+                "item-logic-12-3-normal-forms-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-12-3-normal-forms",
+              "objectiveIds": [
+                "construct-normal-forms"
+              ],
+              "summary": "Recognize and construct equivalent disjunctive and conjunctive normal forms from decisive truth-table rows.",
+              "title": "12.3 Normal Forms"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "functional-completeness"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-12-4-functional-completeness-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-12-4-functional-completeness-source"
+                },
+                {
+                  "itemId": "item-logic-12-4-functional-completeness-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-12-4-functional-completeness-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-12-4-functional-completeness-guided",
+                "item-logic-12-4-functional-completeness-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-12-4-functional-completeness",
+              "objectiveIds": [
+                "evaluate-functional-completeness"
+              ],
+              "summary": "Explain functional completeness and test whether a proposed connective basis can express every truth function.",
+              "title": "12.4 Functional Completeness"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "equivalence-transformations"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-12-5-proving-equivalences-teaching"
+                },
+                {
+                  "kind": "resource",
+                  "resourceId": "resource-logic-12-5-proving-equivalences-source"
+                },
+                {
+                  "itemId": "item-logic-12-5-proving-equivalences-guided",
+                  "kind": "item"
+                },
+                {
+                  "itemId": "item-logic-12-5-proving-equivalences-independent",
+                  "kind": "item"
+                }
+              ],
+              "itemIds": [
+                "item-logic-12-5-proving-equivalences-guided",
+                "item-logic-12-5-proving-equivalences-independent"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-12-5-proving-equivalences",
+              "objectiveIds": [
+                "prove-equivalence-chain"
+              ],
+              "summary": "Build a checkable chain of equivalence-preserving replacements and use it to reach a requested normal form.",
+              "title": "12.5 Proving Equivalences"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-quantifier-rules",
+                "quantifier-proof-strategy",
+                "identity-proof-rules",
+                "fol-derived-rules",
+                "proofs-and-semantics",
+                "normal-forms",
+                "functional-completeness",
+                "equivalence-transformations"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-12-0-review-1",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-12-deck"
+                }
+              ],
+              "itemIds": [
+                "item-logic-12-0-review-1"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-12-0-proof-mastery-review",
+              "objectiveIds": [
+                "justify-derived-quantifier-rules",
+                "choose-proof-or-model",
+                "construct-normal-forms",
+                "evaluate-functional-completeness",
+                "prove-equivalence-chain"
+              ],
+              "summary": "Connect derived quantifier rules, proof-semantic certificates, normal forms, functional completeness, and equivalence chains into one auditable toolkit.",
+              "title": "12.8 Review"
+            },
+            {
+              "children": [],
+              "conceptIds": [
+                "fol-quantifier-rules",
+                "quantifier-proof-strategy",
+                "identity-proof-rules",
+                "fol-derived-rules",
+                "proofs-and-semantics",
+                "normal-forms",
+                "functional-completeness",
+                "equivalence-transformations"
+              ],
+              "customKindLabel": null,
+              "entries": [
+                {
+                  "itemId": "item-logic-12-0-checkpoint-1",
+                  "kind": "item"
+                },
+                {
+                  "kind": "study-set",
+                  "studySetId": "set-logic-12-checkpoint"
+                }
+              ],
+              "itemIds": [
+                "item-logic-12-0-checkpoint-1"
+              ],
+              "kind": "lesson",
+              "nodeId": "node-logic-12-0-proof-mastery-checkpoint",
+              "objectiveIds": [
+                "justify-derived-quantifier-rules",
+                "choose-proof-or-model",
+                "construct-normal-forms",
+                "evaluate-functional-completeness",
+                "prove-equivalence-chain"
+              ],
+              "summary": "Choose and complete a proof, countermodel, normal-form construction, or equivalence chain, then audit every dependency and transformation.",
+              "title": "12.9 Checkpoint"
+            }
+          ],
+          "conceptIds": [
+            "fol-quantifier-rules",
+            "quantifier-proof-strategy",
+            "identity-proof-rules",
+            "fol-derived-rules",
+            "proofs-and-semantics",
+            "normal-forms",
+            "functional-completeness",
+            "equivalence-transformations"
+          ],
+          "customKindLabel": null,
+          "entries": [
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-12-1-derived-rules"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-12-2-proofs-semantics"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-12-3-normal-forms"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-12-4-functional-completeness"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-12-5-proving-equivalences"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-12-0-proof-mastery-review"
+            },
+            {
+              "kind": "child-node",
+              "nodeId": "node-logic-12-0-proof-mastery-checkpoint"
+            }
+          ],
+          "itemIds": [],
+          "kind": "module",
+          "nodeId": "node-logic-12-0-proof-mastery",
+          "objectiveIds": [
+            "justify-derived-quantifier-rules",
+            "choose-proof-or-model",
+            "construct-normal-forms",
+            "evaluate-functional-completeness",
+            "prove-equivalence-chain"
+          ],
+          "summary": "Connect derived quantifier rules, proof-semantic certificates, normal forms, functional completeness, and equivalence chains into one auditable toolkit.",
+          "title": "12.0 Proof Mastery"
+        }
+      ],
+      "subjectIds": [
+        "logic"
+      ],
+      "summary": "Twelve modules from argument analysis through first-order proof and formal equivalence.",
+      "tags": [
+        "logic",
+        "self-paced"
+      ],
+      "title": "Logic Foundations"
+    }
+  ],
+  "schemaVersion": "0.1"
+}

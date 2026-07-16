@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "0.1",
+  "packId": "learnt.logic-foundations",
+  "version": "2.0.0",
+  "title": "Logic Foundations",
+  "summary": "Core propositional logic and proof foundations for portable study.",
+  "language": "en-US",
+  "license": "CC-BY-4.0",
+  "authors": [
+    {
+      "name": "Learnt"
+    }
+  ],
+  "releasedAt": "2026-08-01T00:00:00.000Z",
+  "capabilities": {
+    "required": [
+      {
+        "capabilityId": "core.learning-pack",
+        "version": "0.1"
+      }
+    ],
+    "optional": [
+      {
+        "capabilityId": "theme.metadata",
+        "version": "0.1"
+      },
+      {
+        "capabilityId": "assets.static",
+        "version": "0.1"
+      },
+      {
+        "capabilityId": "learning-resource.embedded-content",
+        "version": "1"
+      },
+      {
+        "capabilityId": "learning-resource.external-link",
+        "version": "1"
+      },
+      {
+        "capabilityId": "learning-resource.external-video",
+        "version": "1"
+      },
+      {
+        "capabilityId": "learning-resource.external-audio",
+        "version": "1"
+      },
+      {
+        "capabilityId": "learning-resource.bibliographic-reference",
+        "version": "1"
+      },
+      {
+        "capabilityId": "learning-resource.interactive-reference",
+        "version": "1"
+      },
+      {
+        "capabilityId": "learning-resource.segments",
+        "version": "1"
+      },
+      {
+        "capabilityId": "learning-resource.checkpoints",
+        "version": "1"
+      },
+      {
+        "capabilityId": "curriculum.ordered-resource-entries",
+        "version": "1"
+      },
+      {
+        "capabilityId": "migrations.basic",
+        "version": "0.1"
+      }
+    ]
+  },
+  "files": [
+    {
+      "assetId": null,
+      "path": "catalog.json",
+      "role": "catalog",
+      "mediaType": "application/json",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "bytes": 1000
+    },
+    {
+      "assetId": null,
+      "path": "courses.json",
+      "role": "courses",
+      "mediaType": "application/json",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "bytes": 1000
+    },
+    {
+      "assetId": null,
+      "path": "items.json",
+      "role": "items",
+      "mediaType": "application/json",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "bytes": 1000
+    },
+    {
+      "assetId": null,
+      "path": "sets.json",
+      "role": "sets",
+      "mediaType": "application/json",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "bytes": 1000
+    },
+    {
+      "assetId": null,
+      "path": "resources.json",
+      "role": "resources",
+      "mediaType": "application/json",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "bytes": 1000
+    },
+    {
+      "assetId": null,
+      "path": "theme.json",
+      "role": "theme",
+      "mediaType": "application/json",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "bytes": 1000
+    },
+    {
+      "assetId": null,
+      "path": "migrations.json",
+      "role": "migrations",
+      "mediaType": "application/json",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "bytes": 1000
+    },
+    {
+      "assetId": "asset-logic-cover",
+      "path": "assets/logic-cover.svg",
+      "role": "asset",
+      "mediaType": "image/svg+xml",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "bytes": 256
+    },
+    {
+      "assetId": "asset-logic-icon",
+      "path": "assets/logic-icon.svg",
+      "role": "asset",
+      "mediaType": "image/svg+xml",
+      "sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "bytes": 256
+    }
+  ],
+  "keywords": [
+    "logic",
+    "proofs",
+    "truth tables",
+    "foundations"
+  ]
+}

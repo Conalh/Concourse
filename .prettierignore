@@ -1,0 +1,10 @@
+dist
+coverage
+test-results
+node_modules
+package-lock.json
+.playwright-cli
+.superpowers/**
+docs/design/**
+courses/logic-foundations/**
+packages/**

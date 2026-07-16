@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Concourse social preview</title>
+  <desc id="desc">A transit-style map for the Concourse open-source learning suite.</desc>
+  <rect width="1200" height="630" fill="#1C1D1F"/>
+  <path d="M185 460 C330 460 360 315 520 315" fill="none" stroke="#1769C2" stroke-width="28" stroke-linecap="round"/>
+  <path d="M1015 170 C845 170 772 315 660 315" fill="none" stroke="#6E32B5" stroke-width="28" stroke-linecap="round"/>
+  <path d="M1010 470 C830 455 805 335 660 315" fill="none" stroke="#F36C21" stroke-width="28" stroke-linecap="round"/>
+  <path d="M190 170 C350 180 390 300 520 315" fill="none" stroke="#19A64A" stroke-width="28" stroke-linecap="round"/>
+  <path d="M170 170 H1030" fill="none" stroke="#F4C430" stroke-width="18" stroke-linecap="round" opacity=".55"/>
+  <path d="M175 470 H1015" fill="none" stroke="#E5222A" stroke-width="18" stroke-linecap="round" opacity=".55"/>
+  <circle cx="590" cy="315" r="92" fill="#0B0B0C" stroke="#F5F5F2" stroke-width="14"/>
+  <circle cx="590" cy="315" r="46" fill="#1C1D1F" stroke="#F5F5F2" stroke-width="8"/>
+  <circle cx="190" cy="170" r="42" fill="#1C1D1F" stroke="#F5F5F2" stroke-width="12"/>
+  <circle cx="1010" cy="170" r="42" fill="#1C1D1F" stroke="#F5F5F2" stroke-width="12"/>
+  <circle cx="190" cy="470" r="42" fill="#1C1D1F" stroke="#F5F5F2" stroke-width="12"/>
+  <circle cx="1010" cy="470" r="42" fill="#1C1D1F" stroke="#F5F5F2" stroke-width="12"/>
+  <text x="80" y="92" fill="#F5F5F2" font-family="Space Grotesk, Manrope, Segoe UI, sans-serif" font-size="72" font-weight="800">Learning should have more than one route.</text>
+  <text x="82" y="138" fill="#A6A8AB" font-family="Atkinson Hyperlegible, Inter, Segoe UI, sans-serif" font-size="28">Build a Route. Practice in Loop. Share through Transfer. Learn with Modes.</text>
+  <text x="590" y="540" fill="#F5F5F2" font-family="Space Grotesk, Manrope, Segoe UI, sans-serif" font-size="38" font-weight="800" text-anchor="middle">Concourse</text>
+</svg>

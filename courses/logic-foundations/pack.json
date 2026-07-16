@@ -1,0 +1,90 @@
+{
+  "authors": [
+    {
+      "name": "Concourse"
+    }
+  ],
+  "capabilities": {
+    "optional": [],
+    "required": [
+      {
+        "capabilityId": "core.learning-pack",
+        "version": "0.1"
+      }
+    ]
+  },
+  "files": [
+    {
+      "assetId": null,
+      "bytes": 94540,
+      "mediaType": "application/json",
+      "path": "catalog.json",
+      "role": "catalog",
+      "sha256": "de080e8ca733cac57e1b5acf2dceefa1b07d8d7224e71f1144c1f76c8995e9a4"
+    },
+    {
+      "assetId": null,
+      "bytes": 115168,
+      "mediaType": "application/json",
+      "path": "courses.json",
+      "role": "courses",
+      "sha256": "ba75b86dba3226995293ff1f3ae8ac38641e63be3c05f8223fcb71f977629400"
+    },
+    {
+      "assetId": null,
+      "bytes": 293063,
+      "mediaType": "application/json",
+      "path": "items.json",
+      "role": "items",
+      "sha256": "3c40f31072ec2daa4f10ca5061a4976488a1edf3f09a628a593385dc9503ffbb"
+    },
+    {
+      "assetId": null,
+      "bytes": 987,
+      "mediaType": "text/markdown",
+      "path": "README.md",
+      "role": "documentation",
+      "sha256": "51f81d80233b09ec455aa0698020a6b45e9af2606fb5189a208c3b30c1e9dcc1"
+    },
+    {
+      "assetId": null,
+      "bytes": 188191,
+      "mediaType": "application/json",
+      "path": "resources.json",
+      "role": "resources",
+      "sha256": "d06782f583ef9bbf6dc7b85b0d6bf8fe3b269434074d7b27b1b955b344e5b498"
+    },
+    {
+      "assetId": null,
+      "bytes": 21077,
+      "mediaType": "application/json",
+      "path": "sets.json",
+      "role": "sets",
+      "sha256": "23360fec703e863b794ecafed61f8327f0b29590b0080116cce0def5fbd854f3"
+    },
+    {
+      "assetId": null,
+      "bytes": 212,
+      "mediaType": "application/json",
+      "path": "theme.json",
+      "role": "theme",
+      "sha256": "502dfb960dbc01e32babd78e5aa18c191efbdd71f496247e4c10f63fcce6f196"
+    }
+  ],
+  "homepageUrl": "https://forallx.openlogicproject.org/html/",
+  "keywords": [
+    "logic",
+    "reasoning",
+    "arguments",
+    "semantics",
+    "proof"
+  ],
+  "language": "en-US",
+  "license": "CC-BY-4.0",
+  "packId": "logic",
+  "releasedAt": "2026-07-11T00:00:00.000Z",
+  "schemaVersion": "0.1",
+  "summary": "A guided introduction to arguments, formal languages, semantics, and proof.",
+  "title": "Logic Foundations",
+  "version": "1.0.0"
+}

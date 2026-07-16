@@ -1,0 +1,179 @@
+{
+  "manifest": {
+    "schemaVersion": "0.1",
+    "packId": "learnt.logic-basics-core",
+    "version": "0.1.0",
+    "title": "Logic Basics Core",
+    "summary": "Boolean values, operators, and compound decision rules.",
+    "language": "en-US",
+    "license": "proprietary-review-required",
+    "authors": [{ "name": "Learnt" }],
+    "releasedAt": "2026-06-23T00:00:00.000Z",
+    "capabilities": {
+      "required": [{ "capabilityId": "core.learning-pack", "version": "0.1" }],
+      "optional": []
+    },
+    "files": [
+      {
+        "assetId": null,
+        "path": "catalog.json",
+        "role": "catalog",
+        "mediaType": "application/json",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "bytes": 100
+      },
+      {
+        "assetId": null,
+        "path": "courses.json",
+        "role": "courses",
+        "mediaType": "application/json",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "bytes": 100
+      },
+      {
+        "assetId": null,
+        "path": "items.json",
+        "role": "items",
+        "mediaType": "application/json",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "bytes": 100
+      },
+      {
+        "assetId": null,
+        "path": "sets.json",
+        "role": "sets",
+        "mediaType": "application/json",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "bytes": 100
+      }
+    ]
+  },
+  "catalog": {
+    "schemaVersion": "0.1",
+    "subjects": [
+      {
+        "subjectId": "logic-basics",
+        "title": "Logic Basics",
+        "summary": "Core boolean logic concepts.",
+        "tags": ["logic"],
+        "conceptIds": ["boolean-values"],
+        "objectiveIds": ["predict-negation"],
+        "courseIds": ["logic-basics-core"]
+      }
+    ],
+    "concepts": [
+      {
+        "conceptId": "boolean-values",
+        "title": "Boolean Values",
+        "summary": "Truth values used in logical expressions.",
+        "tags": ["logic"],
+        "prerequisiteConceptIds": [],
+        "relatedConceptIds": []
+      }
+    ],
+    "objectives": [
+      {
+        "objectiveId": "predict-negation",
+        "statement": "Predict the result of negating a boolean value.",
+        "successCriteria": ["Select the correct negated value."],
+        "conceptIds": ["boolean-values"]
+      }
+    ]
+  },
+  "courses": {
+    "schemaVersion": "0.1",
+    "courses": [
+      {
+        "courseId": "logic-basics-core",
+        "title": "Logic Basics Core",
+        "summary": "A short course on foundational boolean logic.",
+        "subjectIds": ["logic-basics"],
+        "tags": ["logic"],
+        "rootNodes": [
+          {
+            "nodeId": "boolean-module",
+            "kind": "module",
+            "title": "Boolean Module",
+            "summary": "Boolean values and negation.",
+            "itemIds": ["predict-negation-item"],
+            "conceptIds": ["boolean-values"],
+            "objectiveIds": ["predict-negation"],
+            "children": [],
+            "customKindLabel": null
+          }
+        ]
+      }
+    ]
+  },
+  "items": {
+    "schemaVersion": "0.1",
+    "items": [
+      {
+        "itemId": "predict-negation-item",
+        "learningRevision": 1,
+        "title": "Predict NOT true",
+        "promptBlocks": [
+          {
+            "kind": "question",
+            "text": "What is NOT true?",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "response": {
+          "kind": "single-choice",
+          "options": [
+            { "optionId": "option-true", "label": "true", "contentBlocks": [] },
+            { "optionId": "option-false", "label": "false", "contentBlocks": [] }
+          ],
+          "textInput": null,
+          "numberInput": null
+        },
+        "evaluation": {
+          "kind": "choice-selection",
+          "correctOptionIds": ["option-false"],
+          "acceptedAnswers": [],
+          "caseSensitive": false,
+          "trimWhitespace": true,
+          "expectedNumber": null,
+          "absoluteTolerance": null,
+          "passingSelfGrades": []
+        },
+        "reviewedSolutionBlocks": [
+          {
+            "kind": "text",
+            "text": "NOT true evaluates to false.",
+            "language": null,
+            "calloutRole": null,
+            "assetId": null,
+            "altText": null
+          }
+        ],
+        "conceptIds": ["missing-concept"],
+        "objectiveIds": ["predict-negation"],
+        "allowedPlayModes": ["single-choice-quiz", "flashcard"]
+      }
+    ]
+  },
+  "sets": {
+    "schemaVersion": "0.1",
+    "sets": [
+      {
+        "setId": "logic-basics-deck",
+        "kind": "deck",
+        "title": "Logic Basics Deck",
+        "summary": "Reusable deck for boolean logic practice.",
+        "selection": {
+          "kind": "explicit",
+          "itemIds": ["predict-negation-item"]
+        },
+        "playModes": ["flashcard", "single-choice-quiz"],
+        "ordering": "authored",
+        "timeLimitSeconds": null,
+        "attemptLimit": null
+      }
+    ]
+  }
+}

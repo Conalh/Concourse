@@ -1,0 +1,79 @@
+{
+  "name": "concourse",
+  "private": true,
+  "workspaces": [
+    "packages/learning-pack-contracts",
+    "packages/learning-pack-sdk"
+  ],
+  "version": "0.1.0",
+  "description": "Local-first learning suite with portable course packs, retrieval practice, and a Tauri desktop shell.",
+  "license": "MIT",
+  "author": "Conal Hickey",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Conalh/Concourse.git"
+  },
+  "homepage": "https://concourse.conalhickey.com",
+  "bugs": {
+    "url": "https://github.com/Conalh/Concourse/issues"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "npm@11.13.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "desktop:dev": "tauri dev",
+    "desktop:build": "tauri build",
+    "typecheck:packages": "npm run build:packages && npm --workspace=@learnt/learning-pack-contracts run typecheck && npm --workspace=@learnt/learning-pack-sdk run typecheck",
+    "test:packages": "npm run build:packages && npm --workspace=@learnt/learning-pack-contracts run test && npm --workspace=@learnt/learning-pack-sdk run test",
+    "build:packages": "npm --workspace=@learnt/learning-pack-contracts run build && npm --workspace=@learnt/learning-pack-sdk run build",
+    "typecheck": "npm run typecheck:packages && tsc -b",
+    "build": "npm run build:packages && tsc -b && vite build",
+    "lint": "npm run build:packages && eslint .",
+    "test": "npm run test:packages && vitest run src content",
+    "test:watch": "vitest",
+    "build:logic-foundations": "tsx scripts/build-logic-foundations-pack.ts",
+    "export:learning-pack": "tsx scripts/export-learning-pack.ts",
+    "format": "prettier --write . && npm run format:packages",
+    "format:packages": "npm --workspace=@learnt/learning-pack-contracts exec -- prettier --write src test scripts/generate-logic-foundations-fixture.mjs vitest.config.ts && npm --workspace=@learnt/learning-pack-sdk exec -- prettier --write src test vitest.config.ts",
+    "format:check": "prettier --check . && npm run format:check:packages",
+    "format:check:packages": "npm --workspace=@learnt/learning-pack-contracts exec -- prettier --check src test scripts/generate-logic-foundations-fixture.mjs vitest.config.ts && npm --workspace=@learnt/learning-pack-sdk exec -- prettier --check src test vitest.config.ts",
+    "verify": "npm run format:check && npm run lint && npm run test && npm run build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-dialog": "^2.7.1",
+    "@learnt/learning-pack-contracts": "0.1.0",
+    "@learnt/learning-pack-sdk": "0.1.0",
+    "lucide-react": "^1.21.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tauri-apps/cli": "^2.11.3",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.12.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "fake-indexeddb": "^6.2.5",
+    "globals": "^17.6.0",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.8.4",
+    "tsx": "^4.22.4",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.59.2",
+    "vite": "^8.0.12",
+    "vitest": "^4.1.9"
+  }
+}

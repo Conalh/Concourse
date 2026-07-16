@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "0.1",
+  "sets": [
+    {
+      "setId": "set-logic-flashcards",
+      "kind": "deck",
+      "title": "Logic Flashcards",
+      "summary": "Reusable flashcards for shared logic concepts.",
+      "selection": {
+        "kind": "explicit",
+        "itemIds": [
+          "item-truth-values-flashcard",
+          "item-negation-single-choice",
+          "item-validity-text-recall",
+          "item-validity-flashcard"
+        ]
+      },
+      "playModes": [
+        "flashcard"
+      ],
+      "ordering": "authored",
+      "timeLimitSeconds": null,
+      "attemptLimit": null
+    },
+    {
+      "setId": "set-core-quiz",
+      "kind": "quiz",
+      "title": "Core Logic Quiz",
+      "summary": "Quiz items selected from the core logic course.",
+      "selection": {
+        "kind": "rule",
+        "include": {
+          "subjectIds": [
+            "subject-propositional-logic"
+          ],
+          "courseIds": [
+            "course-logic-core"
+          ],
+          "nodeIds": [
+            "node-core-connectives-lesson"
+          ],
+          "conceptIds": [
+            "concept-logical-connectives"
+          ],
+          "objectiveIds": [],
+          "allowedPlayModes": [
+            "single-choice-quiz",
+            "multiple-choice-quiz",
+            "number-recall"
+          ],
+          "tags": []
+        },
+        "exclude": {
+          "itemIds": [],
+          "conceptIds": [],
+          "objectiveIds": [],
+          "tags": []
+        },
+        "limit": 10
+      },
+      "playModes": [
+        "single-choice-quiz",
+        "multiple-choice-quiz",
+        "number-recall"
+      ],
+      "ordering": "shuffle",
+      "timeLimitSeconds": 600,
+      "attemptLimit": null
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "releaseVersion": "2.0.0",
+  "courses": [
+    {
+      "courseId": "course-logic-core",
+      "title": "Logic Core",
+      "nodes": [
+        {
+          "nodeId": "node-core-module",
+          "kind": "module",
+          "title": "Core Logic Module",
+          "itemIds": [],
+          "children": [
+            {
+              "nodeId": "node-core-truth-chapter",
+              "kind": "chapter",
+              "title": "Truth Values Chapter",
+              "itemIds": [],
+              "children": [
+                {
+                  "nodeId": "node-core-truth-values-lesson",
+                  "kind": "lesson",
+                  "title": "Truth Values Lesson",
+                  "itemIds": [
+                    "item-truth-values-flashcard",
+                    "item-negation-single-choice"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "nodeId": "node-core-tables-chapter",
+              "kind": "chapter",
+              "title": "Truth Tables Chapter",
+              "itemIds": [],
+              "children": [
+                {
+                  "nodeId": "node-core-connectives-lesson",
+                  "kind": "lesson",
+                  "title": "Connectives Lesson",
+                  "itemIds": [
+                    "item-connectives-multiple-choice",
+                    "item-truth-table-row-count",
+                    "item-conditional-single-choice"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "courseId": "course-proof-practice",
+      "title": "Proof Practice",
+      "nodes": [
+        {
+          "nodeId": "node-proof-module",
+          "kind": "module",
+          "title": "Proof Strategies Module",
+          "itemIds": [],
+          "children": [
+            {
+              "nodeId": "node-proof-validity-chapter",
+              "kind": "chapter",
+              "title": "Validity Chapter",
+              "itemIds": [],
+              "children": [
+                {
+                  "nodeId": "node-proof-validity-lesson",
+                  "kind": "lesson",
+                  "title": "Validity Lesson",
+                  "itemIds": [
+                    "item-validity-text-recall",
+                    "item-validity-flashcard"
+                  ],
+                  "children": []
+                }
+              ]
+            },
+            {
+              "nodeId": "node-proof-soundness-chapter",
+              "kind": "chapter",
+              "title": "Soundness Chapter",
+              "itemIds": [],
+              "children": [
+                {
+                  "nodeId": "node-proof-soundness-lesson",
+                  "kind": "lesson",
+                  "title": "Soundness Lesson",
+                  "itemIds": [
+                    "item-soundness-manual-read"
+                  ],
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
