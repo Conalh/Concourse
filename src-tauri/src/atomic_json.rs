@@ -1,124 +1,19 @@
 use serde_json::Value;
-use std::fs::{self, File, OpenOptions};
-use std::io::{self, Write};
-use std::path::{Path, PathBuf};
-use std::sync::atomic::{AtomicU64, Ordering};
-use std::sync::Mutex;
-
-static WRITE_LOCK: Mutex<()> = Mutex::new(());
-static TEMP_COUNTER: AtomicU64 = AtomicU64::new(0);
+use std::io;
+use std::path::Path;
 
 pub fn write_json_file(path: &Path, value: &Value) -> io::Result<()> {
-    write_json_file_with_replace(path, value, replace_file)
+    let bytes = serde_json::to_vec_pretty(value).map_err(io::Error::other)?;
+    crate::atomic_file::write_file_atomically(path, &bytes)
 }
 
+#[cfg(test)]
 fn write_json_file_with_replace<F>(path: &Path, value: &Value, replace: F) -> io::Result<()>
 where
     F: FnOnce(&Path, &Path) -> io::Result<()>,
 {
     let bytes = serde_json::to_vec_pretty(value).map_err(io::Error::other)?;
-    let _guard = WRITE_LOCK
-        .lock()
-        .map_err(|_| io::Error::other("JSON write lock poisoned"))?;
-    let parent = path
-        .parent()
-        .ok_or_else(|| io::Error::other("JSON destination has no parent directory"))?;
-    fs::create_dir_all(parent)?;
-    let (temporary, mut file) = create_unique_temporary(path)?;
-
-    let result = (|| {
-        file.write_all(&bytes)?;
-        file.sync_all()?;
-        drop(file);
-        replace(&temporary, path)?;
-        sync_parent_directory(parent)
-    })();
-
-    if result.is_err() {
-        let _ = fs::remove_file(&temporary);
-    }
-    result
-}
-
-fn create_unique_temporary(path: &Path) -> io::Result<(PathBuf, File)> {
-    let parent = path
-        .parent()
-        .ok_or_else(|| io::Error::other("JSON destination has no parent directory"))?;
-    let file_name = path
-        .file_name()
-        .ok_or_else(|| io::Error::other("JSON destination has no filename"))?
-        .to_string_lossy();
-
-    loop {
-        let counter = TEMP_COUNTER.fetch_add(1, Ordering::Relaxed);
-        let temporary = parent.join(format!(
-            ".{file_name}.concourse-tmp-{}-{counter}",
-            std::process::id()
-        ));
-        match OpenOptions::new()
-            .write(true)
-            .create_new(true)
-            .open(&temporary)
-        {
-            Ok(file) => return Ok((temporary, file)),
-            Err(error) if error.kind() == io::ErrorKind::AlreadyExists => continue,
-            Err(error) => return Err(error),
-        }
-    }
-}
-
-#[cfg(unix)]
-fn replace_file(source: &Path, destination: &Path) -> io::Result<()> {
-    fs::rename(source, destination)
-}
-
-#[cfg(windows)]
-fn replace_file(source: &Path, destination: &Path) -> io::Result<()> {
-    use std::os::windows::ffi::OsStrExt;
-    use std::ptr::null;
-    use windows_sys::Win32::Storage::FileSystem::{
-        MoveFileExW, ReplaceFileW, MOVEFILE_WRITE_THROUGH, REPLACEFILE_WRITE_THROUGH,
-    };
-
-    fn wide(path: &Path) -> Vec<u16> {
-        path.as_os_str().encode_wide().chain(Some(0)).collect()
-    }
-
-    let source = wide(source);
-    let destination_wide = wide(destination);
-    let replaced = unsafe {
-        if destination.exists() {
-            ReplaceFileW(
-                destination_wide.as_ptr(),
-                source.as_ptr(),
-                null(),
-                REPLACEFILE_WRITE_THROUGH,
-                null(),
-                null(),
-            )
-        } else {
-            MoveFileExW(
-                source.as_ptr(),
-                destination_wide.as_ptr(),
-                MOVEFILE_WRITE_THROUGH,
-            )
-        }
-    };
-
-    if replaced == 0 {
-        return Err(io::Error::last_os_error());
-    }
-    Ok(())
-}
-
-#[cfg(unix)]
-fn sync_parent_directory(parent: &Path) -> io::Result<()> {
-    File::open(parent)?.sync_all()
-}
-
-#[cfg(windows)]
-fn sync_parent_directory(_parent: &Path) -> io::Result<()> {
-    Ok(())
+    crate::atomic_file::write_file_atomically_with_replace(path, &bytes, replace)
 }
 
 #[cfg(test)]

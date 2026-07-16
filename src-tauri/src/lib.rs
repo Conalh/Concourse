@@ -4,7 +4,9 @@ use std::fs;
 use std::io::{self, Read};
 use std::path::{Path, PathBuf};
 
+mod atomic_file;
 mod atomic_json;
+mod pack_asset;
 
 const INSTALLED_PACK_RECORDS_FILE: &str = "installed-pack-records.json";
 const REQUIRED_PACK_FILES: [&str; 5] = [
@@ -69,6 +71,7 @@ pub fn run() {
             desktop_commands::save_selected_course_folder,
             desktop_commands::read_installed_pack_records,
             desktop_commands::write_installed_pack_record,
+            desktop_commands::write_pack_asset,
         ])
         .run(tauri::generate_context!())
         .expect("Concourse desktop shell failed to start");
@@ -86,7 +89,7 @@ pub mod desktop_commands {
         app_configuration_directory, load_selected_course_folder_from_directory,
         read_installed_pack_records_from_directory, save_selected_course_folder_in_directory,
         scan_course_folder_command, write_installed_pack_record_in_directory,
-        CourseFolderDiagnostic, CourseFolderReadLimits, CourseFolderScan,
+        CourseFolderDiagnostic, CourseFolderReadLimits, CourseFolderScan, Path,
     };
     use serde_json::Value;
     use tauri::{AppHandle, Wry};
@@ -130,6 +133,12 @@ pub mod desktop_commands {
         record: Value,
     ) -> Result<(), CourseFolderDiagnostic> {
         write_installed_pack_record_in_directory(&app_configuration_directory(&app)?, record)
+    }
+
+    #[tauri::command]
+    pub fn write_pack_asset(destination_path: String, bytes: Vec<u8>) -> Result<(), String> {
+        super::pack_asset::write_validated_pack_asset(Path::new(&destination_path), &bytes)
+            .map_err(|error| error.to_string())
     }
 }
 
