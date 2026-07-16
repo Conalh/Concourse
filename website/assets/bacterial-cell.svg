@@ -7,7 +7,7 @@
     </g>
     <g id="cell-membrane" role="group" aria-label="Cell membrane">
       <path d="M170 120h380a120 120 0 0 1 0 240H170a120 120 0 0 1 0-240Z" fill="#141B2D" stroke="#2457FF" stroke-width="12"/>
-      <path d="M170 133h380a107 107 0 0 1 0 214H170a107 107 0 0 1 0-214Z" fill="none" stroke="#5C83FF" stroke-width="3"/>
+      <path d="M170 133h380a107 107 0 0 1 0 214H170a107 107 0 0 1 0-214Z" fill="none" stroke="#2457FF" stroke-width="3" opacity=".78"/>
       <path d="M170 146h380a94 94 0 0 1 0 188H170a94 94 0 0 1 0-188Z" fill="none" stroke="#2457FF" stroke-width="2" stroke-dasharray="7 6" opacity=".72"/>
     </g>
     <g fill="#2457FF" opacity=".72" aria-hidden="true">
