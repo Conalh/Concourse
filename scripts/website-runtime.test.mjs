@@ -216,7 +216,11 @@ test('switches Mode without losing an unsubmitted response', () => {
 })
 
 test('keeps feedback visible until Continue and then focuses the next Key idea', () => {
-  const { document, controller } = setupCourse({ manageFocus: true })
+  const { document, window, controller } = setupCourse({ manageFocus: true })
+  const scrollOptions = []
+  window.HTMLElement.prototype.scrollIntoView = (options) => {
+    scrollOptions.push(options)
+  }
   click(document, '[data-course-action="start"]')
   submitCurrentCorrect(document, controller)
 
@@ -236,6 +240,7 @@ test('keeps feedback visible until Continue and then focuses the next Key idea',
     document.activeElement,
     document.querySelector('[data-key-idea-anchor]'),
   )
+  assert.equal(scrollOptions.at(-1).behavior, 'instant')
   controller.destroy()
 })
 

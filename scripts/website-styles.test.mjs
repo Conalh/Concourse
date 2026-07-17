@@ -196,4 +196,8 @@ test('uses focus indicators with at least three-to-one adjacent contrast', () =>
     demoStyles,
     /\.course-shell :focus-visible\s*\{[^}]*outline-color:\s*var\(--focus-dark\);/,
   )
+  assert.match(
+    demoStyles,
+    /\[data-key-idea-anchor\],[\s\S]*?scroll-margin-block-start:\s*1rem;/,
+  )
 })

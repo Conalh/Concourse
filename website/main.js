@@ -172,7 +172,11 @@ export function mountCourse(
     const disclosure = target.closest('details:not([open])')
     if (disclosure) disclosure.open = true
     target.focus()
-    target.scrollIntoView?.({ block: 'start', inline: 'nearest' })
+    target.scrollIntoView?.({
+      behavior: 'instant',
+      block: 'start',
+      inline: 'nearest',
+    })
   }
 
   function afterTransition(

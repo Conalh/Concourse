@@ -167,6 +167,12 @@
   outline-color: var(--focus-dark);
 }
 
+[data-key-idea-anchor],
+[data-completion-feedback],
+[data-attempt-feedback] {
+  scroll-margin-block-start: 1rem;
+}
+
 .course-workspace {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

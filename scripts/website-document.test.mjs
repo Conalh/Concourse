@@ -109,6 +109,11 @@ test('gives the living course a canonical dedicated page', () => {
   ]) {
     assert.ok(course.querySelector(selector), `missing ${selector}`)
   }
+  const stage = course.querySelector('[data-course-stage]')
+  const route = course.querySelector('[data-course-route-disclosure]')
+  const context = course.querySelector('[data-course-context-disclosure]')
+  assert.ok(stage.compareDocumentPosition(route) & 4)
+  assert.ok(stage.compareDocumentPosition(context) & 4)
   assert.equal(course.querySelector('[data-demo-panel]'), null)
   assert.equal(course.querySelector('[data-demo]'), null)
   assert.match(
