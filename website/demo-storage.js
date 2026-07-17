@@ -5,6 +5,7 @@ import {
   getActivity,
   getCourseNode,
 } from './demo-course.js'
+import { normalizeInteractionMode } from './demo-modes.js'
 import { isValidCourseState } from './demo-model.js'
 
 export const STORAGE_KEY = 'concourse.demo.course.v1'
@@ -83,7 +84,9 @@ export function toStoredCourseState(state) {
     version: state.version,
     courseId: state.courseId,
     courseRevision: state.courseRevision,
+    interactionMode: state.interactionMode,
     currentNodeId: state.currentNodeId,
+    awaitingAdvance: state.awaitingAdvance,
     completedNodeIds: state.completedNodeIds,
     availableNodeIds: state.availableNodeIds,
     evidence: state.evidence,
@@ -170,12 +173,25 @@ export function validateStoredCourseState(candidate) {
   const complete = REQUIRED_ACTIVITY_IDS.every((nodeId) =>
     candidate.completedNodeIds.includes(nodeId),
   )
+  const awaitingAdvance = candidate.awaitingAdvance ?? null
+  if (
+    awaitingAdvance !== null &&
+    (typeof awaitingAdvance !== 'object' ||
+      Array.isArray(awaitingAdvance) ||
+      getCourseNode(awaitingAdvance.nodeId)?.required !== true ||
+      !validTimestamp(awaitingAdvance.completedAt) ||
+      awaitingAdvance.completedAt === null)
+  ) {
+    return { ok: false, reason: 'invalid' }
+  }
   const value = {
     version: 1,
     courseId: COURSE_ID,
     courseRevision: COURSE_REVISION,
     mode: complete ? 'recap' : 'entry',
+    interactionMode: normalizeInteractionMode(candidate.interactionMode),
     currentNodeId: candidate.currentNodeId,
+    awaitingAdvance: clone(awaitingAdvance),
     completedNodeIds: clone(candidate.completedNodeIds),
     skippedNodeIds,
     availableNodeIds: clone(candidate.availableNodeIds),

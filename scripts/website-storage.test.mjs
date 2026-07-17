@@ -1,6 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 
+import { getActivity } from '../website/demo-course.js'
 import { createCourseState, transitionCourse } from '../website/demo-model.js'
 import {
   STORAGE_KEY,
@@ -23,21 +24,64 @@ function createMemoryStorage(initial = {}) {
   }
 }
 
-test('round trips only durable course state', () => {
+test('round trips durable Mode and awaiting feedback state', () => {
   const storage = createMemoryStorage()
-  const state = transitionCourse(createCourseState(NOW), { type: 'start' }, NOW)
+  let state = transitionCourse(createCourseState(), { type: 'start' }, NOW)
+  state = transitionCourse(
+    state,
+    { type: 'change-interaction-mode', interactionMode: 'rescue' },
+    NOW,
+  )
+  state = transitionCourse(
+    state,
+    {
+      type: 'submit-response',
+      nodeId: 'boundary-permeability',
+      response: getActivity('boundary-permeability').correctResponse,
+      confidence: 'high',
+    },
+    NOW,
+  )
 
   assert.deepEqual(saveCourseState(storage, state), { ok: true })
   const restored = loadCourseState(storage)
 
   assert.equal(restored.ok, true)
-  assert.equal(restored.value.courseId, 'bacterial-survival')
   assert.equal(restored.value.mode, 'entry')
-  assert.equal('saveMode' in restored.value, false)
-  assert.equal('mode' in JSON.parse(storage.peek(STORAGE_KEY)), false)
+  assert.equal(restored.value.interactionMode, 'rescue')
+  assert.equal(restored.value.currentNodeId, 'boundary-permeability')
+  assert.deepEqual(restored.value.awaitingAdvance, state.awaitingAdvance)
   assert.equal(
-    'activityProgress' in JSON.parse(storage.peek(STORAGE_KEY)),
+    'presentationPolicy' in JSON.parse(storage.peek(STORAGE_KEY)),
     false,
+  )
+})
+
+test('migrates preceding valid records to Coach without losing progress', () => {
+  const preceding = toStoredCourseState(createCourseState())
+  delete preceding.interactionMode
+  delete preceding.awaitingAdvance
+
+  const result = validateStoredCourseState(preceding)
+
+  assert.equal(result.ok, true)
+  assert.equal(result.value.interactionMode, 'coach')
+  assert.equal(result.value.awaitingAdvance, null)
+})
+
+test('falls back from an unknown stored Mode but rejects malformed pending state', () => {
+  const stored = toStoredCourseState(createCourseState())
+  assert.equal(
+    validateStoredCourseState({ ...stored, interactionMode: 'unknown' }).value
+      .interactionMode,
+    'coach',
+  )
+  assert.deepEqual(
+    validateStoredCourseState({
+      ...stored,
+      awaitingAdvance: { nodeId: 'missing' },
+    }),
+    { ok: false, reason: 'invalid' },
   )
 })
 
