@@ -39,7 +39,8 @@ function click(document, selector) {
 function advanceCourseTo(nodeId) {
   let state = transitionCourse(createCourseState(NOW), { type: 'start' }, NOW)
   while (state.currentNodeId !== nodeId) {
-    const activity = getActivity(getCourseNode(state.currentNodeId).activityId)
+    const currentNode = getCourseNode(state.currentNodeId)
+    const activity = getActivity(currentNode.activityId)
     state = transitionCourse(
       state,
       {
@@ -48,6 +49,11 @@ function advanceCourseTo(nodeId) {
         response: activity.correctResponse,
         confidence: 'high',
       },
+      NOW,
+    )
+    state = transitionCourse(
+      state,
+      { type: 'advance-course', nextNodeId: currentNode.nextCoreNodeId },
       NOW,
     )
   }
@@ -112,6 +118,27 @@ function submitCurrentCorrect(document, controller, confidence = 'high') {
   fillSubmission(document, activity, activity.correctResponse, confidence)
 }
 
+function continueRequiredRoute(document, controller) {
+  const { awaitingAdvance } = controller.getState()
+  assert.ok(awaitingAdvance, 'required response should be awaiting advancement')
+  const controls = [
+    ...document.querySelectorAll('[data-course-action="advance-course"]'),
+  ]
+  const explicitCore = controls.find(
+    (control) =>
+      control.hasAttribute('data-next-node-id') &&
+      (control.dataset.nextNodeId || null) === awaitingAdvance.nextCoreNodeId,
+  )
+  const control = explicitCore ?? (controls.length === 1 ? controls[0] : null)
+  assert.ok(control, 'missing Continue control for the required route')
+  control.click()
+}
+
+function completeCurrentRequired(document, controller, confidence = 'high') {
+  submitCurrentCorrect(document, controller, confidence)
+  continueRequiredRoute(document, controller)
+}
+
 test('starts a new course and persists the first node', () => {
   const { document, storage, controller } = setupCourse()
 
@@ -161,6 +188,92 @@ test('keeps completed evidence visible until an explicit route choice', () => {
   assert.equal(
     document.querySelector('[data-course-activity]').dataset.activityCompleted,
     'true',
+  )
+  controller.destroy()
+})
+
+test('switches Mode without losing an unsubmitted response', () => {
+  const { document, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+  document.querySelector('input[name="response"][value="oxygen"]').checked =
+    true
+  document.querySelector('input[name="confidence"][value="low"]').checked = true
+
+  click(document, '[data-mode-trigger]')
+  click(document, '[data-mode-option="flow"]')
+
+  assert.equal(controller.getState().interactionMode, 'flow')
+  assert.equal(
+    document.querySelector('input[name="response"][value="oxygen"]').checked,
+    true,
+  )
+  assert.equal(
+    document.querySelector('input[name="confidence"][value="low"]').checked,
+    true,
+  )
+  assert.equal(document.querySelector('[data-mode-palette]').hidden, true)
+  controller.destroy()
+})
+
+test('keeps feedback visible until Continue and then focuses the next Key idea', () => {
+  const { document, controller } = setupCourse({ manageFocus: true })
+  click(document, '[data-course-action="start"]')
+  submitCurrentCorrect(document, controller)
+
+  assert.equal(
+    document.activeElement,
+    document.querySelector('[data-completion-feedback]'),
+  )
+  assert.equal(controller.getState().currentNodeId, 'boundary-permeability')
+
+  click(
+    document,
+    '[data-course-action="advance-course"][data-next-node-id="boundary-structure"]',
+  )
+
+  assert.equal(controller.getState().currentNodeId, 'boundary-structure')
+  assert.equal(
+    document.activeElement,
+    document.querySelector('[data-key-idea-anchor]'),
+  )
+  controller.destroy()
+})
+
+test('closes the Mode palette with Escape and restores trigger focus', () => {
+  const { document, window, controller } = setupCourse({ manageFocus: true })
+  click(document, '[data-course-action="start"]')
+  click(document, '[data-mode-trigger]')
+
+  assert.equal(document.querySelector('[data-mode-palette]').hidden, false)
+  assert.equal(document.activeElement.dataset.modeOption, 'coach')
+  document.activeElement.dispatchEvent(
+    new window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
+  )
+
+  assert.equal(document.querySelector('[data-mode-palette]').hidden, true)
+  assert.equal(
+    document.activeElement,
+    document.querySelector('[data-mode-trigger]'),
+  )
+  controller.destroy()
+})
+
+test('resumes at the current Key idea with an interruption-recovery message', () => {
+  const seededState = advanceCourseTo('transport-gradient')
+  const { document, controller } = setupCourse({
+    seededState,
+    manageFocus: true,
+  })
+
+  click(document, '[data-course-action="resume"]')
+
+  assert.match(
+    document.querySelector('[data-resume-notice]').textContent,
+    /welcome back.*move matter/i,
+  )
+  assert.equal(
+    document.activeElement,
+    document.querySelector('[data-key-idea-anchor]'),
   )
   controller.destroy()
 })
@@ -249,7 +362,7 @@ test('keeps chapter context for optional branches without a key idea block', () 
   )
   state = transitionCourse(
     state,
-    { type: 'take-branch', nodeId: 'support-charge-size' },
+    { type: 'advance-course', nextNodeId: 'support-charge-size' },
     NOW,
   )
 
@@ -312,7 +425,7 @@ test('records strong evidence and exposes a transparent extension', () => {
   )
   assert.ok(
     document.querySelector(
-      '[data-branch-action="take"][data-node-id="extension-cell-envelopes"]',
+      '[data-course-action="advance-course"][data-next-node-id="extension-cell-envelopes"]',
     ),
   )
   assert.match(
@@ -350,7 +463,7 @@ test('takes and completes a recommended support branch', () => {
 
   click(
     document,
-    '[data-branch-action="take"][data-node-id="support-charge-size"]',
+    '[data-course-action="advance-course"][data-next-node-id="support-charge-size"]',
   )
   assert.equal(controller.getState().currentNodeId, 'support-charge-size')
   submitCurrentCorrect(document, controller)
@@ -368,7 +481,7 @@ test('takes or skips an extension without blocking the required route', () => {
   submitCurrentCorrect(taken.document, taken.controller)
   click(
     taken.document,
-    '[data-branch-action="take"][data-node-id="extension-cell-envelopes"]',
+    '[data-course-action="advance-course"][data-next-node-id="extension-cell-envelopes"]',
   )
   submitCurrentCorrect(taken.document, taken.controller)
   assert.equal(taken.controller.getState().currentNodeId, 'boundary-structure')
@@ -377,10 +490,7 @@ test('takes or skips an extension without blocking the required route', () => {
   const skipped = setupCourse()
   click(skipped.document, '[data-course-action="start"]')
   submitCurrentCorrect(skipped.document, skipped.controller)
-  click(
-    skipped.document,
-    '[data-branch-action="skip"][data-node-id="extension-cell-envelopes"]',
-  )
+  continueRequiredRoute(skipped.document, skipped.controller)
   assert.equal(
     skipped.controller.getState().currentNodeId,
     'boundary-structure',
@@ -398,7 +508,7 @@ test('completes the full strong route and renders its recap', () => {
   click(document, '[data-course-action="start"]')
 
   while (controller.getState().mode === 'course') {
-    submitCurrentCorrect(document, controller)
+    completeCurrentRequired(document, controller)
   }
 
   assert.equal(controller.getState().evidence.length, 13)
@@ -478,14 +588,26 @@ test('confirms reset clears only course progress', () => {
   controller.destroy()
 })
 
-test('moves focus and announces only meaningful course transitions', () => {
+test('moves focus through the Key idea, feedback, and next Key idea', () => {
   const { document, controller } = setupCourse({ manageFocus: true })
   click(document, '[data-course-action="start"]')
-  assert.ok(document.activeElement.matches('[data-course-activity] input'))
+  assert.equal(
+    document.activeElement,
+    document.querySelector('[data-key-idea-anchor]'),
+  )
   submitCurrentCorrect(document, controller)
   assert.equal(
-    document.activeElement.closest('form')?.dataset.courseActivity,
-    'boundary-structure',
+    document.activeElement,
+    document.querySelector('[data-completion-feedback]'),
+  )
+  assert.match(
+    document.querySelector('[data-course-status]').textContent,
+    /response recorded/i,
+  )
+  continueRequiredRoute(document, controller)
+  assert.equal(
+    document.activeElement,
+    document.querySelector('[data-key-idea-anchor]'),
   )
   assert.match(
     document.querySelector('[data-course-status]').textContent,
@@ -568,6 +690,11 @@ test('renders delayed retrieval from the earliest non-strong evidence', () => {
     },
     NOW,
   )
+  state = transitionCourse(
+    state,
+    { type: 'advance-course', nextNodeId: 'boundary-structure' },
+    NOW,
+  )
   for (const nodeId of [
     'boundary-structure',
     'transport-gradient',
@@ -588,6 +715,14 @@ test('renders delayed retrieval from the earliest non-strong evidence', () => {
         nodeId,
         response: getActivity(nodeId).correctResponse,
         confidence: 'high',
+      },
+      NOW,
+    )
+    state = transitionCourse(
+      state,
+      {
+        type: 'advance-course',
+        nextNodeId: getCourseNode(nodeId).nextCoreNodeId,
       },
       NOW,
     )
@@ -616,7 +751,7 @@ test('adds a biofilm extension only to the unpacked local draft', () => {
   const { document, controller } = setupCourse()
   click(document, '[data-course-action="start"]')
   while (controller.getState().mode === 'course') {
-    submitCurrentCorrect(document, controller)
+    completeCurrentRequired(document, controller)
   }
 
   click(document, '[data-context-tab="pack-source"]')
@@ -647,7 +782,7 @@ test('offers another path and resets only after confirmation', () => {
   const { document, controller } = setupCourse()
   click(document, '[data-course-action="start"]')
   while (controller.getState().mode === 'course') {
-    submitCurrentCorrect(document, controller)
+    completeCurrentRequired(document, controller)
   }
   assert.match(
     document.querySelector('[data-course-recap]').textContent,
@@ -664,7 +799,7 @@ test('does not repeat course announcements for context or pack edits', async () 
   const { document, controller } = setupCourse()
   click(document, '[data-course-action="start"]')
   while (controller.getState().mode === 'course') {
-    submitCurrentCorrect(document, controller)
+    completeCurrentRequired(document, controller)
   }
   const status = document.querySelector('[data-course-status]')
   const completion = status.textContent

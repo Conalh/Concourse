@@ -1,9 +1,15 @@
 import {
   moveOrderedItem,
   readActivityResponse,
+  restoreActivityResponse,
   validateActivityResponse,
 } from './demo-activities.js'
-import { getActivity, getCourseNode } from './demo-course.js'
+import {
+  CHAPTERS,
+  getActivity,
+  getCourseNode,
+  retrievalActivityForConcept,
+} from './demo-course.js'
 import {
   createCourseState,
   projectRecap,
@@ -17,7 +23,7 @@ import {
   focusTargetForTransition,
   renderCourse,
 } from './demo-render.js'
-import { deriveCourseRoute } from './demo-routing.js'
+import { deriveCourseRoute, selectRetrievalConcept } from './demo-routing.js'
 import {
   clearCourseState,
   loadCourseState,
@@ -93,7 +99,33 @@ export function mountCourse(
     : null
   let storageMode = loaded.reason === 'read-failed' ? 'session-only' : 'saved'
   let activeContextTab = 'evidence'
+  let modePaletteOpen = false
+  let disclosures = disclosureDefaults(state.interactionMode)
+  let resumeNotice = ''
   let destroyed = false
+
+  function disclosureDefaults(interactionMode) {
+    const presentation = resolveDemoPresentation(interactionMode)
+    return {
+      routeOpen: presentation.routeVisibility !== 'collapsed',
+      contextOpen: presentation.contextVisibility === 'expanded',
+    }
+  }
+
+  function currentActivity() {
+    const node = getCourseNode(state.currentNodeId)
+    if (node === null) return null
+    return node.nodeId === 'antibiotic-retrieval'
+      ? retrievalActivityForConcept(selectRetrievalConcept(state.evidence))
+      : getActivity(node.activityId)
+  }
+
+  function captureResponseDraft() {
+    if (state.mode !== 'course' || state.awaitingAdvance !== null) return null
+    const form = root.querySelector('[data-course-activity]')
+    const activity = currentActivity()
+    return form && activity ? readActivityResponse(form, activity) : null
+  }
 
   function projection() {
     const presentation = resolveDemoPresentation(state.interactionMode)
@@ -108,17 +140,20 @@ export function mountCourse(
       storageMode,
       activeContextTab,
       presentation,
-      modePaletteOpen: false,
-      disclosures: {
-        routeOpen: presentation.routeVisibility !== 'collapsed',
-        contextOpen: presentation.contextVisibility === 'expanded',
-      },
-      resumeNotice: '',
+      modePaletteOpen,
+      disclosures,
+      resumeNotice,
     }
   }
 
-  function render() {
+  function render(responseDraft = captureResponseDraft()) {
     renderCourse(root, state, projection())
+    if (responseDraft !== null && state.mode === 'course') {
+      const form = root.querySelector('[data-course-activity]')
+      const activity = currentActivity()
+      if (form && activity)
+        restoreActivityResponse(form, activity, responseDraft)
+    }
   }
 
   function persist() {
@@ -127,31 +162,56 @@ export function mountCourse(
     if (!result.ok) storageMode = 'session-only'
   }
 
-  function afterTransition(previous, next, { announce = true } = {}) {
+  function focusAndReveal(selector) {
+    if (!manageFocus || selector === null) return
+    const target = selector
+      .split(',')
+      .map((candidate) => root.querySelector(candidate.trim()))
+      .find((candidate) => candidate !== null)
+    if (!target) return
+    const disclosure = target.closest('details:not([open])')
+    if (disclosure) disclosure.open = true
+    target.focus()
+    target.scrollIntoView?.({ block: 'start', inline: 'nearest' })
+  }
+
+  function afterTransition(
+    previous,
+    next,
+    { announce = true, responseDraft = null, focusSelector = null } = {},
+  ) {
     state = next
     if (state.mode !== 'entry') {
       hasSavedProgress = true
       entryReason = null
       persist()
     }
-    render()
+    render(responseDraft)
     if (announce) {
       const message = announcementForTransition(previous, state)
       if (message)
         root.querySelector('[data-course-status]').textContent = message
     }
-    if (manageFocus) {
-      const selector = focusTargetForTransition(previous, state)
-      root.querySelector(selector)?.focus({ preventScroll: true })
-    }
+    focusAndReveal(focusSelector ?? focusTargetForTransition(previous, state))
   }
 
-  function dispatch(event) {
+  function dispatch(event, transitionOptions = {}) {
     if (destroyed) return
     const previous = state
     const next = transitionCourse(state, event, now())
     if (next === previous) return
-    afterTransition(previous, next)
+    afterTransition(previous, next, transitionOptions)
+  }
+
+  function setModePalette(open) {
+    const responseDraft = captureResponseDraft()
+    modePaletteOpen = open
+    render(responseDraft)
+    focusAndReveal(
+      open
+        ? `[data-mode-option="${state.interactionMode}"]`
+        : '[data-mode-trigger]',
+    )
   }
 
   function resetCourse() {
@@ -166,14 +226,14 @@ export function mountCourse(
     state = createCourseState()
     hasSavedProgress = false
     entryReason = null
+    activeContextTab = 'evidence'
+    modePaletteOpen = false
+    disclosures = disclosureDefaults(state.interactionMode)
+    resumeNotice = ''
     render()
     root.querySelector('[data-course-status]').textContent =
       'Course progress cleared. A new route is ready.'
-    if (manageFocus) {
-      root
-        .querySelector('[data-course-action="start"]')
-        ?.focus({ preventScroll: true })
-    }
+    focusAndReveal('[data-course-action="start"]')
     return previous
   }
 
@@ -184,7 +244,7 @@ export function mountCourse(
     form
       .querySelector('[data-response-group]')
       ?.setAttribute('aria-invalid', 'true')
-    if (manageFocus) error.focus({ preventScroll: true })
+    focusAndReveal('[data-activity-error]')
   }
 
   function handleSubmit(event) {
@@ -192,7 +252,7 @@ export function mountCourse(
     if (form === null || form === undefined || !root.contains(form)) return
     event.preventDefault()
     const node = getCourseNode(state.currentNodeId)
-    const activity = getActivity(node?.activityId)
+    const activity = currentActivity()
     if (activity === null) return
     const submission = readActivityResponse(form, activity)
     const validation = validateActivityResponse(activity, submission)
@@ -200,6 +260,7 @@ export function mountCourse(
       showValidation(form, validation.message)
       return
     }
+    resumeNotice = ''
     if (node.required) {
       dispatch({
         type: 'submit-response',
@@ -238,15 +299,24 @@ export function mountCourse(
       return
     }
 
-    const branch = event.target.closest?.('[data-branch-action]')
-    if (branch && root.contains(branch)) {
-      dispatch({
-        type:
-          branch.dataset.branchAction === 'take'
-            ? 'take-branch'
-            : 'skip-branch',
-        nodeId: branch.dataset.nodeId,
-      })
+    const modeOption = event.target.closest?.('[data-mode-option]')
+    if (modeOption && root.contains(modeOption)) {
+      const responseDraft = captureResponseDraft()
+      modePaletteOpen = false
+      resumeNotice = ''
+      disclosures = disclosureDefaults(modeOption.dataset.modeOption)
+      if (modeOption.dataset.modeOption === state.interactionMode) {
+        render(responseDraft)
+        focusAndReveal('[data-mode-trigger]')
+      } else {
+        dispatch(
+          {
+            type: 'change-interaction-mode',
+            interactionMode: modeOption.dataset.modeOption,
+          },
+          { responseDraft, focusSelector: '[data-mode-trigger]' },
+        )
+      }
       return
     }
 
@@ -264,8 +334,30 @@ export function mountCourse(
     }
     const action = control.dataset.courseAction
     if (action === 'reset' || action === 'try-another-path') resetCourse()
-    else if (action === 'start' || action === 'resume') {
+    else if (action === 'toggle-mode-palette') {
+      setModePalette(!modePaletteOpen)
+    } else if (action === 'close-mode-palette') {
+      setModePalette(false)
+    } else if (action === 'start' || action === 'resume') {
+      if (action === 'resume') {
+        const node = getCourseNode(state.currentNodeId)
+        const chapter = CHAPTERS.find(
+          ({ chapterId }) => chapterId === node?.chapterId,
+        )
+        resumeNotice = chapter
+          ? `Welcome back — continuing at ${chapter.title}.`
+          : 'Welcome back — your course is ready.'
+      } else {
+        resumeNotice = ''
+      }
       dispatch({ type: action })
+    } else if (action === 'advance-course') {
+      resumeNotice = ''
+      const transition = { type: action }
+      if (control.hasAttribute('data-next-node-id')) {
+        transition.nextNodeId = control.dataset.nextNodeId || null
+      }
+      dispatch(transition)
     } else if (action === 'select-pack-file') {
       dispatch({ type: action, fileName: control.dataset.packFile })
     } else if (action === 'toggle-biofilm-extension') {
@@ -273,7 +365,12 @@ export function mountCourse(
     }
   }
 
-  function handlePackKeys(event) {
+  function handleKeys(event) {
+    if (event.key === 'Escape' && modePaletteOpen) {
+      event.preventDefault()
+      setModePalette(false)
+      return
+    }
     const contextTab = event.target.closest?.('[data-context-tab]')
     if (contextTab && root.contains(contextTab)) {
       const index = CONTEXT_TABS.indexOf(contextTab.dataset.contextTab)
@@ -308,9 +405,18 @@ export function mountCourse(
     root.querySelector(`[data-pack-file="${fileName}"]`)?.focus()
   }
 
+  function handleDisclosureToggle(event) {
+    if (event.target.matches('[data-course-route-disclosure]')) {
+      disclosures.routeOpen = event.target.open
+    } else if (event.target.matches('[data-course-context-disclosure]')) {
+      disclosures.contextOpen = event.target.open
+    }
+  }
+
   root.addEventListener('submit', handleSubmit)
   root.addEventListener('click', handleClick)
-  root.addEventListener('keydown', handlePackKeys)
+  root.addEventListener('keydown', handleKeys)
+  root.addEventListener('toggle', handleDisclosureToggle, true)
   render()
 
   return {
@@ -320,7 +426,8 @@ export function mountCourse(
       destroyed = true
       root.removeEventListener('submit', handleSubmit)
       root.removeEventListener('click', handleClick)
-      root.removeEventListener('keydown', handlePackKeys)
+      root.removeEventListener('keydown', handleKeys)
+      root.removeEventListener('toggle', handleDisclosureToggle, true)
     },
   }
 }
