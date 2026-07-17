@@ -33,7 +33,7 @@
     "build": "npm run build:packages && tsc -b && vite build",
     "lint": "npm run build:packages && eslint .",
     "test": "npm run test:packages && vitest run src content && npm run test:website",
-    "test:website": "node --test scripts/website-demo.test.mjs scripts/website-storage.test.mjs scripts/website-document.test.mjs scripts/website-assets.test.mjs scripts/website-runtime.test.mjs scripts/website-styles.test.mjs",
+    "test:website": "node --test scripts/website-demo.test.mjs scripts/website-storage.test.mjs scripts/website-activities.test.mjs scripts/website-document.test.mjs scripts/website-assets.test.mjs scripts/website-runtime.test.mjs scripts/website-styles.test.mjs",
     "test:watch": "vitest",
     "build:logic-foundations": "tsx scripts/build-logic-foundations-pack.ts",
     "export:learning-pack": "tsx scripts/export-learning-pack.ts",
