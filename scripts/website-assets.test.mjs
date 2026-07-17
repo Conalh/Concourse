@@ -80,6 +80,7 @@ test('keeps the guided runtime within its uncompressed JavaScript budget', async
     'demo-activities.js',
     'demo-course.js',
     'demo-model.js',
+    'demo-modes.js',
     'demo-pack.js',
     'demo-render.js',
     'demo-routing.js',
