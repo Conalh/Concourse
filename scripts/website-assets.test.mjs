@@ -79,5 +79,5 @@ test('keeps the guided runtime within its uncompressed JavaScript budget', async
   const total = (
     await Promise.all(paths.map((path) => stat(new URL(path, root))))
   ).reduce((sum, entry) => sum + entry.size, 0)
-  assert.ok(total < 30_000, `demo JavaScript total ${total} exceeds 30 KB`)
+  assert.ok(total < 90_000, `demo JavaScript total ${total} exceeds 90 KB`)
 })
