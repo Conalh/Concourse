@@ -1005,15 +1005,15 @@ Expected: JavaScript remains below 92,160 bytes, CSS remains below 81,920 bytes,
 Run:
 
 ```powershell
-$server = Start-Process -FilePath 'npm.cmd' -ArgumentList 'run','dev','--','--port','4173','--strictPort' -WorkingDirectory 'C:\Projects\Learning\Concourse-Main' -WindowStyle Hidden -PassThru
-Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:4173/demo/' | Select-Object StatusCode
+$server = Start-Process -FilePath 'py.exe' -ArgumentList '-3.11','-m','http.server','4174','--directory','website' -WorkingDirectory 'C:\Projects\Learning\Concourse-Main' -WindowStyle Hidden -PassThru
+Invoke-WebRequest -UseBasicParsing 'http://127.0.0.1:4174/demo/' | Select-Object StatusCode
 ```
 
 Expected: HTTP 200. Record `$server.Id` and stop only that process after browser verification with `Stop-Process -Id $server.Id`.
 
 - [ ] **Step 4: Verify representative lessons in a real browser**
 
-Use the browser-testing skill at `http://127.0.0.1:4173/demo/`. Check the first required activity, `energy-classify`, and `antibiotic-retrieval`. Use the existing controls to advance; do not inject state or bypass the UI.
+Use the browser-testing skill at `http://127.0.0.1:4174/demo/`. Check the first required activity, `energy-classify`, and `antibiotic-retrieval`. Use the existing controls to advance; do not inject state or bypass the UI.
 
 At each representative activity:
 
