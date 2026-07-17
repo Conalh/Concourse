@@ -26,6 +26,31 @@ function el(documentRoot, tagName, attributes = {}, text = null) {
   return node
 }
 
+export function renderTeachingBlock(documentRoot, teaching) {
+  const section = el(documentRoot, 'section', {
+    className: 'activity-teaching',
+    'data-activity-teaching': '',
+    'aria-labelledby': 'activity-key-idea-title',
+  })
+  section.append(
+    el(documentRoot, 'h3', { id: 'activity-key-idea-title' }, 'Key idea'),
+  )
+
+  for (const { segments } of teaching) {
+    const paragraph = el(documentRoot, 'p')
+    for (const segment of segments) {
+      paragraph.append(
+        segment.kind === 'term'
+          ? el(documentRoot, 'strong', {}, segment.text)
+          : documentRoot.createTextNode(segment.text),
+      )
+    }
+    section.append(paragraph)
+  }
+
+  return section
+}
+
 function chapterForNode(nodeId) {
   const node = getCourseNode(nodeId)
   return (
@@ -207,9 +232,15 @@ function renderActivityStage(root, state) {
         : `${node.kind === 'support' ? 'Support bridge' : 'Optional extension'} · ${chapter.title}`,
     ),
     el(documentRoot, 'h2', {}, node.required ? chapter.title : node.title),
-    el(documentRoot, 'p', {}, chapter.model),
   )
+  if (!node.required) {
+    header.append(el(documentRoot, 'p', {}, chapter.model))
+  }
   stage.append(header)
+
+  if (node.required) {
+    stage.append(renderTeachingBlock(documentRoot, activity.teaching))
+  }
 
   if (retrievalTarget) {
     stage.append(

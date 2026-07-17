@@ -4,11 +4,13 @@ import { readFile } from 'node:fs/promises'
 import { JSDOM } from 'jsdom'
 
 import {
+  REQUIRED_ACTIVITY_IDS,
   getActivity,
   getCourseNode,
   retrievalActivityForConcept,
 } from '../website/demo-course.js'
 import { createCourseState, transitionCourse } from '../website/demo-model.js'
+import * as demoRender from '../website/demo-render.js'
 import { mountCourse } from '../website/main.js'
 import { selectRetrievalConcept } from '../website/demo-routing.js'
 import { saveCourseState, STORAGE_KEY } from '../website/demo-storage.js'
@@ -121,6 +123,109 @@ test('starts a new course and persists the first node', () => {
   assert.equal(document.querySelector('[data-course-workspace]').hidden, false)
   assert.ok(storage.getItem(STORAGE_KEY))
   controller.destroy()
+})
+
+test('renders each required key idea before its activity form', () => {
+  for (const activityId of REQUIRED_ACTIVITY_IDS) {
+    const seededState = advanceCourseTo(activityId)
+    const { document, window, controller } = setupCourse({ seededState })
+    click(document, '[data-course-action="resume"]')
+
+    const activity = getActivity(activityId)
+    const teaching = document.querySelector('[data-activity-teaching]')
+    const form = document.querySelector('[data-course-activity]')
+    assert.ok(teaching, activityId + ' needs a rendered key idea')
+    assert.ok(form, activityId + ' needs an activity form')
+    const renderedText = [...teaching.querySelectorAll('p')]
+      .map((paragraph) => paragraph.textContent)
+      .join('\n')
+    const authoredText = activity.teaching
+      .map(({ segments }) => segments.map(({ text }) => text).join(''))
+      .join('\n')
+
+    assert.equal(teaching.querySelector('h3').textContent, 'Key idea')
+    assert.equal(
+      teaching.getAttribute('aria-labelledby'),
+      'activity-key-idea-title',
+    )
+    assert.deepEqual(
+      [
+        ...document
+          .querySelector('[data-course-stage]')
+          .querySelectorAll('h2, h3'),
+      ].map(({ tagName }) => tagName),
+      ['H2', 'H3'],
+    )
+    assert.equal(renderedText, authoredText)
+    assert.equal(
+      teaching.querySelectorAll('strong').length,
+      activity.teaching
+        .flatMap(({ segments }) => segments)
+        .filter(({ kind }) => kind === 'term').length,
+    )
+    assert.ok(
+      teaching.compareDocumentPosition(form) &
+        window.Node.DOCUMENT_POSITION_FOLLOWING,
+    )
+    controller.destroy()
+  }
+})
+
+test('keeps chapter context for optional branches without a key idea block', () => {
+  let state = transitionCourse(createCourseState(NOW), { type: 'start' }, NOW)
+  state = transitionCourse(
+    state,
+    {
+      type: 'submit-response',
+      nodeId: 'boundary-permeability',
+      response: ['sodium'],
+      confidence: 'high',
+    },
+    NOW,
+  )
+  state = transitionCourse(
+    state,
+    {
+      type: 'submit-response',
+      nodeId: 'boundary-permeability',
+      response: getActivity('boundary-permeability').correctResponse,
+      confidence: 'high',
+    },
+    NOW,
+  )
+  state = transitionCourse(
+    state,
+    { type: 'take-branch', nodeId: 'support-charge-size' },
+    NOW,
+  )
+
+  const { document, controller } = setupCourse({ seededState: state })
+  click(document, '[data-course-action="resume"]')
+
+  assert.equal(document.querySelector('[data-activity-teaching]'), null)
+  assert.match(
+    document.querySelector('.activity-heading > p:last-child').textContent,
+    /lipid membrane/i,
+  )
+  controller.destroy()
+})
+
+test('renders authored tag-like teaching as inert text', () => {
+  const dom = new JSDOM('<!doctype html><body></body>')
+  assert.equal(typeof demoRender.renderTeachingBlock, 'function')
+  const teaching = demoRender.renderTeachingBlock(dom.window.document, [
+    {
+      segments: [
+        { kind: 'text', text: '<img src=x onerror=alert(1)> remains ' },
+        { kind: 'term', text: 'inert text' },
+        { kind: 'text', text: '.' },
+      ],
+    },
+  ])
+
+  assert.equal(teaching.querySelector('img'), null)
+  assert.match(teaching.textContent, /<img src=x onerror=alert\(1\)>/)
+  assert.equal(teaching.querySelector('strong').textContent, 'inert text')
 })
 
 test('restores an incomplete course through the resume entry', () => {
