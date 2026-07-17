@@ -35,6 +35,18 @@ import {
 
 const NOW = '2026-07-16T12:00:00.000Z'
 
+const TEACHING_SEGMENT_KINDS = new Set(['text', 'term'])
+
+function teachingText(activity) {
+  return activity.teaching
+    .map(({ segments }) => segments.map(({ text }) => text).join(''))
+    .join('\n')
+}
+
+function wordCount(value) {
+  return value.trim().split(/\s+/u).length
+}
+
 function startCourse() {
   return transitionCourse(createCourseState(NOW), { type: 'start' }, NOW)
 }
@@ -279,6 +291,70 @@ test('defines the complete bacterial-survival course', () => {
     0,
   )
   assert.ok(coreMinutes >= 15 && coreMinutes <= 20)
+})
+
+test('gives every required activity a concise structured micro-lesson', () => {
+  const lessons = REQUIRED_ACTIVITY_IDS.map((activityId) => {
+    const activity = getActivity(activityId)
+    assert.ok(Array.isArray(activity.teaching), activityId + ' needs teaching')
+    assert.ok(
+      activity.teaching.length >= 1 && activity.teaching.length <= 2,
+      activityId + ' must contain one or two paragraphs',
+    )
+
+    const segments = activity.teaching.flatMap(({ segments }) => {
+      assert.ok(Array.isArray(segments) && segments.length > 0)
+      return segments
+    })
+    const text = teachingText(activity)
+    const terms = segments.filter(({ kind }) => kind === 'term')
+
+    assert.ok(wordCount(text) >= 35 && wordCount(text) <= 55, activityId)
+    assert.ok(terms.length >= 1 && terms.length <= 4, activityId)
+    assert.doesNotMatch(text, / {2,}/u)
+    assert.match(text, /[.!?]$/u)
+    for (const segment of segments) {
+      assert.ok(TEACHING_SEGMENT_KINDS.has(segment.kind), activityId)
+      assert.equal(typeof segment.text, 'string')
+      assert.ok(segment.text.trim().length > 0, activityId)
+      assert.doesNotMatch(segment.text, /<\/?[a-z][^>]*>|\*\*|__/iu)
+    }
+
+    return text
+  })
+
+  assert.equal(new Set(lessons).size, REQUIRED_ACTIVITY_IDS.length)
+  const packItems = createSourceDocuments()['items.json'].items
+  for (const activityId of [...SUPPORT_NODE_IDS, ...EXTENSION_NODE_IDS]) {
+    assert.equal(getActivity(activityId).teaching, undefined)
+    assert.equal(
+      packItems.find(({ itemId }) => itemId === activityId).teaching,
+      undefined,
+    )
+  }
+  for (const activityId of REQUIRED_ACTIVITY_IDS) {
+    assert.deepEqual(
+      packItems.find(({ itemId }) => itemId === activityId).teaching,
+      getActivity(activityId).teaching,
+    )
+  }
+
+  const retrievalLesson = teachingText(getActivity('antibiotic-retrieval'))
+  const retrievalTokens = retrievalLesson.toLowerCase().split(/[^a-z0-9-]+/u)
+  for (const conceptId of [
+    'membrane-permeability',
+    'cell-envelope',
+    'concentration-gradient',
+    'transport-proteins',
+    'osmosis',
+    'energy-coupling',
+    'gene-expression',
+  ]) {
+    const selectedResponse = String(
+      retrievalActivityForConcept(conceptId).correctResponse,
+    ).toLowerCase()
+    assert.equal(retrievalTokens.includes(selectedResponse), false)
+  }
 })
 
 test('projects the biofilm extension atomically', () => {

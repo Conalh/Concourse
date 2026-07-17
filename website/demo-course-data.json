@@ -5,6 +5,30 @@
       "minutes": 1.25,
       "activityId": "boundary-permeability",
       "conceptId": "membrane-permeability",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "text", "text": "The " },
+            { "kind": "term", "text": "cell membrane" },
+            { "kind": "text", "text": " is " },
+            { "kind": "term", "text": "selectively permeable" },
+            {
+              "kind": "text",
+              "text": ": its lipid core lets some substances cross more readily than others. "
+            },
+            { "kind": "term", "text": "Small nonpolar molecules" },
+            {
+              "kind": "text",
+              "text": " usually pass directly more easily, while "
+            },
+            { "kind": "term", "text": "charged ions" },
+            {
+              "kind": "text",
+              "text": " and large polar molecules usually need a protein pathway. Compare size, polarity, and charge before predicting passage."
+            }
+          ]
+        }
+      ],
       "kind": "multi-select",
       "prompt": "A bacterium is placed in water containing oxygen, glucose, and sodium ions. Which can cross its lipid membrane directly with relative ease?",
       "choices": [
@@ -36,6 +60,30 @@
       "minutes": 1.25,
       "activityId": "boundary-structure",
       "conceptId": "cell-envelope",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "text", "text": "A bacterial " },
+            { "kind": "term", "text": "cell envelope" },
+            {
+              "kind": "text",
+              "text": " combines structures with different jobs. The "
+            },
+            { "kind": "term", "text": "cell membrane" },
+            {
+              "kind": "text",
+              "text": " regulates what enters and leaves, helping maintain a controlled interior. The "
+            },
+            { "kind": "term", "text": "cell wall" },
+            { "kind": "text", "text": " sits outside it and bears " },
+            { "kind": "term", "text": "mechanical stress" },
+            {
+              "kind": "text",
+              "text": ". When reasoning about survival, separate control of passage from resistance to swelling."
+            }
+          ]
+        }
+      ],
       "kind": "matching",
       "prompt": "Match each survival job to the structure that primarily performs it.",
       "choices": {
@@ -75,6 +123,27 @@
       "minutes": 1.25,
       "activityId": "transport-gradient",
       "conceptId": "concentration-gradient",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "text", "text": "A " },
+            { "kind": "term", "text": "concentration gradient" },
+            {
+              "kind": "text",
+              "text": " is a difference in the amount of a substance between two regions. Random molecular motion occurs in both directions, but "
+            },
+            { "kind": "term", "text": "net diffusion" },
+            { "kind": "text", "text": " favors the direction from " },
+            { "kind": "term", "text": "higher concentration" },
+            { "kind": "text", "text": " toward " },
+            { "kind": "term", "text": "lower concentration" },
+            {
+              "kind": "text",
+              "text": " until the difference becomes smaller."
+            }
+          ]
+        }
+      ],
       "kind": "single-choice",
       "prompt": "A permeable molecule is more concentrated outside the cell than inside. What is its expected net movement?",
       "choices": [
@@ -103,6 +172,30 @@
       "minutes": 1.25,
       "activityId": "transport-mechanism",
       "conceptId": "transport-proteins",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "text", "text": "The membrane's " },
+            { "kind": "term", "text": "lipid core" },
+            {
+              "kind": "text",
+              "text": " resists most ions and many polar nutrients. "
+            },
+            { "kind": "term", "text": "Transport proteins" },
+            { "kind": "text", "text": " create selective routes: " },
+            { "kind": "term", "text": "channels" },
+            {
+              "kind": "text",
+              "text": " form hydrophilic passages, while "
+            },
+            { "kind": "term", "text": "carriers" },
+            {
+              "kind": "text",
+              "text": " bind particular substances and change shape. The substance's chemistry and the protein's mechanism together determine which route fits."
+            }
+          ]
+        }
+      ],
       "kind": "matching",
       "prompt": "Match each substance to the most fitting simplified route across the membrane.",
       "choices": {
@@ -151,6 +244,26 @@
       "minutes": 1.25,
       "activityId": "osmosis-water",
       "conceptId": "osmosis",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "term", "text": "Osmosis" },
+            { "kind": "text", "text": " describes water crossing a " },
+            { "kind": "term", "text": "selectively permeable membrane" },
+            {
+              "kind": "text",
+              "text": ". Water molecules move in both directions, but "
+            },
+            { "kind": "term", "text": "net movement" },
+            { "kind": "text", "text": " depends on relative " },
+            { "kind": "term", "text": "solute concentration" },
+            {
+              "kind": "text",
+              "text": ". A side with more dissolved solute has less freely available water, so compare the two environments before predicting the overall flow."
+            }
+          ]
+        }
+      ],
       "kind": "single-choice",
       "prompt": "The environment suddenly becomes much saltier than the cell interior. What is the expected net movement of water?",
       "choices": [
@@ -179,6 +292,32 @@
       "minutes": 1.25,
       "activityId": "osmosis-response",
       "conceptId": "osmotic-stress",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "term", "text": "Osmotic stress" },
+            {
+              "kind": "text",
+              "text": " changes a bacterium's water balance. "
+            },
+            { "kind": "term", "text": "Net water loss" },
+            {
+              "kind": "text",
+              "text": " reduces cell volume and can crowd internal components; "
+            },
+            { "kind": "term", "text": "net water entry" },
+            {
+              "kind": "text",
+              "text": " increases internal pressure. The "
+            },
+            { "kind": "term", "text": "cell wall" },
+            {
+              "kind": "text",
+              "text": " helps resist expansion, but it does not decide water's direction across the membrane."
+            }
+          ]
+        }
+      ],
       "kind": "matching",
       "prompt": "Match each surrounding condition to the likely immediate pressure on the bacterium.",
       "choices": {
@@ -218,6 +357,33 @@
       "minutes": 1.25,
       "activityId": "energy-classify",
       "conceptId": "energy-coupling",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "text", "text": "Transport is " },
+            { "kind": "term", "text": "passive" },
+            {
+              "kind": "text",
+              "text": " when net movement follows a "
+            },
+            { "kind": "term", "text": "favorable gradient" },
+            {
+              "kind": "text",
+              "text": " without an added energy source. Moving against a substance's gradient requires "
+            },
+            { "kind": "term", "text": "energy coupling" },
+            {
+              "kind": "text",
+              "text": ", which can come directly from chemical reactions or indirectly from another "
+            },
+            { "kind": "term", "text": "ion gradient" },
+            {
+              "kind": "text",
+              "text": ". Judge the direction first, then ask what powers it."
+            }
+          ]
+        }
+      ],
       "kind": "matching",
       "prompt": "Classify each movement by what drives the net transport.",
       "choices": {
@@ -262,6 +428,29 @@
       "minutes": 1.25,
       "activityId": "energy-scarce-nutrient",
       "conceptId": "active-transport",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "term", "text": "Active transport" },
+            {
+              "kind": "text",
+              "text": " can accumulate a substance where it is already more concentrated. A transporter must couple that "
+            },
+            { "kind": "term", "text": "uphill movement" },
+            { "kind": "text", "text": " to a usable " },
+            { "kind": "term", "text": "energy source" },
+            {
+              "kind": "text",
+              "text": ", such as a chemical reaction or an existing "
+            },
+            { "kind": "term", "text": "ion gradient" },
+            {
+              "kind": "text",
+              "text": ". The transported nutrient does not supply the needed push by simple diffusion."
+            }
+          ]
+        }
+      ],
       "kind": "single-choice",
       "prompt": "A nutrient is scarce outside but already concentrated inside. Which strategy can keep accumulating it?",
       "choices": [
@@ -290,6 +479,29 @@
       "minutes": 1.25,
       "activityId": "response-sequence",
       "conceptId": "gene-expression",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "term", "text": "Gene expression" },
+            {
+              "kind": "text",
+              "text": " links stored information to cellular work. In this instructional model, "
+            },
+            { "kind": "term", "text": "DNA" },
+            { "kind": "text", "text": " holds a gene, " },
+            { "kind": "term", "text": "RNA" },
+            {
+              "kind": "text",
+              "text": " carries an expressed message, and a "
+            },
+            { "kind": "term", "text": "ribosome" },
+            {
+              "kind": "text",
+              "text": " reads that message while assembling a protein. The sequence explains information flow without representing every regulatory step."
+            }
+          ]
+        }
+      ],
       "kind": "ordering",
       "prompt": "Put the instructional path for producing a transport protein into a meaningful order.",
       "choices": [
@@ -322,6 +534,36 @@
       "minutes": 1.25,
       "activityId": "response-transporter",
       "conceptId": "gene-expression",
+      "teaching": [
+        {
+          "segments": [
+            {
+              "kind": "text",
+              "text": "Cells adjust behavior by changing which "
+            },
+            { "kind": "term", "text": "genes" },
+            {
+              "kind": "text",
+              "text": " are expressed. When a transport gene is expressed more often, additional "
+            },
+            { "kind": "term", "text": "RNA messages" },
+            {
+              "kind": "text",
+              "text": " can be produced and "
+            },
+            { "kind": "term", "text": "ribosomes" },
+            {
+              "kind": "text",
+              "text": " can assemble more copies of its protein. Existing DNA remains the instruction source; "
+            },
+            { "kind": "term", "text": "expression" },
+            {
+              "kind": "text",
+              "text": " changes use of that information."
+            }
+          ]
+        }
+      ],
       "kind": "single-choice",
       "prompt": "The cell needs more of a particular transport protein. Which change most directly supplies new copies?",
       "choices": [
@@ -350,6 +592,33 @@
       "minutes": 1.25,
       "activityId": "antibiotic-targets",
       "conceptId": "antibiotic-targets",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "text", "text": "An " },
+            { "kind": "term", "text": "antibiotic target" },
+            {
+              "kind": "text",
+              "text": " is the cellular structure or process a drug mechanism disrupts. Damaging "
+            },
+            { "kind": "term", "text": "cell-wall assembly" },
+            {
+              "kind": "text",
+              "text": " weakens structural support; disturbing the "
+            },
+            { "kind": "term", "text": "membrane" },
+            {
+              "kind": "text",
+              "text": " undermines controlled gradients; blocking "
+            },
+            { "kind": "term", "text": "ribosome function" },
+            {
+              "kind": "text",
+              "text": " interrupts protein production. Matching target to process predicts the first cellular failure, not a treatment outcome."
+            }
+          ]
+        }
+      ],
       "kind": "matching",
       "prompt": "Match each simplified antibiotic target to the cellular process most directly disrupted.",
       "choices": {
@@ -398,6 +667,26 @@
       "minutes": 1.25,
       "activityId": "antibiotic-consequence",
       "conceptId": "antibiotic-targets",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "term", "text": "Translation" },
+            {
+              "kind": "text",
+              "text": " is the process in which a "
+            },
+            { "kind": "term", "text": "ribosome" },
+            { "kind": "text", "text": " reads " },
+            { "kind": "term", "text": "RNA" },
+            {
+              "kind": "text",
+              "text": " and assembles a protein. If ribosome function is blocked, the cell cannot complete normal translation for newly needed proteins. Follow the interrupted process to its immediate product before considering broader "
+            },
+            { "kind": "term", "text": "downstream effects" },
+            { "kind": "text", "text": "." }
+          ]
+        }
+      ],
       "kind": "single-choice",
       "prompt": "A simplified antibiotic blocks bacterial ribosomes. What is the most direct consequence for a needed new transporter?",
       "choices": [
@@ -426,6 +715,32 @@
       "minutes": 1.25,
       "activityId": "antibiotic-retrieval",
       "conceptId": "retrieval",
+      "teaching": [
+        {
+          "segments": [
+            { "kind": "term", "text": "Systems reasoning" },
+            {
+              "kind": "text",
+              "text": " connects an interrupted process to what happens next. "
+            },
+            { "kind": "term", "text": "Retrieval practice" },
+            {
+              "kind": "text",
+              "text": " strengthens that connection by asking you to reconstruct an earlier mechanism from memory. Identify the "
+            },
+            { "kind": "term", "text": "affected process" },
+            {
+              "kind": "text",
+              "text": ", recall its normal role, and trace one "
+            },
+            { "kind": "term", "text": "consequence" },
+            {
+              "kind": "text",
+              "text": " without relying on the answer you selected earlier."
+            }
+          ]
+        }
+      ],
       "kind": "retrieval",
       "prompt": "Retrieve an earlier mechanism and use it to explain what happens next in the antibiotic scenario.",
       "choices": [

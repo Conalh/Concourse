@@ -107,6 +107,9 @@ function buildDocuments() {
         itemId: activity.activityId,
         learningRevision: COURSE_REVISION,
         title: getCourseNode(activity.activityId)?.title ?? activity.prompt,
+        ...(activity.teaching === undefined
+          ? {}
+          : { teaching: activity.teaching }),
         prompt: activity.prompt,
         response: {
           kind: activity.kind,
