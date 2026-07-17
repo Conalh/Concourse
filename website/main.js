@@ -1,4 +1,9 @@
-import { deriveRouteNodes } from './demo-content.js'
+import {
+  PACK_FILES,
+  derivePackDocuments,
+  deriveRouteNodes,
+  excerptForFile,
+} from './demo-content.js'
 import { createGuidedDemoState, transitionGuidedDemo } from './demo-model.js'
 
 function predictionEvent(form) {
@@ -15,6 +20,12 @@ function eventFromControl(control) {
   const type = control.dataset.demoAction
   if (type === 'answer-application') {
     return { type, choice: control.dataset.choice }
+  }
+  if (type === 'select-pack-file') {
+    return { type, fileName: control.dataset.packFile }
+  }
+  if (type === 'toggle-dna-route') {
+    return { type, enabled: control.checked }
   }
   return { type }
 }
@@ -99,10 +110,27 @@ export function mountDemo(documentRoot = document, options = {}) {
   const applicationFeedback = root.querySelector('[data-application-feedback]')
   const result = root.querySelector('[data-result-copy]')
   const inspector = root.querySelector('[data-pack-inspector]')
+  const packTabsRoot = root.querySelector('.pack-tabs')
+  const packCode = root.querySelector('[data-pack-code]')
+  const dnaToggle = root.querySelector('[data-demo-action="toggle-dna-route"]')
+  const draftStatus = root.querySelector('[data-draft-status]')
   const status = root.querySelector('[data-demo-status]')
   let state = createGuidedDemoState()
 
   documentRoot.documentElement?.classList.add('js')
+
+  for (const fileName of PACK_FILES) {
+    const tab = documentRoot.createElement('button')
+    tab.type = 'button'
+    tab.id = `pack-tab-${fileName.replace('.json', '')}`
+    tab.dataset.demoAction = 'select-pack-file'
+    tab.dataset.packFile = fileName
+    tab.setAttribute('role', 'tab')
+    tab.setAttribute('aria-controls', 'pack-document')
+    tab.textContent = fileName
+    packTabsRoot.append(tab)
+  }
+  const packTabs = [...packTabsRoot.querySelectorAll('[role="tab"]')]
 
   function render(announce = false, moveFocus = false, resetForm = false) {
     root.querySelector('.learning-lab').dataset.phase = state.phase
@@ -126,6 +154,18 @@ export function mountDemo(documentRoot = document, options = {}) {
     applicationFeedback.hidden = state.application.status !== 'incorrect'
     result.textContent = resultCopy(state)
     inspector.hidden = state.phase !== 'pack'
+
+    const documents = derivePackDocuments(state.dnaSideRouteEnabled)
+    packCode.textContent = excerptForFile(documents, state.activePackFile)
+    for (const tab of packTabs) {
+      const selected = tab.dataset.packFile === state.activePackFile
+      tab.setAttribute('aria-selected', String(selected))
+      tab.tabIndex = selected ? 0 : -1
+    }
+    dnaToggle.checked = state.dnaSideRouteEnabled
+    draftStatus.textContent = state.dnaSideRouteEnabled
+      ? '2 files changed · catalog.json · courses.json'
+      : 'No local changes.'
 
     for (const button of applicationButtons) {
       const submitted = button.dataset.choice === state.application.choice
@@ -169,8 +209,39 @@ export function mountDemo(documentRoot = document, options = {}) {
     dispatch(eventFromControl(control))
   }
 
+  function handleChange(event) {
+    const control = event.target.closest?.(
+      '[data-demo-action="toggle-dna-route"]',
+    )
+    if (control === null || control === undefined || !root.contains(control)) {
+      return
+    }
+    dispatch(eventFromControl(control))
+  }
+
+  function handlePackTabKeydown(event) {
+    const current = event.target.closest?.('[role="tab"]')
+    if (current === null || current === undefined) return
+    const currentIndex = packTabs.indexOf(current)
+    let nextIndex
+    if (event.key === 'ArrowRight')
+      nextIndex = (currentIndex + 1) % packTabs.length
+    else if (event.key === 'ArrowLeft') {
+      nextIndex = (currentIndex - 1 + packTabs.length) % packTabs.length
+    } else if (event.key === 'Home') nextIndex = 0
+    else if (event.key === 'End') nextIndex = packTabs.length - 1
+    else return
+
+    event.preventDefault()
+    const next = packTabs[nextIndex]
+    dispatch(eventFromControl(next))
+    next.focus()
+  }
+
   root.addEventListener('submit', handleSubmit)
   root.addEventListener('click', handleClick)
+  root.addEventListener('change', handleChange)
+  packTabsRoot.addEventListener('keydown', handlePackTabKeydown)
   render(false)
 
   return {
@@ -179,6 +250,8 @@ export function mountDemo(documentRoot = document, options = {}) {
     destroy: () => {
       root.removeEventListener('submit', handleSubmit)
       root.removeEventListener('click', handleClick)
+      root.removeEventListener('change', handleChange)
+      packTabsRoot.removeEventListener('keydown', handlePackTabKeydown)
     },
   }
 }

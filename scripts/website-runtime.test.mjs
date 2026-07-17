@@ -217,3 +217,94 @@ test('resets a completed demo when the final rerun link is activated', () => {
   )
   controller.destroy()
 })
+
+function completeDirectPath(document) {
+  submitPrediction(document, 'oxygen', 'high')
+  click(document, '[data-demo-action="continue-result"]')
+  click(
+    document,
+    '[data-demo-action="answer-application"][data-choice="transport-protein"]',
+  )
+}
+
+test('renders authentic pack tabs and switches document excerpts', () => {
+  const { document, controller } = setup()
+  completeDirectPath(document)
+
+  assert.equal(document.querySelector('[data-pack-inspector]')?.hidden, false)
+  assert.equal(document.querySelectorAll('[role="tab"]').length, 4)
+  assert.match(
+    document.querySelector('[data-pack-code]')?.textContent ?? '',
+    /membrane-permeability/,
+  )
+
+  click(document, '[data-pack-file="courses.json"]')
+  assert.match(
+    document.querySelector('[data-pack-code]')?.textContent ?? '',
+    /bacterial-cell-route/,
+  )
+  assert.equal(
+    document
+      .querySelector('[data-pack-file="courses.json"]')
+      ?.getAttribute('aria-selected'),
+    'true',
+  )
+  controller.destroy()
+})
+
+test('supports arrow-key navigation between pack documents', () => {
+  const { document, controller } = setup()
+  completeDirectPath(document)
+  const catalog = document.querySelector('[data-pack-file="catalog.json"]')
+  assert.ok(catalog)
+  catalog.focus()
+  catalog.dispatchEvent(
+    new document.defaultView.KeyboardEvent('keydown', {
+      key: 'ArrowRight',
+      bubbles: true,
+    }),
+  )
+
+  const courses = document.querySelector('[data-pack-file="courses.json"]')
+  assert.equal(document.activeElement, courses)
+  assert.equal(courses?.getAttribute('aria-selected'), 'true')
+  assert.match(
+    document.querySelector('[data-pack-code]')?.textContent ?? '',
+    /bacterial-cell-route/,
+  )
+  controller.destroy()
+})
+
+test('toggles the DNA draft across documents and route projection', () => {
+  const { document, controller } = setup()
+  completeDirectPath(document)
+  click(document, '[data-demo-action="toggle-dna-route"]')
+
+  assert.equal(controller.getState().dnaSideRouteEnabled, true)
+  assert.equal(
+    document.querySelector('[data-route-node="dna-storage"]')?.hidden,
+    false,
+  )
+  assert.match(
+    document.querySelector('[data-draft-status]')?.textContent ?? '',
+    /2 files changed/i,
+  )
+  click(document, '[data-pack-file="catalog.json"]')
+  assert.match(
+    document.querySelector('[data-pack-code]')?.textContent ?? '',
+    /dna-storage/,
+  )
+  click(document, '[data-pack-file="courses.json"]')
+  assert.match(
+    document.querySelector('[data-pack-code]')?.textContent ?? '',
+    /node-dna-storage/,
+  )
+
+  click(document, '[data-demo-action="toggle-dna-route"]')
+  assert.equal(controller.getState().dnaSideRouteEnabled, false)
+  assert.equal(
+    document.querySelector('[data-route-node="dna-storage"]')?.hidden,
+    true,
+  )
+  controller.destroy()
+})

@@ -76,6 +76,16 @@ test('starts inside the learning experience without a dead start screen', () => 
   assert.match(demoText, /which crosses most easily/i)
 })
 
+test('declares the unpacked draft inspector contract', () => {
+  const inspector = document.querySelector('[data-pack-inspector]')
+  assert.ok(inspector)
+  assert.match(inspector.textContent ?? '', /unpacked local draft/i)
+  assert.ok(inspector.querySelector('[role="tablist"]'))
+  assert.ok(inspector.querySelector('[role="tabpanel"] [data-pack-code]'))
+  assert.ok(inspector.querySelector('[data-demo-action="toggle-dna-route"]'))
+  assert.ok(inspector.querySelector('[data-draft-status]'))
+})
+
 test('uses verified contribution destinations', () => {
   const hrefs = [...document.querySelectorAll('#contribute a')].map(
     (link) => link.href,
