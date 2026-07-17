@@ -67,6 +67,16 @@ test('lays out the learning lab as route, learning center, and context', () => {
   assert.match(ruleBody('.lab-context'), /min-width:\s*0;/)
 })
 
+test('gives the dedicated demo page the full site content width', () => {
+  assert.match(ruleBody('.demo-page main'), /display:\s*block;/)
+  assert.match(
+    ruleBody('.demo-page main'),
+    /width:\s*min\(100%,\s*var\(--content-width\)\);/,
+  )
+  assert.match(ruleBody('.demo-page .demo-section'), /min-height:\s*0;/)
+  assert.match(ruleBody('.demo-page .demo-section'), /grid-column:\s*auto;/)
+})
+
 test('keeps lab controls touch-safe and press motion pointer-only', () => {
   assert.match(
     demoStyles,

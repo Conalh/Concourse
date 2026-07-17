@@ -3,60 +3,95 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { JSDOM } from 'jsdom'
 
-const html = await readFile(
+const landingHtml = await readFile(
   new URL('../website/index.html', import.meta.url),
   'utf8',
 )
-const { document } = new JSDOM(html).window
+const demoHtml = await readFile(
+  new URL('../website/demo/index.html', import.meta.url),
+  'utf8',
+)
+const landingDocument = new JSDOM(landingHtml).window.document
+const demoDocument = new JSDOM(demoHtml).window.document
 
 test('declares the approved metadata without remote runtime assets', () => {
-  assert.equal(document.title, 'Concourse — Learning should have a route')
   assert.equal(
-    document.querySelector('link[rel="canonical"]')?.getAttribute('href'),
+    landingDocument.title,
+    'Concourse — Learning should have a route',
+  )
+  assert.equal(
+    landingDocument
+      .querySelector('link[rel="canonical"]')
+      ?.getAttribute('href'),
     'https://concourse.conalhickey.com/',
   )
   assert.equal(
-    document.querySelector('meta[name="description"]')?.getAttribute('content'),
+    landingDocument
+      .querySelector('meta[name="description"]')
+      ?.getAttribute('content'),
     'Concourse is an open-source, local-first system for guided learning routes, active recall, and portable course packs.',
   )
 
-  for (const element of document.querySelectorAll(
-    'script[src], link[rel="stylesheet"][href], link[rel="icon"][href], img[src]',
-  )) {
-    const source =
-      element.getAttribute('src') ?? element.getAttribute('href') ?? ''
-    assert.equal(
-      /^https?:\/\//.test(source),
-      false,
-      `remote runtime asset: ${source}`,
-    )
+  for (const page of [landingDocument, demoDocument]) {
+    for (const element of page.querySelectorAll(
+      'script[src], link[rel="stylesheet"][href], link[rel="icon"][href], img[src]',
+    )) {
+      const source =
+        element.getAttribute('src') ?? element.getAttribute('href') ?? ''
+      assert.equal(
+        /^https?:\/\//.test(source),
+        false,
+        `remote runtime asset: ${source}`,
+      )
+    }
   }
 })
 
 test('contains the approved hero and contributor-first actions', () => {
   assert.equal(
-    document.querySelector('h1')?.textContent?.trim(),
+    landingDocument.querySelector('h1')?.textContent?.trim(),
     'Learning should have a route.',
   )
   assert.equal(
-    document.querySelector('[data-primary-cta]')?.textContent?.trim(),
+    landingDocument.querySelector('[data-primary-cta]')?.textContent?.trim(),
     'Explore the demo',
   )
   assert.equal(
-    document.querySelector('[data-primary-cta]')?.getAttribute('href'),
-    '#demo',
+    landingDocument.querySelector('[data-primary-cta]')?.getAttribute('href'),
+    './demo/',
   )
   assert.equal(
-    document.querySelector('[data-github-cta]')?.getAttribute('href'),
+    landingDocument.querySelector('[data-github-cta]')?.getAttribute('href'),
     'https://github.com/Conalh/Concourse',
   )
 })
 
-test('provides every required section and demo hook', () => {
+test('keeps the landing page editorial and links into the full demo', () => {
   for (const id of ['demo', 'system', 'contribute', 'status']) {
-    assert.ok(document.getElementById(id), `missing #${id}`)
+    assert.ok(landingDocument.getElementById(id), `missing #${id}`)
   }
-  const demo = document.querySelector('[data-demo]')
+
+  assert.equal(landingDocument.querySelector('[data-demo]'), null)
+  assert.equal(landingDocument.querySelector('script[src$="main.js"]'), null)
+  assert.match(
+    landingDocument.querySelector('#demo')?.textContent ?? '',
+    /open the full demo/i,
+  )
+  assert.ok(landingDocument.querySelectorAll('a[href="./demo/"]').length >= 4)
+})
+
+test('gives the interactive workspace a canonical dedicated page', () => {
+  assert.equal(demoDocument.body.classList.contains('demo-page'), true)
+  assert.equal(
+    demoDocument.querySelector('link[rel="canonical"]')?.getAttribute('href'),
+    'https://concourse.conalhickey.com/demo/',
+  )
+  assert.equal(
+    demoDocument.querySelector('script[type="module"]')?.getAttribute('src'),
+    '../main.js',
+  )
+
+  const demo = demoDocument.querySelector('[data-demo]')
   assert.ok(demo)
   assert.equal(demo.querySelectorAll('[data-demo-panel]').length, 6)
   assert.equal(demo.querySelectorAll('[data-route-node]').length, 4)
@@ -71,13 +106,13 @@ test('provides every required section and demo hook', () => {
 })
 
 test('starts inside the learning experience without a dead start screen', () => {
-  const demoText = document.querySelector('[data-demo]')?.textContent ?? ''
+  const demoText = demoDocument.querySelector('[data-demo]')?.textContent ?? ''
   assert.equal(demoText.includes('Start this route'), false)
   assert.match(demoText, /which crosses most easily/i)
 })
 
 test('declares the unpacked draft inspector contract', () => {
-  const inspector = document.querySelector('[data-pack-inspector]')
+  const inspector = demoDocument.querySelector('[data-pack-inspector]')
   assert.ok(inspector)
   assert.match(inspector.textContent ?? '', /unpacked local draft/i)
   assert.ok(inspector.querySelector('[role="tablist"]'))
@@ -87,14 +122,14 @@ test('declares the unpacked draft inspector contract', () => {
 })
 
 test('describes the completed route consistently', () => {
-  const pack = document.querySelector('[data-demo-panel="pack"]')
+  const pack = demoDocument.querySelector('[data-demo-panel="pack"]')
   assert.ok(pack)
   assert.match(pack.textContent, /two activities completed/i)
   assert.doesNotMatch(pack.textContent, /one activity completed/i)
 })
 
 test('uses the approved route, workspace, and context hierarchy', () => {
-  const workspace = document.querySelector('.lab-workspace')
+  const workspace = demoDocument.querySelector('.lab-workspace')
   assert.ok(workspace)
   assert.ok(workspace.querySelector(':scope > .lab-route'))
   assert.ok(workspace.querySelector(':scope > .lab-center'))
@@ -104,7 +139,7 @@ test('uses the approved route, workspace, and context hierarchy', () => {
 })
 
 test('provides the complete no-JavaScript explanation', () => {
-  const staticDemo = document.querySelector('.static-demo')
+  const staticDemo = demoDocument.querySelector('.static-demo')
   assert.ok(staticDemo)
   assert.match(staticDemo.textContent, /oxygen/i)
   assert.match(staticDemo.textContent, /charge and size/i)
@@ -114,7 +149,7 @@ test('provides the complete no-JavaScript explanation', () => {
 })
 
 test('declares textual prediction validation feedback', () => {
-  const error = document.querySelector('[data-prediction-error]')
+  const error = demoDocument.querySelector('[data-prediction-error]')
   assert.ok(error)
   assert.equal(error.getAttribute('role'), 'status')
   assert.equal(error.getAttribute('tabindex'), '-1')
@@ -122,7 +157,7 @@ test('declares textual prediction validation feedback', () => {
 })
 
 test('uses verified contribution destinations', () => {
-  const hrefs = [...document.querySelectorAll('#contribute a')].map(
+  const hrefs = [...landingDocument.querySelectorAll('#contribute a')].map(
     (link) => link.href,
   )
   for (const expected of [
@@ -136,7 +171,7 @@ test('uses verified contribution destinations', () => {
 })
 
 test('does not introduce commercial or hosted-service claims', () => {
-  const text = document.body.textContent ?? ''
+  const text = `${landingDocument.body.textContent ?? ''} ${demoDocument.body.textContent ?? ''}`
   for (const forbidden of [
     'pricing',
     'sign up',

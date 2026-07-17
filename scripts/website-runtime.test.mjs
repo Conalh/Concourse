@@ -6,7 +6,7 @@ import * as runtime from '../website/main.js'
 
 const { mountDemo } = runtime
 const html = await readFile(
-  new URL('../website/index.html', import.meta.url),
+  new URL('../website/demo/index.html', import.meta.url),
   'utf8',
 )
 
@@ -225,52 +225,6 @@ test('exposes route state semantics alongside visible progress', () => {
     /membrane permeability.*complete/i,
   )
   controller.destroy()
-})
-
-test('resets a completed demo when the final rerun link is activated', () => {
-  const dom = new JSDOM(html, { url: 'https://concourse.test/' })
-  dom.window.requestAnimationFrame = (callback) => callback()
-  const controller = runtime.mountPage(dom.window.document, dom.window)
-  controller.dispatch({
-    type: 'submit-prediction',
-    choice: 'oxygen',
-    confidence: 'high',
-  })
-  controller.dispatch({ type: 'continue-result' })
-  controller.dispatch({
-    type: 'answer-application',
-    choice: 'transport-protein',
-  })
-
-  click(dom.window.document, '.final-invitation [data-focus-demo]')
-
-  assert.equal(controller.getState().phase, 'predict')
-  assert.equal(
-    dom.window.document.activeElement,
-    dom.window.document.querySelector('[name="molecule"]'),
-  )
-  controller.destroy()
-})
-
-test('removes page-level focus listeners when destroyed', () => {
-  const dom = new JSDOM(html, { url: 'https://concourse.test/' })
-  dom.window.requestAnimationFrame = (callback) => callback()
-  const controller = runtime.mountPage(dom.window.document, dom.window)
-  controller.dispatch({
-    type: 'submit-prediction',
-    choice: 'oxygen',
-    confidence: 'high',
-  })
-  controller.dispatch({ type: 'continue-result' })
-  controller.dispatch({
-    type: 'answer-application',
-    choice: 'transport-protein',
-  })
-  controller.destroy()
-
-  click(dom.window.document, '.final-invitation [data-focus-demo]')
-
-  assert.equal(controller.getState().phase, 'pack')
 })
 
 function completeDirectPath(document) {

@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0d1424" />
+    <meta
+      name="description"
+      content="Try Concourse in a guided microbiology lesson, follow the learning route, and inspect the open learning pack behind it."
+    />
+    <meta property="og:title" content="Inside a bacterial cell — Concourse" />
+    <meta
+      property="og:description"
+      content="Make a prediction, watch the route respond, and open the pack that authored it."
+    />
+    <meta
+      property="og:image"
+      content="https://concourse.conalhickey.com/assets/social-preview.svg"
+    />
+    <meta property="og:url" content="https://concourse.conalhickey.com/demo/" />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href="https://concourse.conalhickey.com/demo/" />
+    <link rel="icon" href="../assets/concourse-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../demo.css" />
+    <title>Inside a bacterial cell — Concourse</title>
+    <script type="module" src="../main.js"></script>
+  </head>
+  <body class="demo-page">
+    <a class="skip-link" href="#main">Skip to demo</a>
+    <header class="site-header">
+      <a class="brand" href="../" aria-label="Concourse project site">
+        <img src="../assets/concourse-mark.svg" alt="" width="36" height="36" />
+        <span>Concourse</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="../">Project</a><a href="../#contribute">Contribute</a>
+      </nav>
+      <a class="github-link" href="https://github.com/Conalh/Concourse"
+        >GitHub <span aria-hidden="true">↗</span></a
+      >
+    </header>
+
+    <main id="main">
+      <section class="demo-section" aria-labelledby="demo-title" data-demo>
+        <header class="section-heading demo-heading">
+          <p class="section-index">Guided demo / Microbiology</p>
+          <h1 id="demo-title">Inside a bacterial cell</h1>
+          <p>
+            Predict what crosses a membrane, watch the route respond, then open
+            the pack that authored it. Nothing leaves your browser.
+          </p>
+        </header>
+        <div class="learning-lab" data-phase="predict">
+          <header class="lab-topbar">
+            <div>
+              <span>Local lesson</span>
+              <code>bacterial-cell-basics.learntpack</code>
+            </div>
+            <p data-demo-progress>Prediction ready · 0 of 2 activities</p>
+            <button
+              class="enhanced-control"
+              data-demo-action="reset"
+              type="button"
+            >
+              Reset
+            </button>
+          </header>
+
+          <div class="lab-workspace">
+            <ol class="lab-route" aria-label="Learning route" data-route-map>
+              <li data-route-node="membrane-permeability">
+                <span>01</span>Membrane permeability
+              </li>
+              <li data-route-node="charge-and-size" hidden>
+                <span>+</span>Charge and size
+              </li>
+              <li data-route-node="transport-proteins">
+                <span>02</span>Transport proteins
+              </li>
+              <li data-route-node="dna-storage" hidden>
+                <span>+</span>DNA side route
+              </li>
+            </ol>
+
+            <div class="lab-center">
+              <figure
+                class="membrane-figure"
+                data-membrane-figure
+                data-result="idle"
+              >
+                <div class="membrane-scene" aria-hidden="true">
+                  <span class="molecule molecule-oxygen">O₂</span>
+                  <span class="molecule molecule-glucose">C₆H₁₂O₆</span>
+                  <span class="molecule molecule-sodium">Na⁺</span>
+                  <span class="membrane-layer"></span>
+                  <span class="transport-channel"></span>
+                </div>
+                <figcaption>
+                  Oxygen can diffuse through the lipid bilayer. Glucose and
+                  sodium need membrane proteins.
+                </figcaption>
+              </figure>
+
+              <div class="lab-activity">
+                <section
+                  data-demo-panel="predict"
+                  tabindex="-1"
+                  aria-labelledby="predict-title"
+                >
+                  <p class="demo-step">Predict</p>
+                  <h2 id="predict-title">
+                    Which crosses most easily without a transport protein?
+                  </h2>
+                  <form data-demo-form="prediction">
+                    <fieldset
+                      class="choice-set molecule-choices"
+                      aria-describedby="prediction-error"
+                    >
+                      <legend>Choose a substance</legend>
+                      <label>
+                        <input name="molecule" type="radio" value="oxygen" />
+                        <span>Oxygen <small>O₂</small></span>
+                      </label>
+                      <label>
+                        <input name="molecule" type="radio" value="glucose" />
+                        <span>Glucose <small>C₆H₁₂O₆</small></span>
+                      </label>
+                      <label>
+                        <input name="molecule" type="radio" value="sodium" />
+                        <span>Sodium ion <small>Na⁺</small></span>
+                      </label>
+                    </fieldset>
+                    <fieldset
+                      class="choice-set confidence-choices"
+                      aria-describedby="prediction-error"
+                    >
+                      <legend>How sure are you?</legend>
+                      <label>
+                        <input name="confidence" type="radio" value="high" />
+                        <span>I knew it</span>
+                      </label>
+                      <label>
+                        <input name="confidence" type="radio" value="low" />
+                        <span>I was guessing</span>
+                      </label>
+                    </fieldset>
+                    <p
+                      class="form-error"
+                      id="prediction-error"
+                      data-prediction-error
+                      role="status"
+                      tabindex="-1"
+                      hidden
+                    >
+                      Choose a substance and a confidence level.
+                    </p>
+                    <button class="button button-demo" type="submit">
+                      Run the membrane test
+                    </button>
+                  </form>
+                </section>
+
+                <section
+                  data-demo-panel="result"
+                  tabindex="-1"
+                  aria-labelledby="result-title"
+                  hidden
+                >
+                  <p class="demo-step">Observe</p>
+                  <h2 id="result-title">The membrane is selective.</h2>
+                  <p data-result-copy></p>
+                  <div class="demo-actions">
+                    <button data-demo-action="back" type="button">Back</button>
+                    <button
+                      class="button button-demo"
+                      data-demo-action="continue-result"
+                      type="button"
+                    >
+                      See the route respond
+                    </button>
+                  </div>
+                </section>
+
+                <section
+                  data-demo-panel="bridge-offer"
+                  tabindex="-1"
+                  aria-labelledby="bridge-offer-title"
+                  hidden
+                >
+                  <p class="demo-step">Suggested bridge</p>
+                  <h2 id="bridge-offer-title">
+                    Charge and size would help here.
+                  </h2>
+                  <p>
+                    Your answer or confidence suggests one short foundation
+                    before transport proteins.
+                  </p>
+                  <div class="demo-actions">
+                    <button data-demo-action="skip-bridge" type="button">
+                      Stay on the route
+                    </button>
+                    <button
+                      class="button button-demo"
+                      data-demo-action="accept-bridge"
+                      type="button"
+                    >
+                      Take the short bridge
+                    </button>
+                  </div>
+                </section>
+
+                <section
+                  data-demo-panel="bridge"
+                  tabindex="-1"
+                  aria-labelledby="bridge-title"
+                  hidden
+                >
+                  <p class="demo-step">Bridge · Charge and size</p>
+                  <h2 id="bridge-title">
+                    The lipid core resists charged particles.
+                  </h2>
+                  <p>
+                    Sodium carries charge. Glucose is larger and polar. Both use
+                    membrane proteins instead of crossing the lipid core freely.
+                  </p>
+                  <button
+                    class="button button-demo"
+                    data-demo-action="complete-bridge"
+                    type="button"
+                  >
+                    Return to transport proteins
+                  </button>
+                </section>
+
+                <section
+                  data-demo-panel="apply"
+                  tabindex="-1"
+                  aria-labelledby="apply-title"
+                  hidden
+                >
+                  <p class="demo-step">Apply</p>
+                  <h2 id="apply-title">
+                    A bacterial cell needs glucose. What helps it cross?
+                  </h2>
+                  <div
+                    class="answer-grid"
+                    role="group"
+                    aria-label="Application answers"
+                  >
+                    <button
+                      data-demo-action="answer-application"
+                      data-choice="transport-protein"
+                      type="button"
+                    >
+                      A transport protein
+                    </button>
+                    <button
+                      data-demo-action="answer-application"
+                      data-choice="ribosome"
+                      type="button"
+                    >
+                      A ribosome
+                    </button>
+                    <button
+                      data-demo-action="answer-application"
+                      data-choice="dna"
+                      type="button"
+                    >
+                      DNA
+                    </button>
+                  </div>
+                  <div
+                    class="feedback"
+                    data-application-feedback
+                    role="status"
+                    hidden
+                  >
+                    <strong>Not quite.</strong> Glucose crosses with help from a
+                    membrane transport protein.
+                  </div>
+                </section>
+
+                <section
+                  data-demo-panel="pack"
+                  tabindex="-1"
+                  aria-labelledby="pack-title"
+                  hidden
+                >
+                  <p class="demo-step">Open the route</p>
+                  <h2 id="pack-title">Your learning route is authored data.</h2>
+                  <p>
+                    Two activities completed, two evidence results recorded, and
+                    the pack draft is ready to inspect.
+                  </p>
+                  <button data-demo-action="back" type="button">
+                    Back to the activity
+                  </button>
+                </section>
+              </div>
+            </div>
+
+            <aside class="lab-context" aria-labelledby="context-title">
+              <p class="context-label" id="context-title">Evidence</p>
+              <div data-evidence-context>
+                <p>No evidence yet. Make a prediction to begin.</p>
+              </div>
+              <section
+                data-pack-inspector
+                aria-labelledby="inspector-title"
+                hidden
+              >
+                <p class="context-label">Unpacked local draft</p>
+                <h2 id="inspector-title">Four readable documents</h2>
+                <div
+                  class="pack-tabs"
+                  role="tablist"
+                  aria-label="Pack documents"
+                ></div>
+                <pre
+                  id="pack-document"
+                  role="tabpanel"
+                  tabindex="0"
+                ><code data-pack-code></code></pre>
+                <label class="draft-toggle">
+                  <input data-demo-action="toggle-dna-route" type="checkbox" />
+                  <span>Add a DNA side route</span>
+                </label>
+                <p data-draft-status>No local changes.</p>
+              </section>
+            </aside>
+          </div>
+        </div>
+
+        <details class="static-demo">
+          <summary>Read the complete demo without JavaScript</summary>
+          <p>
+            Oxygen crosses the lipid bilayer more easily than glucose or sodium.
+            Weak evidence can add a short charge and size bridge before the
+            route returns to transport proteins.
+          </p>
+          <p>
+            Glucose uses a transport protein. Concourse packs describe concepts,
+            routes, activities, and evaluation in
+            <code>pack.json</code>, <code>catalog.json</code>,
+            <code>courses.json</code>, and <code>items.json</code>.
+          </p>
+          <p>
+            Adding a DNA side route changes the unpacked catalog and course
+            draft before validation and export.
+          </p>
+        </details>
+        <p class="sr-only" data-demo-status aria-live="polite"></p>
+      </section>
+    </main>
+  </body>
+</html>

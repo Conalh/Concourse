@@ -351,6 +351,10 @@ main > section {
   outline-color: var(--focus-dark);
 }
 
+.demo-invitation .button-primary:focus-visible {
+  outline-color: var(--focus-dark);
+}
+
 .button-secondary {
   background: transparent;
   color: var(--ink);
@@ -364,6 +368,109 @@ main > section {
 
 .hero-route {
   display: none;
+}
+
+.demo-invitation {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  display: grid;
+  align-content: space-between;
+  min-height: calc(100svh - 10rem);
+  margin-block: 1.125rem;
+  padding: clamp(2.25rem, 4vw, 4rem);
+  overflow: clip;
+  border-radius: var(--radius-medium);
+  background: var(--midnight);
+  color: var(--paper);
+}
+
+.demo-invitation .section-index {
+  margin: 0 0 1.5rem;
+  color: var(--lime);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.demo-invitation h2 {
+  max-width: 10ch;
+  margin: 0;
+  font-size: clamp(3rem, 4.8vw, 4.75rem);
+  font-weight: 540;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.demo-invitation > div > p:last-child {
+  max-width: 35rem;
+  margin: 1.5rem 0 0;
+  color: #b7c0d1;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.demo-invitation-route {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: clamp(2rem, 5vh, 4.5rem) 0;
+  padding: 0;
+  border-block: 1px solid #36405a;
+  list-style: none;
+}
+
+.demo-invitation-route li {
+  display: grid;
+  gap: 0.7rem;
+  min-width: 0;
+  padding: 1.25rem 1rem;
+  border-left: 1px solid #36405a;
+  color: #d1d8e5;
+  font-size: 0.88rem;
+  line-height: 1.25;
+}
+
+.demo-invitation-route li:first-child {
+  border-left: 0;
+}
+
+.demo-invitation-route span {
+  color: var(--lime);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.demo-invitation-action {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.25rem;
+  align-items: center;
+}
+
+.demo-invitation-action .button {
+  border-color: var(--lime);
+  background: var(--lime);
+  color: var(--ink);
+}
+
+.demo-invitation-action .button:hover,
+.demo-invitation-action .button:focus-visible {
+  border-color: var(--paper);
+  background: var(--paper);
+}
+
+.demo-invitation-action .button span {
+  margin-left: 0.75rem;
+}
+
+.demo-invitation-action p {
+  margin: 0;
+  color: #aeb7ca;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
 }
 
 .demo-section {
@@ -1388,7 +1495,8 @@ footer nav a:first-child {
     font-size: 1rem;
   }
 
-  .demo-section {
+  .demo-section,
+  .demo-invitation {
     padding: 2rem;
   }
 
@@ -1541,12 +1649,35 @@ footer nav a:first-child {
     display: none;
   }
 
-  .demo-section {
+  .demo-section,
+  .demo-invitation {
     width: calc(100% - 1rem);
     min-height: 0;
     margin: 0 auto 1.25rem;
     padding: 1.5rem 1.25rem;
     border-radius: var(--radius-medium);
+  }
+
+  .demo-invitation h2 {
+    font-size: clamp(2.5rem, 12vw, 3.75rem);
+  }
+
+  .demo-invitation-route {
+    margin-block: 1.75rem;
+  }
+
+  .demo-invitation-route li {
+    padding-inline: 0.7rem;
+    font-size: 0.78rem;
+  }
+
+  .demo-invitation-action {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .demo-invitation-action .button {
+    width: 100%;
   }
 
   .demo-heading h2 {
