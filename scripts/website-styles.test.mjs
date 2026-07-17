@@ -14,7 +14,9 @@ const styles = `${baseStyles}\n${demoStyles}`
 
 function ruleBody(selector) {
   const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const match = styles.match(new RegExp(`${escapedSelector}\\s*\\{([^}]*)\\}`))
+  const match = styles.match(
+    new RegExp(`(?:^|\\n)${escapedSelector}\\s*\\{([^}]*)\\}`),
+  )
   assert.ok(match, `missing ${selector} rule`)
   return match[1]
 }
@@ -55,18 +57,12 @@ test('does not retain selectors from the retired guided demo', () => {
   )
 })
 
-test('gives the course a route stage and context without crushing the stage', () => {
-  assert.match(
-    ruleBody('.course-workspace'),
-    /grid-template-columns:\s*minmax\(12rem,\s*0\.55fr\)\s+minmax\(28rem,\s*1\.65fr\)\s+minmax\(\s*18rem,\s*0\.8fr\s*\);/,
-  )
+test('keeps the activity dominant and reserves three columns for expanded Zoom', () => {
+  const workspace = ruleBody('.course-workspace')
+  assert.match(workspace, /grid-template-columns:\s*minmax\(0,\s*1fr\);/)
   assert.match(
     demoStyles,
-    /@media\s*\(max-width:\s*72rem\)[\s\S]*?\.course-workspace\s*\{[^}]*grid-template-columns:\s*minmax\(10rem,\s*0\.45fr\)\s+minmax\(0,\s*1fr\);/,
-  )
-  assert.match(
-    demoStyles,
-    /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.course-workspace\s*\{[^}]*grid-template-columns:\s*1fr;/,
+    /\[data-interaction-mode=['"]zoom['"]\][\s\S]*?\.course-workspace\s*\{[^}]*grid-template-columns:\s*minmax\(12rem,\s*0\.45fr\)\s+minmax\(28rem,\s*1\.65fr\)\s+minmax\(\s*18rem,\s*0\.7fr\s*\);/,
   )
 })
 
@@ -126,19 +122,37 @@ test('styles key ideas as compact inline teaching rather than cards', () => {
   )
 })
 
-test('recomposes route and context for narrow screens and zoom', () => {
-  assert.match(
+test('uses a vertical route disclosure on narrow screens', () => {
+  assert.doesNotMatch(
     demoStyles,
     /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.course-route\s*\{[^}]*overflow-x:\s*auto;/,
   )
   assert.match(
     demoStyles,
-    /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.course-stage\s*\{[^}]*order:\s*1;/,
+    /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.course-route-list\s*\{[^}]*display:\s*block;/,
   )
   assert.doesNotMatch(
     ruleBody('body'),
     /(?:min-width|overflow-x:\s*hidden)\s*:/,
   )
+})
+
+test('styles a readable selected Mode palette', () => {
+  assert.match(ruleBody('.mode-palette'), /position:\s*absolute;/)
+  assert.match(
+    ruleBody("[data-mode-option][aria-pressed='true']"),
+    /border-color:\s*var\(--lime\);/,
+  )
+  assert.match(
+    demoStyles,
+    /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.mode-palette\s*\{[^}]*position:\s*static;/,
+  )
+})
+
+test('keeps normal route text above WCAG AA contrast', () => {
+  assert.ok(contrastRatio('#b6c0d1', '#0f1729') >= 4.5)
+  assert.match(ruleBody('.route-node-title'), /font-size:\s*0\.8rem;/)
+  assert.match(ruleBody('.route-node-title'), /color:\s*#b6c0d1;/)
 })
 
 test('honors reduced motion and only transitions composited properties', () => {
