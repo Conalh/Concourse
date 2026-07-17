@@ -1,0 +1,31 @@
+<svg xmlns="http&#58;//www.w3.org/2000/svg" viewBox="0 0 720 480" role="img" aria-labelledby="title description">
+  <title id="title">Inside a bacterial cell</title>
+  <desc id="description">A simplified bacterial cell with its cobalt cell membrane emphasized, lime DNA at the center, and coral ribosomes throughout the cell.</desc>
+  <g transform="translate(25 17) scale(.93) rotate(-17 360 240)">
+    <g fill="none" stroke="#2457FF" stroke-width="3" stroke-linecap="round" opacity=".95" aria-hidden="true">
+      <path d="M153 113l-4-22M180 111l-3-22M210 111l-2-20M240 111l-1-24M270 111l2-20M302 111l4-23M335 111l-2-21M369 111l3-25M402 111l2-20M435 111l-3-23M468 111l3-20M500 111l2-24M530 111l-2-21M565 112l3-22M598 121l10-20M625 139l15-18M648 164l19-13M663 194l23-7M670 225l23-2M670 256l23 3M661 289l22 8M646 317l19 13M622 341l15 18M594 357l10 21M562 367l3 23M530 369l4 22M497 369l-2 20M464 369l3 23M431 369l-3 21M398 369l2 24M365 369l-2 20M332 369l3 23M299 369l-4 21M266 369l2 24M233 369l-3 20M200 369l1 23M170 369l-2 21M153 368l-3 22M122 358l-9 21M94 342l-14 18M70 318l-18 14M55 289l-22 8M49 257l-24 3M49 225l-23-3M57 193l-22-8M72 164l-18-13M95 140l-15-17M122 123l-10-20"/>
+    </g>
+    <g id="cell-membrane" role="group" aria-label="Cell membrane">
+      <path d="M170 120h380a120 120 0 0 1 0 240H170a120 120 0 0 1 0-240Z" fill="#141B2D" stroke="#2457FF" stroke-width="12"/>
+      <path d="M170 133h380a107 107 0 0 1 0 214H170a107 107 0 0 1 0-214Z" fill="none" stroke="#2457FF" stroke-width="3" opacity=".78"/>
+      <path d="M170 146h380a94 94 0 0 1 0 188H170a94 94 0 0 1 0-188Z" fill="none" stroke="#2457FF" stroke-width="2" stroke-dasharray="7 6" opacity=".72"/>
+    </g>
+    <g fill="#2457FF" opacity=".72" aria-hidden="true">
+      <circle cx="207" cy="190" r="2"/><circle cx="247" cy="301" r="2"/><circle cx="289" cy="168" r="2"/>
+      <circle cx="337" cy="310" r="2"/><circle cx="384" cy="171" r="2"/><circle cx="430" cy="307" r="2"/>
+      <circle cx="471" cy="178" r="2"/><circle cx="520" cy="290" r="2"/><circle cx="555" cy="213" r="2"/>
+    </g>
+    <g id="ribosomes" role="group" fill="#FF6B57" aria-label="Ribosomes">
+      <circle cx="203" cy="232" r="6"/><circle cx="230" cy="282" r="5"/><circle cx="267" cy="207" r="6"/>
+      <circle cx="303" cy="285" r="6"/><circle cx="340" cy="193" r="5"/><circle cx="377" cy="295" r="6"/>
+      <circle cx="420" cy="197" r="6"/><circle cx="457" cy="277" r="5"/><circle cx="489" cy="216" r="6"/>
+      <circle cx="521" cy="260" r="6"/><circle cx="548" cy="229" r="5"/><circle cx="564" cy="278" r="5"/>
+    </g>
+    <g id="dna" role="group" fill="none" stroke="#C7F34A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-label="DNA">
+      <path d="M273 246c-26-28 6-64 31-39 22 23-11 59 14 78 24 19 55-15 34-39-21-25 11-60 36-40 23 20-5 51 15 70 20 18 50-2 42-29-8-28 23-45 42-27 20 19-2 46 17 56"/>
+      <path d="M283 274c-21-20 5-49 26-33 20 15 2 42 25 51 23 9 42-17 27-37-15-20 9-47 31-34 22 14 5 40 26 53 21 12 45-8 34-30-11-23 15-41 34-26" opacity=".78"/>
+      <circle cx="223" cy="287" r="25" stroke-width="4"/>
+      <circle cx="223" cy="287" r="18" stroke-width="2" opacity=".72"/>
+    </g>
+  </g>
+</svg>

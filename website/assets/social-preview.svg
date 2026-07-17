@@ -1,0 +1,29 @@
+<svg xmlns="http&#58;//www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Concourse — Learning should have a route.</title>
+  <desc id="description">Concourse is an open-source, local-first system for building guided learning routes, practicing recall, and sharing portable course packs.</desc>
+  <rect width="1200" height="630" fill="#F6F7F2"/>
+  <path d="M0 1h1200M0 629h1200" stroke="#D7DAD1"/>
+  <g transform="translate(72 58)">
+    <path d="M24 5 5 40h38Z" fill="none" stroke="#10131A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#2457FF">
+      <circle cx="24" cy="5" r="7"/><circle cx="5" cy="40" r="7"/><circle cx="43" cy="40" r="7"/>
+    </g>
+    <text x="68" y="36" fill="#10131A" font-family="Instrument Sans, Segoe UI Variable, Segoe UI, sans-serif" font-size="40" font-weight="620" letter-spacing="-1.5">Concourse</text>
+  </g>
+  <text x="72" y="235" fill="#10131A" font-family="Instrument Sans, Segoe UI Variable, Segoe UI, sans-serif" font-size="92" font-weight="600" letter-spacing="-5">
+    <tspan x="72">Learning should</tspan><tspan x="72" dy="88">have a route.</tspan>
+  </text>
+  <text x="76" y="414" fill="#5F6672" font-family="Instrument Sans, Segoe UI Variable, Segoe UI, sans-serif" font-size="28" font-weight="450">
+    <tspan x="76">Concourse is an open-source, local-first system for building guided learning routes,</tspan>
+    <tspan x="76" dy="42">practicing recall, and sharing portable course packs.</tspan>
+  </text>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M76 550h283l48-42h239l47 42h431" stroke="#2457FF" stroke-width="4"/>
+    <path d="M407 508v-41" stroke="#C7F34A" stroke-width="4"/>
+    <path d="M693 550v38" stroke="#FF6B57" stroke-width="4"/>
+    <circle cx="76" cy="550" r="9" fill="#F6F7F2" stroke="#2457FF" stroke-width="4"/>
+    <circle cx="407" cy="508" r="9" fill="#C7F34A" stroke="#10131A" stroke-width="3"/>
+    <circle cx="693" cy="550" r="9" fill="#F6F7F2" stroke="#FF6B57" stroke-width="4"/>
+    <circle cx="1124" cy="550" r="9" fill="#2457FF" stroke="#2457FF" stroke-width="4"/>
+  </g>
+</svg>

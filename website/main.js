@@ -1,259 +1,112 @@
-const stationDescriptions = {
-  route:
-    'Route is the course builder and learning environment for arranging lessons, resources, exercises, branches, and reusable blocks.',
-  loop: 'Loop turns learning material into focused retrieval practice, review packs, and repeatable study sessions.',
-  transfer:
-    'Transfer is the local-pack layer for importing, syncing, validating, and updating learning material.',
-  modes:
-    'Modes are flexible presentation and support preferences attached to content and interfaces.',
+import { createDemoState, transitionDemo } from './demo-model.js'
+
+const STEP_MESSAGES = Object.freeze({
+  route: 'Route ready. Zero of three concepts complete.',
+  lesson: 'Lesson opened. Cell membrane is the active concept.',
+  recall: 'Recall question opened.',
+  pack: 'Correct. Route advanced to one of three concepts.',
+})
+
+function eventFromControl(control) {
+  const type = control.dataset.demoAction
+  if (type === 'answer') return { type, choice: control.dataset.choice }
+  return { type }
 }
 
-const modeViews = {
-  chunked: `
-    <div class="mode-output mode-output-chunked">
-      <ol>
-        <li>The neuron receives enough input to start a signal.</li>
-        <li>Channels open and charged particles move across the membrane.</li>
-        <li>The next section opens, carrying the signal forward.</li>
-      </ol>
-    </div>
-  `,
-  visual: `
-    <div class="mode-output visual-diagram">
-      <div class="neuron-diagram" aria-label="Simple signal diagram">
-        <span>Dendrite receives input</span>
-        <span>Membrane charge shifts</span>
-        <span>Axon carries signal</span>
-      </div>
-      <p>The same idea is shown as a labeled sequence.</p>
-    </div>
-  `,
-  audio: `
-    <div class="mode-output audio-box">
-      <p><strong>Audio version</strong></p>
-      <div class="audio-track" aria-hidden="true"></div>
-      <p><a href="#modes">Read the transcript</a></p>
-    </div>
-  `,
-  guided: `
-    <div class="mode-output">
-      <div class="guided-checkpoint">
-        <p><strong>Checkpoint</strong></p>
-        <p>What has to change before the next channel opens?</p>
-      </div>
-      <div class="guided-checkpoint">
-        <p><strong>Try saying it back</strong></p>
-        <p>A signal moves because nearby channels open in sequence.</p>
-      </div>
-    </div>
-  `,
-  low: `
-    <div class="mode-output low-stimulation">
-      <p>
-        A neuron sends a signal when charge changes across the membrane. That
-        change opens nearby channels, so the signal moves down the axon.
-      </p>
-    </div>
-  `,
-  quick: `
-    <div class="mode-output quick-box">
-      <p><strong>Quick summary</strong></p>
-      <p>A neural signal is a chain reaction of membrane charge changes.</p>
-      <p><strong>Recall question</strong></p>
-      <p>What opens the next channel in the sequence?</p>
-    </div>
-  `,
-}
-
-const setupMobileNavigation = () => {
-  const header = document.querySelector('[data-header]')
-  const button = document.querySelector('[data-menu-button]')
-  const nav = document.querySelector('[data-site-nav]')
-
-  if (
-    !(header instanceof HTMLElement) ||
-    !(button instanceof HTMLButtonElement)
-  ) {
-    return
+export function mountDemo(documentRoot = document, options = {}) {
+  const root = documentRoot.querySelector('[data-demo]')
+  if (root === null) {
+    return { getState: createDemoState, dispatch: () => {}, destroy: () => {} }
   }
 
-  const closeMenu = () => {
-    header.classList.remove('is-open')
-    document.body.classList.remove('nav-open')
-    button.setAttribute('aria-expanded', 'false')
+  const manageFocus = options.manageFocus ?? true
+  const panels = [...root.querySelectorAll('[data-demo-panel]')]
+  const nodes = [...root.querySelectorAll('[data-route-node]')]
+  const feedback = root.querySelector('[data-feedback]')
+  const progress = root.querySelector('[data-demo-progress]')
+  const status = root.querySelector('[data-demo-status]')
+  let state = createDemoState()
+
+  documentRoot.documentElement?.classList.add('js')
+
+  function render(announce = false, moveFocus = false, focusAnswer = false) {
+    for (const panel of panels)
+      panel.hidden = panel.dataset.demoPanel !== state.step
+    for (const node of nodes) {
+      const active = node.dataset.routeNode === 'membrane'
+      node.dataset.state =
+        state.step === 'route' ? 'upcoming' : active ? 'active' : 'upcoming'
+      if (state.step === 'pack' && active) node.dataset.state = 'complete'
+    }
+    if (feedback !== null) feedback.hidden = state.answerStatus !== 'incorrect'
+    if (progress !== null) {
+      progress.textContent =
+        state.step === 'pack'
+          ? 'Route in progress · 1 of 3 concepts'
+          : 'Route ready · 0 of 3 concepts'
+    }
+    if (announce && status !== null)
+      status.textContent =
+        state.answerStatus === 'incorrect'
+          ? 'Not quite. DNA stores genetic instructions. The cell membrane regulates movement across the cell boundary.'
+          : STEP_MESSAGES[state.step]
+    if (manageFocus && (moveFocus || focusAnswer)) {
+      const activePanel = panels.find(
+        (panel) => panel.dataset.demoPanel === state.step,
+      )
+      const focusTarget = focusAnswer
+        ? root.querySelector('[data-choice]')
+        : state.step === 'route'
+          ? root.querySelector('[data-demo-action="start"]')
+          : activePanel
+      focusTarget?.focus({ preventScroll: true })
+    }
   }
 
-  const openMenu = () => {
-    header.classList.add('is-open')
-    document.body.classList.add('nav-open')
-    button.setAttribute('aria-expanded', 'true')
+  function dispatch(event) {
+    const previousStep = state.step
+    const previousAnswerStatus = state.answerStatus
+    state = transitionDemo(state, event)
+    const retriedIncorrectAnswer =
+      event?.type === 'retry' &&
+      previousAnswerStatus === 'incorrect' &&
+      state.step === 'recall' &&
+      state.answerStatus === 'unanswered'
+    render(true, state.step !== previousStep, retriedIncorrectAnswer)
   }
 
-  button.addEventListener('click', () => {
-    if (header.classList.contains('is-open')) {
-      closeMenu()
+  function handleClick(event) {
+    const control = event.target.closest?.('[data-demo-action]')
+    if (control === null || control === undefined || !root.contains(control))
       return
-    }
+    dispatch(eventFromControl(control))
+  }
 
-    openMenu()
-  })
+  root.addEventListener('click', handleClick)
+  render(false)
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && header.classList.contains('is-open')) {
-      closeMenu()
-      button.focus()
-    }
-  })
-
-  nav?.addEventListener('click', (event) => {
-    if (event.target instanceof HTMLAnchorElement) {
-      closeMenu()
-    }
-  })
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 1120) {
-      closeMenu()
-    }
-  })
+  return {
+    getState: () => ({ ...state }),
+    dispatch,
+    destroy: () => root.removeEventListener('click', handleClick),
+  }
 }
 
-const setupEcosystemMap = () => {
-  const panel = document.querySelector('.ecosystem-panel')
-  const description = document.querySelector('[data-station-description]')
-  const buttons = document.querySelectorAll('[data-station]')
-
-  if (
-    !(panel instanceof HTMLElement) ||
-    !(description instanceof HTMLElement)
-  ) {
-    return
-  }
-
-  const setActiveStation = (station) => {
-    panel.dataset.active = station
-    description.textContent = stationDescriptions[station]
-
-    buttons.forEach((button) => {
-      if (!(button instanceof HTMLButtonElement)) {
-        return
-      }
-
-      const active = button.dataset.station === station
-      button.classList.toggle('is-active', active)
-      button.setAttribute('aria-pressed', active ? 'true' : 'false')
-    })
-  }
-
-  buttons.forEach((button) => {
-    if (!(button instanceof HTMLButtonElement)) {
-      return
-    }
-
-    const station = button.dataset.station
-
-    if (typeof station !== 'string') {
-      return
-    }
-
-    button.addEventListener('click', () => setActiveStation(station))
-    button.addEventListener('focus', () => setActiveStation(station))
-    button.addEventListener('mouseenter', () => setActiveStation(station))
-  })
-
-  setActiveStation('route')
-}
-
-const setupModesDemo = () => {
-  const demo = document.querySelector('[data-modes-demo]')
-  const preview = document.querySelector('[data-mode-preview]')
-
-  if (!(demo instanceof HTMLElement) || !(preview instanceof HTMLElement)) {
-    return
-  }
-
-  const buttons = Array.from(demo.querySelectorAll('[data-mode]')).filter(
-    (button) => button instanceof HTMLButtonElement,
-  )
-
-  const selectedModes = new Set(['chunked'])
-
-  const renderPreview = () => {
-    const orderedModes = Object.keys(modeViews).filter((mode) =>
-      selectedModes.has(mode),
-    )
-
-    preview.innerHTML = `
-      <p class="preview-kicker">Sample lesson</p>
-      <h3>How neurons send a signal</h3>
-      ${orderedModes.map((mode) => modeViews[mode]).join('')}
-    `
-  }
-
-  buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const mode = button.dataset.mode
-
-      if (typeof mode !== 'string') {
-        return
-      }
-
-      if (selectedModes.has(mode)) {
-        selectedModes.delete(mode)
-      } else {
-        selectedModes.add(mode)
-      }
-
-      if (selectedModes.size === 0) {
-        selectedModes.add('chunked')
-      }
-
-      buttons.forEach((candidate) => {
-        const candidateMode = candidate.dataset.mode
-        const isPressed =
-          typeof candidateMode === 'string' && selectedModes.has(candidateMode)
-        candidate.setAttribute('aria-pressed', isPressed ? 'true' : 'false')
-      })
-
-      renderPreview()
-    })
-  })
-}
-
-const setupFaqAccordion = () => {
-  const faqList = document.querySelector('[data-faq-list]')
-
-  if (!(faqList instanceof HTMLElement)) {
-    return
-  }
-
-  const items = Array.from(faqList.querySelectorAll('details'))
-
-  items.forEach((item) => {
-    item.addEventListener('toggle', () => {
-      if (!item.open) {
-        return
-      }
-
-      items.forEach((candidate) => {
-        if (candidate !== item) {
-          candidate.open = false
-        }
+export function mountPage(documentRoot = document, windowRoot = window) {
+  const controller = mountDemo(documentRoot)
+  for (const link of documentRoot.querySelectorAll('[data-focus-demo]')) {
+    const resetsDemo = link.closest('.final-invitation') !== null
+    link.addEventListener('click', () => {
+      if (resetsDemo) controller.dispatch({ type: 'reset' })
+      windowRoot.requestAnimationFrame(() => {
+        const focusTarget = resetsDemo
+          ? documentRoot.querySelector('[data-demo-action="start"]')
+          : documentRoot.querySelector('#demo')
+        focusTarget?.focus({ preventScroll: true })
       })
     })
-  })
-}
-
-const setupCurrentYear = () => {
-  const yearTarget = document.querySelector('[data-current-year]')
-
-  if (yearTarget instanceof HTMLElement) {
-    yearTarget.textContent = String(new Date().getFullYear())
   }
+  return controller
 }
 
-setupMobileNavigation()
-setupEcosystemMap()
-setupModesDemo()
-setupFaqAccordion()
-setupCurrentYear()
+if (typeof document !== 'undefined') mountPage()
