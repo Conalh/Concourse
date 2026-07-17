@@ -70,8 +70,7 @@ test('keeps the landing page editorial and links into the full demo', () => {
   for (const id of ['demo', 'system', 'contribute', 'status']) {
     assert.ok(landingDocument.getElementById(id), `missing #${id}`)
   }
-
-  assert.equal(landingDocument.querySelector('[data-demo]'), null)
+  assert.equal(landingDocument.querySelector('[data-course]'), null)
   assert.equal(landingDocument.querySelector('script[src$="main.js"]'), null)
   assert.match(
     landingDocument.querySelector('#demo')?.textContent ?? '',
@@ -80,7 +79,7 @@ test('keeps the landing page editorial and links into the full demo', () => {
   assert.ok(landingDocument.querySelectorAll('a[href="./demo/"]').length >= 4)
 })
 
-test('gives the interactive workspace a canonical dedicated page', () => {
+test('gives the living course a canonical dedicated page', () => {
   assert.equal(demoDocument.body.classList.contains('demo-page'), true)
   assert.equal(
     demoDocument.querySelector('link[rel="canonical"]')?.getAttribute('href'),
@@ -91,69 +90,76 @@ test('gives the interactive workspace a canonical dedicated page', () => {
     '../main.js',
   )
 
-  const demo = demoDocument.querySelector('[data-demo]')
-  assert.ok(demo)
-  assert.equal(demo.querySelectorAll('[data-demo-panel]').length, 6)
-  assert.equal(demo.querySelectorAll('[data-route-node]').length, 4)
-  assert.ok(demo.querySelector('[data-demo-form="prediction"]'))
-  assert.equal(demo.querySelectorAll('[name="molecule"]').length, 3)
-  assert.equal(demo.querySelectorAll('[name="confidence"]').length, 2)
-  assert.ok(demo.querySelector('[data-membrane-figure]'))
-  assert.ok(demo.querySelector('[data-evidence-context]'))
-  assert.ok(demo.querySelector('[data-pack-inspector]'))
-  assert.ok(demo.querySelector('[data-demo-status][aria-live="polite"]'))
-  assert.ok(demo.querySelector('[data-demo-progress]'))
+  const course = demoDocument.querySelector('[data-course]')
+  assert.ok(course)
+  assert.equal(demoDocument.querySelectorAll('[data-course]').length, 1)
+  assert.ok(course.querySelector('[data-course-entry]'))
+  assert.ok(course.querySelector('[data-course-workspace]'))
+  assert.ok(course.querySelector('[data-course-route]'))
+  assert.ok(course.querySelector('[data-course-stage]'))
+  assert.ok(course.querySelector('[data-course-context]'))
+  assert.ok(course.querySelector('[data-course-status][aria-live="polite"]'))
+  assert.equal(course.querySelector('[data-demo-panel]'), null)
+  assert.equal(course.querySelector('[data-demo]'), null)
 })
 
-test('starts inside the learning experience without a dead start screen', () => {
-  const demoText = demoDocument.querySelector('[data-demo]')?.textContent ?? ''
-  assert.equal(demoText.includes('Start this route'), false)
-  assert.match(demoText, /which crosses most easily/i)
+test('provides the complete six-chapter no-JavaScript course', () => {
+  const staticCourse = demoDocument.querySelector('.static-course')
+  assert.ok(staticCourse)
+  for (const chapter of [
+    'Hold the boundary',
+    'Move matter',
+    'Survive salt shock',
+    'Pay for movement',
+    'Build a response',
+    'Face an antibiotic',
+  ]) {
+    assert.match(staticCourse.textContent, new RegExp(chapter, 'i'))
+  }
+  for (const explanation of [
+    'cell membrane',
+    'cell wall',
+    'net movement',
+    'osmosis',
+    'energy-coupled',
+    'DNA',
+    'ribosome',
+    'antibiotic',
+  ]) {
+    assert.match(staticCourse.textContent, new RegExp(explanation, 'i'))
+  }
+  assert.ok(staticCourse.querySelectorAll('details').length >= 6)
 })
 
-test('declares the unpacked draft inspector contract', () => {
-  const inspector = demoDocument.querySelector('[data-pack-inspector]')
-  assert.ok(inspector)
-  assert.match(inspector.textContent ?? '', /unpacked local draft/i)
-  assert.ok(inspector.querySelector('[role="tablist"]'))
-  assert.ok(inspector.querySelector('[role="tabpanel"] [data-pack-code]'))
-  assert.ok(inspector.querySelector('[data-demo-action="toggle-dna-route"]'))
-  assert.ok(inspector.querySelector('[data-draft-status]'))
+test('states the local persistence and scientific boundaries', () => {
+  const text = demoDocument.querySelector('[data-course]')?.textContent ?? ''
+  assert.match(text, /saved (only )?on this device/i)
+  assert.match(text, /session-only/i)
+  assert.match(text, /start over/i)
+  assert.match(text, /mechanisms\s+vary/i)
+  assert.match(text, /no account/i)
+  assert.match(text, /not treatment guidance/i)
 })
 
-test('describes the completed route consistently', () => {
-  const pack = demoDocument.querySelector('[data-demo-panel="pack"]')
-  assert.ok(pack)
-  assert.match(pack.textContent, /two activities completed/i)
-  assert.doesNotMatch(pack.textContent, /one activity completed/i)
-})
-
-test('uses the approved route, workspace, and context hierarchy', () => {
-  const workspace = demoDocument.querySelector('.lab-workspace')
-  assert.ok(workspace)
-  assert.ok(workspace.querySelector(':scope > .lab-route'))
-  assert.ok(workspace.querySelector(':scope > .lab-center'))
-  assert.ok(workspace.querySelector(':scope > .lab-context'))
-  assert.ok(workspace.querySelector('.lab-center > [data-membrane-figure]'))
-  assert.ok(workspace.querySelector('.lab-center > .lab-activity'))
-})
-
-test('provides the complete no-JavaScript explanation', () => {
-  const staticDemo = demoDocument.querySelector('.static-demo')
-  assert.ok(staticDemo)
-  assert.match(staticDemo.textContent, /oxygen/i)
-  assert.match(staticDemo.textContent, /charge and size/i)
-  assert.match(staticDemo.textContent, /transport protein/i)
-  assert.match(staticDemo.textContent, /catalog\.json/i)
-  assert.match(staticDemo.textContent, /unpacked/i)
-})
-
-test('declares textual prediction validation feedback', () => {
-  const error = demoDocument.querySelector('[data-prediction-error]')
-  assert.ok(error)
-  assert.equal(error.getAttribute('role'), 'status')
-  assert.equal(error.getAttribute('tabindex'), '-1')
-  assert.match(error.textContent, /choose/i)
+test('includes adaptation rules pack mapping and scientific references', () => {
+  const staticCourse = demoDocument.querySelector('.static-course')
+  assert.match(staticCourse.textContent, /strong evidence/i)
+  assert.match(staticCourse.textContent, /support recommended/i)
+  assert.match(staticCourse.textContent, /delayed retrieval/i)
+  for (const fileName of [
+    'pack.json',
+    'catalog.json',
+    'courses.json',
+    'items.json',
+  ]) {
+    assert.match(
+      staticCourse.textContent,
+      new RegExp(fileName.replace('.', '\\.')),
+    )
+  }
+  const references = demoDocument.querySelector('[data-course-references]')
+  assert.ok(references)
+  assert.ok(references.querySelectorAll('a[href]').length >= 4)
 })
 
 test('uses verified contribution destinations', () => {

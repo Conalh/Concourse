@@ -1,341 +1,293 @@
 import {
-  PACK_FILES,
-  derivePackDocuments,
-  deriveRouteNodes,
-  excerptForFile,
-} from './demo-content.js'
-import { createGuidedDemoState, transitionGuidedDemo } from './demo-model.js'
+  moveOrderedItem,
+  readActivityResponse,
+  validateActivityResponse,
+} from './demo-activities.js'
+import { getActivity, getCourseNode } from './demo-course.js'
+import {
+  createCourseState,
+  projectRecap,
+  transitionCourse,
+} from './demo-model.js'
+import { createSourceDocuments, deriveDraftDocuments } from './demo-pack.js'
+import {
+  announcementForTransition,
+  focusTargetForTransition,
+  renderCourse,
+} from './demo-render.js'
+import { deriveCourseRoute } from './demo-routing.js'
+import {
+  clearCourseState,
+  loadCourseState,
+  saveCourseState,
+} from './demo-storage.js'
 
-function predictionEvent(form) {
-  const FormDataConstructor = form.ownerDocument.defaultView.FormData
-  const data = new FormDataConstructor(form)
+const REQUIRED_ROOTS = [
+  '[data-course-entry]',
+  '[data-course-workspace]',
+  '[data-course-route]',
+  '[data-course-stage]',
+  '[data-course-context]',
+  '[data-course-status]',
+]
+
+function clone(value) {
+  return JSON.parse(JSON.stringify(value))
+}
+
+function noOpController() {
+  const state = createCourseState()
   return {
-    type: 'submit-prediction',
-    choice: data.get('molecule'),
-    confidence: data.get('confidence'),
+    getState: () => clone(state),
+    dispatch: () => {},
+    destroy: () => {},
   }
 }
 
-function predictionValidationMessage(prediction) {
-  if (prediction.choice === null && prediction.confidence === null) {
-    return 'Choose a substance and a confidence level.'
-  }
-  if (prediction.choice === null) return 'Choose a substance.'
-  if (prediction.confidence === null) return 'Choose a confidence level.'
-  return null
-}
-
-function eventFromControl(control) {
-  const type = control.dataset.demoAction
-  if (type === 'answer-application') {
-    return { type, choice: control.dataset.choice }
-  }
-  if (type === 'select-pack-file') {
-    return { type, fileName: control.dataset.packFile }
-  }
-  if (type === 'toggle-dna-route') {
-    return { type, enabled: control.checked }
-  }
-  return { type }
-}
-
-function progressCopy(state) {
-  if (state.phase === 'predict') return 'Prediction ready · 0 of 2 activities'
-  if (state.phase === 'pack') return 'Route complete · 2 of 2 activities'
-  return 'Evidence recorded · 1 of 2 activities'
-}
-
-function evidenceCopy(state) {
-  if (state.phase === 'predict') {
-    return 'No evidence yet. Make a prediction to begin.'
-  }
-  const confidence =
-    state.prediction.confidence === 'high'
-      ? 'high confidence'
-      : 'low confidence'
-  const result =
-    state.prediction.status === 'correct'
-      ? 'correct prediction'
-      : 'incorrect prediction'
-  if (state.phase === 'result' || state.phase === 'bridge-offer') {
-    return `${result} · ${confidence}`
-  }
-  if (state.phase === 'bridge') return `${result} · bridge opened by learner`
-  if (state.phase === 'apply') {
-    return state.bridge.completed
-      ? `${result} · bridge completed · application ready`
-      : `${result} · application ready`
-  }
-  return `${result} · application correct · 2 evidence records`
-}
-
-function announcementFor(state) {
-  if (state.phase === 'result') {
-    return state.prediction.status === 'correct'
-      ? 'Correct. Oxygen crosses the lipid membrane most easily.'
-      : 'Not quite. Oxygen crosses the lipid membrane most easily.'
-  }
-  if (state.phase === 'bridge-offer') {
-    return 'A short charge and size bridge is available.'
-  }
-  if (state.phase === 'bridge') return 'Charge and size bridge opened.'
-  if (state.phase === 'apply') {
-    return state.application.status === 'incorrect'
-      ? 'Not quite. Glucose crosses with help from a transport protein.'
-      : 'Transport proteins application opened.'
-  }
-  if (state.phase === 'pack') {
-    return 'Correct. Two activities complete. Pack draft opened.'
-  }
-  return 'Prediction ready.'
-}
-
-function resultCopy(state) {
-  return state.prediction.status === 'correct'
-    ? 'Exactly. Small, nonpolar oxygen can diffuse through the lipid bilayer. Glucose and sodium need membrane proteins.'
-    : 'Oxygen crosses most easily. Glucose is larger and polar, while sodium carries charge, so both need membrane proteins.'
-}
-
-export function mountDemo(documentRoot = document, options = {}) {
-  const root = documentRoot.querySelector('[data-demo]')
-  if (root === null) {
+function defaultStorage(windowRoot) {
+  try {
+    return windowRoot.localStorage
+  } catch {
     return {
-      getState: createGuidedDemoState,
-      dispatch: () => {},
-      destroy: () => {},
+      getItem() {
+        throw new Error('Browser storage is unavailable')
+      },
+      setItem() {
+        throw new Error('Browser storage is unavailable')
+      },
+      removeItem() {
+        throw new Error('Browser storage is unavailable')
+      },
     }
   }
+}
 
+export function mountCourse(
+  documentRoot = document,
+  windowRoot = window,
+  options = {},
+) {
+  const root = documentRoot.querySelector('[data-course]')
+  if (
+    root === null ||
+    REQUIRED_ROOTS.some((selector) => root.querySelector(selector) === null)
+  ) {
+    return noOpController()
+  }
+
+  documentRoot.documentElement.classList.add('js')
+  const storage = options.storage ?? defaultStorage(windowRoot)
   const manageFocus = options.manageFocus ?? true
-  const panels = [...root.querySelectorAll('[data-demo-panel]')]
-  const routeNodes = [...root.querySelectorAll('[data-route-node]')]
-  const applicationButtons = [
-    ...root.querySelectorAll('[data-demo-action="answer-application"]'),
-  ]
-  const predictionForm = root.querySelector('[data-demo-form="prediction"]')
-  const figure = root.querySelector('[data-membrane-figure]')
-  const progress = root.querySelector('[data-demo-progress]')
-  const evidence = root.querySelector('[data-evidence-context]')
-  const applicationFeedback = root.querySelector('[data-application-feedback]')
-  const result = root.querySelector('[data-result-copy]')
-  const predictionError = root.querySelector('[data-prediction-error]')
-  const predictionFieldsets = [...predictionForm.querySelectorAll('fieldset')]
-  const inspector = root.querySelector('[data-pack-inspector]')
-  const packTabsRoot = root.querySelector('.pack-tabs')
-  const packCode = root.querySelector('[data-pack-code]')
-  const dnaToggle = root.querySelector('[data-demo-action="toggle-dna-route"]')
-  const draftStatus = root.querySelector('[data-draft-status]')
-  const status = root.querySelector('[data-demo-status]')
-  let state = createGuidedDemoState()
+  const confirmAction =
+    options.confirm ?? ((message) => windowRoot.confirm(message))
+  const now = options.now ?? (() => new Date().toISOString())
+  const loaded = loadCourseState(storage)
+  let state = loaded.ok ? loaded.value : createCourseState()
+  let hasSavedProgress = loaded.ok
+  let entryReason = ['corrupt', 'incompatible', 'invalid'].includes(
+    loaded.reason,
+  )
+    ? 'corrupt'
+    : null
+  let storageMode = loaded.reason === 'read-failed' ? 'session-only' : 'saved'
+  let destroyed = false
 
-  documentRoot.documentElement?.classList.add('js')
-
-  for (const fileName of PACK_FILES) {
-    const tab = documentRoot.createElement('button')
-    tab.type = 'button'
-    tab.id = `pack-tab-${fileName.replace('.json', '')}`
-    tab.dataset.demoAction = 'select-pack-file'
-    tab.dataset.packFile = fileName
-    tab.setAttribute('role', 'tab')
-    tab.setAttribute('aria-controls', 'pack-document')
-    tab.textContent = fileName
-    packTabsRoot.append(tab)
+  function projection() {
+    return {
+      route: deriveCourseRoute(state),
+      recap: projectRecap(state),
+      documents: state.draft.biofilmExtensionEnabled
+        ? deriveDraftDocuments(state.draft)
+        : createSourceDocuments(),
+      hasSavedProgress,
+      entryReason,
+      storageMode,
+    }
   }
-  const packTabs = [...packTabsRoot.querySelectorAll('[role="tab"]')]
 
-  function render(announce = false, moveFocus = false, resetForm = false) {
-    root.querySelector('.learning-lab').dataset.phase = state.phase
-    for (const panel of panels) {
-      panel.hidden = panel.dataset.demoPanel !== state.phase
+  function render() {
+    renderCourse(root, state, projection())
+  }
+
+  function persist() {
+    if (storageMode === 'session-only') return
+    const result = saveCourseState(storage, state)
+    if (!result.ok) storageMode = 'session-only'
+  }
+
+  function afterTransition(previous, next, { announce = true } = {}) {
+    state = next
+    if (state.mode !== 'entry') {
+      hasSavedProgress = true
+      entryReason = null
+      persist()
     }
-    figure.dataset.result = state.phase === 'predict' ? 'idle' : 'oxygen'
-
-    const projectedNodes = new Map(
-      deriveRouteNodes(state).map((node) => [node.id, node]),
-    )
-    for (const node of routeNodes) {
-      const projection = projectedNodes.get(node.dataset.routeNode)
-      node.hidden = projection === undefined
-      if (projection === undefined) {
-        delete node.dataset.state
-        node.removeAttribute('aria-label')
-      } else {
-        node.dataset.state = projection.state
-        node.setAttribute(
-          'aria-label',
-          `${projection.label}: ${projection.state}`,
-        )
-      }
-    }
-
-    progress.textContent = progressCopy(state)
-    evidence.textContent = evidenceCopy(state)
-    applicationFeedback.hidden = state.application.status !== 'incorrect'
-    result.textContent = resultCopy(state)
-    inspector.hidden = state.phase !== 'pack'
-
-    const documents = derivePackDocuments(state.dnaSideRouteEnabled)
-    packCode.textContent = excerptForFile(documents, state.activePackFile)
-    for (const tab of packTabs) {
-      const selected = tab.dataset.packFile === state.activePackFile
-      tab.setAttribute('aria-selected', String(selected))
-      tab.tabIndex = selected ? 0 : -1
-      if (selected)
-        packCode.parentElement.setAttribute('aria-labelledby', tab.id)
-    }
-    dnaToggle.checked = state.dnaSideRouteEnabled
-    draftStatus.textContent = state.dnaSideRouteEnabled
-      ? '2 files changed · catalog.json · courses.json'
-      : 'No local changes.'
-
-    for (const button of applicationButtons) {
-      const submitted = button.dataset.choice === state.application.choice
-      if (!submitted || state.application.status === 'unanswered') {
-        delete button.dataset.state
-      } else {
-        button.dataset.state = state.application.status
-      }
-    }
-
-    if (resetForm) {
-      predictionForm.reset()
-      predictionError.hidden = true
-      for (const fieldset of predictionFieldsets) {
-        fieldset.removeAttribute('aria-invalid')
-      }
-    }
+    render()
     if (announce) {
-      const message = announcementFor(state)
-      if (status.textContent !== message) status.textContent = message
+      const message = announcementForTransition(previous, state)
+      if (message)
+        root.querySelector('[data-course-status]').textContent = message
     }
-    if (manageFocus && moveFocus) {
-      const target =
-        state.phase === 'predict'
-          ? predictionForm.querySelector('[name="molecule"]')
-          : panels.find((panel) => panel.dataset.demoPanel === state.phase)
-      target?.focus({ preventScroll: true })
+    if (manageFocus) {
+      const selector = focusTargetForTransition(previous, state)
+      root.querySelector(selector)?.focus({ preventScroll: true })
     }
   }
 
   function dispatch(event) {
-    const previousPhase = state.phase
-    state = transitionGuidedDemo(state, event)
-    const reset = event?.type === 'reset'
-    const phaseChanged = state.phase !== previousPhase
-    const incorrectApplication =
-      event?.type === 'answer-application' &&
-      state.application.status === 'incorrect'
-    render(
-      phaseChanged || reset || incorrectApplication,
-      phaseChanged || reset,
-      reset,
-    )
+    if (destroyed) return
+    const previous = state
+    const next = transitionCourse(state, event, now())
+    if (next === previous) return
+    afterTransition(previous, next)
+  }
+
+  function resetCourse() {
+    if (
+      !confirmAction('Start this course over and erase its local progress?')
+    ) {
+      return
+    }
+    const previous = state
+    const cleared = clearCourseState(storage)
+    if (!cleared.ok) storageMode = 'session-only'
+    state = createCourseState()
+    hasSavedProgress = false
+    entryReason = null
+    render()
+    root.querySelector('[data-course-status]').textContent =
+      'Course progress cleared. A new route is ready.'
+    if (manageFocus) {
+      root
+        .querySelector('[data-course-action="start"]')
+        ?.focus({ preventScroll: true })
+    }
+    return previous
+  }
+
+  function showValidation(form, message) {
+    const error = form.querySelector('[data-activity-error]')
+    error.textContent = message
+    error.hidden = false
+    form
+      .querySelector('[data-response-group]')
+      ?.setAttribute('aria-invalid', 'true')
+    if (manageFocus) error.focus({ preventScroll: true })
   }
 
   function handleSubmit(event) {
-    if (event.target !== predictionForm) return
+    const form = event.target.closest?.('[data-course-activity]')
+    if (form === null || form === undefined || !root.contains(form)) return
     event.preventDefault()
-    const prediction = predictionEvent(predictionForm)
-    const missingChoice = prediction.choice === null
-    const missingConfidence = prediction.confidence === null
-    const validationMessage = predictionValidationMessage(prediction)
-    if (validationMessage !== null) {
-      predictionError.textContent = validationMessage
-      predictionError.hidden = false
-      predictionFieldsets[0].toggleAttribute('aria-invalid', missingChoice)
-      predictionFieldsets[1].toggleAttribute('aria-invalid', missingConfidence)
-      if (manageFocus) predictionError.focus({ preventScroll: true })
+    const node = getCourseNode(state.currentNodeId)
+    const activity = getActivity(node?.activityId)
+    if (activity === null) return
+    const submission = readActivityResponse(form, activity)
+    const validation = validateActivityResponse(activity, submission)
+    if (!validation.valid) {
+      showValidation(form, validation.message)
       return
     }
-    predictionError.hidden = true
-    for (const fieldset of predictionFieldsets) {
-      fieldset.removeAttribute('aria-invalid')
+    if (node.required) {
+      dispatch({
+        type: 'submit-response',
+        nodeId: node.nodeId,
+        response: submission.response,
+        confidence: submission.confidence,
+      })
+    } else {
+      dispatch({ type: 'complete-branch', nodeId: node.nodeId })
     }
-    dispatch(prediction)
+  }
+
+  function handleOrder(control) {
+    const itemId = control.dataset.orderItem
+    const direction = control.dataset.orderDirection
+    const order = [
+      ...root.querySelectorAll('[data-order-list] > [data-order-item]'),
+    ].map((item) => item.dataset.orderItem)
+    const next = moveOrderedItem(order, itemId, direction)
+    const fromIndex = order.indexOf(itemId)
+    const toIndex = next.indexOf(itemId)
+    if (fromIndex !== toIndex) {
+      dispatch({
+        type: 'move-order-item',
+        nodeId: state.currentNodeId,
+        fromIndex,
+        toIndex,
+      })
+    }
   }
 
   function handleClick(event) {
-    const control = event.target.closest?.('[data-demo-action]')
+    const orderControl = event.target.closest?.('[data-order-direction]')
+    if (orderControl && root.contains(orderControl)) {
+      handleOrder(orderControl)
+      return
+    }
+
+    const branch = event.target.closest?.('[data-branch-action]')
+    if (branch && root.contains(branch)) {
+      dispatch({
+        type:
+          branch.dataset.branchAction === 'take'
+            ? 'take-branch'
+            : 'skip-branch',
+        nodeId: branch.dataset.nodeId,
+      })
+      return
+    }
+
+    const control = event.target.closest?.('[data-course-action]')
     if (control === null || control === undefined || !root.contains(control)) {
       return
     }
-    if (control.matches('input[type="checkbox"]')) return
-    dispatch(eventFromControl(control))
-  }
-
-  function handleChange(event) {
-    const control = event.target.closest?.(
-      '[data-demo-action="toggle-dna-route"]',
-    )
-    if (control === null || control === undefined || !root.contains(control)) {
-      return
+    const action = control.dataset.courseAction
+    if (action === 'reset') resetCourse()
+    else if (action === 'start' || action === 'resume') {
+      dispatch({ type: action })
+    } else if (action === 'select-pack-file') {
+      dispatch({ type: action, fileName: control.dataset.packFile })
     }
-    dispatch(eventFromControl(control))
   }
 
-  function handlePackTabKeydown(event) {
-    const current = event.target.closest?.('[role="tab"]')
-    if (current === null || current === undefined) return
-    const currentIndex = packTabs.indexOf(current)
+  function handlePackKeys(event) {
+    const tab = event.target.closest?.('[role="tab"][data-pack-file]')
+    if (tab === null || tab === undefined || !root.contains(tab)) return
+    const tabs = [...root.querySelectorAll('[role="tab"][data-pack-file]')]
+    const index = tabs.indexOf(tab)
     let nextIndex
-    if (event.key === 'ArrowRight')
-      nextIndex = (currentIndex + 1) % packTabs.length
-    else if (event.key === 'ArrowLeft') {
-      nextIndex = (currentIndex - 1 + packTabs.length) % packTabs.length
-    } else if (event.key === 'Home') nextIndex = 0
-    else if (event.key === 'End') nextIndex = packTabs.length - 1
+    if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length
+    else if (event.key === 'ArrowLeft')
+      nextIndex = (index - 1 + tabs.length) % tabs.length
+    else if (event.key === 'Home') nextIndex = 0
+    else if (event.key === 'End') nextIndex = tabs.length - 1
     else return
-
     event.preventDefault()
-    const next = packTabs[nextIndex]
-    dispatch(eventFromControl(next))
-    next.focus()
+    const fileName = tabs[nextIndex].dataset.packFile
+    dispatch({ type: 'select-pack-file', fileName })
+    root.querySelector(`[data-pack-file="${fileName}"]`)?.focus()
   }
 
   root.addEventListener('submit', handleSubmit)
   root.addEventListener('click', handleClick)
-  root.addEventListener('change', handleChange)
-  packTabsRoot.addEventListener('keydown', handlePackTabKeydown)
-  render(false)
+  root.addEventListener('keydown', handlePackKeys)
+  render()
 
   return {
-    getState: () => JSON.parse(JSON.stringify(state)),
+    getState: () => clone(state),
     dispatch,
-    destroy: () => {
+    destroy() {
+      destroyed = true
       root.removeEventListener('submit', handleSubmit)
       root.removeEventListener('click', handleClick)
-      root.removeEventListener('change', handleChange)
-      packTabsRoot.removeEventListener('keydown', handlePackTabKeydown)
+      root.removeEventListener('keydown', handlePackKeys)
     },
   }
 }
 
 export function mountPage(documentRoot = document, windowRoot = window) {
-  const controller = mountDemo(documentRoot)
-  const pageListeners = []
-  for (const link of documentRoot.querySelectorAll('[data-focus-demo]')) {
-    const resetsDemo = link.closest('.final-invitation') !== null
-    const handleClick = () => {
-      if (resetsDemo) controller.dispatch({ type: 'reset' })
-      windowRoot.requestAnimationFrame(() => {
-        const focusTarget = resetsDemo
-          ? documentRoot.querySelector('[name="molecule"]')
-          : documentRoot.querySelector('#demo')
-        focusTarget?.focus({ preventScroll: true })
-      })
-    }
-    link.addEventListener('click', handleClick)
-    pageListeners.push({ link, handleClick })
-  }
-  return {
-    ...controller,
-    destroy: () => {
-      for (const { link, handleClick } of pageListeners) {
-        link.removeEventListener('click', handleClick)
-      }
-      controller.destroy()
-    },
-  }
+  return mountCourse(documentRoot, windowRoot)
 }
 
 if (typeof document !== 'undefined') mountPage()

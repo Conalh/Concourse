@@ -1,6 +1,5 @@
 import {
   CHAPTERS,
-  COURSE_NODES,
   REQUIRED_ACTIVITY_IDS,
   getCourseNode,
 } from './demo-course.js'
@@ -177,23 +176,6 @@ export function explainRouteDecision(decision) {
     return 'You completed this optional branch without replacing the original evidence.'
   }
   return 'This route decision follows the visible evidence rules for the course.'
-}
-
-export function validateRouteProjection(route) {
-  if (!Array.isArray(route)) return false
-  const nodeIds = new Set(COURSE_NODES.map(({ nodeId }) => nodeId))
-  return route.every(
-    ({ nodeId, status }) =>
-      (nodeIds.has(nodeId) || nodeId === 'extension-biofilm-survival') &&
-      [
-        'completed',
-        'skipped',
-        'current',
-        'available',
-        'upcoming',
-        'draft',
-      ].includes(status),
-  )
 }
 
 export function requiredRouteComplete(state) {

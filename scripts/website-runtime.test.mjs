@@ -2,18 +2,25 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { JSDOM } from 'jsdom'
-import * as runtime from '../website/main.js'
 
-const { mountDemo } = runtime
+import { getActivity, getCourseNode } from '../website/demo-course.js'
+import { createCourseState, transitionCourse } from '../website/demo-model.js'
+import { mountCourse } from '../website/main.js'
+import { saveCourseState, STORAGE_KEY } from '../website/demo-storage.js'
+
+const NOW = '2026-07-16T20:00:00.000Z'
 const html = await readFile(
   new URL('../website/demo/index.html', import.meta.url),
   'utf8',
 )
 
-function setup(options = { manageFocus: false }) {
-  const dom = new JSDOM(html, { url: 'https://concourse.test/' })
-  const controller = mountDemo(dom.window.document, options)
-  return { document: dom.window.document, controller }
+function createMemoryStorage(initial = {}) {
+  const values = new Map(Object.entries(initial))
+  return {
+    getItem: (key) => values.get(key) ?? null,
+    setItem: (key, value) => values.set(key, String(value)),
+    removeItem: (key) => values.delete(key),
+  }
 }
 
 function click(document, selector) {
@@ -22,381 +29,315 @@ function click(document, selector) {
   control.click()
 }
 
-function submitPrediction(document, choice, confidence) {
-  click(document, `[name="molecule"][value="${choice}"]`)
-  click(document, `[name="confidence"][value="${confidence}"]`)
-  const form = document.querySelector('[data-demo-form="prediction"]')
-  assert.ok(form)
+function advanceCourseTo(nodeId) {
+  let state = transitionCourse(createCourseState(NOW), { type: 'start' }, NOW)
+  while (state.currentNodeId !== nodeId) {
+    const activity = getActivity(getCourseNode(state.currentNodeId).activityId)
+    state = transitionCourse(
+      state,
+      {
+        type: 'submit-response',
+        nodeId: activity.activityId,
+        response: activity.correctResponse,
+        confidence: 'high',
+      },
+      NOW,
+    )
+  }
+  return state
+}
+
+function setupCourse({
+  seededState = null,
+  storage = null,
+  manageFocus = false,
+} = {}) {
+  const selectedStorage = storage ?? createMemoryStorage()
+  if (seededState !== null) saveCourseState(selectedStorage, seededState)
+  const dom = new JSDOM(html, { url: 'https://concourse.test/demo/' })
+  const controller = mountCourse(dom.window.document, dom.window, {
+    storage: selectedStorage,
+    manageFocus,
+    confirm: () => true,
+    now: () => NOW,
+  })
+  return {
+    document: dom.window.document,
+    window: dom.window,
+    storage: selectedStorage,
+    controller,
+  }
+}
+
+function fillSubmission(document, activity, response, confidence = 'high') {
+  const form = document.querySelector('[data-course-activity]')
+  assert.ok(form, `missing form for ${activity.activityId}`)
+  const kind = activity.kind === 'retrieval' ? 'single-choice' : activity.kind
+  if (kind === 'single-choice') {
+    form.querySelector(`input[name="response"][value="${response}"]`).checked =
+      true
+  } else if (kind === 'multi-select') {
+    for (const value of response) {
+      form.querySelector(`input[name="response"][value="${value}"]`).checked =
+        true
+    }
+  } else if (kind === 'matching') {
+    for (const [promptId, value] of Object.entries(response)) {
+      form.querySelector(`[data-match-prompt="${promptId}"]`).value = value
+    }
+  }
+  if (activity.confidenceRequired) {
+    form.querySelector(
+      `input[name="confidence"][value="${confidence}"]`,
+    ).checked = true
+  }
   form.requestSubmit()
 }
 
-test('mounts directly into the prediction phase', () => {
-  const { document, controller } = setup()
-  assert.equal(controller.getState().phase, 'predict')
-  assert.equal(
-    document.querySelector('[data-demo-panel="predict"]')?.hidden,
-    false,
-  )
-  assert.equal(
-    document.querySelector('[data-demo-panel="result"]')?.hidden,
-    true,
-  )
-  assert.match(
-    document.querySelector('[data-demo-progress]')?.textContent ?? '',
-    /0 of 2 activities/i,
-  )
-  controller.destroy()
-})
-
-test('completes the direct evidence path', () => {
-  const { document, controller } = setup()
-  submitPrediction(document, 'oxygen', 'high')
-
-  assert.equal(controller.getState().phase, 'result')
-  assert.equal(
-    document.querySelector('[data-membrane-figure]')?.dataset.result,
-    'oxygen',
-  )
-  assert.match(
-    document.querySelector('[data-demo-status]')?.textContent ?? '',
-    /correct.*oxygen/i,
-  )
-
-  click(document, '[data-demo-action="continue-result"]')
-  assert.equal(controller.getState().phase, 'apply')
-  click(
-    document,
-    '[data-demo-action="answer-application"][data-choice="transport-protein"]',
-  )
-  assert.equal(controller.getState().phase, 'pack')
-  assert.match(
-    document.querySelector('[data-demo-progress]')?.textContent ?? '',
-    /route complete.*2 of 2 activities/i,
-  )
-  controller.destroy()
-})
-
-test('offers, accepts, and returns from the bridge', () => {
-  const { document, controller } = setup()
-  submitPrediction(document, 'glucose', 'high')
-  click(document, '[data-demo-action="continue-result"]')
-
-  assert.equal(controller.getState().phase, 'bridge-offer')
-  assert.equal(
-    document.querySelector('[data-route-node="charge-and-size"]')?.hidden,
-    true,
-  )
-
-  click(document, '[data-demo-action="accept-bridge"]')
-  assert.equal(controller.getState().phase, 'bridge')
-  assert.equal(
-    document.querySelector('[data-route-node="charge-and-size"]')?.hidden,
-    false,
-  )
-
-  click(document, '[data-demo-action="complete-bridge"]')
-  assert.equal(controller.getState().phase, 'apply')
-  assert.equal(controller.getState().bridge.completed, true)
-  assert.match(
-    document.querySelector('[data-evidence-context]')?.textContent ?? '',
-    /bridge completed/i,
-  )
-  controller.destroy()
-})
-
-test('permits skipping an offered bridge', () => {
-  const { document, controller } = setup()
-  submitPrediction(document, 'oxygen', 'low')
-  click(document, '[data-demo-action="continue-result"]')
-  click(document, '[data-demo-action="skip-bridge"]')
-
-  assert.equal(controller.getState().phase, 'apply')
-  assert.equal(controller.getState().bridge.accepted, false)
-  assert.equal(
-    document.querySelector('[data-route-node="charge-and-size"]')?.hidden,
-    true,
-  )
-  controller.destroy()
-})
-
-test('keeps incorrect application feedback in place and accepts a retry', () => {
-  const { document, controller } = setup({ manageFocus: true })
-  submitPrediction(document, 'oxygen', 'high')
-  click(document, '[data-demo-action="continue-result"]')
-
-  const incorrect = document.querySelector(
-    '[data-demo-action="answer-application"][data-choice="ribosome"]',
-  )
-  assert.ok(incorrect)
-  incorrect.focus()
-  incorrect.click()
-
-  assert.equal(document.activeElement, incorrect)
-  assert.equal(
-    document.querySelector('[data-application-feedback]')?.hidden,
-    false,
-  )
-  assert.match(
-    document.querySelector('[data-demo-status]')?.textContent ?? '',
-    /not quite.*transport protein/i,
-  )
-
-  click(
-    document,
-    '[data-demo-action="answer-application"][data-choice="transport-protein"]',
-  )
-  assert.equal(controller.getState().phase, 'pack')
-  controller.destroy()
-})
-
-test('supports back, reset, and independent remounting', () => {
-  const first = setup()
-  first.controller.dispatch({
-    type: 'submit-prediction',
-    choice: 'oxygen',
-    confidence: 'high',
-  })
-  first.controller.dispatch({ type: 'continue-result' })
-  first.controller.dispatch({
-    type: 'answer-application',
-    choice: 'transport-protein',
-  })
-  click(first.document, '[data-demo-panel="pack"] [data-demo-action="back"]')
-  assert.equal(first.controller.getState().phase, 'apply')
-
-  first.controller.dispatch({ type: 'reset' })
-  assert.equal(first.controller.getState().phase, 'predict')
-  first.controller.destroy()
-
-  const second = setup()
-  assert.equal(second.controller.getState().phase, 'predict')
-  second.controller.destroy()
-})
-
-test('moves focus only when a phase changes and focus management is enabled', () => {
-  const enabled = setup({ manageFocus: true })
-  submitPrediction(enabled.document, 'oxygen', 'high')
-  assert.equal(
-    enabled.document.activeElement,
-    enabled.document.querySelector('[data-demo-panel="result"]'),
-  )
-  enabled.controller.dispatch({ type: 'reset' })
-  assert.equal(
-    enabled.document.activeElement,
-    enabled.document.querySelector('[name="molecule"]'),
-  )
-  enabled.controller.destroy()
-
-  const disabled = setup({ manageFocus: false })
-  submitPrediction(disabled.document, 'oxygen', 'high')
-  assert.equal(disabled.document.activeElement, disabled.document.body)
-  disabled.controller.destroy()
-})
-
-test('explains missing prediction fields and focuses the message', () => {
-  const { document, controller } = setup({ manageFocus: true })
-  const form = document.querySelector('[data-demo-form="prediction"]')
-  const error = document.querySelector('[data-prediction-error]')
-  assert.ok(form)
-  assert.ok(error)
-
-  form.requestSubmit()
-
-  assert.equal(controller.getState().phase, 'predict')
-  assert.equal(error.hidden, false)
-  assert.equal(document.activeElement, error)
-  assert.match(error.textContent ?? '', /substance.*confidence/i)
-  controller.destroy()
-})
-
-test('exposes route state semantics alongside visible progress', () => {
-  const { document, controller } = setup()
-  assert.match(
-    document
-      .querySelector('[data-route-node="membrane-permeability"]')
-      ?.getAttribute('aria-label') ?? '',
-    /membrane permeability.*active/i,
-  )
-  submitPrediction(document, 'oxygen', 'high')
-  assert.match(
-    document
-      .querySelector('[data-route-node="membrane-permeability"]')
-      ?.getAttribute('aria-label') ?? '',
-    /membrane permeability.*complete/i,
-  )
-  controller.destroy()
-})
-
-function completeDirectPath(document) {
-  submitPrediction(document, 'oxygen', 'high')
-  click(document, '[data-demo-action="continue-result"]')
-  click(
-    document,
-    '[data-demo-action="answer-application"][data-choice="transport-protein"]',
-  )
+function submitCurrentCorrect(document, controller, confidence = 'high') {
+  const node = getCourseNode(controller.getState().currentNodeId)
+  const activity = getActivity(node.activityId)
+  fillSubmission(document, activity, activity.correctResponse, confidence)
 }
 
-test('renders authentic pack tabs and switches document excerpts', () => {
-  const { document, controller } = setup()
-  completeDirectPath(document)
+test('starts a new course and persists the first node', () => {
+  const { document, storage, controller } = setupCourse()
 
-  assert.equal(document.querySelector('[data-pack-inspector]')?.hidden, false)
-  assert.equal(document.querySelectorAll('[role="tab"]').length, 4)
-  assert.match(
-    document.querySelector('[data-pack-code]')?.textContent ?? '',
-    /membrane-permeability/,
-  )
+  assert.equal(controller.getState().mode, 'entry')
+  click(document, '[data-course-action="start"]')
 
-  click(document, '[data-pack-file="courses.json"]')
+  assert.equal(controller.getState().mode, 'course')
+  assert.equal(controller.getState().currentNodeId, 'boundary-permeability')
+  assert.equal(document.querySelector('[data-course-workspace]').hidden, false)
+  assert.ok(storage.getItem(STORAGE_KEY))
+  controller.destroy()
+})
+
+test('restores an incomplete course through the resume entry', () => {
+  const seededState = advanceCourseTo('transport-gradient')
+  const { document, controller } = setupCourse({ seededState })
+
   assert.match(
-    document.querySelector('[data-pack-code]')?.textContent ?? '',
-    /bacterial-cell-route/,
+    document.querySelector('[data-resume-copy]').textContent,
+    /move matter/i,
   )
+  click(document, '[data-course-action="resume"]')
+
+  assert.equal(controller.getState().currentNodeId, 'transport-gradient')
   assert.equal(
-    document
-      .querySelector('[data-pack-file="courses.json"]')
-      ?.getAttribute('aria-selected'),
-    'true',
-  )
-  assert.equal(
-    document
-      .querySelector('[role="tabpanel"]')
-      ?.getAttribute('aria-labelledby'),
-    'pack-tab-courses',
+    document.querySelector('[data-course-activity]').dataset.courseActivity,
+    'transport-gradient',
   )
   controller.destroy()
 })
 
-test('supports arrow-key navigation between pack documents', () => {
-  const { document, controller } = setup()
-  completeDirectPath(document)
-  const catalog = document.querySelector('[data-pack-file="catalog.json"]')
-  assert.ok(catalog)
-  catalog.focus()
-  catalog.dispatchEvent(
-    new document.defaultView.KeyboardEvent('keydown', {
-      key: 'ArrowRight',
-      bubbles: true,
-    }),
-  )
+test('records strong evidence and exposes a transparent extension', () => {
+  const { document, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+  submitCurrentCorrect(document, controller)
 
-  const courses = document.querySelector('[data-pack-file="courses.json"]')
-  assert.equal(document.activeElement, courses)
-  assert.equal(courses?.getAttribute('aria-selected'), 'true')
+  assert.equal(controller.getState().evidence[0].classification, 'strong')
   assert.match(
-    document.querySelector('[data-pack-code]')?.textContent ?? '',
-    /bacterial-cell-route/,
+    document.querySelector('[data-course-context]').textContent,
+    /high confidence/i,
+  )
+  assert.ok(
+    document.querySelector(
+      '[data-branch-action="take"][data-node-id="extension-cell-envelopes"]',
+    ),
+  )
+  assert.match(
+    document.querySelector('[data-course-route]').textContent,
+    /two common envelope patterns/i,
   )
   controller.destroy()
 })
 
-test('toggles the DNA draft across documents and route projection', () => {
-  const { document, controller } = setup()
-  completeDirectPath(document)
-  click(document, '[data-demo-action="toggle-dna-route"]')
+test('keeps an incorrect attempt in place with specific feedback', () => {
+  const { document, controller } = setupCourse({ manageFocus: true })
+  click(document, '[data-course-action="start"]')
+  const activity = getActivity('boundary-permeability')
+  fillSubmission(document, activity, ['sodium'], 'high')
 
-  assert.equal(controller.getState().dnaSideRouteEnabled, true)
+  assert.equal(controller.getState().currentNodeId, 'boundary-permeability')
+  assert.equal(controller.getState().evidence.length, 0)
+  assert.match(
+    document.querySelector('[data-attempt-feedback]').textContent,
+    /size, polarity, and charge/i,
+  )
   assert.equal(
-    document.querySelector('[data-route-node="dna-storage"]')?.hidden,
-    false,
-  )
-  assert.match(
-    document.querySelector('[data-draft-status]')?.textContent ?? '',
-    /2 files changed/i,
-  )
-  click(document, '[data-pack-file="catalog.json"]')
-  assert.match(
-    document.querySelector('[data-pack-code]')?.textContent ?? '',
-    /dna-storage/,
-  )
-  click(document, '[data-pack-file="courses.json"]')
-  assert.match(
-    document.querySelector('[data-pack-code]')?.textContent ?? '',
-    /node-dna-storage/,
-  )
-
-  click(document, '[data-demo-action="toggle-dna-route"]')
-  assert.equal(controller.getState().dnaSideRouteEnabled, false)
-  assert.equal(
-    document.querySelector('[data-route-node="dna-storage"]')?.hidden,
-    true,
+    document.activeElement,
+    document.querySelector('[data-attempt-feedback]'),
   )
   controller.destroy()
 })
 
-test('keeps draft controls synchronized through back, forward, and reset', () => {
-  const { document, controller } = setup({ manageFocus: true })
-  completeDirectPath(document)
-  click(document, '[data-demo-action="toggle-dna-route"]')
-  click(document, '[data-pack-file="courses.json"]')
-  click(document, '[data-demo-panel="pack"] [data-demo-action="back"]')
+test('takes and completes a recommended support branch', () => {
+  const { document, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+  const activity = getActivity('boundary-permeability')
+  fillSubmission(document, activity, ['sodium'], 'high')
+  fillSubmission(document, activity, activity.correctResponse, 'high')
+
   click(
     document,
-    '[data-demo-action="answer-application"][data-choice="transport-protein"]',
+    '[data-branch-action="take"][data-node-id="support-charge-size"]',
   )
+  assert.equal(controller.getState().currentNodeId, 'support-charge-size')
+  submitCurrentCorrect(document, controller)
 
-  const toggle = document.querySelector('[data-demo-action="toggle-dna-route"]')
-  assert.equal(toggle?.checked, true)
-  assert.equal(
-    document
-      .querySelector('[data-pack-file="courses.json"]')
-      ?.getAttribute('aria-selected'),
-    'true',
-  )
-
-  click(document, '[data-demo-action="reset"]')
-  assert.equal(toggle?.checked, false)
-  assert.equal(document.querySelector('[name="molecule"]')?.checked, false)
-  assert.equal(document.querySelector('[name="confidence"]')?.checked, false)
-  assert.equal(
-    document.querySelector('[data-membrane-figure]')?.dataset.result,
-    'idle',
-  )
-  assert.equal(document.querySelector('[data-pack-inspector]')?.hidden, true)
-  assert.equal(
-    document
-      .querySelector('[data-pack-file="catalog.json"]')
-      ?.getAttribute('aria-selected'),
-    'true',
-  )
-  assert.equal(
-    document.querySelector('[data-route-node="dna-storage"]')?.hidden,
-    true,
+  assert.equal(controller.getState().currentNodeId, 'boundary-structure')
+  assert.ok(
+    controller.getState().completedNodeIds.includes('support-charge-size'),
   )
   controller.destroy()
 })
 
-test('does not repeat phase announcements for local pack edits', async () => {
-  const { document, controller } = setup()
-  completeDirectPath(document)
-  const status = document.querySelector('[data-demo-status]')
-  assert.ok(status)
-  const completionAnnouncement = status.textContent
-  let mutations = 0
-  const observer = new document.defaultView.MutationObserver(() => {
-    mutations += 1
-  })
-  observer.observe(status, {
-    childList: true,
-    characterData: true,
-    subtree: true,
-  })
+test('takes or skips an extension without blocking the required route', () => {
+  const taken = setupCourse()
+  click(taken.document, '[data-course-action="start"]')
+  submitCurrentCorrect(taken.document, taken.controller)
+  click(
+    taken.document,
+    '[data-branch-action="take"][data-node-id="extension-cell-envelopes"]',
+  )
+  submitCurrentCorrect(taken.document, taken.controller)
+  assert.equal(taken.controller.getState().currentNodeId, 'boundary-structure')
+  taken.controller.destroy()
 
-  click(document, '[data-pack-file="courses.json"]')
-  assert.equal(status.textContent, completionAnnouncement)
-  click(document, '[data-demo-action="toggle-dna-route"]')
-  assert.equal(status.textContent, completionAnnouncement)
-  await Promise.resolve()
-  assert.equal(mutations, 0)
-  observer.disconnect()
+  const skipped = setupCourse()
+  click(skipped.document, '[data-course-action="start"]')
+  submitCurrentCorrect(skipped.document, skipped.controller)
+  click(
+    skipped.document,
+    '[data-branch-action="skip"][data-node-id="extension-cell-envelopes"]',
+  )
+  assert.equal(
+    skipped.controller.getState().currentNodeId,
+    'boundary-structure',
+  )
+  assert.ok(
+    skipped.controller
+      .getState()
+      .skippedNodeIds.includes('extension-cell-envelopes'),
+  )
+  skipped.controller.destroy()
+})
+
+test('completes the full strong route and renders its recap', () => {
+  const { document, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+
+  while (controller.getState().mode === 'course') {
+    submitCurrentCorrect(document, controller)
+  }
+
+  assert.equal(controller.getState().evidence.length, 13)
+  assert.ok(document.querySelector('[data-course-recap]'))
+  assert.match(
+    document.querySelector('[data-course-stage]').textContent,
+    /13 required activities/i,
+  )
+  assert.match(
+    document.querySelector('[data-course-status]').textContent,
+    /course complete/i,
+  )
   controller.destroy()
 })
 
-test('removes every demo event listener when destroyed', () => {
-  const { document, controller } = setup()
-  submitPrediction(document, 'oxygen', 'high')
-  controller.destroy()
+test('moves ordered items with native buttons before submission', () => {
+  const seededState = advanceCourseTo('response-sequence')
+  const { document, controller } = setupCourse({ seededState })
+  click(document, '[data-course-action="resume"]')
+  click(document, '[data-order-item="rna"][data-order-direction="up"]')
 
-  click(document, '[data-demo-action="continue-result"]')
-  assert.equal(controller.getState().phase, 'result')
+  assert.deepEqual(
+    controller
+      .getState()
+      .activityProgress['response-sequence'].draftOrder.slice(0, 2),
+    ['rna', 'dna'],
+  )
+  assert.equal(
+    document.querySelector('[data-order-list] > li').dataset.orderItem,
+    'rna',
+  )
+  controller.destroy()
+})
+
+test('explains corrupt saves and storage failures without blocking learning', () => {
+  const corruptStorage = createMemoryStorage({ [STORAGE_KEY]: '{bad json' })
+  const corrupt = setupCourse({ storage: corruptStorage })
+  assert.match(
+    corrupt.document.querySelector('[data-course-entry]').textContent,
+    /could not be restored/i,
+  )
+  click(corrupt.document, '[data-course-action="start"]')
+  assert.equal(corrupt.controller.getState().mode, 'course')
+  corrupt.controller.destroy()
+
+  const blocked = setupCourse({
+    storage: {
+      getItem() {
+        throw new Error('blocked')
+      },
+      setItem() {
+        throw new Error('blocked')
+      },
+      removeItem() {
+        throw new Error('blocked')
+      },
+    },
+  })
+  assert.match(
+    blocked.document.querySelector('[data-save-status]').textContent,
+    /session only/i,
+  )
+  click(blocked.document, '[data-course-action="start"]')
+  assert.equal(blocked.controller.getState().mode, 'course')
+  blocked.controller.destroy()
+})
+
+test('confirms reset clears only course progress', () => {
+  const { document, storage, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+  assert.ok(storage.getItem(STORAGE_KEY))
+  click(document, '[data-course-action="reset"]')
+
+  assert.equal(controller.getState().mode, 'entry')
+  assert.equal(storage.getItem(STORAGE_KEY), null)
+  assert.equal(document.querySelector('[data-course-entry]').hidden, false)
+  controller.destroy()
+})
+
+test('moves focus and announces only meaningful course transitions', () => {
+  const { document, controller } = setupCourse({ manageFocus: true })
+  click(document, '[data-course-action="start"]')
+  assert.ok(document.activeElement.matches('[data-course-activity] input'))
+  submitCurrentCorrect(document, controller)
+  assert.equal(
+    document.activeElement.closest('form')?.dataset.courseActivity,
+    'boundary-structure',
+  )
+  assert.match(
+    document.querySelector('[data-course-status]').textContent,
+    /boundary structure/i,
+  )
+  controller.destroy()
+})
+
+test('returns a safe no-op controller when required roots are missing', () => {
+  const dom = new JSDOM('<!doctype html><body></body>')
+  const controller = mountCourse(dom.window.document, dom.window)
+
+  assert.equal(controller.getState().mode, 'entry')
+  assert.doesNotThrow(() => controller.dispatch({ type: 'start' }))
+  assert.doesNotThrow(() => controller.destroy())
+})
+
+test('removes every delegated course listener when destroyed', () => {
+  const { document, controller } = setupCourse()
+  controller.destroy()
+  click(document, '[data-course-action="start"]')
+
+  assert.equal(controller.getState().mode, 'entry')
 })
