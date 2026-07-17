@@ -17,6 +17,7 @@ import {
   SUPPORT_NODE_IDS,
   getActivity,
   getCourseNode,
+  retrievalActivityForConcept,
   validateCourseDefinition,
 } from '../website/demo-course.js'
 import {
@@ -39,12 +40,16 @@ function startCourse() {
 }
 
 function submitCorrect(state, nodeId, confidence = 'high') {
+  const activity =
+    nodeId === 'antibiotic-retrieval'
+      ? retrievalActivityForConcept(selectRetrievalConcept(state.evidence))
+      : getActivity(nodeId)
   return transitionCourse(
     state,
     {
       type: 'submit-response',
       nodeId,
-      response: getActivity(nodeId).correctResponse,
+      response: activity.correctResponse,
       confidence,
     },
     NOW,
@@ -189,6 +194,36 @@ test('selects the earliest non-strong retrieval concept or osmotic stress', () =
     ),
     'osmosis',
   )
+})
+
+test('evaluates the antibiotic retrieval against the selected earlier concept', () => {
+  let developing = submitCorrect(startCourse(), 'boundary-permeability', 'low')
+  for (const nodeId of REQUIRED_ACTIVITY_IDS.slice(1, -1)) {
+    developing = submitCorrect(developing, nodeId)
+  }
+  const target = selectRetrievalConcept(developing.evidence)
+  const retrieval = retrievalActivityForConcept(target)
+  developing = transitionCourse(
+    developing,
+    {
+      type: 'submit-response',
+      nodeId: 'antibiotic-retrieval',
+      response: retrieval.correctResponse,
+      confidence: 'high',
+    },
+    NOW,
+  )
+
+  assert.equal(target, 'membrane-permeability')
+  assert.equal(developing.evidence.at(-1).conceptId, 'membrane-permeability')
+  assert.equal(developing.evidence.at(-1).correct, true)
+
+  let allStrong = startCourse()
+  for (const nodeId of REQUIRED_ACTIVITY_IDS.slice(0, -1)) {
+    allStrong = submitCorrect(allStrong, nodeId)
+  }
+  assert.equal(selectRetrievalConcept(allStrong.evidence), 'osmosis')
+  assert.match(retrievalActivityForConcept('osmosis').prompt, /saltier/i)
 })
 
 test('completes the required spine while keeping extensions as enrichment', () => {

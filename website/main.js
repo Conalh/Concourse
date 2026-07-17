@@ -11,6 +11,7 @@ import {
 } from './demo-model.js'
 import { createSourceDocuments, deriveDraftDocuments } from './demo-pack.js'
 import {
+  CONTEXT_TABS,
   announcementForTransition,
   focusTargetForTransition,
   renderCourse,
@@ -90,6 +91,7 @@ export function mountCourse(
     ? 'corrupt'
     : null
   let storageMode = loaded.reason === 'read-failed' ? 'session-only' : 'saved'
+  let activeContextTab = 'evidence'
   let destroyed = false
 
   function projection() {
@@ -102,6 +104,7 @@ export function mountCourse(
       hasSavedProgress,
       entryReason,
       storageMode,
+      activeContextTab,
     }
   }
 
@@ -238,20 +241,46 @@ export function mountCourse(
       return
     }
 
+    const contextTab = event.target.closest?.('[data-context-tab]')
+    if (contextTab && root.contains(contextTab)) {
+      activeContextTab = contextTab.dataset.contextTab
+      render()
+      return
+    }
+
     const control = event.target.closest?.('[data-course-action]')
     if (control === null || control === undefined || !root.contains(control)) {
       return
     }
     const action = control.dataset.courseAction
-    if (action === 'reset') resetCourse()
+    if (action === 'reset' || action === 'try-another-path') resetCourse()
     else if (action === 'start' || action === 'resume') {
       dispatch({ type: action })
     } else if (action === 'select-pack-file') {
       dispatch({ type: action, fileName: control.dataset.packFile })
+    } else if (action === 'toggle-biofilm-extension') {
+      dispatch({ type: action, enabled: control.checked })
     }
   }
 
   function handlePackKeys(event) {
+    const contextTab = event.target.closest?.('[data-context-tab]')
+    if (contextTab && root.contains(contextTab)) {
+      const index = CONTEXT_TABS.indexOf(contextTab.dataset.contextTab)
+      let nextIndex
+      if (event.key === 'ArrowRight')
+        nextIndex = (index + 1) % CONTEXT_TABS.length
+      else if (event.key === 'ArrowLeft')
+        nextIndex = (index - 1 + CONTEXT_TABS.length) % CONTEXT_TABS.length
+      else if (event.key === 'Home') nextIndex = 0
+      else if (event.key === 'End') nextIndex = CONTEXT_TABS.length - 1
+      else return
+      event.preventDefault()
+      activeContextTab = CONTEXT_TABS[nextIndex]
+      render()
+      root.querySelector(`[data-context-tab="${activeContextTab}"]`)?.focus()
+      return
+    }
     const tab = event.target.closest?.('[role="tab"][data-pack-file]')
     if (tab === null || tab === undefined || !root.contains(tab)) return
     const tabs = [...root.querySelectorAll('[role="tab"][data-pack-file]')]

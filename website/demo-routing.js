@@ -93,11 +93,22 @@ export function recommendRoute(state, record) {
 
 export function selectRetrievalConcept(evidence) {
   if (!Array.isArray(evidence)) return 'osmosis'
+  const earlierConcepts = new Set([
+    'membrane-permeability',
+    'cell-envelope',
+    'concentration-gradient',
+    'transport-proteins',
+    'osmosis',
+    'osmotic-stress',
+    'energy-coupling',
+    'active-transport',
+    'gene-expression',
+  ])
   const record = evidence.find(
     (candidate) =>
       candidate?.classification !== 'strong' &&
       typeof candidate?.conceptId === 'string' &&
-      candidate.conceptId !== 'retrieval',
+      earlierConcepts.has(candidate.conceptId),
   )
   return record?.conceptId ?? 'osmosis'
 }

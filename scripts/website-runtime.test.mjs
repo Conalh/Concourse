@@ -3,9 +3,14 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { JSDOM } from 'jsdom'
 
-import { getActivity, getCourseNode } from '../website/demo-course.js'
+import {
+  getActivity,
+  getCourseNode,
+  retrievalActivityForConcept,
+} from '../website/demo-course.js'
 import { createCourseState, transitionCourse } from '../website/demo-model.js'
 import { mountCourse } from '../website/main.js'
+import { selectRetrievalConcept } from '../website/demo-routing.js'
 import { saveCourseState, STORAGE_KEY } from '../website/demo-storage.js'
 
 const NOW = '2026-07-16T20:00:00.000Z'
@@ -96,7 +101,12 @@ function fillSubmission(document, activity, response, confidence = 'high') {
 
 function submitCurrentCorrect(document, controller, confidence = 'high') {
   const node = getCourseNode(controller.getState().currentNodeId)
-  const activity = getActivity(node.activityId)
+  const activity =
+    node.nodeId === 'antibiotic-retrieval'
+      ? retrievalActivityForConcept(
+          selectRetrievalConcept(controller.getState().evidence),
+        )
+      : getActivity(node.activityId)
   fillSubmission(document, activity, activity.correctResponse, confidence)
 }
 
@@ -340,4 +350,178 @@ test('removes every delegated course listener when destroyed', () => {
   click(document, '[data-course-action="start"]')
 
   assert.equal(controller.getState().mode, 'entry')
+})
+
+test('uses keyboard-navigable context tabs without changing course evidence', () => {
+  const { document, window, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+  const tabs = [...document.querySelectorAll('[data-context-tab]')]
+
+  assert.equal(tabs.length, 3)
+  assert.equal(tabs[0].getAttribute('aria-selected'), 'true')
+  tabs[0].focus()
+  tabs[0].dispatchEvent(
+    new window.KeyboardEvent('keydown', { key: 'End', bubbles: true }),
+  )
+  assert.equal(document.activeElement.dataset.contextTab, 'pack-source')
+  assert.equal(
+    document.querySelector('[data-context-panel="pack-source"]').hidden,
+    false,
+  )
+  document.activeElement.dispatchEvent(
+    new window.KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }),
+  )
+  assert.equal(document.activeElement.dataset.contextTab, 'route-decision')
+  assert.equal(controller.getState().evidence.length, 0)
+  controller.destroy()
+})
+
+test('highlights the pack document responsible for the current activity', () => {
+  const { document, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+  click(document, '[data-context-tab="pack-source"]')
+
+  assert.equal(
+    document
+      .querySelector('[data-pack-file="items.json"]')
+      .getAttribute('data-current-source'),
+    'true',
+  )
+  assert.match(
+    document.querySelector('[data-current-source-copy]').textContent,
+    /items\.json/i,
+  )
+  controller.destroy()
+})
+
+test('renders delayed retrieval from the earliest non-strong evidence', () => {
+  let state = transitionCourse(createCourseState(NOW), { type: 'start' }, NOW)
+  state = transitionCourse(
+    state,
+    {
+      type: 'submit-response',
+      nodeId: 'boundary-permeability',
+      response: getActivity('boundary-permeability').correctResponse,
+      confidence: 'low',
+    },
+    NOW,
+  )
+  for (const nodeId of [
+    'boundary-structure',
+    'transport-gradient',
+    'transport-mechanism',
+    'osmosis-water',
+    'osmosis-response',
+    'energy-classify',
+    'energy-scarce-nutrient',
+    'response-sequence',
+    'response-transporter',
+    'antibiotic-targets',
+    'antibiotic-consequence',
+  ]) {
+    state = transitionCourse(
+      state,
+      {
+        type: 'submit-response',
+        nodeId,
+        response: getActivity(nodeId).correctResponse,
+        confidence: 'high',
+      },
+      NOW,
+    )
+  }
+
+  const developing = setupCourse({ seededState: state })
+  click(developing.document, '[data-course-action="resume"]')
+  assert.match(
+    developing.document.querySelector('[data-retrieval-target]').textContent,
+    /membrane permeability/i,
+  )
+  developing.controller.destroy()
+
+  const allStrong = setupCourse({
+    seededState: advanceCourseTo('antibiotic-retrieval'),
+  })
+  click(allStrong.document, '[data-course-action="resume"]')
+  assert.match(
+    allStrong.document.querySelector('[data-retrieval-target]').textContent,
+    /osmosis/i,
+  )
+  allStrong.controller.destroy()
+})
+
+test('adds a biofilm extension only to the unpacked local draft', () => {
+  const { document, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+  while (controller.getState().mode === 'course') {
+    submitCurrentCorrect(document, controller)
+  }
+
+  click(document, '[data-context-tab="pack-source"]')
+  click(document, '[data-course-action="toggle-biofilm-extension"]')
+
+  assert.equal(controller.getState().draft.biofilmExtensionEnabled, true)
+  assert.ok(
+    document.querySelector('[data-route-node="extension-biofilm-survival"]'),
+  )
+  assert.match(
+    document.querySelector('[data-draft-status]').textContent,
+    /2 files changed/i,
+  )
+  click(document, '[data-pack-file="catalog.json"]')
+  assert.match(
+    document.querySelector('#course-pack-document code').textContent,
+    /biofilm-survival/,
+  )
+  click(document, '[data-pack-file="items.json"]')
+  assert.doesNotMatch(
+    document.querySelector('#course-pack-document code').textContent,
+    /biofilm-survival/,
+  )
+  controller.destroy()
+})
+
+test('offers another path and resets only after confirmation', () => {
+  const { document, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+  while (controller.getState().mode === 'course') {
+    submitCurrentCorrect(document, controller)
+  }
+  assert.match(
+    document.querySelector('[data-course-recap]').textContent,
+    /13 required activities/i,
+  )
+  click(document, '[data-course-action="try-another-path"]')
+
+  assert.equal(controller.getState().mode, 'entry')
+  assert.equal(controller.getState().evidence.length, 0)
+  controller.destroy()
+})
+
+test('does not repeat course announcements for context or pack edits', async () => {
+  const { document, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+  while (controller.getState().mode === 'course') {
+    submitCurrentCorrect(document, controller)
+  }
+  const status = document.querySelector('[data-course-status]')
+  const completion = status.textContent
+  let mutations = 0
+  const observer = new document.defaultView.MutationObserver(() => {
+    mutations += 1
+  })
+  observer.observe(status, {
+    childList: true,
+    characterData: true,
+    subtree: true,
+  })
+
+  click(document, '[data-context-tab="pack-source"]')
+  click(document, '[data-course-action="toggle-biofilm-extension"]')
+  await Promise.resolve()
+
+  assert.equal(status.textContent, completion)
+  assert.equal(mutations, 0)
+  observer.disconnect()
+  controller.destroy()
 })

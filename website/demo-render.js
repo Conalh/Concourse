@@ -4,9 +4,16 @@ import {
   REQUIRED_ACTIVITY_IDS,
   getActivity,
   getCourseNode,
+  retrievalActivityForConcept,
 } from './demo-course.js'
-import { excerptForFile } from './demo-pack.js'
-import { explainRouteDecision } from './demo-routing.js'
+import { excerptForFile, sourceForNode } from './demo-pack.js'
+import { explainRouteDecision, selectRetrievalConcept } from './demo-routing.js'
+
+export const CONTEXT_TABS = Object.freeze([
+  'evidence',
+  'route-decision',
+  'pack-source',
+])
 
 function el(documentRoot, tagName, attributes = {}, text = null) {
   const node = documentRoot.createElement(tagName)
@@ -180,7 +187,13 @@ function renderActivityStage(root, state) {
   stage.replaceChildren()
   const node = getCourseNode(state.currentNodeId)
   const chapter = chapterForNode(state.currentNodeId)
-  const activity = getActivity(node.activityId)
+  const retrievalTarget =
+    node.nodeId === 'antibiotic-retrieval'
+      ? selectRetrievalConcept(state.evidence)
+      : null
+  const activity = retrievalTarget
+    ? retrievalActivityForConcept(retrievalTarget)
+    : getActivity(node.activityId)
   const progress = state.activityProgress[node.nodeId] ?? {}
 
   const header = el(documentRoot, 'header', { className: 'activity-heading' })
@@ -197,6 +210,20 @@ function renderActivityStage(root, state) {
     el(documentRoot, 'p', {}, chapter.model),
   )
   stage.append(header)
+
+  if (retrievalTarget) {
+    stage.append(
+      el(
+        documentRoot,
+        'p',
+        {
+          className: 'retrieval-target',
+          'data-retrieval-target': retrievalTarget,
+        },
+        `Delayed retrieval · This returns to ${activity.retrievalLabel} because it is the earliest earlier concept without strong evidence. An all-strong route revisits osmosis.`,
+      ),
+    )
+  }
 
   if (progress.attempts === 1 && progress.status === 'incorrect') {
     stage.append(
@@ -240,14 +267,37 @@ function renderRecap(root, projection) {
     ['Strong evidence', recap.evidence.strong],
     ['Developing evidence', recap.evidence.developing],
     ['Support indicated', recap.evidence.supportIndicated],
-    ['Branches completed', recap.supportsCompleted + recap.extensionsCompleted],
+    ['Support completed', recap.supportsCompleted],
+    ['Support skipped', recap.supportsSkipped],
+    ['Extensions completed', recap.extensionsCompleted],
+    ['Extensions skipped', recap.extensionsSkipped],
+    ['Delayed retrieval concepts', recap.delayedRetrievalConceptIds.length],
   ]) {
     stats.append(
       el(documentRoot, 'dt', {}, label),
       el(documentRoot, 'dd', {}, String(value)),
     )
   }
-  section.append(stats)
+  const route = el(documentRoot, 'details', { className: 'recap-route' })
+  route.append(
+    el(documentRoot, 'summary', {}, 'Review the route taken'),
+    el(documentRoot, 'p', {}, recap.routeTaken.join(' → ')),
+    el(documentRoot, 'p', {}, `Authored by ${recap.packFiles.join(', ')}.`),
+  )
+  section.append(
+    stats,
+    route,
+    el(
+      documentRoot,
+      'button',
+      {
+        type: 'button',
+        className: 'button button-primary',
+        'data-course-action': 'try-another-path',
+      },
+      'Try another path',
+    ),
+  )
   stage.append(section)
 }
 
@@ -350,9 +400,16 @@ function renderDecisions(documentRoot, state) {
 
 function renderPack(documentRoot, state, projection) {
   const section = el(documentRoot, 'section', { 'data-pack-panel': '' })
+  const currentSource = sourceForNode(state.currentNodeId).fileName
   section.append(
     el(documentRoot, 'p', { className: 'context-label' }, 'Open the pack'),
     el(documentRoot, 'h3', {}, 'Readable source, beside the route'),
+    el(
+      documentRoot,
+      'p',
+      { 'data-current-source-copy': '' },
+      `${currentSource} authors the current activity.`,
+    ),
   )
   const tabs = el(documentRoot, 'div', {
     role: 'tablist',
@@ -370,6 +427,7 @@ function renderPack(documentRoot, state, projection) {
         id: `pack-tab-${fileName.replace('.json', '')}`,
         'data-course-action': 'select-pack-file',
         'data-pack-file': fileName,
+        'data-current-source': String(fileName === currentSource),
         'aria-selected': String(selected),
         tabindex: selected ? '0' : '-1',
         'aria-controls': 'course-pack-document',
@@ -392,17 +450,88 @@ function renderPack(documentRoot, state, projection) {
   })
   pre.append(code)
   section.append(tabs, pre)
+  if (state.mode === 'recap') {
+    const toggle = el(documentRoot, 'label', { className: 'draft-toggle' })
+    const input = el(documentRoot, 'input', {
+      type: 'checkbox',
+      'data-course-action': 'toggle-biofilm-extension',
+    })
+    input.checked = state.draft.biofilmExtensionEnabled
+    toggle.append(
+      input,
+      el(documentRoot, 'span', {}, 'Add a biofilm survival extension'),
+    )
+    section.append(
+      toggle,
+      el(
+        documentRoot,
+        'p',
+        { 'data-draft-status': '' },
+        state.draft.biofilmExtensionEnabled
+          ? 'Unpacked local draft · 2 files changed · catalog.json · courses.json'
+          : 'Released source unchanged · no local draft edits.',
+      ),
+      el(
+        documentRoot,
+        'p',
+        { className: 'context-note' },
+        'Complete validation, manifest hashing, repacking, signing, installation, and export happen outside this browser demo.',
+      ),
+    )
+  }
   return section
 }
 
 function renderContext(root, state, projection) {
   const context = root.querySelector('[data-course-context]')
   const documentRoot = root.ownerDocument
-  context.replaceChildren(
-    renderEvidence(documentRoot, state),
-    renderDecisions(documentRoot, state),
-    renderPack(documentRoot, state, projection),
-  )
+  context.replaceChildren()
+  const labels = {
+    evidence: 'Evidence',
+    'route-decision': 'Why this route?',
+    'pack-source': 'Open the pack',
+  }
+  const tabs = el(documentRoot, 'div', {
+    role: 'tablist',
+    'aria-label': 'Course context',
+    className: 'context-tabs',
+  })
+  for (const tabId of CONTEXT_TABS) {
+    const selected = tabId === projection.activeContextTab
+    tabs.append(
+      el(
+        documentRoot,
+        'button',
+        {
+          type: 'button',
+          role: 'tab',
+          id: `context-tab-${tabId}`,
+          'data-context-tab': tabId,
+          'aria-selected': String(selected),
+          'aria-controls': `context-panel-${tabId}`,
+          tabindex: selected ? '0' : '-1',
+        },
+        labels[tabId],
+      ),
+    )
+  }
+  context.append(tabs)
+  const contents = {
+    evidence: renderEvidence(documentRoot, state),
+    'route-decision': renderDecisions(documentRoot, state),
+    'pack-source': renderPack(documentRoot, state, projection),
+  }
+  for (const tabId of CONTEXT_TABS) {
+    const panel = el(documentRoot, 'div', {
+      id: `context-panel-${tabId}`,
+      role: 'tabpanel',
+      'data-context-panel': tabId,
+      'aria-labelledby': `context-tab-${tabId}`,
+      hidden: tabId !== projection.activeContextTab,
+    })
+    panel.append(contents[tabId])
+    context.append(panel)
+  }
 }
 
 export function renderCourse(root, state, projection) {

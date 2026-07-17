@@ -7,6 +7,7 @@ import {
   SUPPORT_NODE_IDS,
   getActivity,
   getCourseNode,
+  retrievalActivityForConcept,
 } from './demo-course.js'
 import { PACK_FILES } from './demo-pack.js'
 import {
@@ -135,7 +136,10 @@ function submitCourseResponse(state, event, now) {
     return state
   }
   const node = getCourseNode(event.nodeId)
-  const activity = getActivity(node?.activityId)
+  const activity =
+    event.nodeId === 'antibiotic-retrieval'
+      ? retrievalActivityForConcept(selectRetrievalConcept(state.evidence))
+      : getActivity(node?.activityId)
   if (
     node === null ||
     activity === null ||
