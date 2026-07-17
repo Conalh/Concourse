@@ -9,6 +9,14 @@
   color: var(--paper);
 }
 
+.demo-page .brand {
+  color: var(--paper);
+}
+
+.demo-page .brand img {
+  filter: invert(1);
+}
+
 .demo-page main {
   display: block;
   width: min(100%, var(--content-width));

@@ -373,6 +373,9 @@ test('uses keyboard-navigable context tabs without changing course evidence', ()
   )
   assert.equal(document.activeElement.dataset.contextTab, 'route-decision')
   assert.equal(controller.getState().evidence.length, 0)
+
+  click(document, '[data-context-tab="pack-source"]')
+  assert.equal(document.activeElement.dataset.contextTab, 'pack-source')
   controller.destroy()
 })
 

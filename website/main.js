@@ -245,6 +245,7 @@ export function mountCourse(
     if (contextTab && root.contains(contextTab)) {
       activeContextTab = contextTab.dataset.contextTab
       render()
+      root.querySelector(`[data-context-tab="${activeContextTab}"]`)?.focus()
       return
     }
 

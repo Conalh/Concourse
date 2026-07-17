@@ -79,6 +79,11 @@ test('gives the dedicated course the full site width', () => {
   assert.match(ruleBody('.course-shell'), /min-width:\s*0;/)
 })
 
+test('keeps the Concourse brand visible on the dark course header', () => {
+  assert.match(ruleBody('.demo-page .brand'), /color:\s*var\(--paper\);/)
+  assert.match(ruleBody('.demo-page .brand img'), /filter:\s*invert\(1\);/)
+})
+
 test('keeps all course controls touch safe with responsive press feedback', () => {
   assert.match(
     demoStyles,
