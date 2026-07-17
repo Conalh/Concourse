@@ -109,6 +109,8 @@ export function mountDemo(documentRoot = document, options = {}) {
   const evidence = root.querySelector('[data-evidence-context]')
   const applicationFeedback = root.querySelector('[data-application-feedback]')
   const result = root.querySelector('[data-result-copy]')
+  const predictionError = root.querySelector('[data-prediction-error]')
+  const predictionFieldsets = [...predictionForm.querySelectorAll('fieldset')]
   const inspector = root.querySelector('[data-pack-inspector]')
   const packTabsRoot = root.querySelector('.pack-tabs')
   const packCode = root.querySelector('[data-pack-code]')
@@ -145,8 +147,16 @@ export function mountDemo(documentRoot = document, options = {}) {
     for (const node of routeNodes) {
       const projection = projectedNodes.get(node.dataset.routeNode)
       node.hidden = projection === undefined
-      if (projection === undefined) delete node.dataset.state
-      else node.dataset.state = projection.state
+      if (projection === undefined) {
+        delete node.dataset.state
+        node.removeAttribute('aria-label')
+      } else {
+        node.dataset.state = projection.state
+        node.setAttribute(
+          'aria-label',
+          `${projection.label}: ${projection.state}`,
+        )
+      }
     }
 
     progress.textContent = progressCopy(state)
@@ -161,6 +171,8 @@ export function mountDemo(documentRoot = document, options = {}) {
       const selected = tab.dataset.packFile === state.activePackFile
       tab.setAttribute('aria-selected', String(selected))
       tab.tabIndex = selected ? 0 : -1
+      if (selected)
+        packCode.parentElement.setAttribute('aria-labelledby', tab.id)
     }
     dnaToggle.checked = state.dnaSideRouteEnabled
     draftStatus.textContent = state.dnaSideRouteEnabled
@@ -176,8 +188,17 @@ export function mountDemo(documentRoot = document, options = {}) {
       }
     }
 
-    if (resetForm) predictionForm.reset()
-    if (announce) status.textContent = announcementFor(state)
+    if (resetForm) {
+      predictionForm.reset()
+      predictionError.hidden = true
+      for (const fieldset of predictionFieldsets) {
+        fieldset.removeAttribute('aria-invalid')
+      }
+    }
+    if (announce) {
+      const message = announcementFor(state)
+      if (status.textContent !== message) status.textContent = message
+    }
     if (manageFocus && moveFocus) {
       const target =
         state.phase === 'predict'
@@ -191,13 +212,41 @@ export function mountDemo(documentRoot = document, options = {}) {
     const previousPhase = state.phase
     state = transitionGuidedDemo(state, event)
     const reset = event?.type === 'reset'
-    render(true, state.phase !== previousPhase || reset, reset)
+    const phaseChanged = state.phase !== previousPhase
+    const incorrectApplication =
+      event?.type === 'answer-application' &&
+      state.application.status === 'incorrect'
+    render(
+      phaseChanged || reset || incorrectApplication,
+      phaseChanged || reset,
+      reset,
+    )
   }
 
   function handleSubmit(event) {
     if (event.target !== predictionForm) return
     event.preventDefault()
-    dispatch(predictionEvent(predictionForm))
+    const prediction = predictionEvent(predictionForm)
+    const missingChoice = prediction.choice === null
+    const missingConfidence = prediction.confidence === null
+    if (missingChoice || missingConfidence) {
+      predictionError.textContent =
+        missingChoice && missingConfidence
+          ? 'Choose a substance and a confidence level.'
+          : missingChoice
+            ? 'Choose a substance.'
+            : 'Choose a confidence level.'
+      predictionError.hidden = false
+      predictionFieldsets[0].toggleAttribute('aria-invalid', missingChoice)
+      predictionFieldsets[1].toggleAttribute('aria-invalid', missingConfidence)
+      if (manageFocus) predictionError.focus({ preventScroll: true })
+      return
+    }
+    predictionError.hidden = true
+    for (const fieldset of predictionFieldsets) {
+      fieldset.removeAttribute('aria-invalid')
+    }
+    dispatch(prediction)
   }
 
   function handleClick(event) {

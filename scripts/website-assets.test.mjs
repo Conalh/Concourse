@@ -73,3 +73,11 @@ test('stays within the uncompressed pre-CSS asset allowance', async () => {
   const total = sizes.reduce((sum, entry) => sum + entry.size, 0)
   assert.ok(total < 180_000, `asset total ${total} exceeds 180 KB`)
 })
+
+test('keeps the guided runtime within its uncompressed JavaScript budget', async () => {
+  const paths = ['main.js', 'demo-model.js', 'demo-content.js']
+  const total = (
+    await Promise.all(paths.map((path) => stat(new URL(path, root))))
+  ).reduce((sum, entry) => sum + entry.size, 0)
+  assert.ok(total < 30_000, `demo JavaScript total ${total} exceeds 30 KB`)
+})

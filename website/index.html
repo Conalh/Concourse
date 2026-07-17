@@ -152,7 +152,10 @@
                     Which crosses most easily without a transport protein?
                   </h3>
                   <form data-demo-form="prediction">
-                    <fieldset class="choice-set molecule-choices">
+                    <fieldset
+                      class="choice-set molecule-choices"
+                      aria-describedby="prediction-error"
+                    >
                       <legend>Choose a substance</legend>
                       <label>
                         <input name="molecule" type="radio" value="oxygen" />
@@ -167,7 +170,10 @@
                         <span>Sodium ion <small>Na⁺</small></span>
                       </label>
                     </fieldset>
-                    <fieldset class="choice-set confidence-choices">
+                    <fieldset
+                      class="choice-set confidence-choices"
+                      aria-describedby="prediction-error"
+                    >
                       <legend>How sure are you?</legend>
                       <label>
                         <input name="confidence" type="radio" value="high" />
@@ -178,6 +184,16 @@
                         <span>I was guessing</span>
                       </label>
                     </fieldset>
+                    <p
+                      class="form-error"
+                      id="prediction-error"
+                      data-prediction-error
+                      role="status"
+                      tabindex="-1"
+                      hidden
+                    >
+                      Choose a substance and a confidence level.
+                    </p>
                     <button class="button button-demo" type="submit">
                       Run the membrane test
                     </button>
@@ -359,7 +375,7 @@
           <summary>Read the complete demo without JavaScript</summary>
           <p>
             Oxygen crosses the lipid bilayer more easily than glucose or sodium.
-            Weak evidence can add a short charge-and-size bridge before the
+            Weak evidence can add a short charge and size bridge before the
             route returns to transport proteins.
           </p>
           <p>

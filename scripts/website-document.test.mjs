@@ -96,6 +96,24 @@ test('uses the approved route, workspace, and context hierarchy', () => {
   assert.ok(workspace.querySelector('.lab-center > .lab-activity'))
 })
 
+test('provides the complete no-JavaScript explanation', () => {
+  const staticDemo = document.querySelector('.static-demo')
+  assert.ok(staticDemo)
+  assert.match(staticDemo.textContent, /oxygen/i)
+  assert.match(staticDemo.textContent, /charge and size/i)
+  assert.match(staticDemo.textContent, /transport protein/i)
+  assert.match(staticDemo.textContent, /catalog\.json/i)
+  assert.match(staticDemo.textContent, /unpacked/i)
+})
+
+test('declares textual prediction validation feedback', () => {
+  const error = document.querySelector('[data-prediction-error]')
+  assert.ok(error)
+  assert.equal(error.getAttribute('role'), 'status')
+  assert.equal(error.getAttribute('tabindex'), '-1')
+  assert.match(error.textContent, /choose/i)
+})
+
 test('uses verified contribution destinations', () => {
   const hrefs = [...document.querySelectorAll('#contribute a')].map(
     (link) => link.href,

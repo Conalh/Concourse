@@ -439,6 +439,21 @@
   justify-content: flex-start;
 }
 
+.form-error {
+  margin: 0.85rem 0 0;
+  padding: 0.65rem 0.8rem;
+  border-left: 3px solid var(--coral);
+  background: #1a2134;
+  color: #ffd0c9;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.choice-set[aria-invalid='true'] {
+  outline: 2px solid var(--coral);
+  outline-offset: 3px;
+}
+
 .demo-actions {
   gap: 0.65rem;
   margin-top: 1.5rem;

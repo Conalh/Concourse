@@ -193,6 +193,40 @@ test('moves focus only when a phase changes and focus management is enabled', ()
   disabled.controller.destroy()
 })
 
+test('explains missing prediction fields and focuses the message', () => {
+  const { document, controller } = setup({ manageFocus: true })
+  const form = document.querySelector('[data-demo-form="prediction"]')
+  const error = document.querySelector('[data-prediction-error]')
+  assert.ok(form)
+  assert.ok(error)
+
+  form.requestSubmit()
+
+  assert.equal(controller.getState().phase, 'predict')
+  assert.equal(error.hidden, false)
+  assert.equal(document.activeElement, error)
+  assert.match(error.textContent ?? '', /substance.*confidence/i)
+  controller.destroy()
+})
+
+test('exposes route state semantics alongside visible progress', () => {
+  const { document, controller } = setup()
+  assert.match(
+    document
+      .querySelector('[data-route-node="membrane-permeability"]')
+      ?.getAttribute('aria-label') ?? '',
+    /membrane permeability.*active/i,
+  )
+  submitPrediction(document, 'oxygen', 'high')
+  assert.match(
+    document
+      .querySelector('[data-route-node="membrane-permeability"]')
+      ?.getAttribute('aria-label') ?? '',
+    /membrane permeability.*complete/i,
+  )
+  controller.destroy()
+})
+
 test('resets a completed demo when the final rerun link is activated', () => {
   const dom = new JSDOM(html, { url: 'https://concourse.test/' })
   dom.window.requestAnimationFrame = (callback) => callback()
@@ -248,6 +282,12 @@ test('renders authentic pack tabs and switches document excerpts', () => {
       .querySelector('[data-pack-file="courses.json"]')
       ?.getAttribute('aria-selected'),
     'true',
+  )
+  assert.equal(
+    document
+      .querySelector('[role="tabpanel"]')
+      ?.getAttribute('aria-labelledby'),
+    'pack-tab-courses',
   )
   controller.destroy()
 })
@@ -307,4 +347,81 @@ test('toggles the DNA draft across documents and route projection', () => {
     true,
   )
   controller.destroy()
+})
+
+test('keeps draft controls synchronized through back, forward, and reset', () => {
+  const { document, controller } = setup({ manageFocus: true })
+  completeDirectPath(document)
+  click(document, '[data-demo-action="toggle-dna-route"]')
+  click(document, '[data-pack-file="courses.json"]')
+  click(document, '[data-demo-panel="pack"] [data-demo-action="back"]')
+  click(
+    document,
+    '[data-demo-action="answer-application"][data-choice="transport-protein"]',
+  )
+
+  const toggle = document.querySelector('[data-demo-action="toggle-dna-route"]')
+  assert.equal(toggle?.checked, true)
+  assert.equal(
+    document
+      .querySelector('[data-pack-file="courses.json"]')
+      ?.getAttribute('aria-selected'),
+    'true',
+  )
+
+  click(document, '[data-demo-action="reset"]')
+  assert.equal(toggle?.checked, false)
+  assert.equal(document.querySelector('[name="molecule"]')?.checked, false)
+  assert.equal(document.querySelector('[name="confidence"]')?.checked, false)
+  assert.equal(
+    document.querySelector('[data-membrane-figure]')?.dataset.result,
+    'idle',
+  )
+  assert.equal(document.querySelector('[data-pack-inspector]')?.hidden, true)
+  assert.equal(
+    document
+      .querySelector('[data-pack-file="catalog.json"]')
+      ?.getAttribute('aria-selected'),
+    'true',
+  )
+  assert.equal(
+    document.querySelector('[data-route-node="dna-storage"]')?.hidden,
+    true,
+  )
+  controller.destroy()
+})
+
+test('does not repeat phase announcements for local pack edits', async () => {
+  const { document, controller } = setup()
+  completeDirectPath(document)
+  const status = document.querySelector('[data-demo-status]')
+  assert.ok(status)
+  const completionAnnouncement = status.textContent
+  let mutations = 0
+  const observer = new document.defaultView.MutationObserver(() => {
+    mutations += 1
+  })
+  observer.observe(status, {
+    childList: true,
+    characterData: true,
+    subtree: true,
+  })
+
+  click(document, '[data-pack-file="courses.json"]')
+  assert.equal(status.textContent, completionAnnouncement)
+  click(document, '[data-demo-action="toggle-dna-route"]')
+  assert.equal(status.textContent, completionAnnouncement)
+  await Promise.resolve()
+  assert.equal(mutations, 0)
+  observer.disconnect()
+  controller.destroy()
+})
+
+test('removes every demo event listener when destroyed', () => {
+  const { document, controller } = setup()
+  submitPrediction(document, 'oxygen', 'high')
+  controller.destroy()
+
+  click(document, '[data-demo-action="continue-result"]')
+  assert.equal(controller.getState().phase, 'result')
 })
