@@ -68,6 +68,95 @@ function submitCorrect(state, nodeId, confidence = 'high') {
   )
 }
 
+function continueFrom(state, nextNodeId = undefined) {
+  const event = { type: 'advance-course' }
+  if (nextNodeId !== undefined) event.nextNodeId = nextNodeId
+  return transitionCourse(state, event, NOW)
+}
+
+function submitAndContinueCorrect(state, nodeId, confidence = 'high') {
+  const submitted = submitCorrect(state, nodeId, confidence)
+  return continueFrom(submitted, getCourseNode(nodeId).nextCoreNodeId)
+}
+
+test('changes only interaction presentation state', () => {
+  const state = startCourse()
+  const changed = transitionCourse(
+    state,
+    { type: 'change-interaction-mode', interactionMode: 'zoom' },
+    NOW,
+  )
+
+  assert.equal(changed.interactionMode, 'zoom')
+  for (const key of [
+    'mode',
+    'currentNodeId',
+    'completedNodeIds',
+    'skippedNodeIds',
+    'availableNodeIds',
+    'activityProgress',
+    'evidence',
+    'branchDecisions',
+    'scheduledRetrievalConceptIds',
+    'routeHistory',
+    'awaitingAdvance',
+  ]) {
+    assert.deepEqual(changed[key], state[key], key)
+  }
+})
+
+test('records a completed response without advancing', () => {
+  const submitted = submitCorrect(startCourse(), 'boundary-permeability')
+
+  assert.equal(submitted.currentNodeId, 'boundary-permeability')
+  assert.equal(submitted.evidence.length, 1)
+  assert.ok(submitted.completedNodeIds.includes('boundary-permeability'))
+  assert.deepEqual(submitted.awaitingAdvance, {
+    nodeId: 'boundary-permeability',
+    nextCoreNodeId: 'boundary-structure',
+    completedAt: NOW,
+  })
+})
+
+test('requires an explicit choice when evidence opens a branch', () => {
+  const submitted = submitCorrect(startCourse(), 'boundary-permeability')
+  const unchanged = transitionCourse(submitted, { type: 'advance-course' }, NOW)
+  const continued = transitionCourse(
+    submitted,
+    { type: 'advance-course', nextNodeId: 'boundary-structure' },
+    NOW,
+  )
+
+  assert.equal(unchanged, submitted)
+  assert.equal(continued.currentNodeId, 'boundary-structure')
+  assert.equal(continued.awaitingAdvance, null)
+  assert.equal(
+    continued.branchDecisions['extension-cell-envelopes'].status,
+    'skipped',
+  )
+})
+
+test('enters and returns from an explicitly selected optional branch', () => {
+  const submitted = submitCorrect(startCourse(), 'boundary-permeability')
+  const branch = transitionCourse(
+    submitted,
+    { type: 'advance-course', nextNodeId: 'extension-cell-envelopes' },
+    NOW,
+  )
+  const returned = transitionCourse(
+    branch,
+    { type: 'complete-branch', nodeId: 'extension-cell-envelopes' },
+    NOW,
+  )
+
+  assert.equal(branch.currentNodeId, 'extension-cell-envelopes')
+  assert.equal(
+    branch.branchDecisions['extension-cell-envelopes'].returnNodeId,
+    'boundary-structure',
+  )
+  assert.equal(returned.currentNodeId, 'boundary-structure')
+})
+
 test('classifies evidence from accuracy confidence and attempts', () => {
   assert.equal(
     classifyEvidence({
@@ -123,7 +212,7 @@ test('strong evidence unlocks an optional chapter extension', () => {
   const state = submitCorrect(startCourse(), 'boundary-permeability')
 
   assert.equal(state.evidence[0].classification, 'strong')
-  assert.equal(state.currentNodeId, 'boundary-structure')
+  assert.equal(state.currentNodeId, 'boundary-permeability')
   assert.ok(state.availableNodeIds.includes('extension-cell-envelopes'))
   assert.equal(
     state.branchDecisions['extension-cell-envelopes'].status,
@@ -170,7 +259,7 @@ test('takes completes and skips optional branches without blocking the spine', (
   const offered = submitCorrect(startCourse(), 'boundary-permeability')
   const taking = transitionCourse(
     offered,
-    { type: 'take-branch', nodeId: 'extension-cell-envelopes' },
+    { type: 'advance-course', nextNodeId: 'extension-cell-envelopes' },
     NOW,
   )
   const completed = transitionCourse(
@@ -185,7 +274,7 @@ test('takes completes and skips optional branches without blocking the spine', (
 
   const skipped = transitionCourse(
     offered,
-    { type: 'skip-branch', nodeId: 'extension-cell-envelopes' },
+    { type: 'advance-course', nextNodeId: 'boundary-structure' },
     NOW,
   )
   assert.ok(skipped.skippedNodeIds.includes('extension-cell-envelopes'))
@@ -210,8 +299,9 @@ test('selects the earliest non-strong retrieval concept or osmotic stress', () =
 
 test('evaluates the antibiotic retrieval against the selected earlier concept', () => {
   let developing = submitCorrect(startCourse(), 'boundary-permeability', 'low')
+  developing = continueFrom(developing)
   for (const nodeId of REQUIRED_ACTIVITY_IDS.slice(1, -1)) {
-    developing = submitCorrect(developing, nodeId)
+    developing = submitAndContinueCorrect(developing, nodeId)
   }
   const target = selectRetrievalConcept(developing.evidence)
   const retrieval = retrievalActivityForConcept(target)
@@ -232,7 +322,7 @@ test('evaluates the antibiotic retrieval against the selected earlier concept', 
 
   let allStrong = startCourse()
   for (const nodeId of REQUIRED_ACTIVITY_IDS.slice(0, -1)) {
-    allStrong = submitCorrect(allStrong, nodeId)
+    allStrong = submitAndContinueCorrect(allStrong, nodeId)
   }
   assert.equal(selectRetrievalConcept(allStrong.evidence), 'osmosis')
   assert.match(retrievalActivityForConcept('osmosis').prompt, /saltier/i)
@@ -241,7 +331,7 @@ test('evaluates the antibiotic retrieval against the selected earlier concept', 
 test('completes the required spine while keeping extensions as enrichment', () => {
   let state = startCourse()
   for (const nodeId of REQUIRED_ACTIVITY_IDS)
-    state = submitCorrect(state, nodeId)
+    state = submitAndContinueCorrect(state, nodeId)
 
   const recap = projectRecap(state)
   assert.equal(state.mode, 'recap')

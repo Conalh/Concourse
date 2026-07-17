@@ -9,6 +9,7 @@ import {
   getCourseNode,
   retrievalActivityForConcept,
 } from './demo-course.js'
+import { DEFAULT_INTERACTION_MODE, isInteractionMode } from './demo-modes.js'
 import { PACK_FILES } from './demo-pack.js'
 import {
   classifyEvidence,
@@ -30,7 +31,9 @@ export function createCourseState() {
     courseId: COURSE_ID,
     courseRevision: COURSE_REVISION,
     mode: 'entry',
+    interactionMode: DEFAULT_INTERACTION_MODE,
     currentNodeId: REQUIRED_ACTIVITY_IDS[0],
+    awaitingAdvance: null,
     completedNodeIds: [],
     skippedNodeIds: [],
     availableNodeIds: [REQUIRED_ACTIVITY_IDS[0]],
@@ -57,6 +60,19 @@ function validNodeIds(values) {
   )
 }
 
+function validAwaitingAdvance(state) {
+  if (state.awaitingAdvance === null) return true
+  const pending = state.awaitingAdvance
+  const node = getCourseNode(pending?.nodeId)
+  return (
+    node?.required === true &&
+    pending.nodeId === state.currentNodeId &&
+    pending.nextCoreNodeId === node.nextCoreNodeId &&
+    state.completedNodeIds.includes(pending.nodeId) &&
+    typeof pending.completedAt === 'string'
+  )
+}
+
 export function isValidCourseState(state) {
   return (
     state !== null &&
@@ -65,7 +81,9 @@ export function isValidCourseState(state) {
     state.courseId === COURSE_ID &&
     state.courseRevision === COURSE_REVISION &&
     COURSE_MODES.has(state.mode) &&
+    isInteractionMode(state.interactionMode) &&
     getCourseNode(state.currentNodeId) !== null &&
+    validAwaitingAdvance(state) &&
     validNodeIds(state.completedNodeIds) &&
     validNodeIds(state.skippedNodeIds) &&
     validNodeIds(state.availableNodeIds) &&
@@ -207,7 +225,12 @@ function submitCourseResponse(state, event, now) {
     : without(state.availableNodeIds, event.nodeId)
   let nextState = {
     ...state,
-    currentNodeId: nextNodeId ?? state.currentNodeId,
+    currentNodeId: event.nodeId,
+    awaitingAdvance: {
+      nodeId: event.nodeId,
+      nextCoreNodeId: nextNodeId,
+      completedAt: now,
+    },
     completedNodeIds,
     availableNodeIds,
     activityProgress: {
@@ -237,92 +260,140 @@ function submitCourseResponse(state, event, now) {
       },
     }
   }
-  if (requiredRouteComplete(nextState)) {
-    nextState = { ...nextState, mode: 'recap' }
-  }
   return nextState
-}
-
-function takeBranch(state, event, now) {
-  const node = getCourseNode(event.nodeId)
-  const decision = state.branchDecisions[event.nodeId]
-  if (
-    state.mode !== 'course' ||
-    node?.required !== false ||
-    decision?.status !== 'recommended' ||
-    !state.availableNodeIds.includes(event.nodeId)
-  ) {
-    return state
-  }
-  return {
-    ...state,
-    currentNodeId: event.nodeId,
-    availableNodeIds: without(state.availableNodeIds, event.nodeId),
-    branchDecisions: {
-      ...state.branchDecisions,
-      [event.nodeId]: {
-        ...decision,
-        status: 'taken',
-        returnNodeId: state.currentNodeId,
-      },
-    },
-    updatedAt: now,
-  }
 }
 
 function completeBranch(state, event, now) {
   const node = getCourseNode(event.nodeId)
   const decision = state.branchDecisions[event.nodeId]
+  const canFinish =
+    decision?.returnNodeId === null && requiredRouteComplete(state)
   if (
     state.mode !== 'course' ||
     state.currentNodeId !== event.nodeId ||
     node?.required !== false ||
     decision?.status !== 'taken' ||
-    getCourseNode(decision.returnNodeId) === null
+    (!canFinish && getCourseNode(decision.returnNodeId) === null)
   ) {
     return state
   }
+
+  const completedNodeIds = appendUnique(state.completedNodeIds, event.nodeId)
+  const branchDecisions = {
+    ...state.branchDecisions,
+    [event.nodeId]: { ...decision, status: 'completed', completedAt: now },
+  }
+  if (canFinish) {
+    return {
+      ...state,
+      mode: 'recap',
+      awaitingAdvance: null,
+      completedNodeIds,
+      availableNodeIds: without(state.availableNodeIds, event.nodeId),
+      branchDecisions,
+      routeHistory: [...state.routeHistory, event.nodeId],
+      updatedAt: now,
+    }
+  }
+
   return {
     ...state,
     currentNodeId: decision.returnNodeId,
-    completedNodeIds: appendUnique(state.completedNodeIds, event.nodeId),
+    awaitingAdvance: null,
+    completedNodeIds,
     availableNodeIds: appendUnique(
       state.availableNodeIds,
       decision.returnNodeId,
     ),
-    branchDecisions: {
-      ...state.branchDecisions,
-      [event.nodeId]: { ...decision, status: 'completed', completedAt: now },
-    },
+    branchDecisions,
     routeHistory: [...state.routeHistory, event.nodeId],
     updatedAt: now,
   }
 }
 
-function skipBranch(state, event, now) {
-  const node = getCourseNode(event.nodeId)
-  const decision = state.branchDecisions[event.nodeId]
-  if (
-    state.mode !== 'course' ||
-    node?.required !== false ||
-    !['recommended', 'taken'].includes(decision?.status)
-  ) {
-    return state
+function recommendationsForPending(state) {
+  if (state.awaitingAdvance === null) return []
+  return Object.values(state.branchDecisions).filter(
+    (decision) =>
+      decision.status === 'recommended' &&
+      decision.evidenceActivityId === state.awaitingAdvance.nodeId,
+  )
+}
+
+function skipPendingRecommendations(state, decisions, now) {
+  return decisions.reduce(
+    (next, decision) => ({
+      ...next,
+      skippedNodeIds: appendUnique(next.skippedNodeIds, decision.nodeId),
+      availableNodeIds: without(next.availableNodeIds, decision.nodeId),
+      branchDecisions: {
+        ...next.branchDecisions,
+        [decision.nodeId]: {
+          ...decision,
+          status: 'skipped',
+          skippedAt: now,
+        },
+      },
+    }),
+    state,
+  )
+}
+
+function advanceCourse(state, event, now) {
+  const pending = state.awaitingAdvance
+  if (state.mode !== 'course' || pending === null) return state
+
+  const decisions = recommendationsForPending(state)
+  const hasExplicitSelection = Object.hasOwn(event, 'nextNodeId')
+  if (decisions.length > 0 && !hasExplicitSelection) return state
+
+  const selectedNodeId = hasExplicitSelection
+    ? event.nextNodeId
+    : pending.nextCoreNodeId
+  const selectedDecision = decisions.find(
+    ({ nodeId }) => nodeId === selectedNodeId,
+  )
+
+  if (selectedDecision !== undefined) {
+    return {
+      ...state,
+      currentNodeId: selectedDecision.nodeId,
+      awaitingAdvance: null,
+      availableNodeIds: without(
+        state.availableNodeIds,
+        selectedDecision.nodeId,
+      ),
+      branchDecisions: {
+        ...state.branchDecisions,
+        [selectedDecision.nodeId]: {
+          ...selectedDecision,
+          status: 'taken',
+          returnNodeId: pending.nextCoreNodeId,
+        },
+      },
+      updatedAt: now,
+    }
   }
-  const currentNodeId =
-    state.currentNodeId === event.nodeId
-      ? decision.returnNodeId
-      : state.currentNodeId
-  if (getCourseNode(currentNodeId) === null) return state
+
+  if (selectedNodeId !== pending.nextCoreNodeId) return state
+
+  const continued = skipPendingRecommendations(state, decisions, now)
+  if (pending.nextCoreNodeId === null) {
+    return requiredRouteComplete(continued)
+      ? {
+          ...continued,
+          mode: 'recap',
+          awaitingAdvance: null,
+          availableNodeIds: without(continued.availableNodeIds, pending.nodeId),
+          updatedAt: now,
+        }
+      : state
+  }
+
   return {
-    ...state,
-    currentNodeId,
-    skippedNodeIds: appendUnique(state.skippedNodeIds, event.nodeId),
-    availableNodeIds: without(state.availableNodeIds, event.nodeId),
-    branchDecisions: {
-      ...state.branchDecisions,
-      [event.nodeId]: { ...decision, status: 'skipped', skippedAt: now },
-    },
+    ...continued,
+    currentNodeId: pending.nextCoreNodeId,
+    awaitingAdvance: null,
     updatedAt: now,
   }
 }
@@ -381,8 +452,14 @@ export function transitionCourse(state, event, now = new Date().toISOString()) {
   if (event.type === 'submit-response') {
     return submitCourseResponse(state, event, now)
   }
-  if (event.type === 'take-branch') return takeBranch(state, event, now)
-  if (event.type === 'skip-branch') return skipBranch(state, event, now)
+  if (
+    event.type === 'change-interaction-mode' &&
+    isInteractionMode(event.interactionMode) &&
+    event.interactionMode !== state.interactionMode
+  ) {
+    return { ...state, interactionMode: event.interactionMode, updatedAt: now }
+  }
+  if (event.type === 'advance-course') return advanceCourse(state, event, now)
   if (event.type === 'complete-branch') {
     return completeBranch(state, event, now)
   }
