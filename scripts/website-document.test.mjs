@@ -86,6 +86,16 @@ test('declares the unpacked draft inspector contract', () => {
   assert.ok(inspector.querySelector('[data-draft-status]'))
 })
 
+test('uses the approved route, workspace, and context hierarchy', () => {
+  const workspace = document.querySelector('.lab-workspace')
+  assert.ok(workspace)
+  assert.ok(workspace.querySelector(':scope > .lab-route'))
+  assert.ok(workspace.querySelector(':scope > .lab-center'))
+  assert.ok(workspace.querySelector(':scope > .lab-context'))
+  assert.ok(workspace.querySelector('.lab-center > [data-membrane-figure]'))
+  assert.ok(workspace.querySelector('.lab-center > .lab-activity'))
+})
+
 test('uses verified contribution destinations', () => {
   const hrefs = [...document.querySelectorAll('#contribute a')].map(
     (link) => link.href,

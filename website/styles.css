@@ -345,8 +345,8 @@ main > section {
   outline-color: var(--focus-light);
 }
 
-.demo-stage .button-demo:focus-visible,
-.demo-stage .button-primary:focus-visible,
+.learning-lab .button-demo:focus-visible,
+.learning-lab button:focus-visible,
 .final-invitation .button-primary:focus-visible {
   outline-color: var(--focus-dark);
 }

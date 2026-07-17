@@ -2,10 +2,15 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 
-const styles = await readFile(
+const baseStyles = await readFile(
   new URL('../website/styles.css', import.meta.url),
   'utf8',
 )
+const demoStyles = await readFile(
+  new URL('../website/demo.css', import.meta.url),
+  'utf8',
+)
+const styles = `${baseStyles}\n${demoStyles}`
 
 function ruleBody(selector) {
   const escapedSelector = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
@@ -41,10 +46,7 @@ function contrastRatio(foreground, background) {
 
 test('keeps hidden demo state authoritative at every breakpoint', () => {
   assert.match(styles, /\[hidden\]\s*\{[^}]*display:\s*none\s*!important;/s)
-  assert.match(
-    styles,
-    /\.demo-stage\s+\[data-demo-panel='route'\]:not\(\[hidden\]\)\s*\{\s*display:\s*block;/,
-  )
+  assert.doesNotMatch(demoStyles, /\[hidden\][^{]*\{[^}]*display:\s*(?!none)/)
 })
 
 test('preserves each enhanced control layout and does not mask overflow', () => {
@@ -53,35 +55,50 @@ test('preserves each enhanced control layout and does not mask overflow', () => 
     ruleBody('.js button.enhanced-control'),
     /display:\s*inline-flex;/,
   )
-  assert.match(
-    ruleBody('.js .demo-actions.enhanced-control'),
-    /display:\s*flex;/,
-  )
-  assert.match(
-    ruleBody('.js .answer-grid.enhanced-control'),
-    /display:\s*grid;/,
-  )
-  assert.match(ruleBody('.js .feedback.enhanced-control'), /display:\s*block;/)
   assert.doesNotMatch(ruleBody('body'), /overflow-x:\s*hidden;/)
+})
+
+test('lays out the learning lab as route, learning center, and context', () => {
   assert.match(
-    styles,
-    /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.answer-grid\s*\{[^}]*grid-template-columns:\s*1fr;/,
+    ruleBody('.lab-workspace'),
+    /grid-template-columns:\s*minmax\(\s*9rem,\s*0\.55fr\)\s+minmax\(\s*18rem,\s*1\.45fr\)\s+minmax\(\s*15rem,\s*0\.8fr\s*\);/,
+  )
+  assert.match(ruleBody('.lab-route'), /display:\s*grid;/)
+  assert.match(ruleBody('.lab-context'), /min-width:\s*0;/)
+})
+
+test('keeps lab controls touch-safe and press motion pointer-only', () => {
+  assert.match(
+    demoStyles,
+    /\.learning-lab button\s*\{[^}]*min-height:\s*2\.75rem;/s,
+  )
+  assert.match(
+    demoStyles,
+    /@media\s*\(hover:\s*hover\)\s*and\s*\(pointer:\s*fine\)[\s\S]*?transform:\s*scale\(0\.97\);/,
   )
 })
 
-test('separates recall navigation and keeps press motion pointer-only', () => {
+test('makes the full custom-choice surface an actual input hit area', () => {
+  const choiceInput = ruleBody('.choice-set input')
+  const choiceLabel = ruleBody('.choice-set label > span')
+
+  assert.match(choiceInput, /inset:\s*0;/)
+  assert.match(choiceInput, /width:\s*100%;/)
+  assert.match(choiceInput, /height:\s*100%;/)
+  assert.match(choiceInput, /opacity:\s*0;/)
+  assert.match(choiceLabel, /pointer-events:\s*none;/)
+})
+
+test('stacks the lab without horizontal page overflow and honors reduced motion', () => {
   assert.match(
-    ruleBody(".demo-stage [data-demo-panel='recall'] > .demo-back"),
-    /margin-top:\s*1\.25rem;/,
+    demoStyles,
+    /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.lab-workspace\s*\{[^}]*grid-template-columns:\s*1fr;/,
   )
   assert.match(
-    styles,
-    /@media\s*\(hover:\s*hover\)\s*and\s*\(pointer:\s*fine\)[\s\S]*?\.demo-stage button:active:not\(:focus-visible\)[^{]*\{[^}]*transform:\s*scale\(0\.97\);[^}]*transition-duration:\s*160ms;/,
+    demoStyles,
+    /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.molecule\s*\{[^}]*transition:\s*none;/,
   )
-  assert.match(
-    styles,
-    /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.demo-stage button:active\s*\{[^}]*transform:\s*none;/,
-  )
+  assert.doesNotMatch(demoStyles, /transition:\s*all/)
 })
 
 test('allows the narrow layout to account for a vertical scrollbar', () => {
@@ -111,7 +128,7 @@ test('keeps enhanced controls inert and hidden until JavaScript mounts', () => {
 })
 
 test('keeps the no-JavaScript answer disclosure at least 44px tall', () => {
-  const summary = ruleBody('html:not(.js) .static-answer summary')
+  const summary = ruleBody('html:not(.js) .static-demo summary')
 
   assert.match(summary, /display:\s*flex;/)
   assert.match(summary, /align-items:\s*center;/)
@@ -168,13 +185,13 @@ test('uses focus indicators with at least 3 to 1 adjacent contrast', () => {
   )
   assert.match(
     styles,
-    /\.demo-stage \.button-demo:focus-visible,[\s\S]*?\.demo-stage \.button-primary:focus-visible,[\s\S]*?\.final-invitation \.button-primary:focus-visible\s*\{[^}]*outline-color:\s*var\(--focus-dark\);/,
+    /\.learning-lab \.button-demo:focus-visible,[\s\S]*?\.learning-lab button:focus-visible,[\s\S]*?\.final-invitation \.button-primary:focus-visible\s*\{[^}]*outline-color:\s*var\(--focus-dark\);/,
   )
 
   const genericPrimaryFocus = styles.indexOf('.button-primary:focus-visible')
   const skipLinkFocus = styles.lastIndexOf('.skip-link:focus-visible')
   const demoPrimaryFocus = styles.lastIndexOf(
-    '.demo-stage .button-demo:focus-visible',
+    '.learning-lab .button-demo:focus-visible',
   )
   const invitationPrimaryFocus = styles.lastIndexOf(
     '.final-invitation .button-primary:focus-visible',

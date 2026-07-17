@@ -1,0 +1,779 @@
+.learning-lab {
+  margin-top: 2rem;
+  overflow: clip;
+  border: 1px solid #36405a;
+  background: #0d1424;
+  color: var(--paper);
+}
+
+.lab-topbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 1rem;
+  align-items: center;
+  min-height: 4.25rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #36405a;
+  background: #11192b;
+}
+
+.lab-topbar > div {
+  display: flex;
+  min-width: 0;
+  gap: 0.55rem;
+  align-items: baseline;
+}
+
+.lab-topbar span,
+.context-label,
+.choice-set legend {
+  color: #aeb7ca;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.lab-topbar code {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--lime);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lab-topbar p {
+  margin: 0;
+  color: #c8cfdd;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  white-space: nowrap;
+}
+
+.learning-lab button {
+  min-height: 2.75rem;
+  border: 1px solid #52607b;
+  border-radius: var(--radius-small);
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    transform 120ms var(--ease-out),
+    border-color 160ms var(--ease-out),
+    background-color 160ms var(--ease-out),
+    color 160ms var(--ease-out);
+}
+
+.learning-lab button:hover,
+.learning-lab button:focus-visible {
+  border-color: var(--lime);
+}
+
+.learning-lab .button-demo {
+  min-height: 3.25rem;
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.15rem;
+  border-color: var(--cobalt);
+  background: var(--cobalt);
+  color: var(--paper);
+}
+
+.learning-lab .button-demo:hover,
+.learning-lab .button-demo:focus-visible {
+  border-color: var(--lime);
+  background: var(--lime);
+  color: var(--ink);
+}
+
+.lab-topbar .enhanced-control {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.85rem;
+  color: #c8cfdd;
+  font-size: 0.78rem;
+}
+
+.lab-workspace {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.55fr) minmax(18rem, 1.45fr) minmax(
+      15rem,
+      0.8fr
+    );
+  min-height: 36rem;
+}
+
+.lab-route {
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 1.25rem 1rem;
+  border-right: 1px solid #36405a;
+  background: #11192b;
+  list-style: none;
+}
+
+.lab-route li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: center;
+  min-height: 5rem;
+  color: #7f899e;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.lab-route li::before {
+  position: absolute;
+  top: 3.5rem;
+  bottom: -1.5rem;
+  left: 0.94rem;
+  width: 1px;
+  background: #46516b;
+  content: '';
+}
+
+.lab-route li:last-child::before {
+  content: none;
+}
+
+.lab-route li > span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #52607b;
+  border-radius: 50%;
+  background: #11192b;
+  color: #9ca6ba;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.lab-route li[data-state='active'] {
+  color: var(--paper);
+}
+
+.lab-route li[data-state='active'] > span {
+  border-color: var(--lime);
+  box-shadow: 0 0 0 4px rgb(199 243 74 / 13%);
+  background: var(--lime);
+  color: var(--ink);
+}
+
+.lab-route li[data-state='complete'] {
+  color: #dce3ef;
+}
+
+.lab-route li[data-state='complete'] > span {
+  border-color: var(--cobalt);
+  background: var(--cobalt);
+  color: var(--paper);
+}
+
+.lab-route li[data-state='bridge'] > span,
+.lab-route li[data-state='draft'] > span {
+  border-style: dashed;
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+.lab-route li[data-state='bridge'],
+.lab-route li[data-state='draft'] {
+  color: #ffd0c9;
+}
+
+.lab-center {
+  display: grid;
+  grid-template-rows: minmax(13rem, 0.8fr) minmax(21rem, 1.2fr);
+  min-width: 0;
+  background: var(--midnight);
+}
+
+.membrane-figure {
+  display: grid;
+  grid-template-rows: minmax(10.5rem, 1fr) auto;
+  min-width: 0;
+  margin: 0;
+  border-bottom: 1px solid #36405a;
+  background: #0e1628;
+}
+
+.membrane-scene {
+  position: relative;
+  min-height: 10.5rem;
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.membrane-scene::before,
+.membrane-scene::after {
+  position: absolute;
+  top: 1.2rem;
+  bottom: 1.2rem;
+  left: calc(50% - 0.45rem);
+  width: 0.9rem;
+  background: repeating-radial-gradient(
+    circle at 50% 0.4rem,
+    #6f7c9c 0 0.22rem,
+    transparent 0.24rem 0.78rem
+  );
+  content: '';
+}
+
+.membrane-scene::after {
+  left: calc(50% + 0.55rem);
+}
+
+.membrane-layer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 0.8rem);
+  width: 2.6rem;
+  border-inline: 1px solid rgb(174 183 202 / 20%);
+  background: rgb(82 96 123 / 10%);
+}
+
+.transport-channel {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: calc(50% - 1.15rem);
+  width: 3.3rem;
+  height: 3.6rem;
+  transform: translateY(-50%);
+  border: 1px solid var(--coral);
+  border-block-width: 0.45rem;
+  background: #172038;
+}
+
+.molecule {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  min-width: 2.6rem;
+  min-height: 2.6rem;
+  padding: 0.3rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  transition:
+    transform 280ms var(--ease-out),
+    opacity 180ms var(--ease-out);
+}
+
+.molecule-oxygen {
+  top: 18%;
+  left: 8%;
+  color: var(--lime);
+}
+
+.molecule-glucose {
+  bottom: 15%;
+  left: 12%;
+  min-width: 4.1rem;
+  border-radius: 999px;
+  color: #ffbcb2;
+}
+
+.molecule-sodium {
+  top: 48%;
+  left: 24%;
+  color: #93adff;
+}
+
+.membrane-figure[data-result='oxygen'] .molecule-oxygen {
+  transform: translateX(clamp(7rem, 12vw, 10rem));
+}
+
+.membrane-figure[data-result='oxygen'] .molecule-glucose {
+  transform: translateX(clamp(2.25rem, 5vw, 4.5rem));
+}
+
+.membrane-figure[data-result='oxygen'] .molecule-sodium {
+  transform: translateX(clamp(1.5rem, 3vw, 2.75rem));
+}
+
+.membrane-figure figcaption {
+  margin: 0;
+  padding: 0.7rem 1rem;
+  border-top: 1px solid #2a3550;
+  color: #9ea8bc;
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.lab-activity {
+  position: relative;
+  min-width: 0;
+  min-height: 21rem;
+  overflow: hidden;
+}
+
+.lab-activity > section {
+  min-height: 21rem;
+  padding: clamp(1.4rem, 2.5vw, 2rem);
+  animation: demo-panel-enter 240ms var(--ease-out) both;
+}
+
+.lab-activity .demo-step {
+  margin: 0 0 0.7rem;
+  color: var(--lime);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lab-activity h3,
+.lab-context h3 {
+  margin: 0;
+  color: var(--paper);
+  font-weight: 570;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.lab-activity h3 {
+  max-width: 18ch;
+  font-size: clamp(1.55rem, 2.3vw, 2.15rem);
+}
+
+.lab-activity section > p:not(.demo-step) {
+  max-width: 34rem;
+  margin: 1rem 0 0;
+  color: #b7c0d1;
+  line-height: 1.5;
+}
+
+.choice-set {
+  display: grid;
+  min-width: 0;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.choice-set legend {
+  margin-bottom: 0.5rem;
+}
+
+.molecule-choices {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-block: 1px solid #36405a;
+}
+
+.choice-set label {
+  position: relative;
+  cursor: pointer;
+}
+
+.molecule-choices label + label {
+  border-left: 1px solid #36405a;
+}
+
+.choice-set input {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.choice-set label > span {
+  display: flex;
+  min-height: 3.5rem;
+  padding: 0.65rem;
+  align-items: center;
+  justify-content: center;
+  color: #c8cfdd;
+  font-size: 0.83rem;
+  font-weight: 600;
+  pointer-events: none;
+  text-align: center;
+  transition:
+    background-color 160ms var(--ease-out),
+    color 160ms var(--ease-out);
+}
+
+.choice-set label > span small {
+  display: none;
+}
+
+.choice-set input:checked + span {
+  background: var(--lime);
+  color: var(--ink);
+}
+
+.choice-set input:focus-visible + span {
+  outline: 3px solid var(--focus-dark);
+  outline-offset: -3px;
+}
+
+.confidence-choices {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.confidence-choices label > span {
+  min-height: 2.75rem;
+  border: 1px solid #52607b;
+  justify-content: flex-start;
+}
+
+.demo-actions {
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+}
+
+.demo-actions button,
+.lab-activity [data-demo-action='back'] {
+  padding: 0.65rem 1rem;
+}
+
+.demo-actions .button-demo {
+  margin-top: 0;
+}
+
+.answer-grid {
+  grid-template-columns: 1fr;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+}
+
+.answer-grid button {
+  min-height: 3.25rem;
+  padding: 0.7rem 0.9rem;
+  text-align: left;
+}
+
+.answer-grid button[data-state='incorrect'] {
+  border-color: var(--coral);
+  color: #ffd0c9;
+}
+
+.answer-grid button[data-state='correct'] {
+  border-color: var(--lime);
+  background: var(--lime);
+  color: var(--ink);
+}
+
+.feedback {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-left: 3px solid var(--coral);
+  background: #1a2134;
+  color: #dce3ef;
+  font-size: 0.85rem;
+}
+
+.lab-context {
+  min-width: 0;
+  padding: 1.25rem 1rem;
+  overflow: hidden;
+  border-left: 1px solid #36405a;
+  background: #0f1728;
+}
+
+.lab-context > .context-label:first-child {
+  margin-top: 0;
+}
+
+.context-label {
+  margin: 1.25rem 0 0.5rem;
+}
+
+[data-evidence-context] {
+  min-height: 5.25rem;
+  padding-block: 0.8rem;
+  border-block: 1px solid #36405a;
+  color: #d1d8e5;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+[data-evidence-context] p {
+  margin: 0;
+}
+
+.lab-context h3 {
+  font-size: 1.25rem;
+}
+
+.pack-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 1rem;
+}
+
+.pack-tabs button {
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.35rem;
+  border-color: #36405a;
+  border-radius: 0;
+  color: #9ea8bc;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+}
+
+.pack-tabs button[aria-selected='true'] {
+  border-color: var(--lime);
+  background: var(--lime);
+  color: var(--ink);
+}
+
+[data-pack-inspector] pre {
+  max-height: 16rem;
+  margin: 0;
+  padding: 0.9rem;
+  overflow: auto;
+  border: 1px solid #36405a;
+  border-top: 0;
+  background: #090f1c;
+  color: #b9df72;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+.draft-toggle {
+  display: grid;
+  grid-template-columns: 1.15rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: start;
+  min-height: 2.75rem;
+  margin-top: 0.9rem;
+  cursor: pointer;
+  color: #dce3ef;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.draft-toggle input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0.1rem 0 0;
+  accent-color: var(--lime);
+}
+
+[data-draft-status] {
+  margin: 0.4rem 0 0;
+  color: #9ea8bc;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.static-demo {
+  margin: 1.25rem 0 0;
+  padding: 0.75rem 0;
+  border-block: 1px solid #52607b;
+  color: #dce3ef;
+}
+
+.static-demo summary {
+  cursor: pointer;
+  font-weight: 650;
+}
+
+.static-demo p,
+.static-demo ol {
+  color: #b7c0d1;
+}
+
+html:not(.js) .learning-lab {
+  display: none;
+}
+
+html:not(.js) .static-demo summary {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+
+html.js .static-demo {
+  display: none;
+}
+
+@keyframes demo-panel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.45rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .learning-lab button:active:not(:focus-visible) {
+    transform: scale(0.97);
+  }
+}
+
+@media (max-width: 72rem) and (min-width: 52.001rem) {
+  main {
+    display: block;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-block: 6rem;
+  }
+
+  .hero-copy {
+    max-width: 52rem;
+  }
+
+  .demo-section {
+    min-height: 0;
+    margin-bottom: 2rem;
+  }
+
+  .lab-workspace {
+    grid-template-columns: minmax(8rem, 0.45fr) minmax(24rem, 1.45fr) minmax(
+        15rem,
+        0.7fr
+      );
+  }
+}
+
+@media (max-width: 52rem) {
+  .learning-lab {
+    margin-top: 1.25rem;
+  }
+
+  .lab-topbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .lab-topbar > p {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    padding-top: 0.55rem;
+    border-top: 1px solid #36405a;
+  }
+
+  .lab-workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-route {
+    grid-template-columns: repeat(4, minmax(8.25rem, 1fr));
+    align-content: initial;
+    overflow-x: auto;
+    padding: 0.85rem 1rem;
+    border-right: 0;
+    border-bottom: 1px solid #36405a;
+    scroll-snap-type: x proximity;
+  }
+
+  .lab-route li {
+    grid-template-columns: 1.8rem minmax(0, 1fr);
+    min-height: 3.5rem;
+    scroll-snap-align: start;
+  }
+
+  .lab-route li > span {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .lab-route li::before {
+    top: 50%;
+    right: -0.2rem;
+    bottom: auto;
+    left: 2rem;
+    width: calc(100% - 1.8rem);
+    height: 1px;
+  }
+
+  .lab-center {
+    grid-template-rows: auto auto;
+  }
+
+  .lab-activity,
+  .lab-activity > section {
+    min-height: 0;
+  }
+
+  .lab-context {
+    border-top: 1px solid #36405a;
+    border-left: 0;
+  }
+
+  [data-pack-inspector] pre {
+    max-height: 19rem;
+  }
+}
+
+@media (max-width: 30rem) {
+  .lab-topbar > div {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  .lab-topbar span {
+    font-size: 0.62rem;
+  }
+
+  .molecule-choices {
+    grid-template-columns: 1fr;
+  }
+
+  .molecule-choices label + label {
+    border-top: 1px solid #36405a;
+    border-left: 0;
+  }
+
+  .choice-set label > span {
+    justify-content: flex-start;
+  }
+
+  .demo-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .demo-actions button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-activity > section {
+    animation: none;
+  }
+
+  .molecule {
+    transition: none;
+  }
+
+  .learning-lab button,
+  .choice-set label > span {
+    transition: none;
+  }
+}
