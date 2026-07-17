@@ -105,6 +105,14 @@ The label uses “side route,” not “pack extension,” so it is not confused
 
 The edit is intentionally constrained. It demonstrates that pack documents are inspectable and authored data drives the route; it does not claim to be a complete authoring environment.
 
+## Approved Page Architecture Revision
+
+The completed three-pane workspace is too dense for the landing page's split hero column. The full interactive experience therefore moves intact to a dedicated `/demo/` page where it can use the site's complete content width.
+
+The project landing page will no longer mount the demo runtime. Its demo section becomes a concise editorial invitation with a direct **Open the full demo** link. The primary hero action, navigation demo link, and closing demo action all lead to `/demo/`.
+
+The dedicated page preserves the existing interaction model, microbiology content, pack inspector, progressive enhancement, accessibility behavior, and local-only runtime. It adds a compact Concourse header and a clear route back to the project site. On desktop, the three-pane workspace must occupy the full site content width; at the existing narrow breakpoint, it may continue to stack vertically.
+
 ## Screen Design
 
 ### Desktop
