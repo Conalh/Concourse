@@ -69,6 +69,21 @@ test('preserves each enhanced control layout and does not mask overflow', () => 
   )
 })
 
+test('separates recall navigation and keeps press motion pointer-only', () => {
+  assert.match(
+    ruleBody(".demo-stage [data-demo-panel='recall'] > .demo-back"),
+    /margin-top:\s*1\.25rem;/,
+  )
+  assert.match(
+    styles,
+    /@media\s*\(hover:\s*hover\)\s*and\s*\(pointer:\s*fine\)[\s\S]*?\.demo-stage button:active:not\(:focus-visible\)[^{]*\{[^}]*transform:\s*scale\(0\.97\);[^}]*transition-duration:\s*160ms;/,
+  )
+  assert.match(
+    styles,
+    /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.demo-stage button:active\s*\{[^}]*transform:\s*none;/,
+  )
+})
+
 test('allows the narrow layout to account for a vertical scrollbar', () => {
   assert.doesNotMatch(
     ruleBody('body'),

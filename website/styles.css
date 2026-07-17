@@ -18,6 +18,7 @@
   --midnight: #141b2d;
   --focus-light: var(--cobalt);
   --focus-dark: var(--lime);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --font-sans: 'Instrument Sans', 'Segoe UI Variable', 'Segoe UI', sans-serif;
   --font-mono:
     ui-monospace, 'Cascadia Code', 'SFMono-Regular', Consolas, monospace;
@@ -321,14 +322,10 @@ main > section {
   line-height: 1.2;
   text-decoration: none;
   transition:
-    transform 160ms ease,
+    transform 120ms var(--ease-out),
     background-color 160ms ease,
     color 160ms ease,
     border-color 160ms ease;
-}
-
-.button:hover {
-  transform: translateY(-2px);
 }
 
 .button-primary {
@@ -587,7 +584,8 @@ main > section {
 
 .demo-actions button,
 .demo-stage [data-demo-action='back'],
-.feedback button {
+.feedback button,
+.answer-grid button {
   min-height: 3rem;
   padding: 0.75rem 1rem;
   border: 1px solid var(--rule);
@@ -597,6 +595,11 @@ main > section {
   font-size: 1rem;
   font-weight: 560;
   cursor: pointer;
+  transition:
+    transform 120ms var(--ease-out),
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
 }
 
 .demo-actions .button-demo {
@@ -618,6 +621,10 @@ main > section {
 
 .demo-stage [data-demo-panel='recall'] h3 {
   max-width: 20ch;
+}
+
+.demo-stage [data-demo-panel='recall'] > .demo-back {
+  margin-top: 1.25rem;
 }
 
 .answer-grid {
@@ -643,6 +650,18 @@ main > section {
 .answer-grid button:focus-visible {
   border-color: var(--lime);
   color: var(--lime);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button:active:not(:focus-visible),
+  .demo-stage button:active:not(:focus-visible) {
+    transform: scale(0.97);
+    transition-duration: 160ms;
+  }
 }
 
 .feedback {
@@ -1934,5 +1953,11 @@ footer nav a:first-child {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .button:hover,
+  .button:active,
+  .demo-stage button:active {
+    transform: none;
   }
 }

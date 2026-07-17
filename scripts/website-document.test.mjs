@@ -63,6 +63,15 @@ test('provides every required section and demo hook', () => {
   assert.ok(document.querySelector('[data-demo-progress]'))
 })
 
+test('keeps recall navigation visually distinct from the answer choices', () => {
+  const recallPanel = document.querySelector('[data-demo-panel="recall"]')
+  const backButton = recallPanel?.querySelector(
+    ':scope > .demo-back[data-demo-action="back"]',
+  )
+
+  assert.ok(backButton, 'recall Back control needs its dedicated spacing hook')
+})
+
 test('uses verified contribution destinations', () => {
   const hrefs = [...document.querySelectorAll('#contribute a')].map(
     (link) => link.href,
