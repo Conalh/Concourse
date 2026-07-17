@@ -9,6 +9,7 @@ import {
   projectRecap,
   transitionCourse,
 } from './demo-model.js'
+import { resolveDemoPresentation } from './demo-modes.js'
 import { createSourceDocuments, deriveDraftDocuments } from './demo-pack.js'
 import {
   CONTEXT_TABS,
@@ -95,6 +96,7 @@ export function mountCourse(
   let destroyed = false
 
   function projection() {
+    const presentation = resolveDemoPresentation(state.interactionMode)
     return {
       route: deriveCourseRoute(state),
       recap: projectRecap(state),
@@ -105,6 +107,13 @@ export function mountCourse(
       entryReason,
       storageMode,
       activeContextTab,
+      presentation,
+      modePaletteOpen: false,
+      disclosures: {
+        routeOpen: presentation.routeVisibility !== 'collapsed',
+        contextOpen: presentation.contextVisibility === 'expanded',
+      },
+      resumeNotice: '',
     }
   }
 

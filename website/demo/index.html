@@ -43,7 +43,7 @@
 
     <main id="main">
       <section class="course-shell" data-course aria-labelledby="course-title">
-        <header class="course-heading">
+        <header class="course-heading" data-course-heading>
           <p class="section-index">Guided course / Microbiology</p>
           <h1 id="course-title">How a bacterium survives</h1>
           <p>
@@ -73,14 +73,57 @@
             </div>
             <p data-course-progress>Chapter 1 of 6 · Activity 1 of 13</p>
             <p data-save-status>Saved on this device</p>
+            <div class="course-mode-control">
+              <button
+                type="button"
+                data-mode-trigger
+                data-course-action="toggle-mode-palette"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                aria-controls="course-mode-palette"
+              >
+                Mode: Coach
+              </button>
+              <section
+                id="course-mode-palette"
+                class="mode-palette"
+                data-mode-palette
+                role="dialog"
+                aria-labelledby="course-mode-palette-title"
+                hidden
+              >
+                <header>
+                  <h2 id="course-mode-palette-title">
+                    Change how this session is presented
+                  </h2>
+                  <button
+                    type="button"
+                    data-course-action="close-mode-palette"
+                    aria-label="Close Mode choices"
+                  >
+                    Close
+                  </button>
+                </header>
+                <p>
+                  Modes change guidance, pacing, and workspace detail. They do
+                  not change grading or course order.
+                </p>
+                <div data-mode-options></div>
+              </section>
+            </div>
             <button data-course-action="reset" type="button">Start over</button>
           </header>
 
-          <nav
-            class="course-route"
-            data-course-route
-            aria-label="Learning route"
-          ></nav>
+          <p data-resume-notice role="status" hidden></p>
+
+          <details class="course-route-disclosure" data-course-route-disclosure>
+            <summary data-course-route-summary>Learning route</summary>
+            <nav
+              class="course-route"
+              data-course-route
+              aria-label="Learning route"
+            ></nav>
+          </details>
 
           <section
             class="course-stage"
@@ -90,11 +133,17 @@
             tabindex="-1"
           ></section>
 
-          <aside
-            class="course-context"
-            data-course-context
-            aria-label="Evidence, route decision, and pack source"
-          ></aside>
+          <details
+            class="course-context-disclosure"
+            data-course-context-disclosure
+          >
+            <summary>Evidence and course source</summary>
+            <aside
+              class="course-context"
+              data-course-context
+              aria-label="Evidence, route decision, and pack source"
+            ></aside>
+          </details>
         </div>
 
         <section class="static-course" aria-labelledby="static-course-title">
@@ -105,6 +154,11 @@
               Interactive evidence, branching, local resume, and pack editing
               require JavaScript. The full scientific spine remains available
               here.
+            </p>
+            <p>
+              The interactive course also offers Coach, Flow, Test, Rescue,
+              Zoom, and Recap Modes. They change presentation and pacing, never
+              grading or course order.
             </p>
           </div>
           <ol class="static-chapters">

@@ -6,6 +6,10 @@ import {
   getCourseNode,
   retrievalActivityForConcept,
 } from './demo-course.js'
+import {
+  INTERACTION_MODES,
+  getInteractionModeDefinition,
+} from './demo-modes.js'
 import { excerptForFile, sourceForNode } from './demo-pack.js'
 import { explainRouteDecision, selectRetrievalConcept } from './demo-routing.js'
 
@@ -26,15 +30,27 @@ function el(documentRoot, tagName, attributes = {}, text = null) {
   return node
 }
 
-export function renderTeachingBlock(documentRoot, teaching) {
+export function renderTeachingBlock(
+  documentRoot,
+  teaching,
+  presentation = { teachingVisibility: 'visible' },
+) {
   const section = el(documentRoot, 'section', {
     className: 'activity-teaching',
     'data-activity-teaching': '',
     'aria-labelledby': 'activity-key-idea-title',
   })
-  section.append(
-    el(documentRoot, 'h3', { id: 'activity-key-idea-title' }, 'Key idea'),
+  const heading = el(
+    documentRoot,
+    'h3',
+    {
+      id: 'activity-key-idea-title',
+      'data-key-idea-anchor': '',
+      tabindex: '-1',
+    },
+    'Key idea',
   )
+  section.append(heading)
 
   for (const { segments } of teaching) {
     const paragraph = el(documentRoot, 'p')
@@ -48,7 +64,24 @@ export function renderTeachingBlock(documentRoot, teaching) {
     section.append(paragraph)
   }
 
-  return section
+  if (presentation.teachingVisibility !== 'available') return section
+
+  heading.removeAttribute('data-key-idea-anchor')
+  heading.removeAttribute('tabindex')
+  const disclosure = el(documentRoot, 'details', {
+    className: 'teaching-disclosure',
+    'data-teaching-disclosure': '',
+  })
+  disclosure.append(
+    el(
+      documentRoot,
+      'summary',
+      { 'data-key-idea-anchor': '', tabindex: '-1' },
+      'Review the key idea',
+    ),
+    section,
+  )
+  return disclosure
 }
 
 function chapterForNode(nodeId) {
@@ -57,6 +90,31 @@ function chapterForNode(nodeId) {
     CHAPTERS.find(({ chapterId }) => chapterId === node?.chapterId) ??
     CHAPTERS[0]
   )
+}
+
+function renderModePalette(root, state, projection) {
+  const documentRoot = root.ownerDocument
+  const definition = getInteractionModeDefinition(state.interactionMode)
+  const trigger = root.querySelector('[data-mode-trigger]')
+  const palette = root.querySelector('[data-mode-palette]')
+  const options = root.querySelector('[data-mode-options]')
+  trigger.textContent = `Mode: ${definition.label}`
+  trigger.setAttribute('aria-expanded', String(projection.modePaletteOpen))
+  palette.hidden = !projection.modePaletteOpen
+  options.replaceChildren()
+
+  for (const mode of INTERACTION_MODES) {
+    const option = el(documentRoot, 'button', {
+      type: 'button',
+      'data-mode-option': mode.id,
+      'aria-pressed': String(mode.id === state.interactionMode),
+    })
+    option.append(
+      el(documentRoot, 'strong', {}, mode.label),
+      el(documentRoot, 'span', {}, mode.description),
+    )
+    options.append(option)
+  }
 }
 
 function renderEntry(root, state, projection) {
@@ -206,7 +264,105 @@ function renderRoute(root, projection) {
   routeRoot.append(list)
 }
 
-function renderActivityStage(root, state) {
+function pendingRecommendations(state) {
+  if (state.awaitingAdvance === null) return []
+  return Object.values(state.branchDecisions).filter(
+    (decision) =>
+      decision.status === 'recommended' &&
+      decision.evidenceActivityId === state.awaitingAdvance.nodeId,
+  )
+}
+
+function nextActionButton(documentRoot, nodeId, label) {
+  const attributes = {
+    type: 'button',
+    className: 'button button-primary',
+    'data-course-action': 'advance-course',
+  }
+  if (nodeId !== undefined) {
+    attributes['data-next-node-id'] = nodeId ?? ''
+  }
+  return el(documentRoot, 'button', attributes, label)
+}
+
+function renderCompletionFeedback(documentRoot, state, activity, presentation) {
+  const progress = state.activityProgress[state.currentNodeId] ?? {}
+  const section = el(documentRoot, 'section', {
+    className: 'completion-feedback',
+    'data-completion-feedback': '',
+    'aria-labelledby': 'completion-feedback-title',
+    tabindex: '-1',
+  })
+  section.append(
+    el(
+      documentRoot,
+      'h3',
+      { id: 'completion-feedback-title' },
+      progress.lastResponseCorrect
+        ? 'That fits the model.'
+        : 'Let’s use support.',
+    ),
+    el(
+      documentRoot,
+      'p',
+      {},
+      progress.lastResponseCorrect
+        ? activity.feedback.correct
+        : activity.feedback.incorrect,
+    ),
+  )
+  if (presentation.feedbackDetail === 'detailed') {
+    section.append(
+      el(
+        documentRoot,
+        'p',
+        { className: 'feedback-detail' },
+        progress.lastResponseCorrect
+          ? 'What mattered: your response connected the prompt to the mechanism in the Key idea.'
+          : 'What mattered: the mismatch identifies the mechanism to revisit before choosing the next route step.',
+      ),
+    )
+  }
+
+  const recommendations = pendingRecommendations(state)
+  const actions = el(documentRoot, 'div', { className: 'branch-actions' })
+  for (const decision of recommendations) {
+    const node = getCourseNode(decision.nodeId)
+    const reason = el(documentRoot, 'div', {
+      className: 'route-decision',
+      'data-route-decision': decision.nodeId,
+    })
+    reason.append(
+      el(documentRoot, 'strong', {}, node.title),
+      el(documentRoot, 'p', {}, explainRouteDecision(decision)),
+    )
+    section.append(reason)
+    actions.append(
+      nextActionButton(
+        documentRoot,
+        decision.nodeId,
+        decision.kind === 'support' ? 'Take support' : 'Explore extension',
+      ),
+    )
+  }
+
+  const nextCoreNodeId = state.awaitingAdvance.nextCoreNodeId
+  actions.append(
+    nextActionButton(
+      documentRoot,
+      recommendations.length > 0 ? nextCoreNodeId : undefined,
+      nextCoreNodeId === null
+        ? 'Finish the route'
+        : recommendations.length > 0
+          ? 'Continue the required route'
+          : 'Continue',
+    ),
+  )
+  section.append(actions)
+  return section
+}
+
+function renderActivityStage(root, state, projection) {
   const documentRoot = root.ownerDocument
   const stage = root.querySelector('[data-course-stage]')
   stage.replaceChildren()
@@ -239,7 +395,23 @@ function renderActivityStage(root, state) {
   stage.append(header)
 
   if (node.required) {
-    stage.append(renderTeachingBlock(documentRoot, activity.teaching))
+    stage.append(
+      renderTeachingBlock(
+        documentRoot,
+        activity.teaching,
+        projection.presentation,
+      ),
+    )
+    if (projection.presentation.guidanceVisibility === 'expanded') {
+      stage.append(
+        el(
+          documentRoot,
+          'p',
+          { className: 'rescue-guidance', 'data-mode-guidance': '' },
+          'Try this: name the structure or process in the Key idea, then compare each response with its role.',
+        ),
+      )
+    }
   }
 
   if (retrievalTarget) {
@@ -272,6 +444,16 @@ function renderActivityStage(root, state) {
     )
   }
   stage.append(renderActivity(documentRoot, activity, progress))
+  if (state.awaitingAdvance?.nodeId === state.currentNodeId) {
+    stage.append(
+      renderCompletionFeedback(
+        documentRoot,
+        state,
+        activity,
+        projection.presentation,
+      ),
+    )
+  }
 }
 
 function renderRecap(root, projection) {
@@ -398,32 +580,6 @@ function renderDecisions(documentRoot, state) {
       el(documentRoot, 'strong', {}, node.title),
       el(documentRoot, 'p', {}, explainRouteDecision(decision)),
     )
-    if (decision.status === 'recommended') {
-      const actions = el(documentRoot, 'div', { className: 'branch-actions' })
-      actions.append(
-        el(
-          documentRoot,
-          'button',
-          {
-            type: 'button',
-            'data-branch-action': 'take',
-            'data-node-id': decision.nodeId,
-          },
-          decision.kind === 'support' ? 'Take support' : 'Explore extension',
-        ),
-        el(
-          documentRoot,
-          'button',
-          {
-            type: 'button',
-            'data-branch-action': 'skip',
-            'data-node-id': decision.nodeId,
-          },
-          'Skip',
-        ),
-      )
-      card.append(actions)
-    }
     section.append(card)
   }
   return section
@@ -568,8 +724,12 @@ function renderContext(root, state, projection) {
 export function renderCourse(root, state, projection) {
   const entry = root.querySelector('[data-course-entry]')
   const workspace = root.querySelector('[data-course-workspace]')
+  const heading = root.querySelector('[data-course-heading]')
   const staticCourse = root.querySelector('.static-course')
   if (staticCourse) staticCourse.hidden = true
+  heading.hidden = state.mode !== 'entry'
+  root.dataset.interactionMode = state.interactionMode
+  root.dataset.courseActive = String(state.mode !== 'entry')
 
   root.querySelector('[data-save-status]').textContent =
     projection.storageMode === 'session-only'
@@ -584,28 +744,51 @@ export function renderCourse(root, state, projection) {
 
   entry.hidden = true
   workspace.hidden = false
+  renderModePalette(root, state, projection)
+  const resumeNotice = root.querySelector('[data-resume-notice]')
+  resumeNotice.textContent = projection.resumeNotice
+  resumeNotice.hidden = projection.resumeNotice.length === 0
+  root.querySelector('[data-course-route-disclosure]').open =
+    projection.disclosures.routeOpen
+  root.querySelector('[data-course-context-disclosure]').open =
+    projection.disclosures.contextOpen
   const completed = state.completedNodeIds.filter((nodeId) =>
     REQUIRED_ACTIVITY_IDS.includes(nodeId),
   ).length
-  const chapter = chapterForNode(state.currentNodeId)
+  const availableDecisions = Object.values(state.branchDecisions).filter(
+    ({ status }) => status === 'recommended',
+  )
+  let opportunity = ''
+  if (availableDecisions.length === 1) {
+    opportunity =
+      availableDecisions[0].kind === 'support'
+        ? ' · 1 support activity available'
+        : ' · 1 extension available'
+  } else if (availableDecisions.length > 1) {
+    opportunity = ` · ${availableDecisions.length} optional activities available`
+  }
   root.querySelector('[data-course-progress]').textContent =
     state.mode === 'recap'
       ? 'Route complete · 13 of 13 required activities'
-      : `Chapter ${chapter.number} of 6 · ${completed} of 13 complete`
+      : `${completed} of 13 required activities${opportunity}`
   renderRoute(root, projection)
   if (state.mode === 'recap') renderRecap(root, projection)
-  else renderActivityStage(root, state)
+  else renderActivityStage(root, state, projection)
   renderContext(root, state, projection)
 }
 
 export function focusTargetForTransition(previous, next) {
+  if (previous.mode !== 'recap' && next.mode === 'recap') {
+    return '[data-course-recap]'
+  }
   if (
-    previous.mode !== next.mode ||
-    previous.currentNodeId !== next.currentNodeId
+    previous.currentNodeId !== next.currentNodeId ||
+    previous.mode !== next.mode
   ) {
-    return next.mode === 'recap'
-      ? '[data-course-recap]'
-      : '[data-course-activity] input:not([disabled]), [data-course-activity] select, [data-course-activity] button'
+    return '[data-key-idea-anchor], .activity-heading h2'
+  }
+  if (previous.awaitingAdvance === null && next.awaitingAdvance !== null) {
+    return '[data-completion-feedback]'
   }
   const previousAttempts =
     previous.activityProgress[previous.currentNodeId]?.attempts ?? 0
@@ -614,6 +797,10 @@ export function focusTargetForTransition(previous, next) {
 }
 
 export function announcementForTransition(previous, next) {
+  if (previous.interactionMode !== next.interactionMode) {
+    const definition = getInteractionModeDefinition(next.interactionMode)
+    return `${definition.label} Mode. ${definition.announcement}`
+  }
   if (previous.mode !== 'recap' && next.mode === 'recap') {
     return 'Course complete. Your route recap is ready.'
   }
@@ -626,6 +813,9 @@ export function announcementForTransition(previous, next) {
   const progress = next.activityProgress[next.currentNodeId]
   if (progress?.attempts === 1 && progress.status === 'incorrect') {
     return 'Not yet. Read the feedback and try once more.'
+  }
+  if (previous.awaitingAdvance === null && next.awaitingAdvance !== null) {
+    return 'Response recorded. Feedback and the next route choice are ready.'
   }
   return ''
 }

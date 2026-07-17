@@ -217,6 +217,11 @@ export function renderActivity(documentRoot, activity, progress = {}) {
       activity.confidenceRequired ? 'Check my reasoning' : 'Complete branch',
     ),
   )
+  if (typeof progress.completedAt === 'string') {
+    form.dataset.activityCompleted = 'true'
+    for (const control of form.elements) control.disabled = true
+    form.querySelector('button[type="submit"]').hidden = true
+  }
   return form
 }
 
@@ -247,6 +252,33 @@ export function readActivityResponse(activityRoot, activity) {
     confidence:
       activityRoot.querySelector('input[name="confidence"]:checked')?.value ??
       null,
+  }
+}
+
+export function restoreActivityResponse(activityRoot, activity, submission) {
+  if (activityRoot === null || submission === null) return
+  const kind = activity.kind === 'retrieval' ? 'single-choice' : activity.kind
+  if (['single-choice', 'choice'].includes(kind)) {
+    const input = activityRoot.querySelector(
+      `input[name="response"][value="${submission.response}"]`,
+    )
+    if (input) input.checked = true
+  } else if (kind === 'multi-select' && Array.isArray(submission.response)) {
+    for (const input of activityRoot.querySelectorAll(
+      'input[name="response"]',
+    )) {
+      input.checked = submission.response.includes(input.value)
+    }
+  } else if (kind === 'matching' && submission.response !== null) {
+    for (const select of activityRoot.querySelectorAll('[data-match-prompt]')) {
+      select.value = submission.response[select.dataset.matchPrompt] ?? ''
+    }
+  }
+  if (['high', 'low'].includes(submission.confidence)) {
+    const confidence = activityRoot.querySelector(
+      `input[name="confidence"][value="${submission.confidence}"]`,
+    )
+    if (confidence) confidence.checked = true
   }
 }
 

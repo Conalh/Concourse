@@ -125,6 +125,60 @@ test('starts a new course and persists the first node', () => {
   controller.destroy()
 })
 
+test('renders Coach as a focused workspace with six available Modes', () => {
+  const { document, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+
+  assert.equal(document.querySelector('[data-course-heading]').hidden, true)
+  assert.equal(
+    document.querySelector('[data-mode-trigger]').textContent.trim(),
+    'Mode: Coach',
+  )
+  assert.equal(document.querySelectorAll('[data-mode-option]').length, 6)
+  assert.equal(
+    document.querySelector('[data-course-route-disclosure]').open,
+    true,
+  )
+  assert.equal(
+    document.querySelector('[data-course-context-disclosure]').open,
+    false,
+  )
+  controller.destroy()
+})
+
+test('keeps completed evidence visible until an explicit route choice', () => {
+  const { document, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+  submitCurrentCorrect(document, controller)
+
+  assert.equal(controller.getState().currentNodeId, 'boundary-permeability')
+  assert.ok(document.querySelector('[data-completion-feedback]'))
+  assert.ok(
+    document.querySelector(
+      '[data-course-action="advance-course"][data-next-node-id="boundary-structure"]',
+    ),
+  )
+  assert.equal(
+    document.querySelector('[data-course-activity]').dataset.activityCompleted,
+    'true',
+  )
+  controller.destroy()
+})
+
+test('explains a support branch beside its explicit route choices', () => {
+  const { document, controller } = setupCourse()
+  click(document, '[data-course-action="start"]')
+  const activity = getActivity('boundary-permeability')
+  fillSubmission(document, activity, ['sodium'], 'high')
+  fillSubmission(document, activity, activity.correctResponse, 'high')
+
+  const feedback = document.querySelector('[data-completion-feedback]')
+  assert.match(feedback.textContent, /high-confidence mismatch/i)
+  assert.ok(feedback.querySelector('[data-next-node-id="support-charge-size"]'))
+  assert.ok(feedback.querySelector('[data-next-node-id="boundary-structure"]'))
+  controller.destroy()
+})
+
 test('renders each required key idea before its activity form', () => {
   for (const activityId of REQUIRED_ACTIVITY_IDS) {
     const seededState = advanceCourseTo(activityId)

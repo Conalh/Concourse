@@ -99,8 +99,22 @@ test('gives the living course a canonical dedicated page', () => {
   assert.ok(course.querySelector('[data-course-stage]'))
   assert.ok(course.querySelector('[data-course-context]'))
   assert.ok(course.querySelector('[data-course-status][aria-live="polite"]'))
+  for (const selector of [
+    '[data-course-heading]',
+    '[data-mode-trigger]',
+    '[data-mode-palette]',
+    '[data-resume-notice]',
+    '[data-course-route-disclosure]',
+    '[data-course-context-disclosure]',
+  ]) {
+    assert.ok(course.querySelector(selector), `missing ${selector}`)
+  }
   assert.equal(course.querySelector('[data-demo-panel]'), null)
   assert.equal(course.querySelector('[data-demo]'), null)
+  assert.match(
+    demoDocument.querySelector('.static-course')?.textContent ?? '',
+    /Coach.*Flow.*Test.*Rescue.*Zoom.*Recap/is,
+  )
 })
 
 test('provides the complete six-chapter no-JavaScript course', () => {

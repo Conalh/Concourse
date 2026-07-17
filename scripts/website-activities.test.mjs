@@ -2,6 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { JSDOM } from 'jsdom'
 
+import * as activities from '../website/demo-activities.js'
 import { getActivity } from '../website/demo-course.js'
 import {
   moveOrderedItem,
@@ -176,4 +177,34 @@ test('writes authored text as text rather than executable markup', () => {
 
   assert.equal(form.querySelector('img'), null)
   assert.match(form.textContent, /<img src=x/)
+})
+
+test('renders a completed response as inert recorded evidence', () => {
+  const { form } = render('transport-gradient', {
+    attempts: 1,
+    lastResponse: 'in',
+    lastConfidence: 'high',
+    status: 'correct',
+    classification: 'strong',
+    completedAt: '2026-07-17T12:00:00.000Z',
+  })
+
+  assert.equal(form.dataset.activityCompleted, 'true')
+  assert.ok([...form.elements].every((control) => control.disabled))
+  assert.equal(form.querySelector('button[type="submit"]').hidden, true)
+})
+
+test('restores a transient choice and confidence draft', () => {
+  const { form, activity } = render('transport-gradient')
+  assert.equal(typeof activities.restoreActivityResponse, 'function')
+  activities.restoreActivityResponse(form, activity, {
+    response: 'out',
+    confidence: 'low',
+  })
+
+  assert.equal(form.querySelector('input[value="out"]').checked, true)
+  assert.equal(
+    form.querySelector('input[name="confidence"][value="low"]').checked,
+    true,
+  )
 })
