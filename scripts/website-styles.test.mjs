@@ -114,6 +114,18 @@ test('makes route states textual and pack overflow internal', () => {
   assert.match(ruleBody('.course-stage'), /min-width:\s*0;/)
 })
 
+test('styles key ideas as compact inline teaching rather than cards', () => {
+  const teaching = ruleBody('.activity-teaching')
+  assert.match(teaching, /max-width:\s*42rem;/)
+  assert.match(teaching, /border-left:\s*3px solid var\(--lime\);/)
+  assert.doesNotMatch(teaching, /background|border-radius|box-shadow/)
+  assert.match(ruleBody('.activity-teaching p'), /line-height:\s*1\.6;/)
+  assert.match(
+    ruleBody('.activity-teaching strong'),
+    /color:\s*var\(--paper\);/,
+  )
+})
+
 test('recomposes route and context for narrow screens and zoom', () => {
   assert.match(
     demoStyles,

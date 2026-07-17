@@ -346,6 +346,35 @@
   color: #b7c0d1;
 }
 
+.activity-teaching {
+  max-width: 42rem;
+  margin: 1.25rem 0 0;
+  padding: 0.15rem 0 0.15rem 1rem;
+  border-left: 3px solid var(--lime);
+}
+
+.activity-teaching h3 {
+  margin: 0;
+  color: var(--lime);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.activity-teaching p {
+  margin: 0.65rem 0 0;
+  color: #dce4f0;
+  line-height: 1.6;
+}
+
+.activity-teaching strong {
+  color: var(--paper);
+  font-weight: 700;
+}
+
 .retrieval-target,
 .attempt-feedback {
   margin: 1.25rem 0 0;

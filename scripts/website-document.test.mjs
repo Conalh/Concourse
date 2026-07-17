@@ -129,6 +129,13 @@ test('provides the complete six-chapter no-JavaScript course', () => {
     assert.match(staticCourse.textContent, new RegExp(explanation, 'i'))
   }
   assert.ok(staticCourse.querySelectorAll('details').length >= 6)
+  const staticExplanations = staticCourse.querySelectorAll(
+    '.static-chapters > li > p',
+  )
+  assert.equal(staticExplanations.length, 6)
+  for (const explanation of staticExplanations) {
+    assert.ok(explanation.querySelectorAll('strong').length >= 2)
+  }
 })
 
 test('states the local persistence and scientific boundaries', () => {
