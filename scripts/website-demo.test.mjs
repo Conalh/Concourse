@@ -13,6 +13,63 @@ import {
   deriveRouteNodes,
   excerptForFile,
 } from '../website/demo-content.js'
+import {
+  ACTIVITIES,
+  CHAPTERS,
+  COURSE_ID,
+  COURSE_REVISION,
+  EXTENSION_NODE_IDS,
+  REQUIRED_ACTIVITY_IDS,
+  SCIENTIFIC_REFERENCES,
+  SUPPORT_NODE_IDS,
+  getActivity,
+  getCourseNode,
+  validateCourseDefinition,
+} from '../website/demo-course.js'
+import {
+  PACK_FILES as COURSE_PACK_FILES,
+  createSourceDocuments,
+  deriveDraftDocuments,
+  sourceForNode,
+} from '../website/demo-pack.js'
+
+test('defines the complete bacterial-survival course', () => {
+  assert.equal(COURSE_ID, 'bacterial-survival')
+  assert.equal(COURSE_REVISION, 1)
+  assert.equal(CHAPTERS.length, 6)
+  assert.equal(REQUIRED_ACTIVITY_IDS.length, 13)
+  assert.equal(SUPPORT_NODE_IDS.length, 5)
+  assert.equal(EXTENSION_NODE_IDS.length, 4)
+  assert.equal(validateCourseDefinition(), true)
+  assert.equal(ACTIVITIES.length, 22)
+  assert.ok(REQUIRED_ACTIVITY_IDS.every((id) => getActivity(id)))
+  assert.ok(SUPPORT_NODE_IDS.every((id) => getCourseNode(id)))
+  assert.ok(EXTENSION_NODE_IDS.every((id) => getCourseNode(id)))
+  assert.ok(SCIENTIFIC_REFERENCES.length >= 4)
+
+  const coreMinutes = REQUIRED_ACTIVITY_IDS.reduce(
+    (total, id) => total + getActivity(id).minutes,
+    0,
+  )
+  assert.ok(coreMinutes >= 15 && coreMinutes <= 20)
+})
+
+test('projects the biofilm extension atomically', () => {
+  assert.deepEqual(COURSE_PACK_FILES, [
+    'pack.json',
+    'catalog.json',
+    'courses.json',
+    'items.json',
+  ])
+
+  const source = createSourceDocuments()
+  const draft = deriveDraftDocuments({ biofilmExtensionEnabled: true })
+
+  assert.doesNotMatch(JSON.stringify(source), /biofilm-survival/)
+  assert.match(JSON.stringify(draft['catalog.json']), /biofilm-survival/)
+  assert.match(JSON.stringify(draft['courses.json']), /biofilm-survival/)
+  assert.equal(sourceForNode('transport-gradient').fileName, 'items.json')
+})
 
 test('guided demo starts inside the membrane prediction', () => {
   assert.deepEqual(createGuidedDemoState(), {
