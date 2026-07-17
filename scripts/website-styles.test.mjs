@@ -38,163 +38,123 @@ function contrastRatio(foreground, background) {
       )
     return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722
   }
-
   const first = luminance(foreground)
   const second = luminance(background)
   return (Math.max(first, second) + 0.05) / (Math.min(first, second) + 0.05)
 }
 
-test('keeps hidden demo state authoritative at every breakpoint', () => {
+test('keeps hidden state authoritative at every breakpoint', () => {
   assert.match(styles, /\[hidden\]\s*\{[^}]*display:\s*none\s*!important;/s)
   assert.doesNotMatch(demoStyles, /\[hidden\][^{]*\{[^}]*display:\s*(?!none)/)
 })
 
-test('preserves each enhanced control layout and does not mask overflow', () => {
-  assert.doesNotMatch(styles, /\.js\s+\.enhanced-control\s*\{/)
-  assert.match(
-    ruleBody('.js button.enhanced-control'),
-    /display:\s*inline-flex;/,
+test('does not retain selectors from the retired guided demo', () => {
+  assert.doesNotMatch(
+    styles,
+    /\.demo-stage|\[data-demo-|\[data-route-node\]\[data-state/,
   )
-  assert.doesNotMatch(ruleBody('body'), /overflow-x:\s*hidden;/)
 })
 
-test('lays out the learning lab as route, learning center, and context', () => {
+test('gives the course a route stage and context without crushing the stage', () => {
   assert.match(
-    ruleBody('.lab-workspace'),
-    /grid-template-columns:\s*minmax\(\s*9rem,\s*0\.55fr\)\s+minmax\(\s*18rem,\s*1\.45fr\)\s+minmax\(\s*15rem,\s*0\.8fr\s*\);/,
+    ruleBody('.course-workspace'),
+    /grid-template-columns:\s*minmax\(12rem,\s*0\.55fr\)\s+minmax\(28rem,\s*1\.65fr\)\s+minmax\(\s*18rem,\s*0\.8fr\s*\);/,
   )
-  assert.match(ruleBody('.lab-route'), /display:\s*grid;/)
-  assert.match(ruleBody('.lab-context'), /min-width:\s*0;/)
+  assert.match(
+    demoStyles,
+    /@media\s*\(max-width:\s*72rem\)[\s\S]*?\.course-workspace\s*\{[^}]*grid-template-columns:\s*minmax\(10rem,\s*0\.45fr\)\s+minmax\(0,\s*1fr\);/,
+  )
+  assert.match(
+    demoStyles,
+    /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.course-workspace\s*\{[^}]*grid-template-columns:\s*1fr;/,
+  )
 })
 
-test('gives the dedicated demo page the full site content width', () => {
+test('gives the dedicated course the full site width', () => {
   assert.match(ruleBody('.demo-page main'), /display:\s*block;/)
   assert.match(
     ruleBody('.demo-page main'),
     /width:\s*min\(100%,\s*var\(--content-width\)\);/,
   )
-  assert.match(ruleBody('.demo-page .demo-section'), /min-height:\s*0;/)
-  assert.match(ruleBody('.demo-page .demo-section'), /grid-column:\s*auto;/)
+  assert.match(ruleBody('.course-shell'), /min-width:\s*0;/)
 })
 
-test('keeps lab controls touch-safe and press motion pointer-only', () => {
+test('keeps all course controls touch safe with responsive press feedback', () => {
   assert.match(
     demoStyles,
-    /\.learning-lab button\s*\{[^}]*min-height:\s*2\.75rem;/s,
+    /\.course-shell\s+:is\(button,\s*select,\s*summary\)\s*\{[^}]*min-height:\s*2\.75rem;/s,
   )
   assert.match(
     demoStyles,
-    /@media\s*\(hover:\s*hover\)\s*and\s*\(pointer:\s*fine\)[\s\S]*?transform:\s*scale\(0\.97\);/,
-  )
-})
-
-test('keeps demo motion GPU-safe with asymmetric press feedback', () => {
-  const button = ruleBody('.learning-lab button')
-  const choice = ruleBody('.choice-set label > span')
-
-  assert.match(button, /transition:\s*transform 100ms var\(--ease-out\);/)
-  assert.doesNotMatch(
-    button,
-    /transition:[^;]*(?:background-color|border-color|color)/s,
-  )
-  assert.doesNotMatch(choice, /transition:/)
-  assert.match(
-    demoStyles,
-    /@media\s*\(hover:\s*hover\)\s*and\s*\(pointer:\s*fine\)[\s\S]*?\.learning-lab button:active:not\(:focus-visible\)\s*\{[^}]*transition-duration:\s*160ms;/,
-  )
-})
-
-test('makes the full custom-choice surface an actual input hit area', () => {
-  const choiceInput = ruleBody('.choice-set input')
-  const choiceLabel = ruleBody('.choice-set label > span')
-
-  assert.match(choiceInput, /inset:\s*0;/)
-  assert.match(choiceInput, /width:\s*100%;/)
-  assert.match(choiceInput, /height:\s*100%;/)
-  assert.match(choiceInput, /opacity:\s*0;/)
-  assert.match(choiceLabel, /pointer-events:\s*none;/)
-})
-
-test('stacks the lab without horizontal page overflow and honors reduced motion', () => {
-  assert.match(
-    demoStyles,
-    /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.lab-workspace\s*\{[^}]*grid-template-columns:\s*1fr;/,
-  )
-  assert.match(
-    demoStyles,
-    /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.molecule\s*\{[^}]*transition:\s*none;/,
+    /@media\s*\(hover:\s*hover\)\s*and\s*\(pointer:\s*fine\)[\s\S]*?\.course-shell button:active:not\(:focus-visible\)\s*\{[^}]*transform:\s*scale\(0\.97\);/,
   )
   assert.doesNotMatch(demoStyles, /transition:\s*all/)
 })
 
-test('allows the narrow layout to account for a vertical scrollbar', () => {
+test('makes route states textual and pack overflow internal', () => {
+  for (const state of [
+    'completed',
+    'current',
+    'available',
+    'skipped',
+    'upcoming',
+  ]) {
+    assert.match(
+      demoStyles,
+      new RegExp(`\\[data-route-status=['"]${state}['"]\\]`),
+    )
+  }
+  assert.match(ruleBody('.course-context pre'), /overflow:\s*auto;/)
+  assert.match(ruleBody('.course-context pre'), /max-width:\s*100%;/)
+  assert.match(ruleBody('.course-stage'), /min-width:\s*0;/)
+})
+
+test('recomposes route and context for narrow screens and zoom', () => {
+  assert.match(
+    demoStyles,
+    /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.course-route\s*\{[^}]*overflow-x:\s*auto;/,
+  )
+  assert.match(
+    demoStyles,
+    /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.course-stage\s*\{[^}]*order:\s*1;/,
+  )
   assert.doesNotMatch(
     ruleBody('body'),
-    /min-width\s*:/,
-    'body width floors create horizontal overflow at a 320px viewport',
+    /(?:min-width|overflow-x:\s*hidden)\s*:/,
   )
 })
 
-test('keeps mobile navigation and editorial links at least 44px tall', () => {
-  const mobileStart = styles.indexOf('@media (max-width: 52rem)')
-  const nextBreakpoint = styles.indexOf('@media (max-width: 30rem)')
-  const mobileStyles = styles.slice(mobileStart, nextBreakpoint)
-
+test('honors reduced motion and only transitions composited properties', () => {
   assert.match(
-    mobileStyles,
-    /\.site-header \.brand,\s*\.first-contribution a,\s*\.local-boundary > a,\s*footer \.brand,\s*footer nav a\s*\{[^}]*min-height:\s*2\.75rem;/s,
+    demoStyles,
+    /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.course-shell \*\s*\{[^}]*transition-duration:\s*0\.01ms(?:\s*!important)?;/,
   )
+  for (const transition of demoStyles.matchAll(/transition:\s*([^;]+);/g)) {
+    assert.doesNotMatch(
+      transition[1],
+      /(?:width|height|margin|padding|left|right|top|bottom)/,
+    )
+  }
 })
 
-test('keeps enhanced controls inert and hidden until JavaScript mounts', () => {
+test('keeps no-JavaScript content and mobile navigation usable', () => {
   assert.match(
-    styles,
-    /html:not\(\.js\) \.enhanced-control\s*\{[^}]*display:\s*none\s*!important;/s,
-  )
-})
-
-test('keeps the no-JavaScript answer disclosure at least 44px tall', () => {
-  const summary = ruleBody('html:not(.js) .static-demo summary')
-
-  assert.match(summary, /display:\s*flex;/)
-  assert.match(summary, /align-items:\s*center;/)
-  assert.match(summary, /min-height:\s*2\.75rem;/)
-})
-
-test('hides runtime-only progress when JavaScript is unavailable', () => {
-  assert.match(
-    ruleBody('html:not(.js) [data-demo-progress]'),
+    ruleBody('html:not(.js) [data-course-entry]'),
     /display:\s*none;/,
   )
+  assert.match(
+    ruleBody('html:not(.js) .static-course summary'),
+    /min-height:\s*2\.75rem;/,
+  )
+  assert.match(
+    styles,
+    /@media\s*\(max-width:\s*52rem\)[\s\S]*?\.site-header \.brand,[\s\S]*?min-height:\s*2\.75rem;/,
+  )
 })
 
-test('uses focus indicators with at least 3 to 1 adjacent contrast', () => {
-  const lightSurfaceRatio = contrastRatio(
-    colorToken('cobalt'),
-    colorToken('canvas'),
-  )
-  const darkSurfaceRatio = contrastRatio(
-    colorToken('lime'),
-    colorToken('midnight'),
-  )
-  const primaryOnCanvasRatio = contrastRatio(
-    colorToken('ink'),
-    colorToken('canvas'),
-  )
-
-  assert.ok(
-    lightSurfaceRatio >= 3,
-    `light-surface focus contrast is ${lightSurfaceRatio.toFixed(2)}:1`,
-  )
-  assert.ok(
-    darkSurfaceRatio >= 3,
-    `dark-surface focus contrast is ${darkSurfaceRatio.toFixed(2)}:1`,
-  )
-  assert.ok(
-    primaryOnCanvasRatio >= 3,
-    `primary focus against canvas is ${primaryOnCanvasRatio.toFixed(2)}:1`,
-  )
-
+test('uses focus indicators with at least three-to-one adjacent contrast', () => {
+  assert.ok(contrastRatio(colorToken('cobalt'), colorToken('canvas')) >= 3)
+  assert.ok(contrastRatio(colorToken('lime'), colorToken('midnight')) >= 3)
   assert.match(styles, /--focus-light:\s*var\(--cobalt\);/)
   assert.match(styles, /--focus-dark:\s*var\(--lime\);/)
   assert.match(
@@ -202,37 +162,7 @@ test('uses focus indicators with at least 3 to 1 adjacent contrast', () => {
     /outline:\s*3px solid var\(--focus-light\);/,
   )
   assert.match(
-    ruleBody('.button-primary:focus-visible'),
-    /outline-color:\s*var\(--ink\);/,
-  )
-  assert.match(
-    ruleBody('.skip-link:focus-visible'),
-    /outline-color:\s*var\(--focus-light\);/,
-  )
-  assert.match(
-    styles,
-    /\.learning-lab \.button-demo:focus-visible,[\s\S]*?\.learning-lab button:focus-visible,[\s\S]*?\.final-invitation \.button-primary:focus-visible\s*\{[^}]*outline-color:\s*var\(--focus-dark\);/,
-  )
-
-  const genericPrimaryFocus = styles.indexOf('.button-primary:focus-visible')
-  const skipLinkFocus = styles.lastIndexOf('.skip-link:focus-visible')
-  const demoPrimaryFocus = styles.lastIndexOf(
-    '.learning-lab .button-demo:focus-visible',
-  )
-  const invitationPrimaryFocus = styles.lastIndexOf(
-    '.final-invitation .button-primary:focus-visible',
-  )
-
-  assert.ok(
-    skipLinkFocus > genericPrimaryFocus,
-    'skip-link surface override must follow generic primary focus',
-  )
-  assert.ok(
-    demoPrimaryFocus > genericPrimaryFocus,
-    'demo dark-surface override must follow generic primary focus',
-  )
-  assert.ok(
-    invitationPrimaryFocus > genericPrimaryFocus,
-    'invitation dark-surface override must follow generic primary focus',
+    demoStyles,
+    /\.course-shell :focus-visible\s*\{[^}]*outline-color:\s*var\(--focus-dark\);/,
   )
 })

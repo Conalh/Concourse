@@ -90,3 +90,11 @@ test('keeps the guided runtime within its uncompressed JavaScript budget', async
   ).reduce((sum, entry) => sum + entry.size, 0)
   assert.ok(total < 90 * 1024, `demo JavaScript total ${total} exceeds 90 KB`)
 })
+
+test('keeps the complete website CSS within its uncompressed budget', async () => {
+  const paths = ['styles.css', 'demo.css']
+  const total = (
+    await Promise.all(paths.map((path) => stat(new URL(path, root))))
+  ).reduce((sum, entry) => sum + entry.size, 0)
+  assert.ok(total < 80 * 1024, `website CSS total ${total} exceeds 80 KB`)
+})
