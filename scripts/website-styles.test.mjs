@@ -78,6 +78,22 @@ test('keeps lab controls touch-safe and press motion pointer-only', () => {
   )
 })
 
+test('keeps demo motion GPU-safe with asymmetric press feedback', () => {
+  const button = ruleBody('.learning-lab button')
+  const choice = ruleBody('.choice-set label > span')
+
+  assert.match(button, /transition:\s*transform 100ms var\(--ease-out\);/)
+  assert.doesNotMatch(
+    button,
+    /transition:[^;]*(?:background-color|border-color|color)/s,
+  )
+  assert.doesNotMatch(choice, /transition:/)
+  assert.match(
+    demoStyles,
+    /@media\s*\(hover:\s*hover\)\s*and\s*\(pointer:\s*fine\)[\s\S]*?\.learning-lab button:active:not\(:focus-visible\)\s*\{[^}]*transition-duration:\s*160ms;/,
+  )
+})
+
 test('makes the full custom-choice surface an actual input hit area', () => {
   const choiceInput = ruleBody('.choice-set input')
   const choiceLabel = ruleBody('.choice-set label > span')

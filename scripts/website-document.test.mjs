@@ -86,6 +86,13 @@ test('declares the unpacked draft inspector contract', () => {
   assert.ok(inspector.querySelector('[data-draft-status]'))
 })
 
+test('describes the completed route consistently', () => {
+  const pack = document.querySelector('[data-demo-panel="pack"]')
+  assert.ok(pack)
+  assert.match(pack.textContent, /two activities completed/i)
+  assert.doesNotMatch(pack.textContent, /one activity completed/i)
+})
+
 test('uses the approved route, workspace, and context hierarchy', () => {
   const workspace = document.querySelector('.lab-workspace')
   assert.ok(workspace)

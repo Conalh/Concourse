@@ -16,6 +16,15 @@ function predictionEvent(form) {
   }
 }
 
+function predictionValidationMessage(prediction) {
+  if (prediction.choice === null && prediction.confidence === null) {
+    return 'Choose a substance and a confidence level.'
+  }
+  if (prediction.choice === null) return 'Choose a substance.'
+  if (prediction.confidence === null) return 'Choose a confidence level.'
+  return null
+}
+
 function eventFromControl(control) {
   const type = control.dataset.demoAction
   if (type === 'answer-application') {
@@ -32,7 +41,7 @@ function eventFromControl(control) {
 
 function progressCopy(state) {
   if (state.phase === 'predict') return 'Prediction ready · 0 of 2 activities'
-  if (state.phase === 'pack') return 'Route in progress · 2 of 2 activities'
+  if (state.phase === 'pack') return 'Route complete · 2 of 2 activities'
   return 'Evidence recorded · 1 of 2 activities'
 }
 
@@ -229,13 +238,9 @@ export function mountDemo(documentRoot = document, options = {}) {
     const prediction = predictionEvent(predictionForm)
     const missingChoice = prediction.choice === null
     const missingConfidence = prediction.confidence === null
-    if (missingChoice || missingConfidence) {
-      predictionError.textContent =
-        missingChoice && missingConfidence
-          ? 'Choose a substance and a confidence level.'
-          : missingChoice
-            ? 'Choose a substance.'
-            : 'Choose a confidence level.'
+    const validationMessage = predictionValidationMessage(prediction)
+    if (validationMessage !== null) {
+      predictionError.textContent = validationMessage
       predictionError.hidden = false
       predictionFieldsets[0].toggleAttribute('aria-invalid', missingChoice)
       predictionFieldsets[1].toggleAttribute('aria-invalid', missingConfidence)
@@ -307,9 +312,10 @@ export function mountDemo(documentRoot = document, options = {}) {
 
 export function mountPage(documentRoot = document, windowRoot = window) {
   const controller = mountDemo(documentRoot)
+  const pageListeners = []
   for (const link of documentRoot.querySelectorAll('[data-focus-demo]')) {
     const resetsDemo = link.closest('.final-invitation') !== null
-    link.addEventListener('click', () => {
+    const handleClick = () => {
       if (resetsDemo) controller.dispatch({ type: 'reset' })
       windowRoot.requestAnimationFrame(() => {
         const focusTarget = resetsDemo
@@ -317,9 +323,19 @@ export function mountPage(documentRoot = document, windowRoot = window) {
           : documentRoot.querySelector('#demo')
         focusTarget?.focus({ preventScroll: true })
       })
-    })
+    }
+    link.addEventListener('click', handleClick)
+    pageListeners.push({ link, handleClick })
   }
-  return controller
+  return {
+    ...controller,
+    destroy: () => {
+      for (const { link, handleClick } of pageListeners) {
+        link.removeEventListener('click', handleClick)
+      }
+      controller.destroy()
+    },
+  }
 }
 
 if (typeof document !== 'undefined') mountPage()
