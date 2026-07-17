@@ -56,20 +56,24 @@ test('provides every required section and demo hook', () => {
   for (const id of ['demo', 'system', 'contribute', 'status']) {
     assert.ok(document.getElementById(id), `missing #${id}`)
   }
-  assert.ok(document.querySelector('[data-demo]'))
-  assert.equal(document.querySelectorAll('[data-demo-panel]').length, 4)
-  assert.equal(document.querySelectorAll('[data-route-node]').length, 3)
-  assert.ok(document.querySelector('[data-demo-status][aria-live="polite"]'))
-  assert.ok(document.querySelector('[data-demo-progress]'))
+  const demo = document.querySelector('[data-demo]')
+  assert.ok(demo)
+  assert.equal(demo.querySelectorAll('[data-demo-panel]').length, 6)
+  assert.equal(demo.querySelectorAll('[data-route-node]').length, 4)
+  assert.ok(demo.querySelector('[data-demo-form="prediction"]'))
+  assert.equal(demo.querySelectorAll('[name="molecule"]').length, 3)
+  assert.equal(demo.querySelectorAll('[name="confidence"]').length, 2)
+  assert.ok(demo.querySelector('[data-membrane-figure]'))
+  assert.ok(demo.querySelector('[data-evidence-context]'))
+  assert.ok(demo.querySelector('[data-pack-inspector]'))
+  assert.ok(demo.querySelector('[data-demo-status][aria-live="polite"]'))
+  assert.ok(demo.querySelector('[data-demo-progress]'))
 })
 
-test('keeps recall navigation visually distinct from the answer choices', () => {
-  const recallPanel = document.querySelector('[data-demo-panel="recall"]')
-  const backButton = recallPanel?.querySelector(
-    ':scope > .demo-back[data-demo-action="back"]',
-  )
-
-  assert.ok(backButton, 'recall Back control needs its dedicated spacing hook')
+test('starts inside the learning experience without a dead start screen', () => {
+  const demoText = document.querySelector('[data-demo]')?.textContent ?? ''
+  assert.equal(demoText.includes('Start this route'), false)
+  assert.match(demoText, /which crosses most easily/i)
 })
 
 test('uses verified contribution destinations', () => {

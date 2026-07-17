@@ -1,94 +1,185 @@
-import { createDemoState, transitionDemo } from './demo-model.js'
+import { deriveRouteNodes } from './demo-content.js'
+import { createGuidedDemoState, transitionGuidedDemo } from './demo-model.js'
 
-const STEP_MESSAGES = Object.freeze({
-  route: 'Route ready. Zero of three concepts complete.',
-  lesson: 'Lesson opened. Cell membrane is the active concept.',
-  recall: 'Recall question opened.',
-  pack: 'Correct. Route advanced to one of three concepts.',
-})
+function predictionEvent(form) {
+  const FormDataConstructor = form.ownerDocument.defaultView.FormData
+  const data = new FormDataConstructor(form)
+  return {
+    type: 'submit-prediction',
+    choice: data.get('molecule'),
+    confidence: data.get('confidence'),
+  }
+}
 
 function eventFromControl(control) {
   const type = control.dataset.demoAction
-  if (type === 'answer') return { type, choice: control.dataset.choice }
+  if (type === 'answer-application') {
+    return { type, choice: control.dataset.choice }
+  }
   return { type }
+}
+
+function progressCopy(state) {
+  if (state.phase === 'predict') return 'Prediction ready · 0 of 2 activities'
+  if (state.phase === 'pack') return 'Route in progress · 2 of 2 activities'
+  return 'Evidence recorded · 1 of 2 activities'
+}
+
+function evidenceCopy(state) {
+  if (state.phase === 'predict') {
+    return 'No evidence yet. Make a prediction to begin.'
+  }
+  const confidence =
+    state.prediction.confidence === 'high'
+      ? 'high confidence'
+      : 'low confidence'
+  const result =
+    state.prediction.status === 'correct'
+      ? 'correct prediction'
+      : 'incorrect prediction'
+  if (state.phase === 'result' || state.phase === 'bridge-offer') {
+    return `${result} · ${confidence}`
+  }
+  if (state.phase === 'bridge') return `${result} · bridge opened by learner`
+  if (state.phase === 'apply') {
+    return state.bridge.completed
+      ? `${result} · bridge completed · application ready`
+      : `${result} · application ready`
+  }
+  return `${result} · application correct · 2 evidence records`
+}
+
+function announcementFor(state) {
+  if (state.phase === 'result') {
+    return state.prediction.status === 'correct'
+      ? 'Correct. Oxygen crosses the lipid membrane most easily.'
+      : 'Not quite. Oxygen crosses the lipid membrane most easily.'
+  }
+  if (state.phase === 'bridge-offer') {
+    return 'A short charge and size bridge is available.'
+  }
+  if (state.phase === 'bridge') return 'Charge and size bridge opened.'
+  if (state.phase === 'apply') {
+    return state.application.status === 'incorrect'
+      ? 'Not quite. Glucose crosses with help from a transport protein.'
+      : 'Transport proteins application opened.'
+  }
+  if (state.phase === 'pack') {
+    return 'Correct. Two activities complete. Pack draft opened.'
+  }
+  return 'Prediction ready.'
+}
+
+function resultCopy(state) {
+  return state.prediction.status === 'correct'
+    ? 'Exactly. Small, nonpolar oxygen can diffuse through the lipid bilayer. Glucose and sodium need membrane proteins.'
+    : 'Oxygen crosses most easily. Glucose is larger and polar, while sodium carries charge, so both need membrane proteins.'
 }
 
 export function mountDemo(documentRoot = document, options = {}) {
   const root = documentRoot.querySelector('[data-demo]')
   if (root === null) {
-    return { getState: createDemoState, dispatch: () => {}, destroy: () => {} }
+    return {
+      getState: createGuidedDemoState,
+      dispatch: () => {},
+      destroy: () => {},
+    }
   }
 
   const manageFocus = options.manageFocus ?? true
   const panels = [...root.querySelectorAll('[data-demo-panel]')]
-  const nodes = [...root.querySelectorAll('[data-route-node]')]
-  const feedback = root.querySelector('[data-feedback]')
+  const routeNodes = [...root.querySelectorAll('[data-route-node]')]
+  const applicationButtons = [
+    ...root.querySelectorAll('[data-demo-action="answer-application"]'),
+  ]
+  const predictionForm = root.querySelector('[data-demo-form="prediction"]')
+  const figure = root.querySelector('[data-membrane-figure]')
   const progress = root.querySelector('[data-demo-progress]')
+  const evidence = root.querySelector('[data-evidence-context]')
+  const applicationFeedback = root.querySelector('[data-application-feedback]')
+  const result = root.querySelector('[data-result-copy]')
+  const inspector = root.querySelector('[data-pack-inspector]')
   const status = root.querySelector('[data-demo-status]')
-  let state = createDemoState()
+  let state = createGuidedDemoState()
 
   documentRoot.documentElement?.classList.add('js')
 
-  function render(announce = false, moveFocus = false, focusAnswer = false) {
-    for (const panel of panels)
-      panel.hidden = panel.dataset.demoPanel !== state.step
-    for (const node of nodes) {
-      const active = node.dataset.routeNode === 'membrane'
-      node.dataset.state =
-        state.step === 'route' ? 'upcoming' : active ? 'active' : 'upcoming'
-      if (state.step === 'pack' && active) node.dataset.state = 'complete'
+  function render(announce = false, moveFocus = false, resetForm = false) {
+    root.querySelector('.learning-lab').dataset.phase = state.phase
+    for (const panel of panels) {
+      panel.hidden = panel.dataset.demoPanel !== state.phase
     }
-    if (feedback !== null) feedback.hidden = state.answerStatus !== 'incorrect'
-    if (progress !== null) {
-      progress.textContent =
-        state.step === 'pack'
-          ? 'Route in progress · 1 of 3 concepts'
-          : 'Route ready · 0 of 3 concepts'
+    figure.dataset.result = state.phase === 'predict' ? 'idle' : 'oxygen'
+
+    const projectedNodes = new Map(
+      deriveRouteNodes(state).map((node) => [node.id, node]),
+    )
+    for (const node of routeNodes) {
+      const projection = projectedNodes.get(node.dataset.routeNode)
+      node.hidden = projection === undefined
+      if (projection === undefined) delete node.dataset.state
+      else node.dataset.state = projection.state
     }
-    if (announce && status !== null)
-      status.textContent =
-        state.answerStatus === 'incorrect'
-          ? 'Not quite. DNA stores genetic instructions. The cell membrane regulates movement across the cell boundary.'
-          : STEP_MESSAGES[state.step]
-    if (manageFocus && (moveFocus || focusAnswer)) {
-      const activePanel = panels.find(
-        (panel) => panel.dataset.demoPanel === state.step,
-      )
-      const focusTarget = focusAnswer
-        ? root.querySelector('[data-choice]')
-        : state.step === 'route'
-          ? root.querySelector('[data-demo-action="start"]')
-          : activePanel
-      focusTarget?.focus({ preventScroll: true })
+
+    progress.textContent = progressCopy(state)
+    evidence.textContent = evidenceCopy(state)
+    applicationFeedback.hidden = state.application.status !== 'incorrect'
+    result.textContent = resultCopy(state)
+    inspector.hidden = state.phase !== 'pack'
+
+    for (const button of applicationButtons) {
+      const submitted = button.dataset.choice === state.application.choice
+      if (!submitted || state.application.status === 'unanswered') {
+        delete button.dataset.state
+      } else {
+        button.dataset.state = state.application.status
+      }
+    }
+
+    if (resetForm) predictionForm.reset()
+    if (announce) status.textContent = announcementFor(state)
+    if (manageFocus && moveFocus) {
+      const target =
+        state.phase === 'predict'
+          ? predictionForm.querySelector('[name="molecule"]')
+          : panels.find((panel) => panel.dataset.demoPanel === state.phase)
+      target?.focus({ preventScroll: true })
     }
   }
 
   function dispatch(event) {
-    const previousStep = state.step
-    const previousAnswerStatus = state.answerStatus
-    state = transitionDemo(state, event)
-    const retriedIncorrectAnswer =
-      event?.type === 'retry' &&
-      previousAnswerStatus === 'incorrect' &&
-      state.step === 'recall' &&
-      state.answerStatus === 'unanswered'
-    render(true, state.step !== previousStep, retriedIncorrectAnswer)
+    const previousPhase = state.phase
+    state = transitionGuidedDemo(state, event)
+    const reset = event?.type === 'reset'
+    render(true, state.phase !== previousPhase || reset, reset)
+  }
+
+  function handleSubmit(event) {
+    if (event.target !== predictionForm) return
+    event.preventDefault()
+    dispatch(predictionEvent(predictionForm))
   }
 
   function handleClick(event) {
     const control = event.target.closest?.('[data-demo-action]')
-    if (control === null || control === undefined || !root.contains(control))
+    if (control === null || control === undefined || !root.contains(control)) {
       return
+    }
+    if (control.matches('input[type="checkbox"]')) return
     dispatch(eventFromControl(control))
   }
 
+  root.addEventListener('submit', handleSubmit)
   root.addEventListener('click', handleClick)
   render(false)
 
   return {
-    getState: () => ({ ...state }),
+    getState: () => JSON.parse(JSON.stringify(state)),
     dispatch,
-    destroy: () => root.removeEventListener('click', handleClick),
+    destroy: () => {
+      root.removeEventListener('submit', handleSubmit)
+      root.removeEventListener('click', handleClick)
+    },
   }
 }
 
@@ -100,7 +191,7 @@ export function mountPage(documentRoot = document, windowRoot = window) {
       if (resetsDemo) controller.dispatch({ type: 'reset' })
       windowRoot.requestAnimationFrame(() => {
         const focusTarget = resetsDemo
-          ? documentRoot.querySelector('[data-demo-action="start"]')
+          ? documentRoot.querySelector('[name="molecule"]')
           : documentRoot.querySelector('#demo')
         focusTarget?.focus({ preventScroll: true })
       })

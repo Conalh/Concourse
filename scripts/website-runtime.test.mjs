@@ -5,190 +5,215 @@ import { JSDOM } from 'jsdom'
 import * as runtime from '../website/main.js'
 
 const { mountDemo } = runtime
-
 const html = await readFile(
   new URL('../website/index.html', import.meta.url),
   'utf8',
 )
 
-const EXPECTED_ACTIONS = [
-  'answer',
-  'back',
-  'continue',
-  'reset',
-  'retry',
-  'start',
-]
-
 function setup(options = { manageFocus: false }) {
   const dom = new JSDOM(html, { url: 'https://concourse.test/' })
-  dom.window.HTMLElement.prototype.scrollIntoView = () => {}
   const controller = mountDemo(dom.window.document, options)
   return { document: dom.window.document, controller }
 }
 
 function click(document, selector) {
-  const button = document.querySelector(selector)
-  assert.ok(button, `missing ${selector}`)
-  button.click()
+  const control = document.querySelector(selector)
+  assert.ok(control, `missing ${selector}`)
+  control.click()
 }
 
-test('declares the complete demo action contract', () => {
-  const { document, controller } = setup()
-  const actions = [...document.querySelectorAll('[data-demo-action]')].map(
-    (control) => control.dataset.demoAction,
-  )
+function submitPrediction(document, choice, confidence) {
+  click(document, `[name="molecule"][value="${choice}"]`)
+  click(document, `[name="confidence"][value="${confidence}"]`)
+  const form = document.querySelector('[data-demo-form="prediction"]')
+  assert.ok(form)
+  form.requestSubmit()
+}
 
-  assert.deepEqual([...new Set(actions)].sort(), EXPECTED_ACTIONS)
-  controller.destroy()
-})
-
-test('mounts only the route panel and advances through lesson', () => {
+test('mounts directly into the prediction phase', () => {
   const { document, controller } = setup()
+  assert.equal(controller.getState().phase, 'predict')
   assert.equal(
-    document.querySelector('[data-demo-panel="route"]')?.hidden,
+    document.querySelector('[data-demo-panel="predict"]')?.hidden,
     false,
   )
   assert.equal(
-    document.querySelector('[data-demo-panel="lesson"]')?.hidden,
+    document.querySelector('[data-demo-panel="result"]')?.hidden,
+    true,
+  )
+  assert.match(
+    document.querySelector('[data-demo-progress]')?.textContent ?? '',
+    /0 of 2 activities/i,
+  )
+  controller.destroy()
+})
+
+test('completes the direct evidence path', () => {
+  const { document, controller } = setup()
+  submitPrediction(document, 'oxygen', 'high')
+
+  assert.equal(controller.getState().phase, 'result')
+  assert.equal(
+    document.querySelector('[data-membrane-figure]')?.dataset.result,
+    'oxygen',
+  )
+  assert.match(
+    document.querySelector('[data-demo-status]')?.textContent ?? '',
+    /correct.*oxygen/i,
+  )
+
+  click(document, '[data-demo-action="continue-result"]')
+  assert.equal(controller.getState().phase, 'apply')
+  click(
+    document,
+    '[data-demo-action="answer-application"][data-choice="transport-protein"]',
+  )
+  assert.equal(controller.getState().phase, 'pack')
+  assert.match(
+    document.querySelector('[data-demo-progress]')?.textContent ?? '',
+    /2 of 2 activities/i,
+  )
+  controller.destroy()
+})
+
+test('offers, accepts, and returns from the bridge', () => {
+  const { document, controller } = setup()
+  submitPrediction(document, 'glucose', 'high')
+  click(document, '[data-demo-action="continue-result"]')
+
+  assert.equal(controller.getState().phase, 'bridge-offer')
+  assert.equal(
+    document.querySelector('[data-route-node="charge-and-size"]')?.hidden,
     true,
   )
 
-  click(document, '[data-demo-action="start"]')
-
-  assert.equal(controller.getState().step, 'lesson')
+  click(document, '[data-demo-action="accept-bridge"]')
+  assert.equal(controller.getState().phase, 'bridge')
   assert.equal(
-    document.querySelector('[data-demo-panel="lesson"]')?.hidden,
+    document.querySelector('[data-route-node="charge-and-size"]')?.hidden,
     false,
   )
+
+  click(document, '[data-demo-action="complete-bridge"]')
+  assert.equal(controller.getState().phase, 'apply')
+  assert.equal(controller.getState().bridge.completed, true)
   assert.match(
-    document.querySelector('[data-demo-status]')?.textContent ?? '',
-    /lesson opened/i,
+    document.querySelector('[data-evidence-context]')?.textContent ?? '',
+    /bridge completed/i,
   )
   controller.destroy()
 })
 
-test('announces incorrect feedback, retries, and completes the concept', () => {
+test('permits skipping an offered bridge', () => {
   const { document, controller } = setup()
-  click(document, '[data-demo-action="start"]')
-  click(document, '[data-demo-action="continue"]')
-  click(document, '[data-choice="dna"]')
+  submitPrediction(document, 'oxygen', 'low')
+  click(document, '[data-demo-action="continue-result"]')
+  click(document, '[data-demo-action="skip-bridge"]')
 
-  assert.equal(document.querySelector('[data-feedback]')?.hidden, false)
+  assert.equal(controller.getState().phase, 'apply')
+  assert.equal(controller.getState().bridge.accepted, false)
+  assert.equal(
+    document.querySelector('[data-route-node="charge-and-size"]')?.hidden,
+    true,
+  )
+  controller.destroy()
+})
+
+test('keeps incorrect application feedback in place and accepts a retry', () => {
+  const { document, controller } = setup({ manageFocus: true })
+  submitPrediction(document, 'oxygen', 'high')
+  click(document, '[data-demo-action="continue-result"]')
+
+  const incorrect = document.querySelector(
+    '[data-demo-action="answer-application"][data-choice="ribosome"]',
+  )
+  assert.ok(incorrect)
+  incorrect.focus()
+  incorrect.click()
+
+  assert.equal(document.activeElement, incorrect)
+  assert.equal(
+    document.querySelector('[data-application-feedback]')?.hidden,
+    false,
+  )
   assert.match(
     document.querySelector('[data-demo-status]')?.textContent ?? '',
-    /not quite/i,
+    /not quite.*transport protein/i,
   )
 
-  click(document, '[data-demo-action="retry"]')
-
-  assert.equal(document.querySelector('[data-feedback]')?.hidden, true)
-  assert.match(
-    document.querySelector('[data-demo-status]')?.textContent ?? '',
-    /recall question opened/i,
+  click(
+    document,
+    '[data-demo-action="answer-application"][data-choice="transport-protein"]',
   )
-
-  click(document, '[data-choice="membrane"]')
-
-  assert.equal(controller.getState().step, 'pack')
-  assert.match(
-    document.querySelector('[data-demo-progress]')?.textContent ?? '',
-    /1 of 3/,
-  )
-  assert.match(
-    document.querySelector('[data-demo-status]')?.textContent ?? '',
-    /correct/i,
-  )
+  assert.equal(controller.getState().phase, 'pack')
   controller.destroy()
 })
 
 test('supports back, reset, and independent remounting', () => {
   const first = setup()
-  first.controller.dispatch({ type: 'start' })
-  first.controller.dispatch({ type: 'continue' })
-  first.controller.dispatch({ type: 'answer', choice: 'membrane' })
+  first.controller.dispatch({
+    type: 'submit-prediction',
+    choice: 'oxygen',
+    confidence: 'high',
+  })
+  first.controller.dispatch({ type: 'continue-result' })
+  first.controller.dispatch({
+    type: 'answer-application',
+    choice: 'transport-protein',
+  })
   click(first.document, '[data-demo-panel="pack"] [data-demo-action="back"]')
-
-  assert.equal(first.controller.getState().step, 'recall')
+  assert.equal(first.controller.getState().phase, 'apply')
 
   first.controller.dispatch({ type: 'reset' })
-
-  assert.deepEqual(first.controller.getState(), {
-    step: 'route',
-    answerStatus: 'unanswered',
-  })
+  assert.equal(first.controller.getState().phase, 'predict')
   first.controller.destroy()
 
   const second = setup()
-  assert.deepEqual(second.controller.getState(), {
-    step: 'route',
-    answerStatus: 'unanswered',
-  })
+  assert.equal(second.controller.getState().phase, 'predict')
   second.controller.destroy()
 })
 
-test('moves focus only when focus management is enabled', () => {
-  const { document, controller } = setup({ manageFocus: true })
-
-  click(document, '[data-demo-action="start"]')
-
+test('moves focus only when a phase changes and focus management is enabled', () => {
+  const enabled = setup({ manageFocus: true })
+  submitPrediction(enabled.document, 'oxygen', 'high')
   assert.equal(
-    document.activeElement,
-    document.querySelector('[data-demo-panel="lesson"]'),
+    enabled.document.activeElement,
+    enabled.document.querySelector('[data-demo-panel="result"]'),
   )
-
-  controller.dispatch({ type: 'reset' })
-
+  enabled.controller.dispatch({ type: 'reset' })
   assert.equal(
-    document.activeElement,
-    document.querySelector('[data-demo-action="start"]'),
+    enabled.document.activeElement,
+    enabled.document.querySelector('[name="molecule"]'),
   )
-  controller.destroy()
-})
+  enabled.controller.destroy()
 
-test('preserves incorrect-choice focus and returns retry focus to the answers', () => {
-  const { document, controller } = setup({ manageFocus: true })
-  controller.dispatch({ type: 'start' })
-  controller.dispatch({ type: 'continue' })
-
-  const incorrectChoice = document.querySelector('[data-choice="dna"]')
-  assert.ok(incorrectChoice)
-  incorrectChoice.focus()
-  incorrectChoice.click()
-
-  assert.equal(document.activeElement, incorrectChoice)
-
-  const retry = document.querySelector('[data-demo-action="retry"]')
-  assert.ok(retry)
-  retry.focus()
-  retry.click()
-
-  assert.equal(
-    document.activeElement,
-    document.querySelector('[data-choice="membrane"]'),
-  )
-  controller.destroy()
+  const disabled = setup({ manageFocus: false })
+  submitPrediction(disabled.document, 'oxygen', 'high')
+  assert.equal(disabled.document.activeElement, disabled.document.body)
+  disabled.controller.destroy()
 })
 
 test('resets a completed demo when the final rerun link is activated', () => {
-  assert.equal(typeof runtime.mountPage, 'function')
-
   const dom = new JSDOM(html, { url: 'https://concourse.test/' })
   dom.window.requestAnimationFrame = (callback) => callback()
   const controller = runtime.mountPage(dom.window.document, dom.window)
-  controller.dispatch({ type: 'start' })
-  controller.dispatch({ type: 'continue' })
-  controller.dispatch({ type: 'answer', choice: 'membrane' })
+  controller.dispatch({
+    type: 'submit-prediction',
+    choice: 'oxygen',
+    confidence: 'high',
+  })
+  controller.dispatch({ type: 'continue-result' })
+  controller.dispatch({
+    type: 'answer-application',
+    choice: 'transport-protein',
+  })
 
   click(dom.window.document, '.final-invitation [data-focus-demo]')
 
-  assert.deepEqual(controller.getState(), {
-    step: 'route',
-    answerStatus: 'unanswered',
-  })
+  assert.equal(controller.getState().phase, 'predict')
   assert.equal(
     dom.window.document.activeElement,
-    dom.window.document.querySelector('[data-demo-action="start"]'),
+    dom.window.document.querySelector('[name="molecule"]'),
   )
   controller.destroy()
 })
